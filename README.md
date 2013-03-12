@@ -22,6 +22,17 @@ of running a Zonation analysis.
 
 #### Plotting
 
+## Installing
+
+1. Make sure you have package `devtools` installed:  
+```r
+install.packages("devtools")
+```
+2. Then install `zonator` directly from GitHub:
+```r
+install_github("zonator", "jlehtoma")
+```
+
 ## Developers
 
 * Joona Lehtomäki <>
