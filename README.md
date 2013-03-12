@@ -7,7 +7,7 @@ of helper scripts which have now been packages for anybody interested in using
 a familiar tool (R) in setting up Zonation runs and managing Zonation results.
 
 **NOTE that the scripts are strictly alpha quality. Do not expect any sort 
-of stability at least before 0.5 release.**
+of stability at least before 0.2 release.**
 
 ## Objectives
 
