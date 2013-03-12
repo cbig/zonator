@@ -1,0 +1,4 @@
+export(clean.str)
+exportMethods(getVariant)
+exportMethods(nvariants)
+exportMethods(opendir)

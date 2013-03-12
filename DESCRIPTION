@@ -1,0 +1,32 @@
+Package: zonator
+Type: Package
+Title: Utility functions for Zonation spatial conservation prioritization
+    software
+Version: 0.1
+Date: 2013-03-12
+Author: Joona Lehtomaki
+Maintainer: Joona Lehtomaki <joona.lehtomaki@gmail.com>
+Description: More about what it does (maybe more than one line)
+Depends:
+    R (>= 2.12.0),
+    ggplot2,
+    plyr,
+    raster,
+    reshape2,
+    XLConnect
+Imports:
+    methods
+License: FreeBSD
+Collate:
+    'options.R'
+    'AllGenerics.R'
+    'AllClasses.R'
+    'zonator-internal.R'
+    'comparison.R'
+    'plot.R'
+    'read-input-excel.R'
+    'read-output-raster.R'
+    'read-output-text.R'
+    'write-input.R'
+    'plot-methods.R'
+    'utilities.R'
