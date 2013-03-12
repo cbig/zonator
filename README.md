@@ -25,13 +25,14 @@ of running a Zonation analysis.
 ## Installing
 
 1. Make sure you have package `devtools` installed:  
-```r
+```
 install.packages("devtools")
+```  
+
+2. Then install `zonator` directly from GitHub:  
 ```
-2. Then install `zonator` directly from GitHub:
-```r
 install_github("zonator", "jlehtoma")
-```
+```  
 
 ## Developers
 
