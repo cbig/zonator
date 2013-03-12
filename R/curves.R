@@ -1,3 +1,15 @@
+# This file is a part of zonator package
+
+# Copyright (C) 2012-2014 Joona Lehtomäki <joona.lehtomaki@gmai.com>. All rights 
+# reserved.
+
+# This program is open source software; you can redistribute it and/or modify 
+# it under the terms of the FreeBSD License (keep this notice): 
+# http://en.wikipedia.org/wiki/BSD_licenses
+
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 read.curves <- function(infile) {
   
@@ -46,25 +58,3 @@ read.grp.curves <- function(file) {
   
 }
 
-read.stats <- function(wildcard=".cmp$") {
-  
-  data <- list()
-  
-  # Get all the comparisons (.cmp) files
-  # TODO: fix the wildcard so that it's strict about the extension
-  files <- list.files(pattern=wildcard)
-  
-  # Loop over the comparison files
-  
-  for (i in 1:length(files)) {
-    
-    thresh <- read.table(files[i], nrows=10, as.is=TRUE, header=TRUE)
-    lines <- readLines(files[i])
-    tot <- grep("Total correlation", lines, value=TRUE)
-    tot <- as.numeric(tail(strsplit(tot, ":")[[1]], 1))
-    data[[files[i]]] <- list(thresh=thresh, total=tot)
-  }
-  class(data) <- "z.comp.plot"
-  return(data)
-  
-}
