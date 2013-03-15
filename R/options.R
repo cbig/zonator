@@ -24,12 +24,8 @@
                                 panel.border = element_rect(size=2, 
                                                             colour="black"))
 
-# Globals -----------------------------------------------------------------
-
-curve.x.title <- "\nProp. of landscape lost"
-curve.x.title.invert <- "\nProportion of landscape\n under conservation"
-curve.y.title <- "Prop. of ditributions remaining\n"
-curve.legend.title <- "Features"
-grp.curve.legend.title <- "Feature groups"
-
-red <- "#FF0000"
+.options[["curve.x.title"]] <- "\nProp. of landscape lost"
+.options[["curve.x.title.invert"]] <- "\nProportion of landscape under conservation"
+.options[["curve.y.title"]] <- "Prop. of ditributions remaining\n"
+.options[["curve.legend.title"]] <- "Features"
+.options[["grp.curve.legend.title"]] <- "Feature groups"

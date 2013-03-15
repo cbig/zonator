@@ -56,19 +56,26 @@ plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   
   if (invert.x) {
     x.scale <- seq(0, 1, 0.25)
-    p + xlab(curve.x.title.invert) + ylab(curve.y.title) + .options["curve.theme"] +
+    p + xlab(curve.x.title.invert) + ylab(curve.y.title) +
       scale_x_continuous(breaks=x.scale, labels=1-x.scale)
   } else {
-    p + xlab(curve.x.title) + ylab(curve.y.title) + .options["curve.theme"]
+    p + xlab(curve.x.title) + ylab(curve.y.title)
   }
 }
 
 plot.z.grp.curves <- function(x, statistic="mean", groups=NULL, 
-                              monochrome=FALSE, invert.x=FALSE, 
+                              monochrome=FALSE, main=NULL, invert.x=FALSE, 
                               labels=NULL, ...) {
   
   # Set the statistics indeces
   index <- list("min"=3, "mean"=4, "max"=5, "w.mean"=6, "ext2"=7)
+  
+  # If no main title is provided, use the statistic provided
+  if (is.null(main)) {
+    title <- statistic
+  } else {
+    title <- main
+  }
   
   if (statistic %in% names(index)) {
     # Starting from nth column, every 5th column is the same statistic
@@ -77,6 +84,20 @@ plot.z.grp.curves <- function(x, statistic="mean", groups=NULL,
     x <- x[c(1, col.ids)]
   } else {
     stop(paste("Unkown statistic type:", statistic))
+  }
+  
+  # How many items are we drawing (excluding F.lost)
+  nitems <- length(col.ids)
+  
+  # Check that there is the right number of labels if provided
+  if (!is.null(labels)) {
+    if (nitems != length(labels)) {
+      stop(paste0("The number or plot items (", nitems, ") and labels (", 
+                  length(labels), ") differs"))
+    }
+  } else {
+    # Tell ggplot to use defaults for the labels
+    labels <- waiver()
   }
   
   # Which groups are actually included
@@ -89,39 +110,32 @@ plot.z.grp.curves <- function(x, statistic="mean", groups=NULL,
   x.melt <- melt(data = x, id.vars=c(1), measure.vars=grps)
   
   #default_theme <- theme_get()
-  theme_set(theme_bw(22, "Droid sans"))
+  theme_set(theme_bw(16, "Droid sans"))
   
-  p <- ggplot(x.melt, aes(x=value, y=F.lost, group=variable))
-  p <- p + geom_line(aes(colour = variable))
-  
-  
-  if (is.null(labels)) {
-    if (monochrome) {
-      p <- p + scale_colour_grey(name=grp.curve.legend.title) + theme_bw() 
-    } else {
-      p <- p + scale_colour_brewer(name=grp.curve.legend.title) 
-    }
+  p <- ggplot(x.melt, aes(x=value, y=F.lost, col = variable))
+  if (monochrome) {
+    p <- p + geom_line(aes(col = variable, linetype = variable), size=1.0)
   } else {
-    if (monochrome) {
-      
-      p <- p + scale_colour_grey(start=0.0, end=0.8,
-                                 name=grp.curve.legend.title, labels=labels) 
-        
-    } else {
-      p <- p + scale_colour_brewer(name=grp.curve.legend.title, labels=labels,
-                                   type = "qual", palette=2)
-    }
+    p <- p + geom_line(size=1.0)
+  }
+  
+  if (monochrome) {
+    p <- p + scale_linetype_manual(values = 1:nitems, labels=labels,
+                                   name=.options[["grp.curve.legend.title"]]) +
+             scale_colour_manual(values=grey.colors(nitems), labels=labels,
+                                 name=.options[["grp.curve.legend.title"]]) + 
+             theme_bw() 
+  } else {
+    p <- p + scale_colour_brewer(name=.options[["grp.curve.legend.title"]], 
+                                 labels=labels, type = "qual", palette=2) 
   }
   
   if (invert.x) {
     x.scale <- seq(0, 1, 0.25)
-    p <- p + scale_x_continuous(breaks=x.scale, labels=1-x.scale)
+    p <- p + scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
+         xlab(.options[["curve.x.title.invert"]])
   } else {
-    
+    p <- p + xlab(.options[["curve.x.title"]])
   }
-  p + xlab(curve.x.title) + ylab(curve.y.title) + #.options["curve.theme"] + 
-    ggtitle(statistic)
-  
-  # Reset the default theme
-  #theme_set(default_theme)
+  p + ylab(.options[["curve.y.title"]]) + ggtitle(title)
 }
