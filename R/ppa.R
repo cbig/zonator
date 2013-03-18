@@ -58,93 +58,51 @@ read.ppa.lsm <- function(x) {
   
   lines <- readLines(con)
   
-  # Placeholders for the actual data
-  data1 <- data.frame()
-  data2 <- data.frame()
-  data3 <- data.frame()
+  index1 <- list("start"=NULL, "end"=NULL)
+  index2 <- list("start"=NULL, "end"=NULL)
+  index3 <- list("start"=NULL, "end"=NULL)
   
-  # Boolean help variables that control when the data is read in
-  read1 <- FALSE
-  read2 <- FALSE
-  read3 <- FALSE
-  
+  line.index <- 1
   for (line in lines) {
+    
+    line.index <- line.index + 1
     
     # 1. Most important species in units x
     if (grepl(chunk1.start.token, line)) {
       # Header included: YES, but at chunk1.start.token + 1 
-      # Set read TRUE -> consecutive rows will be read in
-      read1 <- TRUE
+      index1[["start"]] <- line.index + 1
       next
     }
     
-    if (read1) {
-      
-      # If the header doesn't alrady exist, create it
-      if (!exists("header1")) {
-        header1 <- c("Unit", "Area", "Mean-Rank", "X", "Y", 
-                     "Spp_distribution_sum", "Plus_10", "Plus_1", "Plus_01",
-                     "Plus_001", "Plus_0001", "Plus_00001")
-        next
-      }
-      
-      if (line != "") { 
-        data1 <- rbind(data1, .line.as.numeric(line))
-        next
-      } else {
-        colnames(data1) <- header1
-        dat[[1]] <- data1
-        read1 <- FALSE
-      }
-    }
-
-    # 2. Average proportion remaining over all spp in units
+    if (!is.null(index1[["start"]]) & is.null(index1[["end"]]) & line == "") {
+      index1[["end"]] <- line.index - 2
+      next
+    } 
+    
+    # 2. Average proportion remaining over all spp in uni
     if (grepl(chunk2.start.token, line)) {
-      # Header included: NO
-      header2 <- c("Feature", "Tot_prop", "Sum")
-      read2 <- TRUE
+      # Header included: NO 
+      index2[["start"]] <- line.index
       next
     }
     
-    if (read2) {
-      
-      if (line != "") { 
-        items <- .line.as.string(line)
-        data2 <- cbind(data2, .line.as.string(line))
-        browser()
-        next
-      } else {
-        
-        colnames(data2) <- header2
-        dat[[2]] <- data2
-        read2 <- FALSE
-      }
-    }
+    if (!is.null(index2[["start"]]) & is.null(index2[["end"]]) & line == "") {
+      index2[["end"]] <- line.index - 2
+      next
+    } 
     
     # 3. Data fractions in units
     if (grepl(chunk3.start.token, line)) {
-      # Header included: NO. Header can be constructed only after the first 
-      # actual line 
-      header3 <- c("Unit_number", "Area_cells")
-      read3 <- TRUE
+      # Header included: NO 
+      index3[["start"]] <- line.index
       next
     }
     
-    if (read3) {
-      if (line != "") { 
-        data3 <- rbind(data3, .line.as.numeric(line))
-        next
-      } else {
-        # Finish up the header using the last line of (numeric) data
-        nspp <- dim(data3)[2]
-        header3 <- c(header3, paste0("Sp_data", 1:nspp))
-        colnames(data3) <- header3
-        dat[[3]] <- data3
-        read3 <- FALSE
-      }
-    }
+    if (!is.null(index3[["start"]]) & is.null(index3[["end"]]) & line.index == length(lines)) {
+      index3[["end"]] <- line.index
+    } 
   }
   
   close(con)
-  return(dat)
+  return(index3)
 }
