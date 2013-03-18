@@ -60,7 +60,7 @@ read.ppa.lsm <- function(x) {
   
   # Placeholders for the actual data
   data1 <- data.frame()
-  data2 <- data.frame(stringsAsFactors = FALSE)
+  data2 <- data.frame()
   data3 <- data.frame()
   
   # Boolean help variables that control when the data is read in
@@ -109,7 +109,8 @@ read.ppa.lsm <- function(x) {
     if (read2) {
       
       if (line != "") { 
-        data2 <- rbind(data2, .line.as.string(line))
+        items <- .line.as.string(line)
+        data2 <- cbind(data2, .line.as.string(line))
         browser()
         next
       } else {
