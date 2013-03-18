@@ -32,6 +32,14 @@ clean.str <- function(x) {
   return(x)
 }
 
+.line.as.numeric <- function(x) {
+  return(as.numeric(.line.as.string(x)))
+}
+
+.line.as.string <- function(x) {
+  return(unlist(strsplit(x, "\\s+")))
+}
+
 open.dir <- function(dir = getwd()){
   if (.Platform['OS.type'] == "windows"){
     shell.exec(dir)
