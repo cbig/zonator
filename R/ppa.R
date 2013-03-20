@@ -103,6 +103,41 @@ read.ppa.lsm <- function(x) {
     } 
   }
   
+  .read.chunk <- function(x, start, end, header=NULL, char.rows=FALSE) {
+    
+    # Get only the needed rows from the original data x
+    if (char.rows) {
+      sub.dat <- t(sapply(x[start:end], .line.as.string, USE.NAMES=F))
+    } else {
+      sub.dat <- t(sapply(x[start:end], .line.as.numeric, USE.NAMES=F))
+    }
+    sub.dat <- as.data.frame(sub.dat)
+    if (!is.null(header)) {
+      colnames(sub.dat) <- header
+    }
+    return(sub.dat)
+  }
+  
+  # NOTE!!! Up at leas to Zonation 3.1.7 there is a bug that duplicates the
+  # "> 0.1%" column. Remove the ducplicate column (named "Plus_012" here, the
+  # 10th column) after reading in the data chunk
+  
+  header1 <- c("Unit", "Area", "Mean_rank", "X", "Y", "Spp_distribution_sum", 
+               "Plus_10", "Plus_1", "Plus_01", "Plus_012", "Plus_001", 
+               "Plus_0001")
+  dat[[1]] <- .read.chunk(lines, index1$start, index1$end, header=header1)
+  dat[[1]] <- dat[[1]][-10]
+  
+  header2 <- c("Feature", "Tot_prop", "Sum")
+  dat[[2]] <- .read.chunk(lines, index2$start, index2$end, header=header2,
+                          char.rows=TRUE)
+  # For header 3, we need to build it dynamically after the data chunk has been
+  # read in
+  dat[[3]] <- .read.chunk(lines, index3$start, index3$end)
+  header3 <- c("Unit_number", "Area_cells", paste0("F", 1:(ncol(dat[[3]]) - 2)))
+  colnames(dat[[3]]) <- header3
+  
   close(con)
-  return(index3)
+  
+  return(dat)
 }
