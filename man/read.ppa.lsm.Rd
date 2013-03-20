@@ -1,30 +1,20 @@
-\docType{methods}
 \name{read.ppa.lsm}
 \alias{read.ppa.lsm}
-\title{read.ppa.lsm
-Read Zonation post-processing analysis (ppa) result file and return a list of
-3 items:
-1. Most important species in units
-2. Average proportion remaining over all spp in units
-3. Data fractions in units}
+\title{read.ppa.lsm}
 \usage{
-  read.ppa.lsm()
+  read.ppa.lsm(x)
 }
 \arguments{
-  \item{x}{Zproject object}
-
-  \item{index}{int or string index defining the variant
-  required}
+  \item{x}{input file path}
 }
 \value{
-  Zvariant object
+  list of 3 data frames.
 }
 \description{
-  read.ppa.lsm Read Zonation post-processing analysis (ppa)
-  result file and return a list of 3 items: 1. Most
-  important species in units 2. Average proportion
-  remaining over all spp in units 3. Data fractions in
-  units
+  Read Zonation post-processing analysis (ppa) result file
+  and return a list of 3 items: 1. Most important species
+  in units x 2. Average proportion remaining over all spp
+  in units 3. Data fractions in units
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
