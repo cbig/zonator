@@ -16,7 +16,7 @@
 #'
 #' @param infile character string input file path
 #'
-#' @return 
+#' @return a list of parsed ini-parameters
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export

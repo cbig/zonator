@@ -31,3 +31,4 @@ Collate:
     'curves.R'
     'ppa.R'
     'read-input.R'
+    'zonation.R'

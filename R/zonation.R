@@ -18,7 +18,7 @@
 # exe.file <- paste("\"", "C:/Program Files/zonation 3.1.1/bin/zig3.exe", "\"", 
 #                   sep="")
 # 
-# data.folder <- file.path(root.folder, "data")
+NULL
 # wildcard <- "*.img$"
 # 
 # BDFs <- load.bdf(data.folder, wildcard)
