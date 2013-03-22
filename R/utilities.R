@@ -11,10 +11,46 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' clean.str
+#' check.path
 #' Clean leading and trailing whitespaces from a given string. Additionally,
 #' all occurrences of multiple whitespaces are replaced with a single 
 #' whitespace.
+#'
+#' @param x character string file path
+#' @param x character string dir path
+#'
+#' @return An absolute path to a file of NULL if the path does not exist
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+
+check.path <- function(x, parent.path=NULL) {
+  # Is x valid file path on its own?
+  if (file.exists(x)) {
+    return(x)
+  } else {
+    path <- file.path(parent.path, x)
+    # Is x a valid file path when combined with the parent.path?
+    if (file.exists(path)) {
+      return(path)
+    } else {
+      # Is the parent path at least valid?
+      if (file.exists(parent.path)) {
+        return(parent.path)
+      } else {
+        return(NULL)
+      }
+    }
+  }
+  
+}
+
+#' clean.str
+#' A function to deal with potentially relative paths.
+#' 
+#' Checks if a path can be resolved (i.e. whether it exists). A additional
+#' parameter `parent.path` can be provided, in which case `x` is appended to it
+#' and the concatenated path is checked for existence.
 #'
 #' @param x character string
 #'

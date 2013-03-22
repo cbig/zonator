@@ -13,8 +13,7 @@
 
 # Zonation project ------------------------------------------------------------
 
-setClass("Zproject", representation(root = "character",
-                                    variants = "list"))
+setClass("Zproject", representation(root = "character", variants = "list"))
 
 setMethod("initialize", "Zproject", function(.Object, root) {
 
@@ -26,23 +25,14 @@ setMethod("initialize", "Zproject", function(.Object, root) {
 
   variants <- list()
   
-  # All the folders that 1) start with a number and 2) have a subfolder 
-  # "output" are cosidered to be variants
-  folders <- list.dirs(root, recursive=FALSE)
-  
-  for (folder in folders) {
-    # Get the leaf folder
-    variant.folder <- tail(unlist(strsplit(folder, "/")), n=1)
-    # A variant folder must be a directory starting with numbers and it
-    # must have a subfolder named "output"
-    if (grepl("^[0-9]+", variant.folder) & file.exists(file.path(folder, 
-                                                                 "output"))) {
-      variants[variant.folder] <- new("Zvariant", name=variant.folder,
-                                      root=folder)
-    } else {
-      next
-    } 
+  # List all the bat-files
+  bat.files <- list.files(root, ".bat$", full.names=TRUE)
+
+  for (bat.file in bat.files) {
+
+    variants[bat.file] <- new("Zvariant", bat.file=bat.file)
   }
+  
   .Object@variants <- variants 
   
   .Object
@@ -105,24 +95,92 @@ setMethod("opendir", c("Zproject"), function(object) {
 
 # Zonation variant --------------------------------------------------------
 
-setClass("Zvariant", representation(name = "character",
-                                    root = "character",
-                                    results = "list"))
+check_variant <- function(object) {
+  errors <- character()
+  warnings <- character()
+  
+  # Check the batch file call parameters
+  call.params <- object@call.params
+  
+  if (is.null(check.path(call.params[["dat.file"]]))) {
+    msg <- paste0("dat-file ", call.params[["dat.file"]], " cannot be found")
+    errors <- c(errors, msg)
+  }
+  
+  if (is.null(check.path(call.params[["spp.file"]]))) {
+    msg <- paste0("spp-file ", call.params[["spp.file"]], " cannot be found")
+    errors <- c(errors, msg)
+  }
+  
+  if (is.null(check.path(call.params[["dat.file"]]))) {
+    msg <- paste0("dat-file ", call.params[["dat.file"]], " cannot be found")
+    errors <- c(errors, msg)
+  }
+  
+  if (is.null(check.path(call.params[["output.file"]]))) {
+    msg <- paste0("Output location ", call.params[["output.file"]], 
+                  " does not seem to exist.")
+    warnings <- c(warnings, msg)
+  }
+  
+  if (call.params[["uc.alpha"]] < 0) {
+    # FIXME: is there an upper bound?
+    msg <- paste0("Uncertainty parameter alpha cannot be negative: ", 
+                  call.params[["uc.alpha"]])
+    errors <- c(errors, msg)
+  }
+  
+  if (!call.params[["ds.switch"]] %in% c(0, 1)) {
+    msg <- paste0("Distribution smoothing switch must be 0 or 1: ", 
+                  call.params[["ds.switch"]])
+    errors <- c(errors, msg)
+  }
+  
+  if (!call.params[["close.window"]] %in% c(0, 1)) {
+    msg <- paste0("Close window switch must be 0 or 1: ", 
+                  call.params[["close.window"]])
+    errors <- c(errors, msg)
+  }
+  
+  if (length(warnings) != 0) {
+    for (.warning in warnings) {
+      warning(.warning)
+    }
+  }
+  
+  if (length(errors) == 0) TRUE else errors
+}
 
-setMethod("initialize", "Zvariant", function(.Object, name, root) {
+setClass("Zvariant", representation(name = "character", bat.file = "character",
+                                    call.params = "list", results = "list"),
+         validity = check_variant)
 
-  .Object@name <- name
-  .Object@root <- root
+setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
+
+  if (!file.exists(bat.file)) {
+    stop(paste0("Variant .bat-file does not exist: ", bat.file))
+  }
+  
+  if (is.null(name)) {
+    # If no name is provided, use the name of the bat-file (without the 
+    # extension)
+    .Object@name <- strsplit(".", basename(bat.file))[[1]]
+  } else {
+    .Object@name <- name
+  }
+  .Object@bat.file <- bat.file
+  # Read the content of the bat file
+  .Object@call.params <- read.bat(bat.file)
   
   results <- list()
   
-  if (file.exists(root)) {
-    # Try if there is a subfolder named "output", if not, let's try the root
-    output.folder <- file.path(root, "output") 
-    if (!file.exists(output.folder)) {
-      output.folder <- root
-    }
-    
+  # bat-file's existence has already been verified, try to get the output. 
+  # bat-file includes a template for an output file, but we're more  interested
+  # in the directory where that file resides in.
+  output.folder <- dirname(.Object@call.params[["output.file"]]) 
+  
+  if (!is.null(output.folder)) {
+  
     .get.file <- function(output.folder, x) {
       target <- list.files(output.folder, pattern=x, full.names=TRUE)
       if (length(target) == 0) {
@@ -134,7 +192,6 @@ setMethod("initialize", "Zvariant", function(.Object, name, root) {
         return(target[1])
       }
     }
-    
     # Curves file is named *.curves.txt
     results[["curves"]] <- read.curves(.get.file(output.folder, 
                                                  "\\.curves\\.txt"))
@@ -146,11 +203,8 @@ setMethod("initialize", "Zvariant", function(.Object, name, root) {
     # Rank raster file is named *.rank.*
     results["rank.raster.file"] <- .get.file(output.folder, "\\.rank\\.")
     
-  } else {
-    stop(paste0("Cannot create variant "), name, ": path ", root, " does not exist")
+    .Object@results <- results
   }
-  
-  .Object@results <- results
   
   .Object
 })
