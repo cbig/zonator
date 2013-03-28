@@ -27,9 +27,10 @@ plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   col.ids <- 8:length(x)
   # Which features are actually included
   if (!is.null(features)) {
+    # Don't include the 1st columns ave_prop_remp
     col.ids <- col.ids[features]
   }
-  col.ids <- c(1, index, col.ids)
+  col.ids <- c(1, col.ids)
   
   # Subset only the needed columns
   x <- x[col.ids]
@@ -45,21 +46,23 @@ plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   size.scale <- c(2, rep(1, length(col.ids) - 2))
   
   p <- ggplot(x.melt, aes(x=Prop_landscape_lost, y=value, group=variable))
-  p <- p + geom_line(aes(colour = variable), size=1.5)
+  p <- p + geom_line(aes(colour = variable), size=1)
   
   if (monochrome) {
-    p <- p + theme_bw() + scale_colour_grey(name=curve.legend.title)
+    p <- p + theme_bw() + scale_colour_grey(name=.options[["grp.curve.legend.title"]])
     
   } else {
-    p <- p + scale_color_discrete(name=curve.legend.title)
+    p <- p + scale_color_discrete(name=.options[["grp.curve.legend.title"]])
   }
   
   if (invert.x) {
     x.scale <- seq(0, 1, 0.25)
-    p + xlab(curve.x.title.invert) + ylab(curve.y.title) +
-      scale_x_continuous(breaks=x.scale, labels=1-x.scale)
+    p + xlab(.options[["curve.x.title.invert"]]) + 
+        ylab(.options[["curve.y.title"]]) +
+        scale_x_continuous(breaks=x.scale, labels=1-x.scale)
   } else {
-    p + xlab(curve.x.title) + ylab(curve.y.title)
+    p + xlab(.options[["curve.x.title"]]) + 
+        ylab(.options[["curve.y.title"]])
   }
 }
 
@@ -112,7 +115,7 @@ plot.z.grp.curves <- function(x, statistic="mean", groups=NULL,
   #default_theme <- theme_get()
   theme_set(theme_bw(16, "Droid sans"))
   
-  p <- ggplot(x.melt, aes(x=value, y=F.lost, col = variable))
+  p <- ggplot(x.melt, aes(x=F.lost, y=value, col = variable))
   if (monochrome) {
     p <- p + geom_line(aes(col = variable, linetype = variable), size=1.0)
   } else {
