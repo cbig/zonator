@@ -83,6 +83,9 @@ plot.z.grp.curves <- function(x, statistic="mean", groups=NULL,
   if (statistic %in% names(index)) {
     # Starting from nth column, every 5th column is the same statistic
     col.ids <- seq(index[[statistic]], length(x), 5)
+    if (!is.null(groups)) {
+      col.ids <- col.ids[groups]
+    }
     # Keep also F.lost
     x <- x[c(1, col.ids)]
   } else {
@@ -103,14 +106,8 @@ plot.z.grp.curves <- function(x, statistic="mean", groups=NULL,
     labels <- waiver()
   }
   
-  # Which groups are actually included
-  grps <- 2:ncol(x)
-  if (!is.null(groups)) {
-    grps <- grps[groups]
-  }
-  
   # Reshape the DataFrame
-  x.melt <- melt(data = x, id.vars=c(1), measure.vars=grps)
+  x.melt <- melt(data = x, id.vars=c(1), measure.vars=2:length(x))
   
   #default_theme <- theme_get()
   theme_set(theme_bw(16, "Droid sans"))
