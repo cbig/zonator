@@ -110,7 +110,7 @@ plot.z.grp.curves <- function(x, statistic="mean", groups=NULL,
   x.melt <- melt(data = x, id.vars=c(1), measure.vars=2:length(x))
   
   #default_theme <- theme_get()
-  theme_set(theme_bw(16, "Droid sans"))
+  theme_set(theme_bw(16))
   
   p <- ggplot(x.melt, aes(x=F.lost, y=value, col = variable))
   if (monochrome) {
