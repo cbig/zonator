@@ -209,8 +209,8 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   .Object
 })
 
-setMethod("plot", signature=c(x="Zvariant"), function(x, groups=FALSE, ...) {
-  if (groups) {
+setMethod("plot", signature=c(x="Zvariant"), function(x, group=FALSE, ...) {
+  if (group) {
     plot.z.grp.curves(x@results[["grp.curves"]], ...)
   } else {
     plot.z.curves(x@results[["curves"]], ...)

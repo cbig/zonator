@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE, 
-                     show=TRUE, save.dir="", binwidth=0.05) {
+                     save.dir="", binwidth=0.05, title=NULL) {
   if (class(x) != "RasterLayer") {
     stop("x must be an object of class 'RasterLayer'!")
   } 
@@ -26,17 +26,20 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
     raster.obj <- x
   }
   
-  if (!is.null(mask.obj)) {
-    name.body <- paste(slot(x, "title"), "_", slot(mask.obj, "title"), sep="")
-  } else {
-    name.body <- slot(x, "title")
+  if (is.null(title)) { 
+    if (!is.null(mask.obj)) {
+      title <- paste(names(x), "_", names(mask.obj), sep="")
+    } else {
+      title <- names(x)
+    }
   }
-  
+    
   raster.values <- values(raster.obj)
   temp.df <- data.frame(data=raster.values)
   m <- ggplot(temp.df, aes(x = data)) + geom_histogram(colour = "white", 
                                                        binwidth=binwidth) + 
-    ggtitle(name.body)
+    scale_x_continuous(breaks=seq(0, 1, 0.25)) + 
+    xlab("Priority rank") + ylab("Count") + ggtitle(title) + theme_bw()
   
   if (add.median) {
     m <- m + geom_vline(xintercept = median(raster.values, na.rm=T), 
@@ -47,15 +50,13 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
     m <- m + geom_vline(xintercept = mean(raster.values, na.rm=T), 
                         colour = "blue") 
   }
-  
-  if (show) {
-    show(m)
-  }
+
   if (save.dir != "") {
     file.path <- file.path(save.dir, paste("hist_", name.body, ".png", sep=""))
     print(paste("Saving plot to:", file.path))
     ggsave(filename = file.path, plot = m)
   }
+  return(m)
 }
 
 # Plotting ----------------------------------------------------------------
