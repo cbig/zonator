@@ -178,10 +178,11 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   # bat-file includes a template for an output file, but we're more  interested
   # in the directory where that file resides in.
   output.folder <- dirname(.Object@call.params[["output.file"]]) 
-  
+
   if (!is.null(output.folder)) {
   
     .get.file <- function(output.folder, x) {
+      
       target <- list.files(output.folder, pattern=x, full.names=TRUE)
       if (length(target) == 0) {
         return(NA)
@@ -193,8 +194,14 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
       }
     }
     # Curves file is named *.curves.txt
-    results[["curves"]] <- read.curves(.get.file(output.folder, 
-                                                 "\\.curves\\.txt"))
+    curve.file <- .get.file(output.folder, "\\.curves\\.txt")
+    if (is.na(curve.file)) {
+      warning(paste("In bat-file", bat.file, 
+                    "Could not find curves file for folder ", output.folder)) 
+      results[["curves"]] <- NA
+    } else {
+      results[["curves"]] <- read.curves(curve.file)
+    }
     
     # Group curves file is named *.grp_curves.txt
     results[["grp.curves"]] <- read.grp.curves(.get.file(output.folder, 

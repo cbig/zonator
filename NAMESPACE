@@ -1,4 +1,8 @@
+export(check.path)
 export(clean.str)
+export(plot.z.curves)
+export(plot.z.grp.curves)
+export(read.bat)
 export(read.ini)
 export(read.ppa.lsm)
 exportMethods(getVariant)

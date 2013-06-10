@@ -1,9 +1,7 @@
 \name{clean.str}
 \alias{clean.str}
 \title{clean.str
-Clean leading and trailing whitespaces from a given string. Additionally,
-all occurrences of multiple whitespaces are replaced with a single
-whitespace.}
+A function to deal with potentially relative paths.}
 \usage{
   clean.str(x)
 }
@@ -14,9 +12,10 @@ whitespace.}
   A cleaned character string
 }
 \description{
-  clean.str Clean leading and trailing whitespaces from a
-  given string. Additionally, all occurrences of multiple
-  whitespaces are replaced with a single whitespace.
+  Checks if a path can be resolved (i.e. whether it
+  exists). A additional parameter `parent.path` can be
+  provided, in which case `x` is appended to it and the
+  concatenated path is checked for existence.
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

@@ -11,6 +11,9 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+
 plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
                           invert.x=FALSE, labels=NULL,  ...) {
   
@@ -65,6 +68,9 @@ plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
         ylab(.options[["curve.y.title"]])
   }
 }
+
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
 
 plot.z.grp.curves <- function(x, statistic="mean", groups=NULL, 
                               monochrome=FALSE, main=NULL, invert.x=FALSE, 

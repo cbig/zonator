@@ -38,10 +38,6 @@ read.bat <- function(infile) {
   }
   
   call.items <- unlist(strsplit(lines, " "))
-  if (length(call.items) != 10) {
-    warning(paste0("Number of batch file parameters is != 10 (", 
-                   length(call.items), "), check the batch file."))
-  }
   
   # FIXME! Now the items are selected based on location, it would be better to
   # parse the call based on regexp with some additional checking.

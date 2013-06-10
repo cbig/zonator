@@ -25,6 +25,10 @@
 #' @export
 
 check.path <- function(x, parent.path=NULL) {
+  
+  # Check and replace path separators
+  x <- gsub("\\\\", "/", x)
+  
   # Is x valid file path on its own?
   if (file.exists(x)) {
     return(x)
