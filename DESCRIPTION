@@ -5,6 +5,7 @@ Title: Utility functions for Zonation spatial conservation prioritization
 Version: 0.1
 Date: 2013-03-12
 Author: Joona Lehtomaki
+License: FreeBSD
 Maintainer: Joona Lehtomaki <joona.lehtomaki@gmail.com>
 Description: More about what it does (maybe more than one line)
 Depends:

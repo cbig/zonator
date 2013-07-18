@@ -4,3 +4,4 @@
 .Rbuildignore
 *.Rproj
 README.html
+.directory

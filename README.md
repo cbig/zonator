@@ -4,7 +4,7 @@
 [Zonation](http://www.helsinki.fi/bioscience/consplan/software/Zonation/index.html) 
 conservation prioritization software. The package started out as a collection
 of helper scripts which have now been packages for anybody interested in using
-a familiar tool (R) in setting up Zonation runs and managing Zonation results. Fii
+a familiar tool (R) in setting up Zonation runs and managing Zonation results.
 
 **NOTE that the scripts are strictly alpha quality. Do not expect any sort 
 of stability at least before 0.2 release.**
@@ -36,4 +36,4 @@ install_github("zonator", "jlehtoma")
 
 ## Developers
 
-* Joona Lehtomäki <>
+* Joona Lehtomäki <joona.lehtomaki@gmail.com>
