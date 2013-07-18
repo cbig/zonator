@@ -11,8 +11,23 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' Read in performance curves produced by Zonation.
+#' 
+#' Header is automatically generated based on the number of features in the 
+#' file. If you need to read in grouped curves files, use 
+#' \code{\link{read.grp.curves}} instead. 
+#' 
+#' @keywords zonation, results
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @param infile character file path to .curves.txt file
+#'
+#' @return A DataFrame with all the information in the curves file.
+#'
+#' @export
+#' @seealso \code{\link{read.grp.curves}}
+
 read.curves <- function(infile) {
-  
   # Read in the curves file skipping the header line, we'll construct this 
   # later on
   curves <- read.table(infile, as.is=TRUE, header=FALSE, skip=1)
@@ -34,15 +49,25 @@ read.curves <- function(infile) {
   return(curves)
 }
 
-read.admu.curves <- function(file) {
-  
-  # First row is (again) malformatted 
-  
-}
+#' Read in performance curves for grouped features produced by Zonation.
+#' 
+#' Header is automatically generated based on the number of groups in the 
+#' file. If you need to read in individual curves files, use 
+#' \code{\link{read.curves}} instead. 
+#' 
+#' @keywords zonation, results
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @param infile character file path to .curves.txt file
+#'
+#' @return A DataFrame with all the information in the curves file.
+#'
+#' @export
+#' @seealso \code{\link{read.curves}}
 
-read.grp.curves <- function(file) {
+read.grp.curves <- function(infile) {
   
-  grp.curves <- read.table(file, header=TRUE)
+  grp.curves <- read.table(infile, header=TRUE)
   
   # standard part of the header
   header <- c("F.lost", "TF_cost")
@@ -57,6 +82,4 @@ read.grp.curves <- function(file) {
   colnames(grp.curves) <- header
   
   return(grp.curves)
-  
 }
-
