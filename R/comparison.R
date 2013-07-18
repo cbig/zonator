@@ -11,12 +11,27 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-## A function to compare to to matrices in different ways, for example when
-## comparing solutions created bu Zonation
-## Parameters:
-## x - matrix of values
-## y - matrix of values
-## fun - function that is used for comparison
+#' Compare matrices in various ways.
+#' 
+#' Function can be used to compare two Zonation output rasters with one of the
+#' following functions (part of zonator package):
+#' \item{correlation}{}
+#' \item{substraction}{}
+#' \item{ferquency}{(NOT IMPLEMENTED)}
+#' \item{coverage}{}
+#' 
+#' @keywords post-processnig, ppa
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @param x numeric matrix
+#' @param y numeric matrix
+#' @param FUN function used for the numeric comparison
+#' @param ... further args passed on to selected comparison function
+#'
+#' @return A DataFrame with each row containg columns title, count, and catid
+#'
+#' @export
+#' @seealso correlation substraction frequency coverage
 
 comp <- function(x, y, fun="correlation", ...) {
   
@@ -30,48 +45,33 @@ comp <- function(x, y, fun="correlation", ...) {
   
   switch(fun,
          correlation = correlation(x, y, ...),
-         substraction = substraction(x, y),
+         substraction = (x - y),
          frequency = selection.frequency(x, y, ...),
          coverage = selection.coverage(x, y, ...))
 }
 
-compare.solutions <- function(file1, file2, ...) {
-  # Read in the solutions
-  sol1 <- hg.read.asc.file(file1, rm.nodata=-1)
-  sol2 <- hg.read.asc.file(file2, rm.nodata=-1)
-  subs <- comp(sol1, sol2, fun="substraction")
-  
-  tsh <-  seq(0, 0.9, 0.1)
-  corr <- comp(sol1, sol2, fun="correlation", thresholds=tsh)
-  cover <- comp(sol1, sol2, fun="coverage", thresholds=tsh)
-  return(list(thresholds=cbind(corr$classes, cover), totalcor=corr$total,
-              subs=subs))
-}
+#' Correlation between two matrices.
+#' 
+#' Calculate correlation between two matrices using \code{\link{cor}}. A 
+#' group of specific threshold can be set, in which case the correlations are 
+#' calculated incrementally for values above the thresholds.
+#' 
+#' @keywords post-processnig, ppa
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @param x numeric matrix
+#' @param y numeric matrix
+#' @param method String correlation method used (default: 'kendall')
+#' @param thresholds numeric vector of thresholds used (default: c(0))
+#'
+#' @return A list with 2 items:
+#' \item{thresholds}{Correlations between 2 matrices with values above a given threshold.}
+#' \item{total}{Overall correlation between the 2 matrices.}
+#'
+#' @export
+#' @seealso \code{\link{cor}}
 
-comp.suite <- function(x, input) {
-  for (item in x){
-    
-    res <- compare.solutions(paste(item[1], ".rank.asc", sep=""),
-                             paste(item[2], ".rank.asc", sep=""))
-    
-    filename <- paste(input, "comparisons_", item[1], "_", item[2],
-                      ".cmp", sep="")
-    
-    write.table(res$thresholds, filename, col.names = TRUE, row.names = TRUE,
-                quote=FALSE)
-    
-    cat(file=filename, paste("Total correlation:", res$totalcor, "\n"),
-        append=TRUE)
-    
-    write.asc.file(res$subs, filename, nrow(res$subs),
-                   ncol(res$subs))
-    
-    plot(read.stats(), show=FALSE)
-    
-  }
-}
-
-correlation <- function(x, y, method="spearman", thresholds=c(0)) {
+correlation <- function(x, y, method='kendall', thresholds=c(0)) {
   
   res <- c()
   for (i in 1:length(thresholds)) {
@@ -82,85 +82,75 @@ correlation <- function(x, y, method="spearman", thresholds=c(0)) {
   
   res <- data.frame(res, row.names=thresholds)
   colnames(res) <- "correlation"
-  # Returns a list [1] threshold class correlations (data frame), [2] total
-  # correlation
-  return(list(classes=res, total=cor(as.vector(x), as.vector(y),
+  return(list(thresholds=res, total=cor(as.vector(x), as.vector(y),
                                      method=method)))
 }
 
-read.stats <- function(wildcard=".cmp$") {
-  
-  data <- list()
-  
-  # Get all the comparisons (.cmp) files
-  # TODO: fix the wildcard so that it's strict about the extension
-  files <- list.files(pattern=wildcard)
-  
-  # Loop over the comparison files
-  
-  for (i in 1:length(files)) {
-    
-    thresh <- read.table(files[i], nrows=10, as.is=TRUE, header=TRUE)
-    lines <- readLines(files[i])
-    tot <- grep("Total correlation", lines, value=TRUE)
-    tot <- as.numeric(tail(strsplit(tot, ":")[[1]], 1))
-    data[[files[i]]] <- list(thresh=thresh, total=tot)
-  }
-  class(data) <- "z.comp.plot"
-  return(data)
-  
-}
+#' Intersection of two coverages.
+#' 
+#' Calculate how much two coverages (as defined by values greater than a given 
+#' threshold in two numeric matrices) overlap.
+#' 
+#' @keywords post-processnig, ppa
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @param x numeric matrix
+#' @param y numeric matrix
+#' @param thresholds numeric vector of thresholds used
+#'
+#' @return A list with 2 items:
+#' \item{thresholds}{Correlations between 2 matrices with values above a given threshold.}
+#' \item{total}{Overall correlation between the 2 matrices.}
+#'
+#' @export
 
 selection.coverage <- function(x, y, thresholds) {
-  
   covs <- c()
   total <- c()
   for (thresh in thresholds) {
     sel1 <- which(x >= thresh)
     sel2 <- which(y >= thresh)
     
-    # All produce the same indices -> is this real or not?
+    # What fraction of the original coverage x in selection?
     total <- append(total, length(sel1) / length(x))
     covs <- append(covs, sum(sel1 %in% sel2) / length(sel1))
   }
   
   res <- data.frame(total=total, cover=covs, row.names=thresholds)
   return(res)
-  plot(read.stats(), show=FALSE)
 }
 
-substraction <- function(x, y) {
-  return(x - y)
-}
+#' Calculate the Jaccard coefficient.
+#' 
+#' The Jaccard coefficient measures similarity between sample sets, and is 
+#' defined as the size of the intersection divided by the size of the union of 
+#' the sample sets. The Jaccard coefficient can be calculated for a subset of
+#' rasters provided by using the threshold argument.
+#' 
+#' @keywords post-processnig, ppa
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @param x raster object
+#' @param y raster object
+#' @param threshold numeric value of threshold
+#' @param warn.uneven boolean indicating whether a warning is raised if the
+#'   compared raster coverages are very (>20x) uneven.
+#'
+#' @return A numeric value [0, 1]
+#'
+#' @export
 
-# From: http://r-sig-geo.2731867.n2.nabble.com/questions-on-RasterStack-Brick-td5553580.html
-
-stackcor <- function(s1, s2, method='spearman') {
-  mycor <- function(v) {
-    x <- v[1:split]
-    y <- v[(split+1):(2*split)]
-    cor(x, y, method=method)
-  }
-  s <- stack(s1, s2)
-  split <- nlayers(s)/2
-  calc(s, fun=mycor )
-}
-
-# The Jaccard coefficient measures similarity between sample sets, and is 
-# defined as the size of the intersection divided by the size of the union of 
-# the sample sets
-
-jaccard <- function(raster1, raster2, threshhold, warn.uneven=FALSE) {
+jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
   
   # Get the values above the threshhold
-  raster1.bin <- raster1 > threshhold
-  raster2.bin <- raster2 > threshhold
+  x.bin <- x > threshold
+  y.bin <- y > threshold
   
   if (warn.uneven) {
-    raster1.size <- count(raster1.bin, 1)
-    raster2.size <- count(raster2.bin, 1)
+    x.size <- count(x.bin, 1)
+    y.size <- count(y.bin, 1)
     # Sort from smaller to larger
-    sizes <- sort(c(raster1.size, raster2.size))
+    sizes <- sort(c(x.size, y.size))
     if (sizes[2] / sizes[1] > 20) {
       warning("The extents of raster values above the threshhold differ more than 20-fold: Jaccard coefficient may not be informative.")
     }
@@ -168,7 +158,7 @@ jaccard <- function(raster1, raster2, threshhold, warn.uneven=FALSE) {
   
   # Calculate the intersection of the two rasters, this is given by adding 
   # the binary rasters together -> 2 indicates intersection
-  combination <- raster1.bin + raster2.bin
+  combination <- x.bin + y.bin
   intersection <- combination == 2
   
   # Union is all the area covered by the both rasters
@@ -177,9 +167,23 @@ jaccard <- function(raster1, raster2, threshhold, warn.uneven=FALSE) {
   return(count(intersection, 1) / count(union, 1))
 }
 
-cross.jaccard <- function(results, cut.off) {
+#' Calculate Jaccard coefficients bewteen all the RasterLayers within a single
+#' RasterStack. 
+#' 
+#' @keywords post-processnig, ppa
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @param stack RasterStack 
+#' @param threshold numeric value of threshold
+#'
+#' @return A matrix with Jaccard coefficients between all the RasterLayers
+#'
+#' @export
+#' @seealso \code{\link{jaccard}}
+
+cross.jaccard <- function(stack, threshold) {
   
-  jaccards <- matrix(nrow=nlayers(results), ncol=nlayers(results))
+  jaccards <- matrix(nrow=nlayers(stack), ncol=nlayers(stack))
   
   for (i in 1:nrow(jaccards)) {
     for (j in 1:ncol(jaccards)) {
@@ -189,7 +193,7 @@ cross.jaccard <- function(results, cut.off) {
         # See the complement, if it's not NA then the pair has already been
         # compared
         if (is.na(jaccards[j, i])) {
-          jaccards[i, j] <- jaccard(results[[i]], results[[2]], cut.off)
+          jaccards[i, j] <- jaccard(stack[[i]], stack[[2]], threshold)
         } else {
           jaccards[i, j]  <- jaccards[j, i]
         }
