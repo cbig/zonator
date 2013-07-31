@@ -1,3 +1,27 @@
+# This file is a part of zonator package
+
+# Copyright (C) 2012-2014 Joona Lehtomäki <joona.lehtomaki@gmai.com>. All rights 
+# reserved.
+
+# This program is open source software; you can redistribute it and/or modify 
+# it under the terms of the FreeBSD License (keep this notice): 
+# http://en.wikipedia.org/wiki/BSD_licenses
+
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+#' Create an instance of the Zproject class using new/initialize.
+#'
+#' @param \code{root} character string path to the root of the project (must
+#'   exist).
+#'
+#' @seealso \code{\link{initialize}}
+#'
+#' @keywords internal
+#'
+#' @rdname initialize-methods
+#' 
 setMethod("initialize", "Zproject", function(.Object, root) {
   
   if (!file.exists(root)) {
@@ -20,6 +44,19 @@ setMethod("initialize", "Zproject", function(.Object, root) {
   
   .Object
 })
+
+#' Create an instance of the Zvariant class using new/initialize.
+#'
+#' @param \code{name} Character string naming the variant.
+#' @param \code{bat.file} Zonation specific batch (.bat) file to read the 
+#'   variant specifics from (must exist).
+#'
+#' @seealso \code{\link{initialize}}
+#'
+#' @keywords internal
+#'
+#' @rdname initialize-methods
+#' 
 
 setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
