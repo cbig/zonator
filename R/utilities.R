@@ -58,6 +58,8 @@ check.path <- function(x, parent.path=NULL) {
 #'   vector of encounterd errors. All encountered warning are printed 
 #'   on-the-fly. 
 #' 
+#' @keywords internal
+#' 
 #' @note For package internal use only
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 

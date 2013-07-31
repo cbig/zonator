@@ -58,14 +58,14 @@ setGeneric("nvariants", function(x) {
 })
 
 #' @rdname zproject-methods
-#' @aliases nvariants,Zproject
+#' @aliases nvariants,Zproject-method
 #' 
 setMethod("nvariants", "Zproject", function(x) {
   return(length(x@variants))
 })
 
 #' @rdname zproject-methods
-#' @aliases names,Zproject
+#' @aliases names,Zproject-method
 #' 
 setMethod("names", "Zproject", function(x) {
   return(names(x@variants))
@@ -93,7 +93,7 @@ setGeneric("opendir", function(object) {
 })
 
 #' @rdname zproject-methods
-#' @aliases opendir,Zproject
+#' @aliases opendir,Zproject-method
 #'
 setMethod("opendir", "Zproject", function(object) {
   invisible(open.dir(object@root))
