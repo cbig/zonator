@@ -1,54 +1,100 @@
-#' getVariant
+# This file is a part of zonator package
+
+# Copyright (C) 2012-2014 Joona Lehtomäki <joona.lehtomaki@gmai.com>. All rights 
+# reserved.
+
+# This program is open source software; you can redistribute it and/or modify 
+# it under the terms of the FreeBSD License (keep this notice): 
+# http://en.wikipedia.org/wiki/BSD_licenses
+
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+#' getvariant
 #' Get a specified variant in a Zonation project
 #'
-#' @param x Zproject object
-#' @param index int or string index defining the variant required
+#' @param \code{x} Zproject object
+#' @param \code{index} int or string index defining the variant required
 #'
 #' @return Zvariant object
 #' 
+#' @seealso \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
+#' 
+#' @export
 #' @docType methods
+#' @rdname zproject-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' @export
+#' 
+setGeneric("getvariant", function(x, index) {
+  standardGeneric("getvariant")
+})
 
-setMethod("getVariant", c("Zproject", "ANY"), function(x, index) {
+#' @rdname zproject-methods
+#' @aliases getvariant,Zproject,ANY-method
+#' 
+setMethod("getvariant", c("Zproject", "ANY"), function(x, index) {
   return(x@variants[[index]])
-}
-)
+})
 
 #' nvariants
 #' Get the number of variants included in a Zonation project
 #'
-#' @param x Zproject object
+#' @param \code{x} Zproject object
 #'
 #' @return int number of variants
 #' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @seealso \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
+#'
 #' @export
+#' @docType methods
+#' @rdname zproject-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("nvariants", function(x) {
+  standardGeneric("nvariants")
+})
 
-setMethod("nvariants", c("Zproject"), function(x) {
+#' @rdname zproject-methods
+#' @aliases nvariants,Zproject
+#' 
+setMethod("nvariants", "Zproject", function(x) {
   return(length(x@variants))
-}
-)
+})
 
+#' @rdname zproject-methods
+#' @aliases names,Zproject
+#' 
 setMethod("names", "Zproject", function(x) {
   return(names(x@variants))
-}
-)
+})
 
-#' open.dir
+#' opendir
 #' Open the directory of a Zproject using the system file browser.
 #' 
-#' Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE)
+#' Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE).
 #'
-#' @param x object
+#' @param \code{x} object
 #'
 #' @return invisible
 #' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @seealso \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
+#'
 #' @export
+#' @docType methods
+#' @rdname zproject-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("opendir", function(object) { 
+  standardGeneric("opendir")
+})
 
-setMethod("opendir", c("Zproject"), function(object) {
+#' @rdname zproject-methods
+#' @aliases opendir,Zproject
+#'
+setMethod("opendir", "Zproject", function(object) {
   invisible(open.dir(object@root))
-}
-)
+})
