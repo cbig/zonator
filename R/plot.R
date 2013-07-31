@@ -11,6 +11,28 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' Create a ggplot2 histogram of a \code{RasterLayer}.
+#'
+#' @param \code{x} \code(RasterLayer) object containing the spatial data.
+#' @param \code{mask.obj} \code(RasterLayer) object optionally used for masking
+#'   only specific parts of \code{x}.
+#' @param \code{add.mean} Boolean whether a vertical blue line is added to the
+#'   plot indicating the mean value of \code{x}.
+#' @param \code{add.mean} Boolean whether a vertical red line is added to the
+#'   plot indicating the median value of \code{x}.
+#' @param \code{save.dir} Character path (folder) for saving the plot as an 
+#'   image.
+#' @param \code{binwidth} Double value of bindwidth for \code{\link{geom_bar}}.
+#' @param \code{title} Character string title of the plot.
+#' 
+#' @references a \code{ggplot} object containing the plot.
+#' 
+#' @seealso \code{\link{geom_bar}}.
+#' 
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
 histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE, 
                      save.dir="", binwidth=0.05, title=NULL) {
   if (class(x) != "RasterLayer") {
@@ -59,66 +81,28 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
   return(m)
 }
 
-# Plotting ----------------------------------------------------------------
-
-plot.z.comp.plot <- function(x, y, show=TRUE, ...) {
-  
-  xrange <- seq(0.1, 1, .1)
-  yrange <- seq(0.1, 1, .1)
-  #browser()
-  # Data structure of x:
-  # list
-  #  -comparison (list)
-  #		-thresh (data frame)
-  #		-total	(num)
-  
-  # Correlations
-  windows()
-  plot(xrange, yrange, type="n",  xlab="Features alone",
-       ylab="Correlation", ylim=c(-0.1, 1.0))
-  
-  abline(h=0, col="grey")
-  comparisons <- length(x)
-  colors <- rainbow(comparisons)
-  linetype <- c(1:comparisons)
-  
-  for (i in 1:comparisons){
-    data <- x[[i]]$thresh
-    #browser()
-    lines(xrange, data$correlation, type="l", lwd=1.5,
-          lty=linetype[i], col=colors[i])
-  }
-  legend("topright", legend=names(x), col=colors,
-         lty = linetype)
-  savePlot("comparisons_correlation.png", type="png")
-  if (!show) {
-    dev.off()
-  }
-  
-  #browser()
-  windows()
-  # Coverages
-  plot(xrange, yrange, type="n",  xlab="Features alone",
-       ylab="Coverage proportion" )
-  abline(h=1, col="grey")
-  for (i in 1:comparisons){
-    data <- x[[i]]$thresh
-    #browser()
-    lines(xrange, data$cover, type="l", lwd=1.5,
-          lty=linetype[i], col=colors[i])
-  }
-  legend("bottomleft", legend=names(x), col=colors,
-         lty = linetype)
-  text(10, 20, "foo")
-  savePlot("comparisons_coverage.png", type="png")
-  if (!show) {
-    dev.off()
-  }
-}
-
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' Plot Zonation performance curves.
+#'
+#' @param \code{x} data frame containing Zonation's performance curve
+#'   (feature-specific) output.
+#' @param \code{statistic} character string indicating which statistic 
+#'   (\code{min}, \code{mean}) over all features is plotted.
+#' @param \code{features} integer vector containing the IDs of features to be
+#'   plotted.
+#' @param \code{monochrome} Boolean indicating if the plot should be in 
+#'   monochrome colors only.
+#' @param \code{invert.x} Boolean indicating if the X-axis is printed from 
+#'   1 ("feature remaining", \code{FALSE}) or 0 
+#'   ("landscape under protection", \code{TRUE}).  
+#' @param \code{labels} character vector for custom feature labels.
+#' @param \code{...} Additional arguments passed on to \code{\link{plot}}.
+#' 
+#' @seealso \code{\link{read.curves}} and \code{\link{plot.z.grp.curves}}
+#' 
 #' @export
-
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
 plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
                           invert.x=FALSE, labels=NULL,  ...) {
   
@@ -174,9 +158,30 @@ plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   }
 }
 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' Plot Zonation grouped performance curves.
+#'
+#' @param \code{x} data frame containing Zonation's performance curve
+#'   (group-specific) output.
+#' @param \code{statistic} character string indicating which statistic 
+#'   (\code{min}, \code{mean}, \code{max}, \code{w.mean}, \code{ext2}) over all 
+#'   feature groups is plotted.
+#' @param \code{groups} integer vector containing the IDs of groups to be
+#'   plotted.
+#' @param \code{monochrome} Boolean indicating if the plot should be in 
+#'   monochrome colors only.
+#' @param \code{main} Character string plot title. 
+#' @param \code{invert.x} Boolean indicating if the X-axis is printed from 
+#'   1 ("feature remaining", \code{FALSE}) or 0 
+#'   ("landscape under protection", \code{TRUE}).  
+#' @param \code{labels} character vector for custom feature labels.
+#' @param \code{...} Additional arguments passed on to \code{\link{plot}}.
+#' 
+#' @seealso \code{\link{read.curves}} and \code{\link{plot.z.curves}}
+#' 
 #' @export
-
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
 plot.z.grp.curves <- function(x, statistic="mean", groups=NULL, 
                               monochrome=FALSE, main=NULL, invert.x=FALSE, 
                               labels=NULL, ...) {
