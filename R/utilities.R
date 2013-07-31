@@ -16,8 +16,8 @@
 #' all occurrences of multiple whitespaces are replaced with a single 
 #' whitespace.
 #'
-#' @param x character string file path
-#' @param x character string dir path
+#' @param \code{x} character string file path
+#' @param \code{x} character string dir path
 #'
 #' @return An absolute path to a file of NULL if the path does not exist
 #' 
@@ -49,7 +49,25 @@ check.path <- function(x, parent.path=NULL) {
   
 }
 
-check.variant <- function(object) {
+#' .check.variant
+#' Check zvariant object's attributes for consistency.
+#' 
+#' @param \code{object} of class zvariant
+#'
+#' @return A boolean value TRUE if everything is ok, otherwise a character 
+#'   vector of encounterd errors. All encountered warning are printed 
+#'   on-the-fly. 
+#' 
+#' @note For package internal use only
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+
+
+.check.variant <- function(object) {
+  
+  if (class(object) != "zvariant") {
+    stop(paste0("Object must be class zvariant (is ", class(object), ")")
+  }
+  
   errors <- character()
   warnings <- character()
   
@@ -112,7 +130,7 @@ check.variant <- function(object) {
 #' parameter `parent.path` can be provided, in which case `x` is appended to it
 #' and the concatenated path is checked for existence.
 #'
-#' @param x character string
+#' @param \code{x} character string
 #'
 #' @return A cleaned character string
 #' 
