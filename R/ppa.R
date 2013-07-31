@@ -11,21 +11,18 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' read.ppa.lsm
-#' 
-#' Read Zonation post-processing analysis (ppa) result file and return a list of
-#' 3 items:
-#' 1. Most important species in units x
-#' 2. Average proportion remaining over all spp in units
-#' 3. Data fractions in units
+#' Read Zonation post-processing analysis (ppa) result file.
 #'
 #' @param x input file path
 #'
-#' @return list of 3 data frames.
+#' @return list of 3 data frames:
+#'  1. Most important species in units x
+#'  2. Average proportion remaining over all spp in units
+#'  3. Data fractions in units
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
-
+#'
 read.ppa.lsm <- function(x) {
   
   dat <- list()
