@@ -11,7 +11,6 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' read.bat
 #' Read Zonation-specific (MS Windows) batch file.
 #' 
 #'  Batch files include calls to Zonation core and look like following:
@@ -63,7 +62,6 @@ read.bat <- function(infile) {
   return(bat.list)
 }
 
-#' read.ini
 #' Read a Windows-style ini-file that is for configuration information.
 #'
 #' @param infile character string input file path
@@ -110,25 +108,4 @@ read.ini <- function(infile) {
     eval(parse(text=ToParse))
     
     return(INI.list) 
-}
-
-readWorksheet.disjoint <- function(wb, sheet, regions, ...) {
-  
-  regions <- unlist(strsplit(regions, ";"))
-  
-  data.regions <- data.frame()
-  
-  for (i in 1:length(regions)) {
-    if (i == 1) {
-      data.regions <- readWorksheet(wb, sheet, region = regions[i], 
-                                    header=TRUE)
-    } else {
-      temp <- readWorksheet(wb, sheet, region = regions[i], header=FALSE)
-      # Use colnames fromt the first read
-      colnames(temp) <- colnames(data.regions)
-      data.regions <- rbind(data.regions, temp)
-    }
-  }
-  
-  return(data.regions)
 }
