@@ -11,6 +11,14 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+setMethod("plot", signature=c(x="Zvariant"), function(x, group=FALSE, ...) {
+  if (group) {
+    plot.z.grp.curves(x@results[["grp.curves"]], ...)
+  } else {
+    plot.z.curves(x@results[["curves"]], ...)
+  }
+})
+
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 
