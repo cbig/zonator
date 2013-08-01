@@ -1,0 +1,3 @@
+[submodule "zonation-tutorial"]
+	path = zonation-tutorial
+	url = git@github.com:cbig/zonation-tutorial.git
