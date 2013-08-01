@@ -160,6 +160,15 @@ open.dir <- function(dir = getwd()){
   }
 }
 
+#' Requires a given package and if not present installs and loads it.
+#' 
+#' @param \code{package} Character name of a package.
+#' @param \code{...} Additional arguments passed on to 
+#'   \code{\link{install.packages}}.
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#' 
 require.package <- function(package, ...) {
   if (suppressWarnings(!require(package, character.only=TRUE, quietly=TRUE))) { 
     parent.function <- sys.calls()[[1]][1]
@@ -167,17 +176,6 @@ require.package <- function(package, ...) {
                   ". Package not found, installing...", sep=""))
     install.packages(package, ...) # Install the packages
     require(package, character.only=TRUE) # Remember to load the library after installation
-  }
-}
-
-port
-#' 
-set.tutorial <- function(x) {
-  if (file.exists(x)) {
-    .options[["tutorial.dir"]] <- x
-  } else {
-    warning(paste("Could not set tutorial directory path"), x,
-            "Path does not exist.")
   }
 }
 

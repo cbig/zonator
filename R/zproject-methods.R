@@ -96,5 +96,9 @@ setGeneric("opendir", function(object) {
 #' @aliases opendir,Zproject-method
 #'
 setMethod("opendir", "Zproject", function(object) {
-  invisible(open.dir(object@root))
+  if (.Platform['OS.type'] == "windows"){
+    shell.exec(object@root)
+  } else {
+    system(paste("dolphin", object@root, "&"))
+  }
 })
