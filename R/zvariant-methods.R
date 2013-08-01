@@ -31,12 +31,19 @@
 #' 
 #' @export
 #' @docType methods
-#' @rdname plot-methods
+#' @rdname zvariant-methods
 #' @aliases plot,Zvariant,boolean,ANY-method
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setMethod("plot", c("Zvariant", "boolean", "ANY"), function(x, group=FALSE, ...) {
+setGeneric("plot", function(x, group, ...) {
+  standardGeneric("plot")
+})
+
+#' @rdname zvariant-methods
+#' @aliases plot,Zvariant,logical,ANY-method
+#' 
+setMethod("plot", c("Zvariant", "logical"), function(x, group=FALSE, ...) {
   if (group) {
     plot.z.grp.curves(x@results[["grp.curves"]], ...)
   } else {
