@@ -35,4 +35,4 @@ assign("grp.curve.legend.title", "Feature groups", env=.options)
 
 # Zonation tutorial -------------------------------------------------------
 
-assign("tutorial.dir", NULL, env=.options)
+assign("tutorial.dir", 'zonation-tutorial', env=.options)
