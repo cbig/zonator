@@ -11,21 +11,28 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-.options <- list()
+.options <- new.env()
 
-.options[["curve.theme"]] <- theme(plot.title=element_text(face="bold", size=20),
-                                axis.title.x=element_text(size=24),
-                                axis.title.y=element_text(size=24),
-                                axis.text.x=element_text(size=20),
-                                axis.text.y=element_text(size=20),
-                                axis.ticks = element_line(size = 2),
-                                legend.text=element_text(size=20),
-                                legend.title=element_text(size=20),
-                                panel.border = element_rect(size=2, 
-                                                            colour="black"))
+# Graphics options --------------------------------------------------------
 
-.options[["curve.x.title"]] <- "\nProp. of landscape lost"
-.options[["curve.x.title.invert"]] <- "\nProportion of landscape under conservation"
-.options[["curve.y.title"]] <- "Prop. of ditributions remaining\n"
-.options[["curve.legend.title"]] <- "Features"
-.options[["grp.curve.legend.title"]] <- "Feature groups"
+curve.theme <- theme(plot.title=element_text(face="bold", size=20),
+                     axis.title.x=element_text(size=24),
+                     axis.title.y=element_text(size=24),
+                     axis.text.x=element_text(size=20),
+                     axis.text.y=element_text(size=20),
+                     axis.ticks = element_line(size = 2),
+                     legend.text=element_text(size=20),
+                     legend.title=element_text(size=20),
+                    panel.border = element_rect(size=2, colour="black"))
+assign("curve.theme", curve.theme, env=.options)
+
+assign("curve.x.title", "\nProp. of landscape lost", env=.options)
+assign("curve.x.title.invert", "\nProportion of landscape under conservation",
+       env=.options)
+assign("curve.y.title", "Prop. of ditributions remaining\n", env=.options)
+assign("curve.legend.title", "Features", env=.options)
+assign("grp.curve.legend.title", "Feature groups", env=.options)
+
+# Zonation tutorial -------------------------------------------------------
+
+assign("tutorial.dir", NULL, env=.options)
