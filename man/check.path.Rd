@@ -1,25 +1,20 @@
 \name{check.path}
 \alias{check.path}
-\title{check.path
-Clean leading and trailing whitespaces from a given string. Additionally,
-all occurrences of multiple whitespaces are replaced with a single
-whitespace.}
+\title{A function to deal with potentially relative paths.}
 \usage{
   check.path(x, parent.path = NULL)
 }
 \arguments{
-  \item{x}{character string file path}
-
-  \item{x}{character string dir path}
+  \item{\code{x}}{character string}
 }
 \value{
-  An absolute path to a file of NULL if the path does not
-  exist
+  A cleaned character string
 }
 \description{
-  check.path Clean leading and trailing whitespaces from a
-  given string. Additionally, all occurrences of multiple
-  whitespaces are replaced with a single whitespace.
+  Checks if a path can be resolved (i.e. whether it
+  exists). A additional parameter `parent.path` can be
+  provided, in which case `x` is appended to it and the
+  concatenated path is checked for existence.
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

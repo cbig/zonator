@@ -1,7 +1,6 @@
 \name{read.bat}
 \alias{read.bat}
-\title{read.bat
-Read Zonation-specific (MS Windows) batch file.}
+\title{Read Zonation-specific (MS Windows) batch file.}
 \usage{
   read.bat(infile)
 }

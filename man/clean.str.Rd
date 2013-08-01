@@ -1,21 +1,24 @@
 \name{clean.str}
 \alias{clean.str}
-\title{clean.str
-A function to deal with potentially relative paths.}
+\title{Clean leading and trailing whitespaces from a given string. Additionally,
+all occurrences of multiple whitespaces are replaced with a single
+whitespace.}
 \usage{
   clean.str(x)
 }
 \arguments{
-  \item{x}{character string}
+  \item{\code{x}}{character string file path}
+
+  \item{\code{x}}{character string dir path}
 }
 \value{
-  A cleaned character string
+  An absolute path to a file of NULL if the path does not
+  exist
 }
 \description{
-  Checks if a path can be resolved (i.e. whether it
-  exists). A additional parameter `parent.path` can be
-  provided, in which case `x` is appended to it and the
-  concatenated path is checked for existence.
+  Clean leading and trailing whitespaces from a given
+  string. Additionally, all occurrences of multiple
+  whitespaces are replaced with a single whitespace.
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

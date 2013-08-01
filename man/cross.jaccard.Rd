@@ -1,0 +1,29 @@
+\name{cross.jaccard}
+\alias{cross.jaccard}
+\title{Calculate Jaccard coefficients bewteen all the RasterLayers within a single
+RasterStack.}
+\usage{
+  cross.jaccard(stack, threshold)
+}
+\arguments{
+  \item{stack}{RasterStack}
+
+  \item{threshold}{numeric value of threshold}
+}
+\value{
+  A matrix with Jaccard coefficients between all the
+  RasterLayers
+}
+\description{
+  Calculate Jaccard coefficients bewteen all the
+  RasterLayers within a single RasterStack.
+}
+\author{
+  Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
+\seealso{
+  \code{\link{jaccard}}
+}
+\keyword{post-processnig,}
+\keyword{ppa}
+

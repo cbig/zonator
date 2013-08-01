@@ -1,7 +1,6 @@
 \name{read.ini}
 \alias{read.ini}
-\title{read.ini
-Read a Windows-style ini-file that is for configuration information.}
+\title{Read a Windows-style ini-file that is for configuration information.}
 \usage{
   read.ini(infile)
 }
@@ -12,8 +11,8 @@ Read a Windows-style ini-file that is for configuration information.}
   a list of parsed ini-parameters
 }
 \description{
-  read.ini Read a Windows-style ini-file that is for
-  configuration information.
+  Read a Windows-style ini-file that is for configuration
+  information.
 }
 \note{
   Adapted from http://bit.ly/11e4Jh0
