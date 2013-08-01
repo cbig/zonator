@@ -152,14 +152,6 @@ clean.str <- function(x) {
   return(unlist(strsplit(x, "\\s+")))
 }
 
-open.dir <- function(dir = getwd()){
-  if (.Platform['OS.type'] == "windows"){
-    shell.exec(dir)
-  } else {
-    system(paste("dolphin", dir, "&"))
-  }
-}
-
 #' Requires a given package and if not present installs and loads it.
 #' 
 #' @param \code{package} Character name of a package.
