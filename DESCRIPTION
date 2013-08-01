@@ -17,19 +17,19 @@ Depends:
     XLConnect
 Imports:
     methods
-License: FreeBSD
 Collate:
     'options.R'
-    'AllGenerics.R'
     'AllClasses.R'
     'zonator-internal.R'
     'comparison.R'
     'plot.R'
     'read-output-raster.R'
     'write-input.R'
-    'plot-methods.R'
     'utilities.R'
     'curves.R'
     'ppa.R'
     'read-input.R'
     'zonation.R'
+    'initialize-methods.R'
+    'zproject-methods.R'
+    'zvariant-methods.R'
