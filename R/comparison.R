@@ -15,10 +15,12 @@
 #' 
 #' Function can be used to compare two Zonation output rasters with one of the
 #' following functions (part of zonator package):
-#' \item{correlation}{}
-#' \item{substraction}{}
-#' \item{ferquency}{(NOT IMPLEMENTED)}
-#' \item{coverage}{}
+#' \itemize{
+#'  \item{correlation}{}
+#'  \item{substraction}{}
+#'  \item{ferquency}{(NOT IMPLEMENTED)}
+#'  \item{coverage}{}
+#'  }
 #' 
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
@@ -46,7 +48,8 @@ comp <- function(x, y, fun="correlation", ...) {
   switch(fun,
          correlation = correlation(x, y, ...),
          substraction = (x - y),
-         frequency = selection.frequency(x, y, ...),
+         # NOT IMPLEMENTED
+         # frequency = selection.frequency(x, y, ...),
          coverage = selection.coverage(x, y, ...))
 }
 

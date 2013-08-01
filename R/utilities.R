@@ -107,7 +107,7 @@ require.package <- function(package, ...) {
 #' 
 set.tutorialdir <- function(x) {
   if (file.exists(x)) {
-    assign("tutorial.dir", x, env=.option)
+    assign("tutorial.dir", x, envir=.option)
   } else {
     warning(paste("Could not set tutorial directory path"), x,
             "Path does not exist.")

@@ -13,8 +13,8 @@
 
 #' Create a ggplot2 histogram of a \code{RasterLayer}.
 #'
-#' @param \code{x} \code(RasterLayer) object containing the spatial data.
-#' @param \code{mask.obj} \code(RasterLayer) object optionally used for masking
+#' @param \code{x} \code{RasterLayer} object containing the spatial data.
+#' @param \code{mask.obj} \code{RasterLayer} object optionally used for masking
 #'   only specific parts of \code{x}.
 #' @param \code{add.mean} Boolean whether a vertical blue line is added to the
 #'   plot indicating the mean value of \code{x}.
@@ -74,7 +74,8 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
   }
 
   if (save.dir != "") {
-    file.path <- file.path(save.dir, paste("hist_", name.body, ".png", sep=""))
+    # FIXME: x@title may not work
+    file.path <- file.path(save.dir, paste("hist_", x@title, ".png", sep=""))
     print(paste("Saving plot to:", file.path))
     ggsave(filename = file.path, plot = m)
   }

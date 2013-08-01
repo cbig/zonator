@@ -21,9 +21,9 @@
 \description{
   Function can be used to compare two Zonation output
   rasters with one of the following functions (part of
-  zonator package): \item{correlation}{}
+  zonator package): \itemize{ \item{correlation}{}
   \item{substraction}{} \item{ferquency}{(NOT IMPLEMENTED)}
-  \item{coverage}{}
+  \item{coverage}{} }
 }
 \author{
   Joona Lehtomaki <joona.lehtomaki@gmail.com>

@@ -24,15 +24,15 @@ curve.theme <- theme(plot.title=element_text(face="bold", size=20),
                      legend.text=element_text(size=20),
                      legend.title=element_text(size=20),
                     panel.border = element_rect(size=2, colour="black"))
-assign("curve.theme", curve.theme, env=.options)
+assign("curve.theme", curve.theme, envir=.options)
 
-assign("curve.x.title", "\nProp. of landscape lost", env=.options)
+assign("curve.x.title", "\nProp. of landscape lost", envir=.options)
 assign("curve.x.title.invert", "\nProportion of landscape under conservation",
-       env=.options)
-assign("curve.y.title", "Prop. of ditributions remaining\n", env=.options)
-assign("curve.legend.title", "Features", env=.options)
-assign("grp.curve.legend.title", "Feature groups", env=.options)
+       envir=.options)
+assign("curve.y.title", "Prop. of ditributions remaining\n", envir=.options)
+assign("curve.legend.title", "Features", envir=.options)
+assign("grp.curve.legend.title", "Feature groups", envir=.options)
 
 # Zonation tutorial -------------------------------------------------------
 
-assign("tutorial.dir", 'zonation-tutorial', env=.options)
+assign("tutorial.dir", 'zonation-tutorial', envir=.options)

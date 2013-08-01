@@ -7,10 +7,10 @@
     title = NULL)
 }
 \arguments{
-  \item{\code{x}}{\code(RasterLayer) object containing the
+  \item{\code{x}}{\code{RasterLayer} object containing the
   spatial data.}
 
-  \item{\code{mask.obj}}{\code(RasterLayer) object
+  \item{\code{mask.obj}}{\code{RasterLayer} object
   optionally used for masking only specific parts of
   \code{x}.}
 

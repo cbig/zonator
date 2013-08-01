@@ -71,7 +71,7 @@ read.bat <- function(infile) {
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #' @note Adapted from http://bit.ly/11e4Jh0
-
+#'
 read.ini <- function(infile) {
     
     connection <- file(infile)
