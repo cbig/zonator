@@ -11,19 +11,19 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' check.path
-#' Clean leading and trailing whitespaces from a given string. Additionally,
-#' all occurrences of multiple whitespaces are replaced with a single 
-#' whitespace.
+#' A function to deal with potentially relative paths.
+#' 
+#' Checks if a path can be resolved (i.e. whether it exists). A additional
+#' parameter `parent.path` can be provided, in which case `x` is appended to it
+#' and the concatenated path is checked for existence.
 #'
-#' @param \code{x} character string file path
-#' @param \code{x} character string dir path
+#' @param \code{x} character string
 #'
-#' @return An absolute path to a file of NULL if the path does not exist
+#' @return A cleaned character string
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
-
+#'  
 check.path <- function(x, parent.path=NULL) {
   
   # Check and replace path separators
@@ -49,7 +49,6 @@ check.path <- function(x, parent.path=NULL) {
   
 }
 
-#' .check.variant
 #' Check zvariant object's attributes for consistency.
 #' 
 #' @param \code{object} of class zvariant
@@ -62,8 +61,7 @@ check.path <- function(x, parent.path=NULL) {
 #' 
 #' @note For package internal use only
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-
-
+#' 
 .check.variant <- function(object) {
   
   if (class(object) != "zvariant") {
@@ -125,20 +123,18 @@ check.path <- function(x, parent.path=NULL) {
   if (length(errors) == 0) TRUE else errors
 }
 
-#' clean.str
-#' A function to deal with potentially relative paths.
-#' 
-#' Checks if a path can be resolved (i.e. whether it exists). A additional
-#' parameter `parent.path` can be provided, in which case `x` is appended to it
-#' and the concatenated path is checked for existence.
+#' Clean leading and trailing whitespaces from a given string. Additionally,
+#' all occurrences of multiple whitespaces are replaced with a single 
+#' whitespace.
 #'
-#' @param \code{x} character string
+#' @param \code{x} character string file path
+#' @param \code{x} character string dir path
 #'
-#' @return A cleaned character string
+#' @return An absolute path to a file of NULL if the path does not exist
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
-
+#'
 clean.str <- function(x) {
   
   x <- gsub("\\s+", " ", x)
@@ -172,4 +168,45 @@ require.package <- function(package, ...) {
     install.packages(package, ...) # Install the packages
     require(package, character.only=TRUE) # Remember to load the library after installation
   }
+}
+
+port
+#' 
+set.tutorial <- function(x) {
+  if (file.exists(x)) {
+    .options[["tutorial.dir"]] <- x
+  } else {
+    warning(paste("Could not set tutorial directory path"), x,
+            "Path does not exist.")
+  }
+}
+
+#' Set the package options to point to a correct location of the Zonation 
+#' tutorial
+#' 
+#' @param \code{x} character string directory path
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#' 
+set.tutorialdir <- function(x) {
+  if (file.exists(x)) {
+    assign("tutorial.dir", x, env=.option)
+  } else {
+    warning(paste("Could not set tutorial directory path"), x,
+            "Path does not exist.")
+  }
+}
+
+#' Get the directory of Zonation tutorial.
+#' 
+#' @param \code{x} character string directory path.
+#' 
+#' @return \code{path} Character path to Zonation tutorial directory. 
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#' 
+get.tutorialdir <- function() {
+  return(get("tutorial.dir", .options))
 }
