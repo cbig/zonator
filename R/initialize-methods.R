@@ -21,6 +21,7 @@
 #' @keywords internal
 #'
 #' @rdname initialize-methods
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #' 
 setMethod("initialize", "Zproject", function(.Object, root) {
   
@@ -56,6 +57,7 @@ setMethod("initialize", "Zproject", function(.Object, root) {
 #' @keywords internal
 #'
 #' @rdname initialize-methods
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #' 
 
 setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {

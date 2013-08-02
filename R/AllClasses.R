@@ -13,6 +13,29 @@
 
 # Zonation project ------------------------------------------------------------
 
+#' The Zproject class
+#'
+#' \code{Zproject} class represents a Zonation project project, i.e. all the 
+#' input and output files and folders.
+#' 
+#' A project contains one or more variants of particular Zonation analysis 
+#' setup. A single variant is represented as an instance of 
+#' \code{\link[zonator:AllClasses]{Zvariant-class}}.
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{root}:}{Character string path pointing to the root (dir) of
+#'      the project.}
+#'    \item{\code{variants}:}{List of objects of class 
+#'      \code{\link[zonator:AllClasses]{Zvariant-class}}.}
+#'  }
+#'
+#' @name Zproject
+#' @rdname Zproject
+#' @aliases Zproject-class
+#' @exportClass Zproject
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#' 
 setClass("Zproject", representation(root = "character", variants = "list"))
 
 # Zonation variant ------------------------------------------------------------
@@ -91,6 +114,31 @@ check.variant <- function(object) {
   if (length(errors) == 0) TRUE else errors
 }
 
+#' The Zvariant class
+#'
+#' \code{Zvariant} class represents a Zonation anaylis variant with the 
+#' associated parameters.
+#' 
+#' Currently \code{Zvariant} must be instantiated based on an existing Zonation
+#' batch file. If the variant has been run, then the results are also
+#' associated with the instance of \code{Zvariant-class}.
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{name}:}{Character string name of the variant.}
+#'    \item{\code{bat.file}:}{Character string path to a Zonation-style batch 
+#'      file.}
+#'    \item{\code{call.params}:}{Lista of parsed call parameters from the 
+#'      batch file.}
+#'    \item{\code{results}:}{List holding the results (data frames).}
+#'  }
+#'
+#' @name Zvariant
+#' @rdname Zvariant
+#' @aliases Zvariant-class
+#' @exportClass Zvariant
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#' 
 setClass("Zvariant", representation(name = "character", bat.file = "character",
                                     call.params = "list", results = "list"),
          validity = check.variant)
