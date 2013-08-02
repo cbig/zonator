@@ -7,9 +7,7 @@ whitespace.}
   clean.str(x)
 }
 \arguments{
-  \item{\code{x}}{character string file path}
-
-  \item{\code{x}}{character string dir path}
+  \item{x}{Character string.}
 }
 \value{
   An absolute path to a file of NULL if the path does not

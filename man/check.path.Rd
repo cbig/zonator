@@ -5,16 +5,23 @@
   check.path(x, parent.path = NULL)
 }
 \arguments{
-  \item{\code{x}}{character string}
+  \item{x}{Character string path.}
+
+  \item{parent.path}{Character string root path.}
 }
 \value{
   A cleaned character string
 }
 \description{
   Checks if a path can be resolved (i.e. whether it
-  exists). A additional parameter `parent.path` can be
-  provided, in which case `x` is appended to it and the
-  concatenated path is checked for existence.
+  exists). A additional parameter \code{parent.path} can be
+  provided, in which case \code{x} is appended to it and
+  the concatenated path is checked for existence.
+}
+\examples{
+\dontrun{
+
+  }
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

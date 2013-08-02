@@ -2,17 +2,18 @@
 \alias{comp}
 \title{Compare matrices in various ways.}
 \usage{
-  comp(x, y, fun = "correlation", ...)
+  comp(x, y, FUN = "correlation", ...)
 }
 \arguments{
-  \item{x}{numeric matrix}
+  \item{\code{x}}{Numeric matrix.}
 
-  \item{y}{numeric matrix}
+  \item{\code{y}}{Numeric matrix.}
 
-  \item{FUN}{function used for the numeric comparison}
+  \item{\code{FUN}}{Function used for the numeric
+  comparison.}
 
-  \item{...}{further args passed on to selected comparison
-  function}
+  \item{\code{...}}{Further arguments passed on to selected
+  comparison function.}
 }
 \value{
   A DataFrame with each row containg columns title, count,
