@@ -44,8 +44,8 @@ Get a specified variant in a Zonation project}
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-  \code{\link{Zproject-class}} and
-  \code{\link{Zvariant-class}}
+  \code{\link[zonator:AllClasses]{Zproject-class}} and
+  \code{\link[zonator:AllClasses]{Zvariant-class}}
 
   \code{\link{Zproject-class}} and
   \code{\link{Zvariant-class}}

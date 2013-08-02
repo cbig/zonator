@@ -15,7 +15,8 @@
   raster format used (i.e. the file extension).}
 }
 \value{
-  A \code{\link{RasterStack}} object of result rasters.
+  A \code{\link[raster:BasicRaster-class]{RasterStack}}
+  object of result rasters.
 }
 \description{
   Input rasters are given as raster names (i.e. without the

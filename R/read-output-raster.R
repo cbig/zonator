@@ -23,7 +23,7 @@
 #' @param \code{format} Character string indicating the raster format used 
 #'   (i.e. the file extension).
 #'
-#' @return A \code{\link{RasterStack}} object of result rasters.
+#' @return A \code{\link[raster:BasicRaster-class]{RasterStack}} object of result rasters.
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
