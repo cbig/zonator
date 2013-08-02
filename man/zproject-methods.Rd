@@ -1,7 +1,7 @@
 \docType{methods}
 \name{getvariant}
 \alias{getvariant}
-\alias{getvariant,Zproject,ANY-method}
+\alias{getvariant,Zproject-method}
 \alias{names}
 \alias{names,Zproject-method}
 \alias{nvariants}

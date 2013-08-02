@@ -41,7 +41,7 @@ setGeneric("plot", function(x, group, ...) {
 })
 
 #' @rdname zvariant-methods
-#' @aliases plot,Zvariant,logical,ANY-method
+#' @aliases plot,Zvariant,logical-method
 #' 
 setMethod("plot", c("Zvariant", "logical"), function(x, group=FALSE, ...) {
   if (group) {

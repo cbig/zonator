@@ -2,7 +2,7 @@
 \name{plot}
 \alias{plot}
 \alias{plot,Zvariant,boolean,ANY-method}
-\alias{plot,Zvariant,logical,ANY-method}
+\alias{plot,Zvariant,logical-method}
 \title{Plot Zonation variant's (class \code{Zvariant}) results (performance curves).}
 \arguments{
   \item{\code{x}}{Zvariant object.}

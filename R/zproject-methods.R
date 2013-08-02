@@ -33,7 +33,7 @@ setGeneric("getvariant", function(x, index) {
 })
 
 #' @rdname zproject-methods
-#' @aliases getvariant,Zproject,ANY-method
+#' @aliases getvariant,Zproject-method
 #' 
 setMethod("getvariant", c("Zproject", "ANY"), function(x, index) {
   return(x@variants[[index]])
