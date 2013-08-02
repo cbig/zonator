@@ -2,7 +2,7 @@ context("Zproject creation")
 
 # FIXME: there must a smarter way than then the relative path below...
 tutorial.dir <- file.path("../../", get.tutorialdir())
-
+print(getwd())
 # Using tutorial data, must be present!
 test_that("Zonation tutorial data is available", {
   

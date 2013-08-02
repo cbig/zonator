@@ -18,7 +18,7 @@
 #' of results as well.
 #' 
 #' Method itself is only a thin wrapper to functions 
-#' \code{\link{plot.z.curves}} and \code{\link{plot.z.grp.curves}}.
+#' \code{\link{curve.plot}} and \code{\link{curve.group.plot}}.
 #'
 #' @param x Zvariant object.
 #' @param group boolean indicating whether to plot grouped curves.

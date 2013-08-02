@@ -104,7 +104,7 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
+curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
                           invert.x=FALSE, labels=NULL,  ...) {
   
   #browser()
@@ -183,7 +183,7 @@ plot.z.curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-plot.z.grp.curves <- function(x, statistic="mean", groups=NULL, 
+curve.group.plot <- function(x, statistic="mean", groups=NULL, 
                               monochrome=FALSE, main=NULL, invert.x=FALSE, 
                               labels=NULL, ...) {
   
