@@ -20,18 +20,18 @@
 #' 
 #' A project contains one or more variants of particular Zonation analysis 
 #' setup. A single variant is represented as an instance of 
-#' \code{\link[zonator:AllClasses]{Zvariant-class}}.
+#' \code{\link[zonator:Zvariant-class]{Zvariant-class}}.
 #'
 #'@section Slots: 
 #'  \describe{
 #'    \item{\code{root}:}{Character string path pointing to the root (dir) of
 #'      the project.}
 #'    \item{\code{variants}:}{List of objects of class 
-#'      \code{\link[zonator:AllClasses]{Zvariant-class}}.}
+#'      \code{\link[zonator:Zvariant-class]{Zvariant-class}}.}
 #'  }
 #'
 #' @name Zproject
-#' @rdname Zproject
+#' @rdname Zproject-class
 #' @aliases Zproject-class
 #' @exportClass Zproject
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
@@ -134,7 +134,7 @@ check.variant <- function(object) {
 #'  }
 #'
 #' @name Zvariant
-#' @rdname Zvariant
+#' @rdname Zvariant-class
 #' @aliases Zvariant-class
 #' @exportClass Zvariant
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>

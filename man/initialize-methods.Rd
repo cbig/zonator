@@ -17,6 +17,11 @@
   Create an instance of the Zvariant class using
   new/initialize.
 }
+\author{
+  Joona Lehtomaki <joona.lehtomaki@gmail.com>
+
+  Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
 \seealso{
   \code{\link{initialize}}
 

@@ -19,8 +19,8 @@
 #'
 #' @return Zvariant object
 #' 
-#' @seealso \code{\link[zonator:AllClasses]{Zproject-class}} 
-#'   and \code{\link[zonator:AllClasses]{Zvariant-class}}
+#' @seealso \code{\link[zonator:Zproject-class]{Zproject-class}} 
+#'   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
 #' 
 #' @export
 #' @docType methods
