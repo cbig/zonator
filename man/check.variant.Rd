@@ -5,7 +5,7 @@
   check.variant(object)
 }
 \arguments{
-  \item{\code{object}}{of class zvariant}
+  \item{object}{of class zvariant}
 }
 \value{
   A boolean value TRUE if everything is ok, otherwise a

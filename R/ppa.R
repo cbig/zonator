@@ -13,9 +13,9 @@
 
 #' Read Zonation post-processing analysis (ppa) result file.
 #'
-#' @param x input file path
+#' @param x Character string input file path.
 #'
-#' @return list of 3 data frames:
+#' @return List of 3 data frames:
 #'  1. Most important species in units x
 #'  2. Average proportion remaining over all spp in units
 #'  3. Data fractions in units

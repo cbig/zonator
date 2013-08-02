@@ -42,7 +42,7 @@ setClass("Zproject", representation(root = "character", variants = "list"))
 
 #' Check zvariant object's attributes for consistency.
 #' 
-#' @param \code{object} of class zvariant
+#' @param object of class zvariant
 #'
 #' @return A boolean value TRUE if everything is ok, otherwise a character 
 #'   vector of encounterd errors. All encountered warning are printed 

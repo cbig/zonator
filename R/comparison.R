@@ -25,17 +25,17 @@
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
-#' @param x numeric matrix
-#' @param y numeric matrix
-#' @param FUN function used for the numeric comparison
-#' @param ... further args passed on to selected comparison function
+#' @param x Numeric matrix.
+#' @param y Numeric matrix.
+#' @param FUN Function used for the numeric comparison.
+#' @param ... Further arguments passed on to selected comparison function.
 #'
 #' @return A DataFrame with each row containg columns title, count, and catid
 #'
 #' @export
 #' @seealso correlation substraction frequency coverage
 
-comp <- function(x, y, fun="correlation", ...) {
+comp <- function(x, y, FUN="correlation", ...) {
   
   # Check the data
   if (!is.matrix(x) | !is.matrix(y)) {
@@ -62,10 +62,10 @@ comp <- function(x, y, fun="correlation", ...) {
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
-#' @param x numeric matrix
-#' @param y numeric matrix
-#' @param method String correlation method used (default: 'kendall')
-#' @param thresholds numeric vector of thresholds used (default: c(0))
+#' @param x Numeric matrix.
+#' @param y Numeric matrix.
+#' @param method Character string correlation method used (default: 'kendall').
+#' @param thresholds Numeric vector of thresholds used (default: c(0)).
 #'
 #' @return A list with 2 items:
 #' \item{thresholds}{Correlations between 2 matrices with values above a given threshold.}
@@ -97,9 +97,9 @@ correlation <- function(x, y, method='kendall', thresholds=c(0)) {
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
-#' @param x numeric matrix
-#' @param y numeric matrix
-#' @param thresholds numeric vector of thresholds used
+#' @param x Numeric matrix.
+#' @param y Numeric matrix.
+#' @param thresholds Numeric vector of thresholds used.
 #'
 #' @return A list with 2 items:
 #' \item{thresholds}{Correlations between 2 matrices with values above a given threshold.}
@@ -133,10 +133,10 @@ selection.coverage <- function(x, y, thresholds) {
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
-#' @param x raster object
-#' @param y raster object
-#' @param threshold numeric value of threshold
-#' @param warn.uneven boolean indicating whether a warning is raised if the
+#' @param x raster object.
+#' @param y raster object.
+#' @param threshold Numeric value of threshold.
+#' @param warn.uneven Logical indicating whether a warning is raised if the
 #'   compared raster coverages are very (>20x) uneven.
 #'
 #' @return A numeric value [0, 1]
@@ -176,10 +176,10 @@ jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
-#' @param stack RasterStack 
-#' @param threshold numeric value of threshold
+#' @param stack RasterStack-object. 
+#' @param threshold Numeric value of threshold.
 #'
-#' @return A matrix with Jaccard coefficients between all the RasterLayers
+#' @return A matrix with Jaccard coefficients between all the RasterLayers.
 #'
 #' @export
 #' @seealso \code{\link{jaccard}}

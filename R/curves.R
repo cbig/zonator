@@ -20,13 +20,13 @@
 #' @keywords zonation, results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
-#' @param infile character file path to .curves.txt file
+#' @param infile Character file path to .curves.txt file.
 #'
 #' @return A DataFrame with all the information in the curves file.
 #'
 #' @export
 #' @seealso \code{\link{read.grp.curves}}
-
+#'
 read.curves <- function(infile) {
   # Read in the curves file skipping the header line, we'll construct this 
   # later on
@@ -58,13 +58,13 @@ read.curves <- function(infile) {
 #' @keywords zonation, results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
-#' @param infile character file path to .curves.txt file
+#' @param infile Character file path to .curves.txt file.
 #'
 #' @return A DataFrame with all the information in the curves file.
 #'
 #' @export
 #' @seealso \code{\link{read.curves}}
-
+#'
 read.grp.curves <- function(infile) {
   
   grp.curves <- read.table(infile, header=TRUE)

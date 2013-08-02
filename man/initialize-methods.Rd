@@ -2,13 +2,13 @@
 \alias{initialize}
 \title{Create an instance of the Zproject class using new/initialize.}
 \arguments{
-  \item{\code{root}}{character string path to the root of
-  the project (must exist).}
+  \item{root}{Character string path to the root of the
+  project (must exist).}
 
-  \item{\code{name}}{Character string naming the variant.}
+  \item{name}{Character string naming the variant.}
 
-  \item{\code{bat.file}}{Zonation specific batch (.bat)
-  file to read the variant specifics from (must exist).}
+  \item{bat.file}{Zonation specific batch (.bat) file to
+  read the variant specifics from (must exist).}
 }
 \description{
   Create an instance of the Zproject class using

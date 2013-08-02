@@ -11,7 +11,7 @@ whitespace.}
 }
 \value{
   An absolute path to a file of NULL if the path does not
-  exist
+  exist.
 }
 \description{
   Clean leading and trailing whitespaces from a given

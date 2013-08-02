@@ -13,8 +13,7 @@
 
 #' Create an instance of the Zproject class using new/initialize.
 #'
-#' @param \code{root} character string path to the root of the project (must
-#'   exist).
+#' @param root Character string path to the root of the project (must exist).
 #'
 #' @seealso \code{\link{initialize}}
 #'
@@ -48,8 +47,8 @@ setMethod("initialize", "Zproject", function(.Object, root) {
 
 #' Create an instance of the Zvariant class using new/initialize.
 #'
-#' @param \code{name} Character string naming the variant.
-#' @param \code{bat.file} Zonation specific batch (.bat) file to read the 
+#' @param name Character string naming the variant.
+#' @param bat.file Zonation specific batch (.bat) file to read the 
 #'   variant specifics from (must exist).
 #'
 #' @seealso \code{\link{initialize}}

@@ -16,9 +16,9 @@
 #' Batch files include calls to Zonation core and look like following:
 #' call zig3.exe -r [INPUT_PATH].dat [INPUT_PATH].spp [OUTPUT_PATH].txt 0.0 0 1.0 0 
 #'
-#' @param infile character string input file path
+#' @param infile Character string input file path.
 #'
-#' @return a list of parsed bat-parameters
+#' @return List of parsed bat-parameters.
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
@@ -64,9 +64,9 @@ read.bat <- function(infile) {
 
 #' Read a Windows-style ini-file that is for configuration information.
 #'
-#' @param infile character string input file path
+#' @param infile Character string input file path.
 #'
-#' @return a list of parsed ini-parameters
+#' @return List of parsed ini-parameters.
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export

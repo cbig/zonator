@@ -17,10 +17,10 @@
 #' extension). Additional root (folder) path and file extension can be provided
 #' to construct the full paths.
 #'
-#' @param \code{rasters} Character vector of raster names.
-#' @param \code{path} Character string indication an optional root path that is
+#' @param rasters Character vector of raster names.
+#' @param path Character string indication an optional root path that is
 #'   prepended to each \code{rasters} names.
-#' @param \code{format} Character string indicating the raster format used 
+#' @param format Character string indicating the raster format used 
 #'   (i.e. the file extension).
 #'
 #' @return A \code{\link[raster:BasicRaster-class]{RasterStack}} object of result rasters.

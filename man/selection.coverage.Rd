@@ -5,11 +5,11 @@
   selection.coverage(x, y, thresholds)
 }
 \arguments{
-  \item{x}{numeric matrix}
+  \item{x}{Numeric matrix.}
 
-  \item{y}{numeric matrix}
+  \item{y}{Numeric matrix.}
 
-  \item{thresholds}{numeric vector of thresholds used}
+  \item{thresholds}{Numeric vector of thresholds used.}
 }
 \value{
   A list with 2 items: \item{thresholds}{Correlations

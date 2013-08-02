@@ -5,10 +5,10 @@
   read.bat(infile)
 }
 \arguments{
-  \item{infile}{character string input file path}
+  \item{infile}{Character string input file path.}
 }
 \value{
-  a list of parsed bat-parameters
+  List of parsed bat-parameters.
 }
 \description{
   Batch files include calls to Zonation core and look like

@@ -7,28 +7,26 @@
     title = NULL)
 }
 \arguments{
-  \item{\code{x}}{\code{RasterLayer} object containing the
-  spatial data.}
+  \item{x}{\code{RasterLayer} object containing the spatial
+  data.}
 
-  \item{\code{mask.obj}}{\code{RasterLayer} object
-  optionally used for masking only specific parts of
+  \item{mask.obj}{\code{RasterLayer} object optionally used
+  for masking only specific parts of \code{x}.}
+
+  \item{add.mean}{Boolean whether a vertical blue line is
+  added to the plot indicating the mean value of \code{x}.}
+
+  \item{add.median}{Boolean whether a vertical red line is
+  added to the plot indicating the median value of
   \code{x}.}
 
-  \item{\code{add.mean}}{Boolean whether a vertical blue
-  line is added to the plot indicating the mean value of
-  \code{x}.}
+  \item{save.dir}{Character path (folder) for saving the
+  plot as an image.}
 
-  \item{\code{add.mean}}{Boolean whether a vertical red
-  line is added to the plot indicating the median value of
-  \code{x}.}
-
-  \item{\code{save.dir}}{Character path (folder) for saving
-  the plot as an image.}
-
-  \item{\code{binwidth}}{Double value of bindwidth for
+  \item{binwidth}{Double value of bindwidth for
   \code{\link{geom_bar}}.}
 
-  \item{\code{title}}{Character string title of the plot.}
+  \item{title}{Character string title of the plot.}
 }
 \description{
   Create a ggplot2 histogram of a \code{RasterLayer}.

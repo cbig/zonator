@@ -20,9 +20,9 @@
 #' Method itself is only a thin wrapper to functions 
 #' \code{\link{plot.z.curves}} and \code{\link{plot.z.grp.curves}}.
 #'
-#' @param \code{x} Zvariant object.
-#' @param \code{group} boolean indicating whether to plot grouped curves.
-#' @param \code{...} Additional arguments passed on to the speficic plotting 
+#' @param x Zvariant object.
+#' @param group boolean indicating whether to plot grouped curves.
+#' @param ... Additional arguments passed on to the speficic plotting 
 #'   functions.
 #'
 #' @return Zvariant object
@@ -45,8 +45,8 @@ setGeneric("plot", function(x, group, ...) {
 #' 
 setMethod("plot", c("Zvariant", "logical"), function(x, group=FALSE, ...) {
   if (group) {
-    plot.z.grp.curves(x@results[["grp.curves"]], ...)
+    curve.group.plot(x@results[["grp.curves"]], ...)
   } else {
-    plot.z.curves(x@results[["curves"]], ...)
+    curve.plot(x@results[["curves"]], ...)
   }
 })

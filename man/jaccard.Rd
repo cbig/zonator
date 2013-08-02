@@ -5,13 +5,13 @@
   jaccard(x, y, threshold, warn.uneven = FALSE)
 }
 \arguments{
-  \item{x}{raster object}
+  \item{x}{raster object.}
 
-  \item{y}{raster object}
+  \item{y}{raster object.}
 
-  \item{threshold}{numeric value of threshold}
+  \item{threshold}{Numeric value of threshold.}
 
-  \item{warn.uneven}{boolean indicating whether a warning
+  \item{warn.uneven}{Logical indicating whether a warning
   is raised if the compared raster coverages are very
   (>20x) uneven.}
 }

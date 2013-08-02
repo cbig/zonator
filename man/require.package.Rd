@@ -5,9 +5,9 @@
   require.package(package, ...)
 }
 \arguments{
-  \item{\code{package}}{Character name of a package.}
+  \item{package}{Character name of a package.}
 
-  \item{\code{...}}{Additional arguments passed on to
+  \item{...}{Additional arguments passed on to
   \code{\link{install.packages}}.}
 }
 \description{

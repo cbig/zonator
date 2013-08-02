@@ -6,13 +6,13 @@ RasterStack.}
   cross.jaccard(stack, threshold)
 }
 \arguments{
-  \item{stack}{RasterStack}
+  \item{stack}{RasterStack-object.}
 
-  \item{threshold}{numeric value of threshold}
+  \item{threshold}{Numeric value of threshold.}
 }
 \value{
   A matrix with Jaccard coefficients between all the
-  RasterLayers
+  RasterLayers.
 }
 \description{
   Calculate Jaccard coefficients bewteen all the

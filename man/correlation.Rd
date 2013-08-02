@@ -5,15 +5,15 @@
   correlation(x, y, method = "kendall", thresholds = c(0))
 }
 \arguments{
-  \item{x}{numeric matrix}
+  \item{x}{Numeric matrix.}
 
-  \item{y}{numeric matrix}
+  \item{y}{Numeric matrix.}
 
-  \item{method}{String correlation method used (default:
-  'kendall')}
+  \item{method}{Character string correlation method used
+  (default: 'kendall').}
 
-  \item{thresholds}{numeric vector of thresholds used
-  (default: c(0))}
+  \item{thresholds}{Numeric vector of thresholds used
+  (default: c(0)).}
 }
 \value{
   A list with 2 items: \item{thresholds}{Correlations

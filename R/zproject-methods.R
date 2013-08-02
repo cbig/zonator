@@ -14,8 +14,8 @@
 #' getvariant
 #' Get a specified variant in a Zonation project
 #'
-#' @param \code{x} Zproject object
-#' @param \code{index} int or string index defining the variant required
+#' @param x Zproject object.
+#' @param index int or string index defining the variant required.
 #'
 #' @return Zvariant object
 #' 
@@ -42,7 +42,7 @@ setMethod("getvariant", c("Zproject", "ANY"), function(x, index) {
 #' nvariants
 #' Get the number of variants included in a Zonation project
 #'
-#' @param \code{x} Zproject object
+#' @param x Zproject object.
 #'
 #' @return int number of variants
 #' 
@@ -77,7 +77,7 @@ setMethod("names", "Zproject", function(x) {
 #' 
 #' Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE).
 #'
-#' @param \code{x} object
+#' @param x object.
 #'
 #' @return invisible
 #' 

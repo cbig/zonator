@@ -5,7 +5,7 @@
   read.grp.curves(infile)
 }
 \arguments{
-  \item{infile}{character file path to .curves.txt file}
+  \item{infile}{Character file path to .curves.txt file.}
 }
 \value{
   A DataFrame with all the information in the curves file.

@@ -5,14 +5,13 @@
   read.result.rasters(rasters, path = NULL, format = NULL)
 }
 \arguments{
-  \item{\code{rasters}}{Character vector of raster names.}
+  \item{rasters}{Character vector of raster names.}
 
-  \item{\code{path}}{Character string indication an
-  optional root path that is prepended to each
-  \code{rasters} names.}
+  \item{path}{Character string indication an optional root
+  path that is prepended to each \code{rasters} names.}
 
-  \item{\code{format}}{Character string indicating the
-  raster format used (i.e. the file extension).}
+  \item{format}{Character string indicating the raster
+  format used (i.e. the file extension).}
 }
 \value{
   A \code{\link[raster:BasicRaster-class]{RasterStack}}

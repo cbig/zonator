@@ -5,10 +5,10 @@
   read.ini(infile)
 }
 \arguments{
-  \item{infile}{character string input file path}
+  \item{infile}{Character string input file path.}
 }
 \value{
-  a list of parsed ini-parameters
+  List of parsed ini-parameters.
 }
 \description{
   Read a Windows-style ini-file that is for configuration

@@ -6,7 +6,7 @@ tutorial}
   set.tutorialdir(x)
 }
 \arguments{
-  \item{\code{x}}{character string directory path}
+  \item{x}{Character string directory path.}
 }
 \description{
   Set the package options to point to a correct location of

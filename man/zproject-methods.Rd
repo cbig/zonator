@@ -11,14 +11,14 @@
 \title{getvariant
 Get a specified variant in a Zonation project}
 \arguments{
-  \item{\code{x}}{Zproject object}
+  \item{x}{Zproject object.}
 
-  \item{\code{index}}{int or string index defining the
-  variant required}
+  \item{index}{int or string index defining the variant
+  required.}
 
-  \item{\code{x}}{Zproject object}
+  \item{x}{Zproject object.}
 
-  \item{\code{x}}{object}
+  \item{x}{object.}
 }
 \value{
   Zvariant object

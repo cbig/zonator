@@ -5,10 +5,10 @@
   read.ppa.lsm(x)
 }
 \arguments{
-  \item{x}{input file path}
+  \item{x}{Character string input file path.}
 }
 \value{
-  list of 3 data frames: 1. Most important species in units
+  List of 3 data frames: 1. Most important species in units
   x 2. Average proportion remaining over all spp in units
   3. Data fractions in units
 }

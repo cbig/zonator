@@ -5,14 +5,13 @@
   comp(x, y, FUN = "correlation", ...)
 }
 \arguments{
-  \item{\code{x}}{Numeric matrix.}
+  \item{x}{Numeric matrix.}
 
-  \item{\code{y}}{Numeric matrix.}
+  \item{y}{Numeric matrix.}
 
-  \item{\code{FUN}}{Function used for the numeric
-  comparison.}
+  \item{FUN}{Function used for the numeric comparison.}
 
-  \item{\code{...}}{Further arguments passed on to selected
+  \item{...}{Further arguments passed on to selected
   comparison function.}
 }
 \value{

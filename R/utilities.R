@@ -14,15 +14,21 @@
 #' A function to deal with potentially relative paths.
 #' 
 #' Checks if a path can be resolved (i.e. whether it exists). A additional
-#' parameter `parent.path` can be provided, in which case `x` is appended to it
-#' and the concatenated path is checked for existence.
+#' parameter \code{parent.path} can be provided, in which case \code{x} is 
+#' appended to it and the concatenated path is checked for existence.
 #'
-#' @param \code{x} character string
+#' @param x Character string path.
+#' @param parent.path Character string root path.
 #'
 #' @return A cleaned character string
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
+#'  
+#' @examples
+#'   \dontrun{
+#'       
+#'   }
 #'  
 check.path <- function(x, parent.path=NULL) {
   
@@ -46,17 +52,15 @@ check.path <- function(x, parent.path=NULL) {
       }
     }
   }
-  
 }
 
 #' Clean leading and trailing whitespaces from a given string. Additionally,
 #' all occurrences of multiple whitespaces are replaced with a single 
 #' whitespace.
 #'
-#' @param \code{x} character string file path
-#' @param \code{x} character string dir path
+#' @param x Character string.
 #'
-#' @return An absolute path to a file of NULL if the path does not exist
+#' @return An absolute path to a file of NULL if the path does not exist.
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
@@ -80,9 +84,8 @@ clean.str <- function(x) {
 
 #' Requires a given package and if not present installs and loads it.
 #' 
-#' @param \code{package} Character name of a package.
-#' @param \code{...} Additional arguments passed on to 
-#'   \code{\link{install.packages}}.
+#' @param package Character name of a package.
+#' @param ... Additional arguments passed on to \code{\link{install.packages}}.
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
@@ -100,7 +103,7 @@ require.package <- function(package, ...) {
 #' Set the package options to point to a correct location of the Zonation 
 #' tutorial
 #' 
-#' @param \code{x} character string directory path
+#' @param x Character string directory path.
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
@@ -116,9 +119,7 @@ set.tutorialdir <- function(x) {
 
 #' Get the directory of Zonation tutorial.
 #' 
-#' @param \code{x} character string directory path.
-#' 
-#' @return \code{path} Character path to Zonation tutorial directory. 
+#' @return path Character path to Zonation tutorial directory. 
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export

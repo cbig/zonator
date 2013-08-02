@@ -5,13 +5,13 @@
 \alias{plot,Zvariant,logical-method}
 \title{Plot Zonation variant's (class \code{Zvariant}) results (performance curves).}
 \arguments{
-  \item{\code{x}}{Zvariant object.}
+  \item{x}{Zvariant object.}
 
-  \item{\code{group}}{boolean indicating whether to plot
-  grouped curves.}
+  \item{group}{boolean indicating whether to plot grouped
+  curves.}
 
-  \item{\code{...}}{Additional arguments passed on to the
-  speficic plotting functions.}
+  \item{...}{Additional arguments passed on to the speficic
+  plotting functions.}
 }
 \value{
   Zvariant object
