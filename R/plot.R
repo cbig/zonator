@@ -98,7 +98,7 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' @param labels character vector for custom feature labels.
 #' @param ... Additional arguments passed on to \code{\link{plot}}.
 #' 
-#' @seealso \code{\link{read.curves}} and \code{\link{plot.z.grp.curves}}
+#' @seealso \code{\link{read.curves}} and \code{\link{curve.group.plot}}
 #' 
 #' @export
 #' 
@@ -177,7 +177,7 @@ curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
 #' @param labels character vector for custom feature labels.
 #' @param ... Additional arguments passed on to \code{\link{plot}}.
 #' 
-#' @seealso \code{\link{read.curves}} and \code{\link{plot.z.curves}}
+#' @seealso \code{\link{read.curves}} and \code{\link{curve.plot}}.
 #' 
 #' @export
 #' 
