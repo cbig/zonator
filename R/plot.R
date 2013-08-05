@@ -105,10 +105,7 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
 curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
-                          invert.x=FALSE, labels=NULL,  ...) {
-  
-  #browser()
-  
+                          invert.x=FALSE, labels=NULL,  ...) {  
   if (is.null(statistic)) {
     index <- NULL
   } else if (statistic == "min") {
@@ -142,10 +139,10 @@ curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   p <- p + geom_line(aes(colour = variable), size=1)
   
   if (monochrome) {
-    p <- p + theme_bw() + scale_colour_grey(name=.options[["grp.curve.legend.title"]])
+    p <- p + theme_bw() + scale_colour_grey(name=.options[["curve.legend.title"]])
     
   } else {
-    p <- p + scale_color_discrete(name=.options[["grp.curve.legend.title"]])
+    p <- p + scale_color_discrete(name=.options[["curve.legend.title"]])
   }
   
   if (invert.x) {
