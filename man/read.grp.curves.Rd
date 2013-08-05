@@ -9,6 +9,7 @@
 }
 \value{
   A DataFrame with all the information in the curves file.
+  If the requested file does not exist, return NA.
 }
 \description{
   Header is automatically generated based on the number of
