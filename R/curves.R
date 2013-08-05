@@ -22,12 +22,22 @@
 #'
 #' @param infile Character file path to .curves.txt file.
 #'
-#' @return A DataFrame with all the information in the curves file.
+#' @return A DataFrame with all the information in the curves file. If the 
+#'   requested file does not exist, return NA.
 #'
 #' @export
 #' @seealso \code{\link{read.grp.curves}}
 #'
 read.curves <- function(infile) {
+  
+  if (is.na(infile)) {
+    return(NA)
+  }
+  
+  if(!file.exists(infile)) {
+    return(NA)
+  }
+  
   # Read in the curves file skipping the header line, we'll construct this 
   # later on
   curves <- read.table(infile, as.is=TRUE, header=FALSE, skip=1)
@@ -60,12 +70,21 @@ read.curves <- function(infile) {
 #'
 #' @param infile Character file path to .curves.txt file.
 #'
-#' @return A DataFrame with all the information in the curves file.
+#' @return A DataFrame with all the information in the curves file. If the 
+#'   requested file does not exist, return NA.
 #'
 #' @export
 #' @seealso \code{\link{read.curves}}
 #'
 read.grp.curves <- function(infile) {
+  
+  if (is.na(infile)) {
+    return(NA)
+  }
+  
+  if(!file.exists(infile)) {
+    return(NA)
+  }
   
   grp.curves <- read.table(infile, header=TRUE)
   

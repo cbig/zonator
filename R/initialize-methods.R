@@ -36,7 +36,6 @@ setMethod("initialize", "Zproject", function(.Object, root) {
   bat.files <- list.files(root, ".bat$", full.names=TRUE)
   
   for (bat.file in bat.files) {
-    
     variants[bat.file] <- new("Zvariant", bat.file=bat.file)
   }
   
@@ -58,7 +57,6 @@ setMethod("initialize", "Zproject", function(.Object, root) {
 #' @rdname initialize-methods
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #' 
-
 setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
   if (!file.exists(bat.file)) {
@@ -68,7 +66,7 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   if (is.null(name)) {
     # If no name is provided, use the name of the bat-file (without the 
     # extension)
-    .Object@name <- strsplit(".", basename(bat.file))[[1]]
+    .Object@name <- strsplit(basename(bat.file), "\\.", )[[1]][1]
   } else {
     .Object@name <- name
   }
@@ -97,19 +95,15 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
         return(target[1])
       }
     }
-    # Curves file is named *.curves.txt
+    # Curves file is named *.curves.txt. NOTE: if the file does not exist,
+    # returns NA.
     curve.file <- .get.file(output.folder, "\\.curves\\.txt")
-    if (is.na(curve.file)) {
-      warning(paste("In bat-file", bat.file, 
-                    "Could not find curves file for folder ", output.folder)) 
-      results[["curves"]] <- NA
-    } else {
-      results[["curves"]] <- read.curves(curve.file)
-    }
+    results[["curves"]] <- read.curves(curve.file)
     
-    # Group curves file is named *.grp_curves.txt
-    results[["grp.curves"]] <- read.grp.curves(.get.file(output.folder, 
-                                                         "\\.grp_curves\\.txt"))
+    # Group curves file is named *.grp_curves.txt. NOTE: if the file does not 
+    # exist, returns NA.
+    grp.curve.file <- .get.file(output.folder, "\\.grp_curves\\.txt")
+    results[["grp.curves"]] <- read.grp.curves(grp.curve.file)
     
     # Rank raster file is named *.rank.*
     results["rank.raster.file"] <- .get.file(output.folder, "\\.rank\\.")
