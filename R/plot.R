@@ -104,6 +104,14 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
+#' @examples \dontrun{
+#'   # This example assumes that variant do_abf.bat has been run
+#'   bat.file <- system.file("extdata/zonation-tutorial", "do_abf.bat",
+#'                            package="zonator")
+#'   abf.variant <- new("Zvariant", bat.file=bat.file)
+#'   plot(abf.variant)
+#'   plot(abf.variant, statistic="mean")
+#' }
 curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
                           invert.x=FALSE, labels=NULL,  ...) {  
   if (is.null(statistic)) {
@@ -120,29 +128,24 @@ curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
     # Don't include the 1st columns ave_prop_remp
     col.ids <- col.ids[features]
   }
-  col.ids <- c(1, col.ids)
+  col.ids <- c(1, index, col.ids)
   
   # Subset only the needed columns
-  x <- x[col.ids]
-  
-  # List -> DataFrame
-  x <- as.data.frame(x)
+  x.selected <- x[col.ids]
   
   # Reshape the DataFrame
-  x.melt <- melt(data = x, id.vars=c(1), measure.vars=2:length(col.ids))
-  
-  # Create the necessary widths
-  #color.scale <- c(red, gray.colors(length(col.ids) - 2))
-  size.scale <- c(2, rep(1, length(col.ids) - 2))
+  x.melt <- melt(data = x.selected, id.vars=c(1), measure.vars=2:length(col.ids))
+  x.melt$size  <- ifelse(x.melt$variable == names(x)[index], 2, 1)
   
   p <- ggplot(x.melt, aes(x=Prop_landscape_lost, y=value, group=variable))
-  p <- p + geom_line(aes(colour = variable), size=1)
+  p <- p + geom_line(aes(colour = variable, size=1))
   
   if (monochrome) {
     p <- p + theme_bw() + scale_colour_grey(name=.options[["curve.legend.title"]])
     
   } else {
-    p <- p + scale_color_discrete(name=.options[["curve.legend.title"]])
+    p <- p + scale_colour_brewer(name=.options[["curve.legend.title"]],
+                                 palette="Set1")
   }
   
   if (invert.x) {
