@@ -1,4 +1,4 @@
-context("Zproject creation")
+context("Tutorial data existence")
 
 # Tutorial directories
 tutorial.dir <- system.file("extdata", "zonation-tutorial", package="zonator")
@@ -33,6 +33,8 @@ test_that("Zonation tutorial data is available", {
   }
 })
 
+context("Zproject creation")
+
 test_that("Zproject is created correctly", {
   test.project <- new("Zproject", root=tutorial.dir)
   
@@ -55,12 +57,21 @@ test_that("Zproject is created correctly", {
   }
 })
 
+context("Zvariant creation")
+
 test_that("Zvariant is created correctly", {
-  test.project <- new("Zproject", root=tutorial.dir)
-  # For now, just test the first variant (there must at least one, which has 
-  # already been tested for).
-  test.variant <- test.project@variants[1]
+
+  test.variant <- new("Zvariant", bat.file=bat.file)
   
   # Test slots
+  expect_that(test.variant@name, equals("do_abf"),
+              paste("Test variant object's slot 'name' is not 'do_abf':",
+                    test.variant@name))
+  expect_that(test.variant@bat.file, equals(bat.file),
+              paste("Test variant object's slot 'bat.file' does not point to the real bat.file:",
+                    test.variant@bat.file))
+  
+  batch.file.content <- scan(file=bat.file, "character", sep=" ", quiet=TRUE)
+  
   
 })
