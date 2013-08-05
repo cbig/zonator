@@ -32,7 +32,7 @@
 #' @export
 #' @docType methods
 #' @rdname zvariant-methods
-#' @aliases plot,Zvariant,missing,logical-method
+#' @aliases plot,Zvariant,missing-method
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #'  

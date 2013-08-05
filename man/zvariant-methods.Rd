@@ -1,8 +1,7 @@
 \docType{methods}
 \name{plot}
 \alias{plot}
-\alias{plot,Zvariant,boolean,ANY-method}
-\alias{plot,Zvariant,logical-method}
+\alias{plot,Zvariant,missing-method}
 \title{Plot Zonation variant's (class \code{Zvariant}) results (performance curves).}
 \arguments{
   \item{x}{Zvariant object.}
