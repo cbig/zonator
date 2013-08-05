@@ -21,6 +21,8 @@ use tree connectivity = 0
 tree connectivity file = 
 use interactions = 0
 interaction file = 
+use groups = 1
+groups file = tutorial_input/groups.txt
 
 annotate name = 0
 logit space = 0
