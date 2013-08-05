@@ -1,3 +1,49 @@
+# This file is a part of zonator package
+
+# Copyright (C) 2012-2014 Joona Lehtomäki <joona.lehtomaki@gmai.com>. All rights 
+# reserved.
+
+# This program is open source software; you can redistribute it and/or modify 
+# it under the terms of the FreeBSD License (keep this notice): 
+# http://en.wikipedia.org/wiki/BSD_licenses
+
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+#' Check if Zonation is installed.
+#'
+#' @param exe Chrarcter string for overriding the default Zonation executable
+#'   (default: zig3).
+#' 
+#' @return A logical indicating whether requested Zonation executable is found.
+#' 
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+#' @examples \dontrun{
+#'   check_zonation("zig4")
+#' }
+#' 
+check_zonation <- function(exe="zig3") {
+
+  if (.Platform$OS.type == "unix") {
+    z.exe <- exe
+  } else  {
+    z.exe <- paste0(exe, ".exe")
+  }
+  # FIXME: works only on Linux
+  check <- system(paste("which", z.exe), intern=FALSE, ignore.stdout=TRUE,
+                  ignore.stderr=TRUE)
+  if (check == 0) {
+    return(TRUE)
+  } else {
+    warning("Zonation executable ", z.exe, " not found in the system.")
+    return(FALSE)
+  }
+}
+
 # # Function for calculation the distribution smoothing related alpha value
 # calculate.alpha <- function(cell.size, landscape.use, input.cell.size) {
 #   return((2 * cell.size) / (landscape.use * input.cell.size))
