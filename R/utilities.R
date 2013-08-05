@@ -15,7 +15,8 @@
 #' 
 #' Checks if a path can be resolved (i.e. whether it exists). A additional
 #' parameter \code{parent.path} can be provided, in which case \code{x} is 
-#' appended to it and the concatenated path is checked for existence.
+#' appended to it and the concatenated path is checked for existence. If the 
+#' path cannot be resolved, raise an error.
 #'
 #' @param x Character string path.
 #' @param parent.path Character string root path.
@@ -38,7 +39,7 @@ check.path <- function(x, parent.path=NULL) {
   # Is x valid file path on its own?
   if (file.exists(x)) {
     return(x)
-  } else {
+  } else if(!is.null(parent.path)) {
     path <- file.path(parent.path, x)
     # Is x a valid file path when combined with the parent.path?
     if (file.exists(path)) {
@@ -51,6 +52,8 @@ check.path <- function(x, parent.path=NULL) {
         return(NULL)
       }
     }
+  } else {
+    stop("Path cannot be resolved.")
   }
 }
 

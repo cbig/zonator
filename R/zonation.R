@@ -13,7 +13,7 @@
 
 #' Check if Zonation is installed.
 #'
-#' @param exe Chrarcter string for overriding the default Zonation executable
+#' @param exe Character string for overriding the default Zonation executable
 #'   (default: zig3).
 #' 
 #' @return A logical indicating whether requested Zonation executable is found.
@@ -41,6 +41,90 @@ check_zonation <- function(exe="zig3") {
   } else {
     warning("Zonation executable ", z.exe, " not found in the system.")
     return(FALSE)
+  }
+}
+
+#' Parse the content of a Zonation batch (bat) file and make OS specific 
+#' adjustments if needed. 
+#' 
+#' The main issues faced between differerent platforms are the name of the 
+#' executable, ways of calling it, and path separators. Relative file paths
+#' need to be expanded into full absolute paths.
+#'
+#' @oaram bat.file Character string path to a Zonation batch (bat) file.
+#' @param exe Character string for overriding the Zonation executable
+#'   specified in the bat-file.
+#' 
+#' @return A character string command sequence suitable for execution.
+#' 
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+#' @examples \dontrun{
+#' 
+#' }
+#' 
+parse_bat <- function(bat.file, exe=NULL) {
+  # Read in the content of the bat file, surpress any info
+  cmd.sequence <- scan(file=bat.file, "character", sep=" ", quiet=TRUE)
+  
+  cmd.sequence[4] <- cmd.sequence[4]
+  cmd.sequence[5] <- cmd.sequence[5]
+  cmd.sequence[6] <- cmd.sequence[6]
+
+  if (.Platform$OS.type == "unix") {
+    # Don't take the 1st element, "call" is specific only to Windows
+    if (cmd.sequence[1] == "call") {
+      cmd.sequence <- cmd.sequence[2:length(cmd.sequence)]
+    }
+    # Which index is the *.exe command at?
+    index <- grep(".(\\.exe)", cmd.sequence)
+    # Remove the *.exe or replace it if needed
+    if (is.null(exe)) {
+      cmd.sequence[index] <- gsub(".exe", "", cmd.sequence[index])
+    } else {
+      cmd.sequence[index] <- exe
+    }
+  } 
+  return(paste(cmd.sequence, collapse=" "))
+}
+
+#' Try to run a given batch (bat) files.
+#'
+#' @oaram bat.file Character string path to a Zonation batch (bat) file.
+#' @param exe Character string for overriding the default Zonation executable
+#'   (default: zig3).
+#' 
+#' @return A logical indicating whether running the batch file was successful.
+#' 
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+#' @examples \dontrun{
+#' 
+#' }
+#' 
+run_bat <- function(bat.file, exe="zig3") {
+  if (!file.exists(bat.file)) {
+    stop("Bat file ", bat.file, " does not exist.")
+  }
+  if (check_zonation(exe)) {
+    # Temporarily set the working dir to where the bat file is being executed
+    # from.
+    current.dir <- getwd()
+    setwd(dirname(bat.file))
+    
+    exit.status <- system(parse_bat(bat.file))
+    
+    setwd(current.dir)
+    
+    if (exit.status == 0) {
+      return(TRUE)  
+    } else {
+      stop("Running bat file ", bat.file, " failed.")
+    }
   }
 }
 
