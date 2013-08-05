@@ -97,19 +97,15 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
         return(target[1])
       }
     }
-    # Curves file is named *.curves.txt
+    # Curves file is named *.curves.txt. NOTE: if the file does not exist,
+    # returns NA.
     curve.file <- .get.file(output.folder, "\\.curves\\.txt")
-    if (is.na(curve.file)) {
-      warning(paste("In bat-file", bat.file, 
-                    "Could not find curves file for folder ", output.folder)) 
-      results[["curves"]] <- NA
-    } else {
-      results[["curves"]] <- read.curves(curve.file)
-    }
+    results[["curves"]] <- read.curves(curve.file)
     
-    # Group curves file is named *.grp_curves.txt
-    results[["grp.curves"]] <- read.grp.curves(.get.file(output.folder, 
-                                                         "\\.grp_curves\\.txt"))
+    # Group curves file is named *.grp_curves.txt. NOTE: if the file does not 
+    # exist, returns NA.
+    grp.curve.file <- .get.file(output.folder, "\\.grp_curves\\.txt")
+    results[["grp.curves"]] <- read.grp.curves(grp.curve.file)
     
     # Rank raster file is named *.rank.*
     results["rank.raster.file"] <- .get.file(output.folder, "\\.rank\\.")
