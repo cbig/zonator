@@ -33,6 +33,16 @@
 \description{
   Plot Zonation performance curves.
 }
+\examples{
+\dontrun{
+  # This example assumes that variant do_abf.bat has been run
+  bat.file <- system.file("extdata/zonation-tutorial", "do_abf.bat",
+                           package="zonator")
+  abf.variant <- new("Zvariant", bat.file=bat.file)
+  plot(abf.variant)
+  plot(abf.variant, statistic="mean")
+}
+}
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
