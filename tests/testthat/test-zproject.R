@@ -1,12 +1,12 @@
 context("Zproject creation")
 
-# FIXME: there must a smarter way than then the relative path below...
-tutorial.dir <- file.path("../../", get.tutorialdir())
-print(getwd())
-# Using tutorial data, must be present!
+tutorial.dir <- system.file("extdata", "zonation-tutorial", package="zonator")
+bat.file <- system.file("extdata/zonation-tutorial", "do_abf.bat", 
+                        package="zonator")
+
 test_that("Zonation tutorial data is available", {
   
-  expect_true(file.exists(tutorial.dir), 
+  expect_true(file.exists(bat.file), 
               "Tutorial directory not found in the root of the package.")
   
 })
