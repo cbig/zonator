@@ -32,18 +32,12 @@
 #' @export
 #' @docType methods
 #' @rdname zvariant-methods
-#' @aliases plot,Zvariant,boolean,ANY-method
+#' @aliases plot,Zvariant,missing,logical-method
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("plot", function(x, group, ...) {
-  standardGeneric("plot")
-})
-
-#' @rdname zvariant-methods
-#' @aliases plot,Zvariant,logical-method
-#' 
-setMethod("plot", c("Zvariant", "logical"), function(x, group=FALSE, ...) {
+#'  
+setMethod("plot", signature(x="Zvariant", y="missing"), 
+          function(x, group=FALSE, ...) {
   if (group) {
     curve.group.plot(x@results[["grp.curves"]], ...)
   } else {
