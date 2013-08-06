@@ -35,3 +35,4 @@ Collate:
     'initialize-methods.R'
     'zproject-methods.R'
     'zvariant-methods.R'
+    'project.R'
