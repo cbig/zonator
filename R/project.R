@@ -61,13 +61,13 @@ create_zproject <- function(root, variants, dat.from=NULL,
       # If no templates are provided, use the ones shipped with zonator. Change
       # the filenames to match the variant.
       if (is.null(dat.from)) {
-        dat.from <- system.file("extdata", "dat_template.dat", 
+        dat.from <- system.file("extdata", "template.dat", 
                                 package="zonator")
       }
       dat.to <- file.path(variant.dir, paste0(variant, ".dat"))
       
       if (is.null(spp.from)) {
-        spp.from <- system.file("extdata", "spp_template.spp", 
+        spp.from <- system.file("extdata", "template.spp", 
                                 package="zonator")     
       }
       spp.to <- file.path(variant.dir, paste0(variant, ".spp"))
@@ -76,7 +76,20 @@ create_zproject <- function(root, variants, dat.from=NULL,
       file.copy(from=dat.from, to=dat.to, overwrite=TRUE)
       file.copy(from=spp.from, to=spp.to, overwrite=TRUE)
       # Create to output folder
-      dir.create(file.path(variant.dir, "output"))
+      output.dir <- file.path(variant.dir, "output") 
+      dir.create(output.dir)
+      # Create a bat file, first read the template content
+      bat.from <- system.file("extdata", "template.bat", package="zonator")
+      cmd.sequence <- scan(file=bat.from, "character", sep=" ", quiet=TRUE)
+      # Replace tokens
+      cmd.sequence <- gsub("INPUT_DAT", dat.to, cmd.sequence)
+      cmd.sequence <- gsub("INPUT_SPP", spp.to, cmd.sequence)
+      cmd.sequence <- gsub("OUTPUT", file.path(output.dir, 
+                                               paste0(variant, ".txt")), 
+                           cmd.sequence)
+      # Write bat-file
+      bat.to <- file.path(root, paste0("do_", variant, ".bat"))
+      cat(paste(c(cmd.sequence, "\n"), collapse=" "), file=bat.to)
     }
   }
   project <- new("Zproject", root=root)
