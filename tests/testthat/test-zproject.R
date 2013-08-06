@@ -35,14 +35,41 @@ test_that("Zonation tutorial data is available", {
 
 context("Zproject creation")
 
-test_that("Zproject is created correctly", {
-  test.project <- new("Zproject", root=tutorial.dir)
+test_that("Zproject is created correctly based on existing project", {    
+    test.project <- create_zproject(tutorial.dir)
+    
+    # Test slots
+    expect_that(test.project, is_a("Zproject"),
+                paste("Test project is not an instance of class 'Zproject':",
+                      class(test.project)))
+    expect_that(test.project@root, equals(tutorial.dir),
+                paste("Test project object's slot 'root' does not point to tutorial directory:",
+                      test.project@root))
+    # Test that there are variants
+    expect_true(length(test.project@variants) >= 1, 
+                "Test project has no variants.")
+    
+    for (variant in test.project@variants) {
+      expect_that(variant, is_a("Zvariant"),
+                  paste("Test project object's slot 'variants' contains an object",
+                        "not an instance of class 'Zvariant:",
+                        class(variant)))
+    
+    # Test for a new project
+    temp.dir <- tempdir()
+    test.project <- create_zproject(temp.dir, variants=c("var1", "var2"))
+  }
+})
+
+test_that("Zproject is created correctly as a new project", {
+  temp.dir <- file.path(tempdir(), "test_zproject")
+  test.project <- create_zproject(temp.dir, variants=c("variant1", "variant2"))
   
   # Test slots
   expect_that(test.project, is_a("Zproject"),
               paste("Test project is not an instance of class 'Zproject':",
                     class(test.project)))
-  expect_that(test.project@root, equals(tutorial.dir),
+  expect_that(test.project@root, equals(temp.dir),
               paste("Test project object's slot 'root' does not point to tutorial directory:",
                     test.project@root))
   # Test that there are variants
@@ -55,6 +82,7 @@ test_that("Zproject is created correctly", {
                       "not an instance of class 'Zvariant:",
                       class(variant)))
   }
+  file.remove(temp.dir)
 })
 
 context("Zvariant creation")
