@@ -14,7 +14,6 @@ Depends:
     plyr,
     raster,
     reshape2,
-    XLConnect
 Suggests:
     testthat
 Imports:
