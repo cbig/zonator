@@ -13,7 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 Reading settings file.
 
 
-Starting Zonation run on 'BIOTI25.site' at 7:21:05 PM (2013/8/5) 
+Starting Zonation run on 'BIOTI25.site' at 7:31:54 PM (2013/8/6) 
 Locale is: C
 Loading spp list from file tutorial_input/splist_abf.spp
 Row count in features/species file: 7
@@ -96,13 +96,13 @@ removed 105864, smallest remaining proportion over all biodiversity features (e.
 removed 110275, smallest remaining proportion over all biodiversity features (e.g. species) = 3.183018e-09
 Total count of cells removed = 110282
 
-Done in 4 seconds.
+Done in 5 seconds.
 saving tutorial_output/output_abf.png
 saving tutorial_output/output_abf.rank.compressed.tif
 saving tutorial_output/output_abf.prop.compressed.tif
 saving tutorial_output/output_abf.wrscr.compressed.tif
 No automated post-processing file specified
 DONE: Freeing memory next.
-Finished at 7:21:10 PM (2013/8/5) 
-Elapsed time : 4733 ms
+Finished at 7:31:59 PM (2013/8/6) 
+Elapsed time : 5078 ms
 ZIG3: DONE!
