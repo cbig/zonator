@@ -54,10 +54,6 @@ test_that("Zproject is created correctly based on existing project", {
                   paste("Test project object's slot 'variants' contains an object",
                         "not an instance of class 'Zvariant:",
                         class(variant)))
-    
-    # Test for a new project
-    temp.dir <- tempdir()
-    test.project <- create_zproject(temp.dir, variants=c("var1", "var2"))
   }
 })
 
@@ -82,7 +78,6 @@ test_that("Zproject is created correctly as a new project", {
                       "not an instance of class 'Zvariant:",
                       class(variant)))
   }
-  file.remove(temp.dir)
 })
 
 context("Zvariant creation")
