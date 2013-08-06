@@ -51,7 +51,7 @@ check_zonation <- function(exe="zig3") {
 #' executable, ways of calling it, and path separators. Relative file paths
 #' need to be expanded into full absolute paths.
 #'
-#' @oaram bat.file Character string path to a Zonation batch (bat) file.
+#' @param bat.file Character string path to a Zonation batch (bat) file.
 #' @param exe Character string for overriding the Zonation executable
 #'   specified in the bat-file.
 #' 
@@ -92,7 +92,7 @@ parse_bat <- function(bat.file, exe=NULL) {
 
 #' Try to run a given batch (bat) files.
 #'
-#' @oaram bat.file Character string path to a Zonation batch (bat) file.
+#' @param bat.file Character string path to a Zonation batch (bat) file.
 #' @param exe Character string for overriding the default Zonation executable
 #'   (default: zig3).
 #' 
