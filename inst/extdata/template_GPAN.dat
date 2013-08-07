@@ -9,7 +9,7 @@ z = 0.25
 post-processing list file = 
 memory save mode = 0
 use groups = 0
-groups file = 
+groups file = ../groups_iucn_category_x_taxa.txt
 mask missing areas = 1
 area mask file = ../../Data/GlobalData
 
