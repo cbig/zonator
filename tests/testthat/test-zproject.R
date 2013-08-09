@@ -59,7 +59,20 @@ test_that("Zproject is created correctly based on existing project", {
 
 test_that("Zproject is created correctly as a new project", {
   temp.dir <- file.path(tempdir(), "test_zproject")
-  test.project <- create_zproject(temp.dir, variants=c("variant1", "variant2"))
+  
+  variant.names <- c("GPAN_01_abf",
+                     "GPAN_02_caz",
+                     "GPAN_03_abf_w",
+                     "GPAN_04_caz_w", 
+                     "GPAN_05_abf_w_ecor_w10",
+                     "GPAN_06_caz_w_ecor_w10",
+                     "GPAN_07_abf_w_ecor_w40",
+                     "GPAN_08_caz_w_ecor_w40")
+  
+  dat.template <- system.file("extdata", "template_GPAN.dat", package="zonator")
+  
+  test.project <- create_zproject(root=temp.dir, variants=variant.names,
+                                  dat.from=dat.template)
   
   # Test slots
   expect_that(test.project, is_a("Zproject"),
