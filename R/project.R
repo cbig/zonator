@@ -81,11 +81,15 @@ create_zproject <- function(root, variants, dat.from=NULL,
       # Create a bat file, first read the template content
       bat.from <- system.file("extdata", "template.bat", package="zonator")
       cmd.sequence <- scan(file=bat.from, "character", sep=" ", quiet=TRUE)
-      # Replace tokens
-      cmd.sequence <- gsub("INPUT_DAT", dat.to, cmd.sequence)
-      cmd.sequence <- gsub("INPUT_SPP", spp.to, cmd.sequence)
-      cmd.sequence <- gsub("OUTPUT", file.path(output.dir, 
-                                               paste0(variant, ".txt")), 
+      # Replace tokens with actual (relative) paths
+      dat.relative <- gsub(paste0(root, .Platform$file.sep), "", dat.to)
+      spp.relative <- gsub(paste0(root, .Platform$file.sep), "", spp.to)
+      output.dir.relative <- gsub(paste0(root, .Platform$file.sep), "", 
+                                  output.dir)
+      cmd.sequence <- gsub("INPUT_DAT", dat.relative, cmd.sequence)
+      cmd.sequence <- gsub("INPUT_SPP", spp.relative, cmd.sequence)
+      cmd.sequence <- gsub("OUTPUT", file.path(output.dir.relative, 
+                                                 paste0(variant, ".txt")),
                            cmd.sequence)
       # Write bat-file
       bat.to <- file.path(root, paste0("do_", variant, ".bat"))
