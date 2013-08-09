@@ -11,7 +11,7 @@ memory save mode = 0
 use groups = 0
 groups file = ../groups_iucn_category_x_taxa.txt
 mask missing areas = 1
-area mask file = ../../Data/GlobalData
+area mask file = ../../Data/GlobalData/9_Land_use_restrictions_conservation_areas/WorldDatabaseOnProtectedAreas/FINALS/IUCNWDPA_Grouped/IUCNWDPA_Grouped_r16b/IUCNWDPA_ItoIV_r16b.tif 
 
 [Administrative units]
 use ADMUs = 0
