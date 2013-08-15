@@ -9,18 +9,14 @@ a familiar tool (R) in setting up Zonation runs and managing Zonation results.
 **NOTE that the scripts are strictly alpha quality. Do not expect any sort 
 of stability at least before 0.2 release.**
 
-## Objectives
-
 Functions and classes found in `zonator` can be useful for following stages
 of running a Zonation analysis.
 
-### 1. Pre-processing
-### 2. Running Zonation
-### 3. Post-processing
+1. Setting up a Zonation project and pre-processing files.
+1. Running Zonation.
+1. Post-processing (task such as results analysis and comparison, plotting etc).
 
-#### Results comparison
-
-#### Plotting
+For more detailed examples, see the [wiki](https://github.com/jlehtoma/zonator/wiki).
 
 ## Installing
 
