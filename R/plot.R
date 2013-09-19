@@ -138,7 +138,7 @@ curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   x.melt$size  <- ifelse(x.melt$variable == names(x)[index], 2, 1)
   
   p <- ggplot(x.melt, aes(x=Prop_landscape_lost, y=value, group=variable))
-  p <- p + geom_line(aes(colour = variable, size=1))
+  p <- p + geom_line(aes(colour = variable))
   
   if (monochrome) {
     p <- p + theme_bw() + scale_colour_grey(name=.options[["curve.legend.title"]])

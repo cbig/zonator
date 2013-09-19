@@ -23,7 +23,7 @@ curve.theme <- theme(plot.title=element_text(face="bold", size=20),
                      axis.ticks = element_line(size = 2),
                      legend.text=element_text(size=20),
                      legend.title=element_text(size=20),
-                    panel.border = element_rect(size=2, colour="black"))
+                     panel.border = element_rect(size=2, colour="black"))
 assign("curve.theme", curve.theme, envir=.options)
 
 assign("curve.x.title", "\nProp. of landscape lost", envir=.options)
