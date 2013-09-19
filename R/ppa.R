@@ -115,13 +115,9 @@ read.ppa.lsm <- function(x) {
     return(sub.dat)
   }
   
-  # NOTE!!! Up at leas to Zonation 3.1.7 there is a bug that duplicates the
-  # "> 0.1%" column. Remove the ducplicate column (named "Plus_012" here, the
-  # 10th column) after reading in the data chunk
-  
   header1 <- c("Unit", "Area", "Mean_rank", "X", "Y", "Spp_distribution_sum", 
-               "Plus_10", "Plus_1", "Plus_01", "Plus_012", "Plus_001", 
-               "Plus_0001")
+               "Plus_10", "Plus_1", "Plus_01", "Plus_001", "Plus_0001")
+  
   dat[[1]] <- .read.chunk(lines, index1$start, index1$end, header=header1)
   dat[[1]] <- dat[[1]][-10]
   
