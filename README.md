@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jlehtoma/zonator.png)](https://travis-ci.org/jlehtoma/zonator)
+
 # zonator
 
 `zonator` is a utility R package for dealing with various tasks related to
