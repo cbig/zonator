@@ -2,7 +2,7 @@ Package: zonator
 Type: Package
 Title: Utility functions for Zonation spatial conservation prioritization
     software
-Version: 0.1.2
+Version: 0.1.3
 Date: 2013-03-12
 Author: Joona Lehtomaki
 License: FreeBSD
@@ -15,9 +15,12 @@ Depends:
     raster,
     reshape2,
 Suggests:
-    testthat
+    testthat,
+    knitr
 Imports:
     methods
+BugReports: https://github.com/jlehtoma/zonator/issues
+VignetteBuilder: knitr
 Collate:
     'options.R'
     'AllClasses.R'
