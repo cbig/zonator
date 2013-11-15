@@ -1,6 +1,6 @@
 context("Controlling Zonation")
 
-bat.file <- system.file("extdata/zonation-tutorial", "do_abf.bat",
+bat.file <- system.file("extdata/tutorial/basic", "do_01_core_area_zonation.bat",
                         package="zonator")
 
 faulty.bat.file <- file.path(dirname(bat.file), "wrong.bat")
@@ -21,17 +21,17 @@ test_that("Parsing a bat file works", {
   
   if (.Platform$OS.type == "unix") {
     correct.sequence <- c("zig3", "-r", 
-                          "tutorial_input/set_abf.dat", 
-                          "tutorial_input/splist_abf.spp", 
-                          "tutorial_output/output_abf.txt", 
+                          "01_core_area_zonation/01_core_area_zonation.dat", 
+                          "01_core_area_zonation/01_core_area_zonation.spp", 
+                          "basic_output/01_core_area_zonation/01_core_area_zonation.txt", 
                           "0.0", "0", "1.0", "0", 
                           "--grid-output-formats=compressed-tif",
                           "--image-output-formats=png")
   } else {
     correct.sequence <- c("call", "zig3.exe", "-r", 
-                          "tutorial_input/set_abf.dat", 
-                          "tutorial_input/splist_abf.spp", 
-                          "tutorial_output/output_abf.txt", 
+                          "01_core_area_zonation/01_core_area_zonation.dat", 
+                          "01_core_area_zonation/01_core_area_zonation.spp", 
+                          "basic_output/01_core_area_zonation/01_core_area_zonation.txt", 
                           "0.0", "0", "1.0", "0", 
                           "--grid-output-formats=compressed-tif", 
                           "--image-output-formats=png")
