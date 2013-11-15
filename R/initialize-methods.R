@@ -36,7 +36,8 @@ setMethod("initialize", "Zproject", function(.Object, root) {
   bat.files <- list.files(root, ".bat$", full.names=TRUE)
   
   for (bat.file in bat.files) {
-    variants[bat.file] <- new("Zvariant", bat.file=bat.file)
+    variant <- new("Zvariant", bat.file=bat.file)
+    variants[variant@name] <- variant
   }
   
   .Object@variants <- variants 
