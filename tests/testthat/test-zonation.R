@@ -1,6 +1,6 @@
 context("Controlling Zonation")
 
-bat.file <- system.file("extdata/tutorial/basic", "do_01_core_area_zonation.bat",
+bat.file <- system.file("extdata/tutorial/basic", "01_core_area_zonation.bat",
                         package="zonator")
 
 faulty.bat.file <- file.path(dirname(bat.file), "wrong.bat")

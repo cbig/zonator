@@ -7,7 +7,7 @@ data.dir <- file.path(tutorial.dir, "data")
 output.dir <- file.path(setup.dir, "basic_output")
 
 # Tutorial run and configuration files
-bat.file <- file.path(setup.dir, "do_01_core_area_zonation.bat")
+bat.file <- file.path(setup.dir, "01_core_area_zonation.bat")
 dat.file <- file.path(setup.dir, "01_core_area_zonation/01_core_area_zonation.dat")
 spp.file <- file.path(setup.dir, "01_core_area_zonation/01_core_area_zonation.spp")
 species.files <- paste0(data.dir, "/species", 1:7, ".tif")
