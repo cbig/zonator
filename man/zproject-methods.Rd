@@ -2,8 +2,6 @@
 \name{getvariant}
 \alias{getvariant}
 \alias{getvariant,Zproject-method}
-\alias{has_results}
-\alias{has_results,zvariant-method}
 \alias{names}
 \alias{names,Zproject-method}
 \alias{nvariants}
