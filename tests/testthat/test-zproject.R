@@ -100,18 +100,30 @@ context("Zvariant creation")
 
 test_that("Zvariant is created correctly", {
 
-  test.variant <- new("Zvariant", bat.file=bat.file)
+  # Variant with no results, no results
+  
+  no.results.bat.file <- file.path(setup.dir, "06_dummy_for_testing.batx")
+  no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
+  
+  # Variant with results
+  
+  results.variant <- new("Zvariant", bat.file=bat.file)
   
   # Test slots
   expected.name <- gsub(".bat", "", basename(bat.file))
-  expect_that(test.variant@name, equals(expected.name),
+  expect_that(results.variant@name, equals(expected.name),
               paste0("Test variant object's slot 'name' is not '",
-                     expected.name, "' :", test.variant@name))
-  expect_that(test.variant@bat.file, equals(bat.file),
+                     expected.name, "' :", results.variant@name))
+  expect_that(results.variant@bat.file, equals(bat.file),
               paste("Test variant object's slot 'bat.file' does not point to the real bat.file:",
-                    test.variant@bat.file))
+                    results.variant@bat.file))
   
-  batch.file.content <- scan(file=bat.file, "character", sep=" ", quiet=TRUE)
+  # FIXME: Variant call.params is not tested for here because the class
+  # initializer already has a check function. Should it rather be here?
+  
+  # This variant should have the results as well (ship with the package)
+  expect_true(has_results(results.variant), 
+              "Test variant doesn't have results although it should")
   
   
 })
