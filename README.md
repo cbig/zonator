@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/jlehtoma/zonator.png)](https://travis-ci.org/jlehtoma/zonator)
+[![Stories in Ready](https://badge.waffle.io/jlehtoma/zonator.png?label=ready)](http://waffle.io/jlehtoma/zonator)
 
 # zonator
 
