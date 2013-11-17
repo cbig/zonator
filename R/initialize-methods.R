@@ -75,12 +75,19 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   }
   .Object@bat.file <- bat.file
   # Read the content of the bat file
-  .Object@call.params <- read.bat(bat.file)
+  call.params <- read.bat(bat.file)
+  .Object@call.params <- call.params
+  
+  # NOTE: dat-file and spp-file existence has already been checked by zvariant
+  # initializer checker function
   
   # dat-file content ###########################################################
+  .Object@dat.data <- read.ini(call.params[["dat.file"]])
   
   # spp-file content ###########################################################
-  
+  spp.data <- read.spp(call.params[["spp.file"]])
+
+  .Object@spp.data  <- spp.data
   # results ####################################################################
   
   results <- list()
