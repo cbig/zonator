@@ -109,3 +109,34 @@ read.ini <- function(infile) {
     
     return(INI.list) 
 }
+
+#' Read Zonation variant specific spp-file.
+#'
+#' @param infile Character string input file path.
+#'
+#' @return data.frame of parsed spp data.
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#'
+read.spp <- function(infile) {
+  
+  if (!file.exists(infile)) {
+    stop(paste("Input file does not exist:", infile))
+  }
+  spp.data <- tryCatch({
+      dat <- read.table(infile, as.is=TRUE, 
+                        colClasses=c(rep("numeric", 5), "character"))
+    },
+    error=function(cond) {
+      message(paste("spp file doesn't seem to contain anything:", infile))
+      return(data.frame())
+    }
+  )
+  
+  if (any(dim(spp.data) != c(0, 0))) {
+    names(spp.data) <- c("weight", "alpha", "bqp", "bqp_p", "cellrem", 
+                         "filepath")
+  }
+  return(spp.data)
+}
