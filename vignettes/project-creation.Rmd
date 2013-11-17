@@ -7,11 +7,11 @@
 
 The following examples will use 
 [the basic Zonation tutorial data](https://github.com/cbig/zonation-tutorial/tree/master/basic)
-that is distributed with zonator package. These data, however, do not include 
-the results data. The first time you are trying these examples, you will 
-therefore have to run the actual Zonation runs. Since it is recommended to run 
-all the runs to create a more realistic example of a Zonation project, do the 
-following:
+that is distributed with zonator package. This includes also the results of the
+tutorial runs so there is no need to run the variants in order to inspect the
+results. In case you *do* want to rerun the variants and you have Zonation
+installed in your system do so by running the following code. Otherwise just
+skip this code section.
 
 ```{r run-variant-1, eval=(1:6), message=FALSE}
 library(zonator)
@@ -28,8 +28,8 @@ for (bat.file in bat.files) {
 
 ```
 
-Now that the the actual runs have been executed, you can create a new zonator 
-project based on existing results by doing the following:
+You can create a new zonator project based on existing results by doing the 
+following:
 
 ```{r creat-zproject}
 test.project <- create_zproject(setup.dir)
