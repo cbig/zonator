@@ -140,5 +140,6 @@ check.variant <- function(object) {
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #' 
 setClass("Zvariant", representation(name = "character", bat.file = "character",
+                                    dat.data = "list", spp.data = "data.frame",
                                     call.params = "list", results = "list"),
          validity = check.variant)

@@ -101,7 +101,6 @@ context("Zvariant creation")
 test_that("Zvariant is created correctly", {
 
   # Variant with no results, no results
-  
   no.results.bat.file <- file.path(setup.dir, "06_dummy_for_testing.batx")
   no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
   
