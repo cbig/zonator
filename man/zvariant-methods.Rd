@@ -1,9 +1,11 @@
 \docType{methods}
 \name{has_results}
 \alias{has_results}
+\alias{has_results,Zvariant-method}
 \alias{plot}
 \alias{plot,Zvariant,missing-method}
-\title{Check if an instance of (class \code{Zvariant}) has results.}
+\title{has_results
+Check if an instance of (class \code{Zvariant}) has results.}
 \arguments{
   \item{x}{Zvariant object.}
 

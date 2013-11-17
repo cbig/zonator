@@ -11,6 +11,7 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' has_results
 #' Check if an instance of (class \code{Zvariant}) has results.
 #' 
 #' If the results are availbale (i.e. variants have been run) then the variant
@@ -28,15 +29,14 @@
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-
 setGeneric("has_results", function(x) {
   standardGeneric("has_results")
 })
 
-#' @rdname zproject-methods
-#' @aliases has_results,zvariant-method
+#' @rdname zvariant-methods
+#' @aliases has_results,Zvariant-method
 #' 
-setMethod("has_results", signature(x="Zvariant"), function(x) {
+setMethod("has_results", "Zvariant", function(x) {
   
   if (length(x@results) > 0) {
     return(TRUE)
