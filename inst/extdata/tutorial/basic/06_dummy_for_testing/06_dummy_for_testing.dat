@@ -1,0 +1,8 @@
+[Settings]
+removal rule = 1
+warp factor = 100
+edge removal = 1
+annotate name = 0
+
+use mask = 1
+mask file = ../data/mask_rs.tif
