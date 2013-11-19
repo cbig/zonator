@@ -1,22 +1,25 @@
 context("Tutorial data existence")
 
 # Tutorial directories
-tutorial.dir <- system.file("extdata", "zonation-tutorial", package="zonator")
-input.dir <- file.path(tutorial.dir, "tutorial_input")
-output.dir <- file.path(tutorial.dir, "tutorial_output")
+tutorial.dir <- system.file("extdata", "tutorial", package="zonator")
+setup.dir <- file.path(tutorial.dir, "basic")
+data.dir <- file.path(tutorial.dir, "data")
+output.dir <- file.path(setup.dir, "basic_output")
 
 # Tutorial run and configuration files
-bat.file <- file.path(tutorial.dir, "do_abf.bat")
-dat.file <- file.path(input.dir, "set_abf.dat")
-spp.file <- file.path(input.dir, "splist_abf.spp")
-species.files <- paste0(input.dir, "/species", 1:7, ".tif")
+bat.file <- file.path(setup.dir, "01_core_area_zonation.bat")
+dat.file <- file.path(setup.dir, "01_core_area_zonation/01_core_area_zonation.dat")
+spp.file <- file.path(setup.dir, "01_core_area_zonation/01_core_area_zonation.spp")
+species.files <- paste0(data.dir, "/species", 1:7, ".tif")
 
 test_that("Zonation tutorial data is available", {
   
   expect_true(file.exists(tutorial.dir), 
               "Tutorial directory not found in root of the package.")
-  expect_true(file.exists(input.dir),
-              "Input directory not found in the tutorial folder.")
+  expect_true(file.exists(setup.dir),
+              "Input setup directory not found in the tutorial folder.")
+  expect_true(file.exists(data.dir),
+              "Input data directory not found in the tutorial folder.")
   expect_true(file.exists(output.dir),
               "Output directory not found in the tutorial folder.")
   expect_true(file.exists(bat.file), 
@@ -36,13 +39,14 @@ test_that("Zonation tutorial data is available", {
 context("Zproject creation")
 
 test_that("Zproject is created correctly based on existing project", {    
-    test.project <- create_zproject(tutorial.dir)
+
+    test.project <- create_zproject(setup.dir)
     
     # Test slots
     expect_that(test.project, is_a("Zproject"),
                 paste("Test project is not an instance of class 'Zproject':",
                       class(test.project)))
-    expect_that(test.project@root, equals(tutorial.dir),
+    expect_that(test.project@root, equals(setup.dir),
                 paste("Test project object's slot 'root' does not point to tutorial directory:",
                       test.project@root))
     # Test that there are variants
@@ -97,17 +101,29 @@ context("Zvariant creation")
 
 test_that("Zvariant is created correctly", {
 
-  test.variant <- new("Zvariant", bat.file=bat.file)
+  # Variant with no results, no results
+  no.results.bat.file <- file.path(setup.dir, "06_dummy_for_testing.batx")
+  no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
+  
+  # Variant with results
+  
+  results.variant <- new("Zvariant", bat.file=bat.file)
   
   # Test slots
-  expect_that(test.variant@name, equals("do_abf"),
-              paste("Test variant object's slot 'name' is not 'do_abf':",
-                    test.variant@name))
-  expect_that(test.variant@bat.file, equals(bat.file),
+  expected.name <- gsub(".bat", "", basename(bat.file))
+  expect_that(results.variant@name, equals(expected.name),
+              paste0("Test variant object's slot 'name' is not '",
+                     expected.name, "' :", results.variant@name))
+  expect_that(results.variant@bat.file, equals(bat.file),
               paste("Test variant object's slot 'bat.file' does not point to the real bat.file:",
-                    test.variant@bat.file))
+                    results.variant@bat.file))
   
-  batch.file.content <- scan(file=bat.file, "character", sep=" ", quiet=TRUE)
+  # FIXME: Variant call.params is not tested for here because the class
+  # initializer already has a check function. Should it rather be here?
+  
+  # This variant should have the results as well (ship with the package)
+  expect_true(has_results(results.variant), 
+              "Test variant doesn't have results although it should")
   
   
 })

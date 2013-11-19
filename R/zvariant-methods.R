@@ -11,6 +11,41 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' has_results
+#' Check if an instance of (class \code{Zvariant}) has results.
+#' 
+#' If the results are availbale (i.e. variants have been run) then the variant
+#' should have a list object containing the results.
+#'
+#' @param x Zvariant object.
+#'
+#' @return boolean value
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("has_results", function(x) {
+  standardGeneric("has_results")
+})
+
+#' @rdname zvariant-methods
+#' @aliases has_results,Zvariant-method
+#' 
+setMethod("has_results", "Zvariant", function(x) {
+  
+  if (length(x@results) > 0) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+  
+})
+
 #' Plot Zonation variant's (class \code{Zvariant}) results (performance curves).
 #' 
 #' In the current implementation, only performance curves (feature-specific or

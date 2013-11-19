@@ -36,7 +36,8 @@ setMethod("initialize", "Zproject", function(.Object, root) {
   bat.files <- list.files(root, ".bat$", full.names=TRUE)
   
   for (bat.file in bat.files) {
-    variants[bat.file] <- new("Zvariant", bat.file=bat.file)
+    variant <- new("Zvariant", bat.file=bat.file)
+    variants[variant@name] <- variant
   }
   
   .Object@variants <- variants 
@@ -63,6 +64,8 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
     stop(paste0("Variant .bat-file does not exist: ", bat.file))
   }
   
+  # Set the name ###############################################################
+  
   if (is.null(name)) {
     # If no name is provided, use the name of the bat-file (without the 
     # extension)
@@ -72,7 +75,20 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   }
   .Object@bat.file <- bat.file
   # Read the content of the bat file
-  .Object@call.params <- read.bat(bat.file)
+  call.params <- read.bat(bat.file)
+  .Object@call.params <- call.params
+  
+  # NOTE: dat-file and spp-file existence has already been checked by zvariant
+  # initializer checker function
+  
+  # dat-file content ###########################################################
+  .Object@dat.data <- read.ini(call.params[["dat.file"]])
+  
+  # spp-file content ###########################################################
+  spp.data <- read.spp(call.params[["spp.file"]])
+
+  .Object@spp.data  <- spp.data
+  # results ####################################################################
   
   results <- list()
   
@@ -80,7 +96,6 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   # bat-file includes a template for an output file, but we're more  interested
   # in the directory where that file resides in.
   output.folder <- dirname(.Object@call.params[["output.file"]]) 
-  
   if (!is.null(output.folder)) {
     
     .get.file <- function(output.folder, x) {
@@ -95,6 +110,15 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
         return(target[1])
       }
     }
+    
+    # Extract the 'last modified' information from run info file
+    run.info.file <- .get.file(output.folder, "\\.run_info\\.txt")
+    if (!is.na(run.info.file)) {
+      results[["modified"]] <- file.info(run.info.file)$mtime
+    } else {
+      results[["modified"]] <- NA
+    }
+    
     # Curves file is named *.curves.txt. NOTE: if the file does not exist,
     # returns NA.
     curve.file <- .get.file(output.folder, "\\.curves\\.txt")
