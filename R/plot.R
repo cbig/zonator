@@ -138,21 +138,25 @@ curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   x.melt$size  <- ifelse(x.melt$variable == names(x)[index], 2, 1)
   
   p <- ggplot(x.melt, aes(x=Prop_landscape_lost, y=value, group=variable))
-  p <- p + geom_line(aes(colour = variable))
+  p <- p + geom_line(aes(colour = variable), size=1.0)
   
   if (monochrome) {
     p <- p + theme_bw() + scale_colour_grey(name=.options[["curve.legend.title"]])
     
   } else {
     p <- p + scale_colour_brewer(name=.options[["curve.legend.title"]],
-                                 palette="Set1")
+                                 palette="Set1", labels=labels)
   }
   
+  x.scale <- seq(0, 1, 0.2)
+  y.scale <- seq(0, 1, 0.2)
+  
   if (invert.x) {
-    x.scale <- seq(0, 1, 0.25)
+    
     p + xlab(.options[["curve.x.title.invert"]]) + 
       ylab(.options[["curve.y.title"]]) +
-      scale_x_continuous(breaks=x.scale, labels=1-x.scale)
+      scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
+      scale_y_continuous(breaks=y.scale, labels=y.scale)
   } else {
     p + xlab(.options[["curve.x.title"]]) + 
       ylab(.options[["curve.y.title"]])
@@ -231,7 +235,7 @@ curve.group.plot <- function(x, statistic="mean", groups=NULL,
   
   p <- ggplot(x.melt, aes(x=F.lost, y=value, col = variable))
   if (monochrome) {
-    p <- p + geom_line(aes(col = variable, linetype = variable), size=1.0)
+    p <- p + geom_line(aes(col = variable, linetype = variable), size=1.5)
   } else {
     p <- p + geom_line(size=1.0)
   }
@@ -248,7 +252,8 @@ curve.group.plot <- function(x, statistic="mean", groups=NULL,
   }
   
   if (invert.x) {
-    x.scale <- seq(0, 1, 0.25)
+    x.scale <- seq(0, 1, 0.20)
+    y.scale <- seq(0, 1, 0.20)
     p <- p + scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
       xlab(.options[["curve.x.title.invert"]])
   } else {
