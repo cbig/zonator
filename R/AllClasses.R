@@ -53,7 +53,7 @@ setClass("Zproject", representation(root = "character", variants = "list"))
 #' @note For package internal use only
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-check.variant <- function(object) {
+check_variant <- function(object) {
   
   if (class(object) != "zvariant") {
     stop(paste0("Object must be class zvariant (is ", class(object), ")"))
@@ -142,4 +142,4 @@ check.variant <- function(object) {
 setClass("Zvariant", representation(name = "character", bat.file = "character",
                                     dat.data = "list", spp.data = "data.frame",
                                     call.params = "list", results = "list"),
-         validity = check.variant)
+         validity = check_variant)

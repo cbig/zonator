@@ -15,7 +15,7 @@
 #' 
 #' Header is automatically generated based on the number of features in the 
 #' file. If you need to read in grouped curves files, use 
-#' \code{\link{read.grp.curves}} instead. 
+#' \code{\link{read_grp_curves}} instead. 
 #' 
 #' @keywords zonation, results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
@@ -26,9 +26,9 @@
 #'   requested file does not exist, return NA.
 #'
 #' @export
-#' @seealso \code{\link{read.grp.curves}}
+#' @seealso \code{\link{read_grp_curves}}
 #'
-read.curves <- function(infile) {
+read_curves <- function(infile) {
   
   if (is.na(infile)) {
     return(NA)
@@ -63,7 +63,7 @@ read.curves <- function(infile) {
 #' 
 #' Header is automatically generated based on the number of groups in the 
 #' file. If you need to read in individual curves files, use 
-#' \code{\link{read.curves}} instead. 
+#' \code{\link{read_curves}} instead. 
 #' 
 #' @keywords zonation, results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
@@ -74,9 +74,9 @@ read.curves <- function(infile) {
 #'   requested file does not exist, return NA.
 #'
 #' @export
-#' @seealso \code{\link{read.curves}}
+#' @seealso \code{\link{read_curves}}
 #'
-read.grp.curves <- function(infile) {
+read_grp_curves <- function(infile) {
   
   if (is.na(infile)) {
     return(NA)

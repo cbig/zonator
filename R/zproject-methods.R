@@ -11,7 +11,7 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' getvariant
+#' get_variant
 #' Get a specified variant in a Zonation project
 #'
 #' @param x Zproject object.
@@ -28,14 +28,14 @@
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("getvariant", function(x, index) {
-  standardGeneric("getvariant")
+setGeneric("get_variant", function(x, index) {
+  standardGeneric("get_variant")
 })
 
 #' @rdname zproject-methods
-#' @aliases getvariant,Zproject-method
+#' @aliases get_variant,Zproject-method
 #' 
-setMethod("getvariant", c("Zproject", "ANY"), function(x, index) {
+setMethod("get_variant", c("Zproject", "ANY"), function(x, index) {
   return(x@variants[[index]])
 })
 

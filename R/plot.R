@@ -33,7 +33,7 @@
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE, 
+plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE, 
                      save.dir="", binwidth=0.05, title=NULL) {
   if (class(x) != "RasterLayer") {
     stop("x must be an object of class 'RasterLayer'!")
@@ -98,7 +98,7 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' @param labels character vector for custom feature labels.
 #' @param ... Additional arguments passed on to \code{\link{plot}}.
 #' 
-#' @seealso \code{\link{read.curves}} and \code{\link{curve.group.plot}}
+#' @seealso \code{\link{read_curves}} and \code{\link{plot_grp_curves}}
 #' 
 #' @export
 #' 
@@ -112,7 +112,7 @@ histPlot <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #'   plot(abf.variant)
 #'   plot(abf.variant, statistic="mean")
 #' }
-curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
+plot_curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
                           invert.x=FALSE, labels=NULL,  ...) {  
   if (is.null(statistic)) {
     index <- NULL
@@ -177,15 +177,14 @@ curve.plot <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
 #' @param labels character vector for custom feature labels.
 #' @param ... Additional arguments passed on to \code{\link{plot}}.
 #' 
-#' @seealso \code{\link{read.curves}} and \code{\link{curve.plot}}.
+#' @seealso \code{\link{read_curves}} and \code{\link{plot_curves}}.
 #' 
 #' @export
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-curve.group.plot <- function(x, statistic="mean", groups=NULL, 
-                              monochrome=FALSE, main=NULL, invert.x=FALSE, 
-                              labels=NULL, ...) {
+plot_grp_curves <- function(x, statistic="mean", groups=NULL, monochrome=FALSE, 
+                            main=NULL, invert.x=FALSE,labels=NULL, ...) {
   
   # Set the statistics indeces
   index <- list("min"=3, "mean"=4, "max"=5, "w.mean"=6, "ext2"=7)

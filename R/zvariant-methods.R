@@ -53,7 +53,7 @@ setMethod("has_results", "Zvariant", function(x) {
 #' of results as well.
 #' 
 #' Method itself is only a thin wrapper to functions 
-#' \code{\link{curve.plot}} and \code{\link{curve.group.plot}}.
+#' \code{\link{plot_curves}} and \code{\link{plot_grp_curves}}.
 #'
 #' @param x Zvariant object.
 #' @param group boolean indicating whether to plot grouped curves.
@@ -74,8 +74,8 @@ setMethod("has_results", "Zvariant", function(x) {
 setMethod("plot", signature(x="Zvariant", y="missing"), 
           function(x, group=FALSE, ...) {
   if (group) {
-    curve.group.plot(x@results[["grp.curves"]], ...)
+    plot_grp_curves(x@results[["grp.curves"]], ...)
   } else {
-    curve.plot(x@results[["curves"]], ...)
+    plot_curves(x@results[["curves"]], ...)
   }
 })
