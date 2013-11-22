@@ -39,6 +39,7 @@ test_that("Zonation tutorial data is available", {
 context("Zproject creation")
 
 test_that("Zproject is created correctly based on existing project", {    
+
     test.project <- create_zproject(setup.dir)
     
     # Test slots
