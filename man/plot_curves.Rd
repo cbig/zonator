@@ -1,8 +1,8 @@
-\name{curve.plot}
-\alias{curve.plot}
+\name{plot_curves}
+\alias{plot_curves}
 \title{Plot Zonation performance curves.}
 \usage{
-  curve.plot(x, statistic = NULL, features = NULL,
+  plot_curves(x, statistic = NULL, features = NULL,
     monochrome = FALSE, invert.x = FALSE, labels = NULL,
     ...)
 }
@@ -47,7 +47,7 @@
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-  \code{\link{read.curves}} and
-  \code{\link{curve.group.plot}}
+  \code{\link{read_curves}} and
+  \code{\link{plot_grp_curves}}
 }
 

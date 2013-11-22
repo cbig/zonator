@@ -1,8 +1,8 @@
-\name{read.ppa.lsm}
-\alias{read.ppa.lsm}
+\name{read_ppa_lsm}
+\alias{read_ppa_lsm}
 \title{Read Zonation post-processing analysis (ppa) result file.}
 \usage{
-  read.ppa.lsm(x)
+  read_ppa_lsm(x)
 }
 \arguments{
   \item{x}{Character string input file path.}

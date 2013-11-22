@@ -1,8 +1,8 @@
-\name{selection.coverage}
-\alias{selection.coverage}
+\name{selection_coverage}
+\alias{selection_coverage}
 \title{Intersection of two coverages.}
 \usage{
-  selection.coverage(x, y, thresholds)
+  selection_coverage(x, y, thresholds)
 }
 \arguments{
   \item{x}{Numeric matrix.}

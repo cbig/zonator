@@ -1,8 +1,8 @@
-\name{read.spp}
-\alias{read.spp}
+\name{read_spp}
+\alias{read_spp}
 \title{Read Zonation variant specific spp-file.}
 \usage{
-  read.spp(infile)
+  read_spp(infile)
 }
 \arguments{
   \item{infile}{Character string input file path.}

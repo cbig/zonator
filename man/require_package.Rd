@@ -1,8 +1,8 @@
-\name{require.package}
-\alias{require.package}
+\name{require_package}
+\alias{require_package}
 \title{Requires a given package and if not present installs and loads it.}
 \usage{
-  require.package(package, ...)
+  require_package(package, ...)
 }
 \arguments{
   \item{package}{Character name of a package.}

@@ -1,8 +1,8 @@
-\name{histPlot}
-\alias{histPlot}
+\name{plot_hist}
+\alias{plot_hist}
 \title{Create a ggplot2 histogram of a \code{RasterLayer}.}
 \usage{
-  histPlot(x, mask.obj = NULL, add.mean = FALSE,
+  plot_hist(x, mask.obj = NULL, add.mean = FALSE,
     add.median = FALSE, save.dir = "", binwidth = 0.05,
     title = NULL)
 }

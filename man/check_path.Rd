@@ -1,8 +1,8 @@
-\name{check.path}
-\alias{check.path}
+\name{check_path}
+\alias{check_path}
 \title{A function to deal with potentially relative paths.}
 \usage{
-  check.path(x, parent.path = NULL)
+  check_path(x, parent.path = NULL)
 }
 \arguments{
   \item{x}{Character string path.}

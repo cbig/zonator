@@ -1,8 +1,8 @@
-\name{read.result.rasters}
-\alias{read.result.rasters}
+\name{read_result_rasters}
+\alias{read_result_rasters}
 \title{Read Zonation-specific raster result files.}
 \usage{
-  read.result.rasters(rasters, path = NULL, format = NULL)
+  read_result_rasters(rasters, path = NULL, format = NULL)
 }
 \arguments{
   \item{rasters}{Character vector of raster names.}
