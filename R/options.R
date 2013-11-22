@@ -20,10 +20,15 @@ curve.theme <- theme(plot.title=element_text(face="bold", size=20),
                      axis.title.y=element_text(size=24),
                      axis.text.x=element_text(size=20),
                      axis.text.y=element_text(size=20),
-                     axis.ticks = element_line(size = 2),
+                     axis.ticks = element_line(size = 1),
                      legend.text=element_text(size=20),
                      legend.title=element_text(size=20),
-                     panel.border = element_rect(size=2, colour="black"))
+                     panel.background = element_rect(fill='white', colour='black'),
+                     panel.grid.major.x = element_blank(), 
+                     panel.grid.minor.x = element_blank(),
+                     panel.grid.major.y = element_line(size = 0.5, colour='lightgrey'),
+                     panel.grid.minor.y = element_blank(),
+                     legend.background = element_rect(fill='white', colour='black'))
 assign("curve.theme", curve.theme, envir=.options)
 
 assign("curve.x.title", "\nProp. of landscape lost", envir=.options)

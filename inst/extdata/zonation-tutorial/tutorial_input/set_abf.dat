@@ -1,0 +1,35 @@
+[Settings]
+removal rule = 2
+warp factor = 100
+edge removal = 1
+add edge points = 0
+use SSI = 0
+SSI file name = 
+use planning unit layer = 0
+planning unit layer file = 
+initial removal percent = 0.0
+
+use cost = 0
+cost file = 
+use mask = 0
+mask file = 
+use boundary quality penalty = 0
+BQP profiles file = 
+BQP mode = 1
+BLP = 0
+use tree connectivity = 0
+tree connectivity file = 
+use interactions = 0
+interaction file = 
+
+annotate name = 0
+logit space = 0
+treat zero-areas as missing data = 0
+z = 0.25
+resample species = 0
+
+
+[Info-gap settings]
+Info-gap proportional = 0
+use info-gap weights  = 0
+Info-gap weights file = 
