@@ -23,7 +23,7 @@
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #'
-read.ppa.lsm <- function(x) {
+read_ppa_lsm <- function(x) {
   
   dat <- list()
   

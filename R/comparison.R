@@ -50,7 +50,7 @@ comp <- function(x, y, FUN="correlation", ...) {
          substraction = (x - y),
          # NOT IMPLEMENTED
          # frequency = selection.frequency(x, y, ...),
-         coverage = selection.coverage(x, y, ...))
+         coverage = selection_coverage(x, y, ...))
 }
 
 #' Correlation between two matrices.
@@ -107,7 +107,7 @@ correlation <- function(x, y, method='kendall', thresholds=c(0)) {
 #'
 #' @export
 
-selection.coverage <- function(x, y, thresholds) {
+selection_coverage <- function(x, y, thresholds) {
   covs <- c()
   total <- c()
   for (thresh in thresholds) {
@@ -184,7 +184,7 @@ jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
 #' @export
 #' @seealso \code{\link{jaccard}}
 
-cross.jaccard <- function(stack, threshold) {
+cross_jaccard <- function(stack, threshold) {
   
   jaccards <- matrix(nrow=nlayers(stack), ncol=nlayers(stack))
   

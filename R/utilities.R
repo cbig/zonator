@@ -31,7 +31,7 @@
 #'       
 #'   }
 #'  
-check.path <- function(x, parent.path=NULL) {
+check_path <- function(x, parent.path=NULL) {
   
   # Check and replace path separators
   x <- gsub("\\\\", "/", x)
@@ -68,7 +68,7 @@ check.path <- function(x, parent.path=NULL) {
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #'
-clean.str <- function(x) {
+clean_str <- function(x) {
   
   x <- gsub("\\s+", " ", x)
   
@@ -77,11 +77,11 @@ clean.str <- function(x) {
   return(x)
 }
 
-.line.as.numeric <- function(x) {
-  return(as.numeric(.line.as.string(x)))
+line_as_numeric <- function(x) {
+  return(as.numeric(line_as_string(x)))
 }
 
-.line.as.string <- function(x) {
+line_as_string <- function(x) {
   return(unlist(strsplit(x, "\\s+")))
 }
 
@@ -93,7 +93,7 @@ clean.str <- function(x) {
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #' 
-require.package <- function(package, ...) {
+require_package <- function(package, ...) {
   if (suppressWarnings(!require(package, character.only=TRUE, quietly=TRUE))) { 
     parent.function <- sys.calls()[[1]][1]
     message(paste("Function ", parent.function, " requires package: ", package,
@@ -111,7 +111,7 @@ require.package <- function(package, ...) {
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #' 
-set.tutorialdir <- function(x) {
+set_tutorialdir <- function(x) {
   if (file.exists(x)) {
     assign("tutorial.dir", x, envir=.option)
   } else {
@@ -127,6 +127,6 @@ set.tutorialdir <- function(x) {
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #' 
-get.tutorialdir <- function() {
+get_tutorialdir <- function() {
   return(get("tutorial.dir", .options))
 }

@@ -28,7 +28,7 @@
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #' 
-read.result.rasters <- function(rasters, path=NULL, format=NULL) {
+read_result_rasters <- function(rasters, path=NULL, format=NULL) {
   if (is.null(format)) {
     ext <- ".rank.asc"
   } else {

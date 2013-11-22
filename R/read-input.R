@@ -23,7 +23,7 @@
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 
-read.bat <- function(infile) {
+read_bat <- function(infile) {
   
   connection <- file(infile)
   lines  <- readLines(connection)
@@ -46,10 +46,10 @@ read.bat <- function(infile) {
   # solution
   bat.list[["exe.switches"]] <- c(call.items[3])
   # Check for the existence of these input files as they are needed in any case
-  bat.list[["dat.file"]] <- check.path(call.items[4], dirname(infile))
-  bat.list[["spp.file"]] <- check.path(call.items[5], dirname(infile))
+  bat.list[["dat.file"]] <- check_path(call.items[4], dirname(infile))
+  bat.list[["spp.file"]] <- check_path(call.items[5], dirname(infile))
   # We also need to validate the output FOLDER path
-  bat.list[["output.file"]] <- check.path(call.items[6], dirname(infile))
+  bat.list[["output.file"]] <- check_path(call.items[6], dirname(infile))
   # Uncertainty parameter alpha
   bat.list[["uc.alpha"]] <- as.numeric(call.items[7])
   # Is distribution smoothing used
@@ -72,7 +72,7 @@ read.bat <- function(infile) {
 #' @export
 #' @note Adapted from http://bit.ly/11e4Jh0
 #'
-read.ini <- function(infile) {
+read_ini <- function(infile) {
     
     connection <- file(infile)
     lines  <- readLines(connection)
@@ -90,11 +90,11 @@ read.ini <- function(infile) {
     close(connection)
     
     # Parameter names can't have whitespaces or dashes, replace with underscores
-    d$V1 <- clean.str(d$V1)
+    d$V1 <- clean_str(d$V1)
     d$V1 <- chartr(" ", "_", d$V1)
     d$V1 <- chartr("-", "_", d$V1)
     
-    d$V2 <- clean.str(d$V2)
+    d$V2 <- clean_str(d$V2)
     d$V2 <- chartr(" ", "_", d$V2)
     d$V2 <- chartr("-", "_", d$V2)
     
@@ -119,7 +119,7 @@ read.ini <- function(infile) {
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #'
-read.spp <- function(infile) {
+read_spp <- function(infile) {
   
   if (!file.exists(infile)) {
     stop(paste("Input file does not exist:", infile))
