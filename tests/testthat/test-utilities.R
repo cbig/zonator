@@ -44,7 +44,7 @@ test_that("Parsing an unpopulated spp file works", {
                           "template.spp",
                           package="zonator")
   
-  spp.data <- read.spp(spp.file)
+  spp.data <- read_spp(spp.file)
   expect_true(is.data.frame(spp.data),
               "Spp data read in not a data frame")
   # Should return an empty data.frame
@@ -70,7 +70,7 @@ test_that("Parsing a populated spp file works", {
                              filepath=paste0("../data/species", 1:7, ".tif"),
                              stringsAsFactors=FALSE)
   
-  spp.data <- read.spp(spp.file)
+  spp.data <- read_spp(spp.file)
   expect_true(is.data.frame(spp.data),
               "Spp data read in not a data frame")
   # Check names
