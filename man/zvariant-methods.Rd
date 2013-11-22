@@ -33,8 +33,8 @@ Check if an instance of (class \code{Zvariant}) has results.}
 }
 \details{
   Method itself is only a thin wrapper to functions
-  \code{\link{curve.plot}} and
-  \code{\link{curve.group.plot}}.
+  \code{\link{plot_curves}} and
+  \code{\link{plot_grp_curves}}.
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

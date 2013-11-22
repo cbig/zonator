@@ -1,9 +1,9 @@
-\name{cross.jaccard}
-\alias{cross.jaccard}
+\name{cross_jaccard}
+\alias{cross_jaccard}
 \title{Calculate Jaccard coefficients bewteen all the RasterLayers within a single
 RasterStack.}
 \usage{
-  cross.jaccard(stack, threshold)
+  cross_jaccard(stack, threshold)
 }
 \arguments{
   \item{stack}{RasterStack-object.}

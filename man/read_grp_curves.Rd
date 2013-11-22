@@ -1,8 +1,8 @@
-\name{read.curves}
-\alias{read.curves}
-\title{Read in performance curves produced by Zonation.}
+\name{read_grp_curves}
+\alias{read_grp_curves}
+\title{Read in performance curves for grouped features produced by Zonation.}
 \usage{
-  read.curves(infile)
+  read_grp_curves(infile)
 }
 \arguments{
   \item{infile}{Character file path to .curves.txt file.}
@@ -13,14 +13,14 @@
 }
 \description{
   Header is automatically generated based on the number of
-  features in the file. If you need to read in grouped
-  curves files, use \code{\link{read.grp.curves}} instead.
+  groups in the file. If you need to read in individual
+  curves files, use \code{\link{read_curves}} instead.
 }
 \author{
   Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 \seealso{
-  \code{\link{read.grp.curves}}
+  \code{\link{read_curves}}
 }
 \keyword{results}
 \keyword{zonation,}

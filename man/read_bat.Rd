@@ -1,8 +1,8 @@
-\name{read.bat}
-\alias{read.bat}
+\name{read_bat}
+\alias{read_bat}
 \title{Read Zonation-specific (MS Windows) batch file.}
 \usage{
-  read.bat(infile)
+  read_bat(infile)
 }
 \arguments{
   \item{infile}{Character string input file path.}

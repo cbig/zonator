@@ -1,10 +1,10 @@
-\name{clean.str}
-\alias{clean.str}
+\name{clean_str}
+\alias{clean_str}
 \title{Clean leading and trailing whitespaces from a given string. Additionally,
 all occurrences of multiple whitespaces are replaced with a single
 whitespace.}
 \usage{
-  clean.str(x)
+  clean_str(x)
 }
 \arguments{
   \item{x}{Character string.}

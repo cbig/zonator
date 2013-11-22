@@ -1,8 +1,8 @@
-\name{get.tutorialdir}
-\alias{get.tutorialdir}
+\name{get_tutorialdir}
+\alias{get_tutorialdir}
 \title{Get the directory of Zonation tutorial.}
 \usage{
-  get.tutorialdir()
+  get_tutorialdir()
 }
 \value{
   path Character path to Zonation tutorial directory.

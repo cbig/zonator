@@ -1,8 +1,8 @@
-\name{read.ini}
-\alias{read.ini}
+\name{read_ini}
+\alias{read_ini}
 \title{Read a Windows-style ini-file that is for configuration information.}
 \usage{
-  read.ini(infile)
+  read_ini(infile)
 }
 \arguments{
   \item{infile}{Character string input file path.}

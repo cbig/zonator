@@ -1,14 +1,14 @@
 \docType{methods}
-\name{getvariant}
-\alias{getvariant}
-\alias{getvariant,Zproject-method}
+\name{get_variant}
+\alias{get_variant}
+\alias{get_variant,Zproject-method}
 \alias{names}
 \alias{names,Zproject-method}
 \alias{nvariants}
 \alias{nvariants,Zproject-method}
 \alias{opendir}
 \alias{opendir,Zproject-method}
-\title{getvariant
+\title{get_variant
 Get a specified variant in a Zonation project}
 \arguments{
   \item{x}{Zproject object.}
@@ -28,7 +28,7 @@ Get a specified variant in a Zonation project}
   invisible
 }
 \description{
-  getvariant Get a specified variant in a Zonation project
+  get_variant Get a specified variant in a Zonation project
 
   nvariants Get the number of variants included in a
   Zonation project
