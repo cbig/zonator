@@ -11,6 +11,7 @@ bat.file <- file.path(setup.dir, "01_core_area_zonation.bat")
 dat.file <- file.path(setup.dir, "01_core_area_zonation/01_core_area_zonation.dat")
 spp.file <- file.path(setup.dir, "01_core_area_zonation/01_core_area_zonation.spp")
 species.files <- paste0(data.dir, "/species", 1:7, ".tif")
+groups.file <- file.path(setup.dir, "groups.txt")
 
 test_that("Zonation tutorial data is available", {
   
@@ -34,6 +35,10 @@ test_that("Zonation tutorial data is available", {
                 paste("Tutorial species raster", species, 
                       "not found in the tutorial input folder."))
   }
+  
+  expect_true(file.exists(groups.file), 
+              "Tutorial groups file not found in the tutorial input folder.")
+  
 })
 
 context("Zproject creation")
