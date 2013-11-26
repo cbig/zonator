@@ -104,31 +104,52 @@ test_that("Zproject is created correctly as a new project", {
 
 context("Zvariant creation")
 
-test_that("Zvariant is created correctly", {
-
-  # Variant with no results, no results
-  no.results.bat.file <- file.path(setup.dir, "06_dummy_for_testing.batx")
-  no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
-  
-  # Variant with results
-  
+test_that("Zvariant with results is created correctly", {
   results.variant <- new("Zvariant", bat.file=bat.file)
   
-  # Test slots
+  # Name
   expected.name <- gsub(".bat", "", basename(bat.file))
+  expect_true(.hasSlot(results.variant, "name"),
+              "Test variant object doesn't have a slot 'name'")
   expect_that(results.variant@name, equals(expected.name),
               paste0("Test variant object's slot 'name' is not '",
                      expected.name, "' :", results.variant@name))
+  
+  # bat-file
+  expect_true(.hasSlot(results.variant, "bat.file"),
+              "Test variant object doesn't have a slot 'bat.file'")
   expect_that(results.variant@bat.file, equals(bat.file),
               paste("Test variant object's slot 'bat.file' does not point to the real bat.file:",
                     results.variant@bat.file))
   
-  # FIXME: Variant call.params is not tested for here because the class
-  # initializer already has a check function. Should it rather be here?
-  
-  # This variant should have the results as well (ship with the package)
+  # Results
+  expect_true(.hasSlot(results.variant, "results"),
+              "Test variant object doesn't have a slot 'results'")
   expect_true(has_results(results.variant), 
               "Test variant doesn't have results although it should")
   
+  # spp-data
+  expect_true(.hasSlot(results.variant, "spp.data"),
+              "Test variant object doesn't have a slot 'spp.data'")
+  correct.spp.data <- read_spp(spp.file)
+  # Check that the values match
+  expect_true(all(correct.spp.data == results.variant@spp.data),
+              paste("Test variant objects 'spp.data' slot does not correspond",
+                    "to expectations"))
+  
+  # Groups
+  correct.grp.levels <- factor(c(1, 2, 2, 1, 2, 1, 1))
+  variant.grp.levels <- groups(results.variant) 
+  expect_true(all(variant.grp.levels == correct.grp.levels), 
+              paste("Test variant group information wrong:", 
+                    variant.grp.levels))
   
 })
+
+test_that("Zvariant without results is created correctly", {
+  
+  # Variant with no results, no results
+  no.results.bat.file <- file.path(setup.dir, "06_dummy_for_testing.batx")
+  no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
+}
+)
