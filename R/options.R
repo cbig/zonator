@@ -38,6 +38,26 @@ assign("curve.y.title", "Prop. of ditributions remaining\n", envir=.options)
 assign("curve.legend.title", "Features", envir=.options)
 assign("grp.curve.legend.title", "Feature groups", envir=.options)
 
-# Zonation tutorial -------------------------------------------------------
+# Zonation tutorial data paths ----------------------------------------------
 
-assign("tutorial.dir", 'zonation-tutorial', envir=.options)
+# Tutorial directories
+assign("tutorial.dir", system.file("extdata", "tutorial", package="zonator"), 
+       envir=.options)
+assign("setup.dir", file.path(.options$tutorial.dir, "basic"), envir=.options)
+assign("data.dir", file.path(.options$tutorial.dir, "data"), envir=.options)
+assign("output.dir", file.path(.options$setup.dir, "basic_output"), 
+       envir=.options)
+
+# Tutorial run and configuration files
+assign("bat.file", file.path(.options$setup.dir, "01_core_area_zonation.bat"), 
+       envir=.options)
+assign("dat.file", file.path(.options$setup.dir, 
+                             "01_core_area_zonation/01_core_area_zonation.dat"),
+       envir=.options)
+assign("spp.file", file.path(.options$setup.dir, 
+                             "01_core_area_zonation/01_core_area_zonation.spp"),
+       envir=.options)
+assign("species.files", paste0(.options$data.dir, "/species", 1:7, ".tif"),
+       envir=.options)
+assign("groups.file", file.path(.options$setup.dir, "groups.txt"), 
+       envir=.options)
