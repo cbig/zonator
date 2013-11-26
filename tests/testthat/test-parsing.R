@@ -1,11 +1,11 @@
-context("zonator utility functions")
-
-bat.file <- system.file("extdata/tutorial/basic", "01_core_area_zonation.bat",
-                        package="zonator")
-
-faulty.bat.file <- file.path(dirname(bat.file), "wrong.bat")
+context("Parsing Zonation input files")
 
 test_that("Parsing a bat file works", {
+  
+  bat.file <- system.file("extdata/tutorial/basic", "01_core_area_zonation.bat",
+                          package="zonator")
+  
+  faulty.bat.file <- file.path(dirname(bat.file), "wrong.bat")
   
   if (.Platform$OS.type == "unix") {
     correct.sequence <- c("zig3", "-r", 
@@ -35,6 +35,13 @@ test_that("Parsing a bat file works", {
   }
   expect_equal(parse_bat(bat.file, "zig4"), 
                paste(correct.sequence, collapse=" "))
+})
+
+test_that("Parsing an unpopulated spp file works", {
+  
+  group.file <- system.file("extdata/tutorial/basic", "groups.txt",
+                          package="zonator")
+  
 })
 
 test_that("Parsing an unpopulated spp file works", {
