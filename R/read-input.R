@@ -11,6 +11,8 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# [todo] - Rename file read-input.R into somehing more appropriate
+
 #' Read Zonation-specific (MS Windows) batch file.
 #' 
 #' Batch files include calls to Zonation core and look like following:
