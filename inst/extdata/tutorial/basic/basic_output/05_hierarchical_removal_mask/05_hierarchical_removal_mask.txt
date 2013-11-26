@@ -15,7 +15,7 @@ Reading settings file.
 *************** USING MASK LAYER **************
   Mask file = ../data/mask_rs.tif
 
-Starting Zonation run on 'BIOTI25.site' at 7:35:13 PM (2013/11/16) 
+Starting Zonation run on 'LH2-BIOTI25.site' at 4:05:53 PM (2013/11/26) 
 Locale is: en_US.UTF-8
 Loading spp list from file 05_hierarchical_removal_mask/05_hierarchical_removal_mask.spp
 Row count in features/species file: 7
@@ -26,6 +26,9 @@ Matrix y dimension: 555
 ../data/mask_rs.tif:  555 rows and 649 columns read in total
 Nodata element count =  249913, and sum of elements = 10251
 Mask map loaded.
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
 
 ****** REMOVAL RULE: Original basic core-area Zonation *******
 
@@ -87,7 +90,7 @@ DS connectivity calculations - Kernel calculated; alpha= 1
 Freeing smoothing... Done.
 Note: using edge removal.
 Cells with data = 110282 locations with missing values = 249913
-Loaded data and initialized in 2 seconds.
+Loaded data and initialized in 3 seconds.
 
 ------------------ RANKING STARTS HERE -----------------------
 Initially removed cells count = 0
@@ -130,13 +133,13 @@ removed 105864, smallest remaining proportion over all biodiversity features (e.
 removed 110275, smallest remaining proportion over all biodiversity features (e.g. species) = 2.913091e-05
 Total count of cells removed = 110282
 
-Done in 4 seconds.
+Done in 2 seconds.
 saving basic_output/05_hierarchical_removal_mask/05_hierarchical_removal_mask.png
 saving basic_output/05_hierarchical_removal_mask/05_hierarchical_removal_mask.rank.compressed.tif
 saving basic_output/05_hierarchical_removal_mask/05_hierarchical_removal_mask.prop.compressed.tif
 saving basic_output/05_hierarchical_removal_mask/05_hierarchical_removal_mask.wrscr.compressed.tif
 No automated post-processing file specified
 DONE: Freeing memory next.
-Finished at 7:35:19 PM (2013/11/16) 
-Elapsed time : 5869 ms
+Finished at 4:05:58 PM (2013/11/26) 
+Elapsed time : 4685 ms
 ZIG3: DONE!

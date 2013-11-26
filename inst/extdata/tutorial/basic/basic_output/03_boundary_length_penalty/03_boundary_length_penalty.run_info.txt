@@ -18,7 +18,7 @@ Reading settings file.
    WARNING: Using warp>1 does not work properly when using the BLP.
 
 
-Starting Zonation run on 'BIOTI25.site' at 7:34:45 PM (2013/11/16) 
+Starting Zonation run on 'LH2-BIOTI25.site' at 4:05:18 PM (2013/11/26) 
 Locale is: en_US.UTF-8
 Loading spp list from file 03_boundary_length_penalty/03_boundary_length_penalty.spp
 Row count in features/species file: 7
@@ -26,6 +26,9 @@ Row count in features/species file: 7
 Nodata element count =  249913, and sum of elements = 35280.8
 Matrix x dimension: 649
 Matrix y dimension: 555
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
 
 ****** REMOVAL RULE: Original basic core-area Zonation *******
 
@@ -127,13 +130,13 @@ removed 110275, smallest remaining proportion over all biodiversity features (e.
   BL=24  Area=8 BL/A=3.000
 Total count of cells removed = 110282
 
-Done in 3 seconds.
+Done in 2 seconds.
 saving basic_output/03_boundary_length_penalty/03_boundary_length_penalty.png
 saving basic_output/03_boundary_length_penalty/03_boundary_length_penalty.rank.compressed.tif
 saving basic_output/03_boundary_length_penalty/03_boundary_length_penalty.prop.compressed.tif
 saving basic_output/03_boundary_length_penalty/03_boundary_length_penalty.wrscr.compressed.tif
 No automated post-processing file specified
 DONE: Freeing memory next.
-Finished at 7:34:48 PM (2013/11/16) 
-Elapsed time : 3888 ms
+Finished at 4:05:20 PM (2013/11/26) 
+Elapsed time : 2641 ms
 ZIG3: DONE!

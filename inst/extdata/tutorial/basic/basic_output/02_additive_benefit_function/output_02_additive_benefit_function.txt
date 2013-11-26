@@ -13,7 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 Reading settings file.
 
 
-Starting Zonation run on 'BIOTI25.site' at 7:34:05 PM (2013/11/16) 
+Starting Zonation run on 'LH2-BIOTI25.site' at 4:04:50 PM (2013/11/26) 
 Locale is: en_US.UTF-8
 Loading spp list from file 02_additive_benefit_function/02_additive_benefit_function.spp
 Row count in features/species file: 7
@@ -21,6 +21,9 @@ Row count in features/species file: 7
 Nodata element count =  249913, and sum of elements = 35280.8
 Matrix x dimension: 649
 Matrix y dimension: 555
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
 
 ****** REMOVAL RULE: Convex additive benefit function; r^par *******
 
@@ -96,13 +99,13 @@ removed 105864, smallest remaining proportion over all biodiversity features (e.
 removed 110275, smallest remaining proportion over all biodiversity features (e.g. species) = 3.189399e-09
 Total count of cells removed = 110282
 
-Done in 5 seconds.
+Done in 3 seconds.
 saving basic_output/02_additive_benefit_function/output_02_additive_benefit_function.png
 saving basic_output/02_additive_benefit_function/output_02_additive_benefit_function.rank.compressed.tif
 saving basic_output/02_additive_benefit_function/output_02_additive_benefit_function.prop.compressed.tif
 saving basic_output/02_additive_benefit_function/output_02_additive_benefit_function.wrscr.compressed.tif
 No automated post-processing file specified
 DONE: Freeing memory next.
-Finished at 7:34:10 PM (2013/11/16) 
-Elapsed time : 5584 ms
+Finished at 4:04:53 PM (2013/11/26) 
+Elapsed time : 3416 ms
 ZIG3: DONE!

@@ -13,7 +13,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 Reading settings file.
 
 
-Starting Zonation run on 'BIOTI25.site' at 7:34:56 PM (2013/11/16) 
+Starting Zonation run on 'LH2-BIOTI25.site' at 4:05:34 PM (2013/11/26) 
 Locale is: en_US.UTF-8
 Loading spp list from file 04_distribution_smoothing/04_distribution_smoothing.spp
 Row count in features/species file: 7
@@ -21,6 +21,9 @@ Row count in features/species file: 7
 Nodata element count =  249913, and sum of elements = 35280.8
 Matrix x dimension: 649
 Matrix y dimension: 555
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
 
 ****** REMOVAL RULE: Original basic core-area Zonation *******
 
@@ -110,13 +113,13 @@ removed 105864, smallest remaining proportion over all biodiversity features (e.
 removed 110275, smallest remaining proportion over all biodiversity features (e.g. species) = 8.505168e-05
 Total count of cells removed = 110282
 
-Done in 4 seconds.
+Done in 2 seconds.
 saving basic_output/04_distribution_smoothing/04_distribution_smoothing.png
 saving basic_output/04_distribution_smoothing/04_distribution_smoothing.rank.compressed.tif
 saving basic_output/04_distribution_smoothing/04_distribution_smoothing.prop.compressed.tif
 saving basic_output/04_distribution_smoothing/04_distribution_smoothing.wrscr.compressed.tif
 No automated post-processing file specified
 DONE: Freeing memory next.
-Finished at 7:35:03 PM (2013/11/16) 
-Elapsed time : 6467 ms
+Finished at 4:05:40 PM (2013/11/26) 
+Elapsed time : 5123 ms
 ZIG3: DONE!
