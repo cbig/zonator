@@ -37,10 +37,40 @@ test_that("Parsing a bat file works", {
                paste(correct.sequence, collapse=" "))
 })
 
-test_that("Parsing an unpopulated spp file works", {
+test_that("Parsing a valid groups file works", {
   
-  group.file <- system.file("extdata/tutorial/basic", "groups.txt",
+  groups.file <- system.file("extdata/tutorial/basic", "groups.txt",
                           package="zonator")
+  
+  groups.data <- read_groups(groups.file)
+  
+  expect_true(is.data.frame(groups.data), 
+              "Groups data read in not a data frame")
+  
+  # Construct a groups data frame corresponding to groups.txt
+  correct.data <- data.frame(output.group=c(1, 2, 2, 1, 2, 1, 1),
+                             condition.group=-1,
+                             retention.group=-1,
+                             retention.mode=1,
+                             local.edge.correct.group=-1)
+  
+  # Check names
+  expect_true(all(names(groups.data) == names(correct.data)),
+              paste("Groups data names no what expected:", 
+                    paste(names(groups.data), collapse=" ")))
+  # Check that the values match
+  expect_true(all(groups.data == correct.data),
+              "Groups data does not correspond to expectations")
+  
+})
+
+test_that("Parsing an invalid groups file works", {
+  
+  groups.file <- system.file("extdata/tutorial/basic", "invalid_groups.txt",
+                             package="zonator")
+  
+  expect_error(groups.data <- read_groups(groups.file), 
+               "More or less than 5 columns in groups file, check the file")
   
 })
 
