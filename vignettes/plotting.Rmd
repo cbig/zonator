@@ -1,14 +1,12 @@
 ```{r}
+library(zonator)
+
 setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
 test.project <- create_zproject(setup.dir)
-variant.4 <- getvariant(test.project, 4)
+variant.4 <- get_variant(test.project, 4)
 
-labels <- paste0("Laji", 1:7)
+p1 <- plot(variant.4, monochrome=FALSE, group=FALSE, statistic="mean", 
+           invert.x=TRUE, main="Esimerkki")
+p1
 
-
-p1 <- plot(variant.4, monochrome=FALSE, group=FALSE, labels=labels,
-           features=1:2,
-           statistic="mean", invert.x=TRUE, main="Esimerkki")
-p1  + geom_vline(xintercept = 0.9) +  
-     curve.theme
 ```
