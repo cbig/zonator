@@ -50,8 +50,10 @@ read_bat <- function(infile) {
   # Check for the existence of these input files as they are needed in any case
   bat.list[["dat.file"]] <- check_path(call.items[4], dirname(infile))
   bat.list[["spp.file"]] <- check_path(call.items[5], dirname(infile))
-  # We also need to validate the output FOLDER path
-  bat.list[["output.file"]] <- check_path(call.items[6], dirname(infile))
+  # Don't validate the output folder path; it can exist of not, depending on 
+  # whether the project has been created or not.
+  bat.list[["output.folder"]] <- dirname(file.path(dirname(infile), 
+                                                   call.items[6]))
   # Uncertainty parameter alpha
   bat.list[["uc.alpha"]] <- as.numeric(call.items[7])
   # Is distribution smoothing used
@@ -62,6 +64,43 @@ read_bat <- function(infile) {
   bat.list[["close.window"]] <- as.numeric(call.items[10])
   
   return(bat.list)
+}
+
+#' Read a groups file.
+#'
+#' @param infile Character string input file path.
+#'
+#' @return Data frame of parsed groups parameters.
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#' 
+read_groups <- function(infile) {
+  
+  if (!file.exists(infile)) {
+    stop(paste("Input groups file does not exist:", infile))
+  }
+  
+  groups.data <- tryCatch({
+    dat <- read.table(infile, as.is=TRUE, colClasses=rep("numeric", 5))
+  },
+                       error=function(cond) {
+                         message(paste("groups file doesn't seem to contain anything:", infile))
+                         return(data.frame())
+                       }
+  )
+  
+  if (base::ncol(dat) != 5) {
+    stop("More or less than 5 columns in groups file, check the file")
+  }
+    
+  if (any(dim(groups.data) != c(0, 0))) {
+    names(groups.data) <- c("output.group", "condition.group", 
+                            "retention.group", "retention.mode", 
+                            "local.edge.correct.group")
+  }
+  groups.data$output.group <- factor(groups.data$output.group)
+  return(groups.data)
 }
 
 #' Read a Windows-style ini-file that is for configuration information.
@@ -124,8 +163,9 @@ read_ini <- function(infile) {
 read_spp <- function(infile) {
   
   if (!file.exists(infile)) {
-    stop(paste("Input file does not exist:", infile))
+    stop(paste("Input spp file does not exist:", infile))
   }
+  
   spp.data <- tryCatch({
       dat <- read.table(infile, as.is=TRUE, 
                         colClasses=c(rep("numeric", 5), "character"))

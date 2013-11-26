@@ -141,5 +141,6 @@ check_variant <- function(object) {
 #' 
 setClass("Zvariant", representation(name = "character", bat.file = "character",
                                     dat.data = "list", spp.data = "data.frame",
+                                    groups = "data.frame",
                                     call.params = "list", results = "list"),
          validity = check_variant)

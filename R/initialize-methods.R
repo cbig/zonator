@@ -82,20 +82,31 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   # initializer checker function
   
   # dat-file content ###########################################################
-  .Object@dat.data <- read_ini(call.params[["dat.file"]])
+  .Object@dat.data <- read_ini(call.params$dat.file)
   
   # spp-file content ###########################################################
-  spp.data <- read_spp(call.params[["spp.file"]])
+  .Object@spp.data <- read_spp(call.params$spp.file)
 
-  .Object@spp.data  <- spp.data
+  # groups content #############################################################
+  
+  # First we need to define whether groups are 1) used, and 2) available. 
+  settings <- .Object@dat.data$Settings
+  if ("use_groups" %in% names(settings)) {
+    if (settings$use_groups == 1) {
+      if ("groups_file" %in% names(settings)) {
+        .Object@groups <- read_groups(file.path(dirname(bat.file), 
+                                                settings$groups_file))
+      }
+    }
+  }
+  
   # results ####################################################################
   
   results <- list()
   
   # bat-file's existence has already been verified, try to get the output. 
-  # bat-file includes a template for an output file, but we're more  interested
-  # in the directory where that file resides in.
-  output.folder <- dirname(.Object@call.params[["output.file"]]) 
+  # Consider results done if you find 
+  output.folder <- .Object@call.params$output.folder
   if (!is.null(output.folder)) {
     
     get_file <- function(output.folder, x) {
