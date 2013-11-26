@@ -36,11 +36,13 @@ test_that("Zvariant with results is created correctly", {
                     "to expectations"))
   
   # Groups
+  expect_true(.hasSlot(results.variant, "groups"),
+              "Test variant object doesn't have a slot 'groups'")
+  
   correct.grp.levels <- factor(c(1, 2, 2, 1, 2, 1, 1))
-  variant.grp.levels <- groups(results.variant) 
-  expect_true(all(variant.grp.levels == correct.grp.levels), 
-              paste("Test variant group information wrong:", 
-                    variant.grp.levels))
+  variant.grp.levels <- groups(results.variant)
+  expect_identical(variant.grp.levels, correct.grp.levels, 
+              paste("Test variant group information wrong"))
   
 })
 
@@ -50,5 +52,10 @@ test_that("Zvariant without results is created correctly", {
   no.results.bat.file <- file.path(.options$setup.dir, 
                                    "06_dummy_for_testing.batx")
   no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
+  
+  expect_false(has_results(no.results.variant),
+               "Test variant should not have results")
+  expect_true(is.na(groups(no.results.variant)),
+               "Test variant should not have groups")
 }
 )

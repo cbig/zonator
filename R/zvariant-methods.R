@@ -11,7 +11,40 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' has_results
+#' Get group names of a class \code{Zvariant} instance.
+#' 
+#' If the particular variant doesn't use groups or doesn't have them assigned, 
+#' return NA. Note that here 'groups' means the first column in Zonation groups
+#' file ('output group').
+#'
+#' @param x Zvariant object.
+#'
+#' @return A factor vector containing the groups. If there are no groups, return
+#'         NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("groups", function(x) {
+  standardGeneric("groups")
+})
+
+#' @rdname zvariant-methods
+#' @aliases groups,Zvariant-method
+#' 
+setMethod("groups", "Zvariant", function(x) {
+  if (any(dim(x@groups) != c(0, 0))) {
+    return(x@groups$output.group)
+  } else {
+    return(NA)
+  }
+})
+
 #' Check if an instance of (class \code{Zvariant}) has results.
 #' 
 #' If the results are availbale (i.e. variants have been run) then the variant
@@ -37,13 +70,12 @@ setGeneric("has_results", function(x) {
 #' @aliases has_results,Zvariant-method
 #' 
 setMethod("has_results", "Zvariant", function(x) {
-  
-  if (length(x@results) > 0) {
-    return(TRUE)
-  } else {
+  # [fix] - Should there be any results even if some are missing?
+  if (any(is.na(x@results))) {
     return(FALSE)
+  } else {
+    return(TRUE)
   }
-  
 })
 
 #' Plot Zonation variant's (class \code{Zvariant}) results (performance curves).
