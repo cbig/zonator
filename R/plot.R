@@ -137,6 +137,20 @@ plot_curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
   x.melt <- melt(data = x.selected, id.vars=c(1), measure.vars=2:length(col.ids))
   x.melt$size  <- ifelse(x.melt$variable == names(x)[index], 2, 1)
   
+  # How many items are we drawing (excluding F.lost)
+  nitems <- length(col.ids)
+  
+  # Check that there is the right number of labels if provided
+  if (!is.null(labels)) {
+    if (nitems != length(labels)) {
+      stop(paste0("The number or plot items (", nitems, ") and labels (", 
+                  length(labels), ") differs"))
+    }
+  } else {
+    # Tell ggplot to use defaults for the labels
+    labels <- waiver()
+  }
+  
   p <- ggplot(x.melt, aes(x=Prop_landscape_lost, y=value, group=variable))
   p <- p + geom_line(aes(colour = variable), size=1.0)
   
@@ -158,9 +172,11 @@ plot_curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE,
       scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
       scale_y_continuous(breaks=y.scale, labels=y.scale)
   } else {
-    p + xlab(.options[["curve.x.title"]]) + 
-      ylab(.options[["curve.y.title"]])
+    p + xlab(.options[["curve.x.title"]]) + ylab(.options[["curve.y.title"]])
   }
+  
+  p <- p + ylab(.options[["curve.y.title"]]) + ggtitle(title)
+  return(p + .options[["curve.theme"]])
 }
 
 #' Plot Zonation grouped performance curves.
