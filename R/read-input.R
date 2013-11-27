@@ -99,7 +99,6 @@ read_groups <- function(infile) {
                             "retention.group", "retention.mode", 
                             "local.edge.correct.group")
   }
-  groups.data$output.group <- factor(groups.data$output.group)
   return(groups.data)
 }
 

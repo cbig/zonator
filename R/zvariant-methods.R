@@ -11,7 +11,7 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' Get group names of a class \code{Zvariant} instance.
+#' Get group codes of a class \code{Zvariant} instance.
 #' 
 #' If the particular variant doesn't use groups or doesn't have them assigned, 
 #' return NA. Note that here 'groups' means the first column in Zonation groups
@@ -19,7 +19,7 @@
 #'
 #' @param x Zvariant object.
 #'
-#' @return A factor vector containing the groups. If there are no groups, return
+#' @return A numeric vector containing the groups. If there are no groups, return
 #'         NA.
 #' 
 #' @seealso \code{\link{Zvariant-class}}
@@ -43,6 +43,85 @@ setMethod("groups", "Zvariant", function(x) {
   } else {
     return(NA)
   }
+})
+
+#' Get group names for a class \code{Zvariant} instance.
+#'
+#' @param x Zvariant object.
+#'
+#' @return A named character vector containing the group names. If there are no 
+#'         groups, return NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
+#'          \code{\link{groups}} 
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("groupnames", function(x) {
+  standardGeneric("groupnames")
+})
+
+#' @rdname zvariant-methods
+#' @aliases groupnames,Zvariant-method
+#' 
+setMethod("groupnames", "Zvariant", function(x) {
+  
+  if (is.na(x@groups) || !"group.names" %in% names(x@groups)) {
+    return(NA)
+  }
+  
+  # Get all the groups data
+  groups.data <- x@groups
+  # Get unique codes
+  groups.codes <- unique(groups.data$output.group)
+  groups.names <- sapply(groups.codes, function(y) {groups.data[which(groups.data$output.group == y),]$group.names[1]})
+  names(groups.names) <- groups.codes
+  return(groups.names)
+})
+
+#' Assign group names to a class \code{Zvariant} instance.
+#' 
+#' This is a replacement function for variant group names. If the particular 
+#' variant doesn't use groups the gives a warning.
+#'
+#' @param x named character vector.
+#'
+#' @return A named character vector containing the group names. If there are no 
+#'         groups, return NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
+#'          \code{\link{groups}} 
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("groupnames<-", function(x, value) {
+  standardGeneric("groupnames<-")
+})
+
+#' @name groupnames<-
+#' @rdname zvariant-methods
+#' @aliases groupnames<-,Zvariant-method
+#' 
+setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
+  if (empty(x@groups)) {
+    stop("Variant has no groups to name")
+  }
+  # Actual coded values are vector names. Assume numeric and try to coerce.
+  keys <- as.numeric(names(value))
+  group.codes <- x@groups$output.group
+  # Get the actual character vector indexes based on the names
+  inds <- sapply(group.codes, function(y) {which(keys == y)})
+  # Index the value vector
+  x@groups$group.names <- value[inds]
+  return(x)
 })
 
 #' Check if an instance of (class \code{Zvariant}) has results.
