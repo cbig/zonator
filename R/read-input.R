@@ -52,8 +52,8 @@ read_bat <- function(infile) {
   bat.list[["spp.file"]] <- check_path(call.items[5], dirname(infile))
   # Don't validate the output folder path; it can exist of not, depending on 
   # whether the project has been created or not.
-  bat.list[["output.folder"]] <- dirname(file.path(dirname(infile), 
-                                                   call.items[6]))
+  output.folder <- file.path(dirname(infile), call.items[6])
+  bat.list[["output.folder"]] <- dirname(gsub("\\\\", "/", output.folder))
   # Uncertainty parameter alpha
   bat.list[["uc.alpha"]] <- as.numeric(call.items[7])
   # Is distribution smoothing used
