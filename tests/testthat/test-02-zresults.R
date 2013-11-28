@@ -26,8 +26,30 @@ test_that("Zresults is created correctly", {
                    "Test results object's curves data incorrect")  
   
   # Group curves
-  grp.curves.file <- file.path(results.path, "01_core_area_zonation.grp_curves.txt")
+  grp.curves.file <- file.path(results.path, 
+                               "01_core_area_zonation.grp_curves.txt")
   correct.grp.curves <- read_grp_curves(grp.curves.file)
   expect_identical(correct.grp.curves, test.results@grp.curves,
                    "Test results object's group curves data incorrect") 
 })
+
+context("Zresults methods")
+
+test_that("getting curves works", {
+
+  results.path <- file.path(.options$output.dir, "01_core_area_zonation")
+  test.results <- new("Zresults", root=results.path)
+  
+  curves.file <- file.path(results.path, "01_core_area_zonation.curves.txt")
+  
+  correct.curves <- read_curves(curves.file)
+  expect_identical(correct.curves, curves(test.results),
+                   "Method curves doesn't get he right curves data")
+  
+  grp.curves.file <- file.path(results.path, 
+                               "01_core_area_zonation.grp_curves.txt")
+  correct.grp.curves <- read_grp_curves(grp.curves.file)
+  expect_identical(correct.grp.curves, curves(test.results, groups=TRUE),
+                   "Test results object's group curves data incorrect") 
+
+  })

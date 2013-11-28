@@ -265,6 +265,38 @@ setMethod("plot", signature(x="Zvariant", y="missing"),
   }
 })
 
+#' Simple getter method for results (\code{Zresults}) in a class 
+#' \code{Zvariant} object.
+#' 
+#' @param x Zvariant object.
+#'
+#' @return Zresults object. If variant doesn't have results return NA.
+#' 
+#' @seealso \code{\link{Zresults-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("results", function(x) {
+  standardGeneric("results")
+})
+
+#' @rdname zvariant-methods
+#' @aliases results,Zvariant-method
+#' 
+setMethod("results", c("Zvariant"), function(x) {
+  results <- x@results
+  if (results@has.results) {
+    return(results)
+  } else {
+    warning("Variant doesn't have results")
+    return(NA)
+  }
+})
+
 #' Simple getter mehtod for spp data in a class \code{Zvariant}object.
 #' 
 #' Method will also return group column with spp data if it exists. 
