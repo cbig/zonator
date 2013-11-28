@@ -29,12 +29,24 @@ test_that("Zvariant with results is created correctly", {
   # spp-data
   expect_true(.hasSlot(results.variant, "spp.data"),
               "Test variant object doesn't have a slot 'spp.data'")
-  correct.spp.data <- read_spp(spp.file)
-  # Generate the feature name that Zvariant should generate as well
-  correct.spp.data$name <- basename(tools::file_path_sans_ext(correct.spp.data$filepath))
+  correct.feature.data <- read_spp(spp.file)
   
-  # Check that the values match
-  expect_true(all(correct.spp.data == results.variant@spp.data),
+  # Generate the feature names that Zvariant should generate as well
+  correct.feature.data$name <- basename(tools::file_path_sans_ext(correct.feature.data$filepath))
+  expect_identical(featurenames(results.variant), correct.feature.data$name,
+                   "Test variant object's feature names not what expected")
+  
+  # Test assigning feature names
+  correct.feature.names <- c("Koala", "Masked owl", "Powerful owl", 
+                             "Tiger quoll", "Sooty owl", "Squirrel glider",
+                             "Yellow-bellied glider")
+  featurenames(results.variant) <- correct.feature.names
+  expect_identical(correct.feature.names, featurenames(results.variant),
+                   "Test variant feature names not what they're supposed to")
+  
+  # Check that the values match, first patch the spp data with the names
+  correct.feature.data$name <- correct.feature.names
+  expect_true(all(correct.feature.data == results.variant@spp.data),
               paste("Test variant objects 'spp.data' slot does not correspond",
                     "to expectations"))
   
@@ -51,11 +63,19 @@ test_that("Zvariant with results is created correctly", {
   expect_true(is.na(groupnames(results.variant)),
                    "Test variant group names not NA although they haven't been set")
   
+  # Test assigning correct group names and codes
   correct.grp.names <- c("mammals", "owls")
   names(correct.grp.names) <- c(1, 2)
   groupnames(results.variant) <- correct.grp.names
   expect_identical(correct.grp.names, groupnames(results.variant),
                    "Test variant group names not what they're supposed to")
+  
+  # Test assigning wrong group codes
+  incorrect.grp.names <- c("foo", "bar")
+  names(incorrect.grp.names) <- c(4, 5)
+  expect_error(groupnames(results.variant) <- incorrect.grp.names)
+  
+  # Test for spp data and groups and spp names functionality
   
 })
 
