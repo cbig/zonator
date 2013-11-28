@@ -49,6 +49,9 @@ test_that("Zvariant with results is created correctly", {
   expect_true(all(correct.feature.data == results.variant@spp.data),
               paste("Test variant objects 'spp.data' slot does not correspond",
                     "to expectations"))
+  # Do the same for sppdata method
+  expect_true(all(correct.feature.data == sppdata(results.variant)),
+              paste("Method sppdata doesn't return what it's supposed to"))
   
   # Groups
   expect_true(.hasSlot(results.variant, "groups"),
