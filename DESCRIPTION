@@ -14,6 +14,7 @@ Depends:
     plyr,
     raster,
     reshape2,
+    tools
 Suggests:
     testthat,
     knitr
