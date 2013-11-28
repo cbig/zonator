@@ -39,3 +39,4 @@ Collate:
     'zproject-methods.R'
     'zvariant-methods.R'
     'project.R'
+    'zresults-methods.R'
