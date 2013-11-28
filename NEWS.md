@@ -1,3 +1,15 @@
+## CHANGES IN VERSION 0.2.2 (2013-11-28)
+
+* Feature can be named for each variant and feature and group identities can
+be joined and queried. 
+
+### NEW FEATURES
+
+* New methods for class `Zvariant`:
+  - `featurenames<-`: assign human readable feature names
+  - `featurenames`: get assigned unique featurenames
+  - `sppdata`: return the whole spp data frame of a variant
+
 ## CHANGES IN VERSION 0.2.1 (2013-11-27)
 
 * Add groups functionality to `Zvariant`. Groups are read in from the actual
