@@ -45,16 +45,16 @@ read_curves <- function(infile) {
   
   # The header has a set of standard components + proportion for each species
   # remaining at level of removal (created dynamically)
-  header <- c("Prop_landscape_lost",           # 1
-              "cost_needed_for_top_fraction",  # 2
-              "min_prop_rem",                  # 3
-              "ave_prop_rem",                  # 4
-              "W_prop_rem",                    # 5
-              "ext-1",                         # 6
-              "ext-2")                         # 7
+  header <- c("pr_lost",          # 1
+              "cost",             # 2
+              "min_pr",           # 3
+              "ave_pr",           # 4
+              "w_pr",             # 5
+              "ext1",            # 6
+              "ext2")            # 7
   
   # Populate the rest of the header lines with sp headers and assign it
-  header <- c(header, paste("F", 1:(ncol(curves) - length(header)), sep=""))
+  header <- c(header, paste("f", 1:(ncol(curves) - length(header)), sep=""))
   colnames(curves) <- header
   return(curves)
 }
@@ -89,7 +89,7 @@ read_grp_curves <- function(infile) {
   grp.curves <- read.table(infile, header=TRUE)
   
   # standard part of the header
-  header <- c("F.lost", "TF_cost")
+  header <- c("pr_lost", "cost")
   
   # Repeating parts of the group curves header
   rep.header <- c("min", "mean", "max", "w.mean", "ext2")
