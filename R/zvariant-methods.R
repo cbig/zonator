@@ -267,7 +267,11 @@ setMethod("plot", signature(x="Zvariant", y="missing"),
 
 #' Simple getter mehtod for spp data in a class \code{Zvariant}object.
 #' 
+#' Method will also return group column with spp data if it exists. 
+#' 
 #' @param x Zvariant object.
+#' @param group.names boolean indicating whether group codes (FALSE) or names
+#' (TRUE) are used to indicate group. (default: FALSE)
 #'
 #' @return Data frame (x@spp.data)
 #' 
@@ -279,13 +283,24 @@ setMethod("plot", signature(x="Zvariant", y="missing"),
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("sppdata", function(x) {
+setGeneric("sppdata", function(x, group.names=FALSE) {
   standardGeneric("sppdata")
 })
 
 #' @rdname zvariant-methods
 #' @aliases sppdata,Zvariant-method
 #' 
-setMethod("sppdata", "Zvariant", function(x) {
-  return(x@spp.data)
+setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
+  spp.data <- x@spp.data
+  if (!empty(x@groups)) {
+    spp.names <- names(spp.data)
+    if (group.names == TRUE && "name" %in% names(x@groups)) {
+      spp.data <- cbind(spp.data, x@groups$name)
+      names(spp.data) <- c(spp.names, "group.name")
+    } else {
+      spp.data <- cbind(spp.data, x@groups$output.group)
+      names(spp.data) <- c(spp.names, "group")
+    }
+  }
+  return(spp.data)
 })
