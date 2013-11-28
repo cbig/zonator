@@ -305,7 +305,7 @@ setMethod("results", c("Zvariant"), function(x) {
 #' @param group.names boolean indicating whether group codes (FALSE) or names
 #' (TRUE) are used to indicate group. (default: FALSE)
 #'
-#' @return Data frame (x@spp.data)
+#' @return Data frame (object's spp.data)
 #' 
 #' @seealso \code{\link{Zvariant-class}}
 #' 
