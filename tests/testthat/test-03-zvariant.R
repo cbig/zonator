@@ -21,8 +21,6 @@ test_that("Zvariant with results is created correctly", {
                     results.variant@bat.file))
   
   # Results
-  expect_true(.hasSlot(results.variant, "results"),
-              "Test variant object doesn't have a slot 'results'")
   expect_true(has_results(results.variant), 
               "Test variant doesn't have results although it should")
   
@@ -97,7 +95,8 @@ test_that("Zvariant without results is created correctly", {
   # Variant with no results, no results
   no.results.bat.file <- file.path(.options$setup.dir, 
                                    "06_dummy_for_testing.batx")
-  no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
+  expect_warning(no.results.variant <- new("Zvariant", 
+                                           bat.file=no.results.bat.file))
   
   # Groups
   expect_false(has_results(no.results.variant),

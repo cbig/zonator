@@ -45,6 +45,97 @@ setMethod("initialize", "Zproject", function(.Object, root) {
   .Object
 })
 
+#' Create an instance of the Zresults class using new/initialize.
+#'
+#' @param name Character string naming the variant.
+#' @param bat.file Zonation specific batch (.bat) file to read the 
+#'   variant specifics from (must exist).
+#'
+#' @seealso \code{\link{initialize}}
+#'
+#' @keywords internal
+#'
+#' @rdname initialize-methods
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#' 
+setMethod("initialize", "Zresults", function(.Object, root) {
+  
+  .Object@root = root
+  .Object@has.results = TRUE
+  
+  # Find various result files from the root path which must exist
+  if (!file.exists(root)) {
+    warning("Results root path ", root, " does not exist")
+    .Object@has.results = FALSE
+    return(.Object)
+  }
+  
+  # Helper function
+  get_file <- function(output.folder, x) {
+    
+    target <- list.files(output.folder, pattern=x, full.names=TRUE)
+    if (length(target) == 0) {
+      return(NA)
+    } else if (length(target) == 1) {
+      return(target)
+    } else {
+      warning(paste("More matches than 1 found for", x, "using only the first"))
+      return(target[1])
+    }
+  }
+  
+  # Extract the 'last modified' information from run info file
+  run.info.file <- get_file(root, "\\.run_info\\.txt")
+  if (!is.na(run.info.file)) {
+    .Object@run.info <- run.info.file
+    .Object@modified <- file.info(run.info.file)$mtime
+  }
+  
+  # Curves file is named *.curves.txt. NOTE: if the file does not exist,
+  # returns NA.
+  curve.file <- get_file(root, "\\.curves\\.txt")
+  if (is.na(curve.file)) {
+    .Object@has.results = FALSE
+  } else {
+    .Object@curves <- read_curves(curve.file)
+  }
+    
+  # Group curves file is named *.grp_curves.txt. NOTE: if the file does not 
+  # exist, returns NA.
+  grp.curve.file <- get_file(root, "\\.grp_curves\\.txt")
+  if (is.na(grp.curve.file)) {
+    .Object@has.results = FALSE
+  } else {
+    .Object@grp.curves <- read_grp_curves(grp.curve.file)
+  }
+    
+  # Rank raster file is named *.rank.*
+  rank.raster.file <- get_file(root, "\\.rank\\.")
+  if (is.na(rank.raster.file)) {
+    .Object@has.results = FALSE
+  } else {
+    .Object@rank <- raster(rank.raster.file)  
+  }
+  
+  wrscr.raster.file <- get_file(root, "\\.wrscr\\.")
+  if (is.na(wrscr.raster.file)) {
+    .Object@has.results = FALSE
+  } else {
+    .Object@wrscr <- raster(wrscr.raster.file)  
+  }
+  
+  prop.raster.file <- get_file(root, "\\.prop\\.")
+  if (is.na(prop.raster.file)) {
+    .Object@has.results = FALSE
+  } else {
+    .Object@prop <- raster(prop.raster.file)  
+  }
+  
+  f <- validObject(.Object)
+  
+  .Object
+})
+
 #' Create an instance of the Zvariant class using new/initialize.
 #'
 #' @param name Character string naming the variant.
@@ -107,49 +198,8 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
   # results ####################################################################
   
-  results <- list()
-  
-  # bat-file's existence has already been verified, try to get the output. 
-  # Consider results done if you find 
   output.folder <- .Object@call.params$output.folder
-  if (!is.null(output.folder)) {
-    
-    get_file <- function(output.folder, x) {
-      
-      target <- list.files(output.folder, pattern=x, full.names=TRUE)
-      if (length(target) == 0) {
-        return(NA)
-      } else if (length(target) == 1) {
-        return(target)
-      } else {
-        warning(paste("More matches than 1 found for", x, "using only the first"))
-        return(target[1])
-      }
-    }
-    
-    # Extract the 'last modified' information from run info file
-    run.info.file <- get_file(output.folder, "\\.run_info\\.txt")
-    if (!is.na(run.info.file)) {
-      results[["modified"]] <- file.info(run.info.file)$mtime
-    } else {
-      results[["modified"]] <- NA
-    }
-    
-    # Curves file is named *.curves.txt. NOTE: if the file does not exist,
-    # returns NA.
-    curve.file <- get_file(output.folder, "\\.curves\\.txt")
-    results[["curves"]] <- read_curves(curve.file)
-    
-    # Group curves file is named *.grp_curves.txt. NOTE: if the file does not 
-    # exist, returns NA.
-    grp.curve.file <- get_file(output.folder, "\\.grp_curves\\.txt")
-    results[["grp.curves"]] <- read_grp_curves(grp.curve.file)
-    
-    # Rank raster file is named *.rank.*
-    results["rank.raster.file"] <- get_file(output.folder, "\\.rank\\.")
-    
-    .Object@results <- results
-  }
+  .Object@results <- new("Zresults", root=.Object@call.params$output.folder)
   
   .Object
 })
