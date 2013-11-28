@@ -265,8 +265,11 @@ setMethod("plot", signature(x="Zvariant", y="missing"),
   }
 })
 
-#' Simple getter method for results (\code{Zresults}) in a class 
+#' Getter method for results (\code{Zresults}) in a class 
 #' \code{Zvariant} object.
+#' 
+#' Since not all changes to Zvariant are reflected to its Zresults (e.g. feature
+#' and group names) there may quite a lot runtime patching going on.
 #' 
 #' @param x Zvariant object.
 #'
@@ -290,6 +293,13 @@ setGeneric("results", function(x) {
 setMethod("results", c("Zvariant"), function(x) {
   results <- x@results
   if (results@has.results) {
+    # Fix feature names in curves header
+    org.names <- names(results@curves)[8:length(results@curves)]
+    if (length(org.names) != length(featurenames(x))) {
+      warning(paste("Number of features in result curves and feature names in",
+                    "variant not the same; Keeping the originals"))
+    } 
+    names(results@curves) <- c(names(results@curves)[1:7], featurenames(x))
     return(results)
   } else {
     warning("Variant doesn't have results")

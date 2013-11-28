@@ -77,6 +77,14 @@ test_that("Assigning and fetching feature names works", {
   expect_true(all(correct.feature.data == results.variant@spp.data),
               paste("Test variant objects 'spp.data' slot does not correspond",
                     "to expectations"))
+  
+  # Names should be reflected in results curve headers as well
+  variant.results <- results(results.variant)
+  curves.names <- names(curves(variant.results))
+  curves.names <- curves.names[8:length(curves.names)]
+  expect_identical(correct.feature.data$name, curves.names,
+                   paste("Test variant object's result curves header does not",
+                         "contain the correct feature names"))
 })
 
 test_that("Assigning and fetching group names and identities works", {
@@ -126,17 +134,4 @@ test_that("Assigning and fetching group names and identities works", {
   expect_error(groupnames(results.variant) <- incorrect.grp.names)
   
   # Test for spp data and groups and spp names functionality
-})
-
-test_that("Fetching results works", {
-  bat.file <- .options$bat.file
-  spp.file <- .options$spp.file
-  results.variant <- new("Zvariant", bat.file=bat.file)
-  
-  results.path <- file.path(.options$output.dir, "01_core_area_zonation")
-  correct.results <- new("Zresults", root=results.path)
-  
-  test.results <- results(results.variant)
-  expect_identical(correct.results, test.results,
-                   "Method results doesn't return what it is supposed to")
 })
