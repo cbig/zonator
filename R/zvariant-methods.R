@@ -11,6 +11,74 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' Assign spp feature names to a class \code{Zvariant} instance.
+#' 
+#' This is a replacement function for variant spp feature names.
+#' 
+#' @note spp features have by default names that are derived from the feature
+#' raster file path.
+#'
+#' @param x character vector. Can be named or not.
+#'
+#' @return A named character vector containing the feature names. If there are 
+#'         no groups, return NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{featurenames}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("featurenames<-", function(x, value) {
+  standardGeneric("featurenames<-")
+})
+
+#' @name featurenames<-
+#' @rdname zvariant-methods
+#' @aliases groupnames<-,Zvariant-method
+#' 
+setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
+  # Control for length, no cycling allowed
+  if (length(value) != nrow(x@spp.data)) {
+    stop(paste0("Character vector length (", lenght(value), " and object spp ",
+                "data length (", nrow(x@spp.data), " should be the same"))
+  }
+  x@spp.data$name <- value
+  return(x)
+})
+
+#' Get spp feature names for a class \code{Zvariant} instance.
+#'
+#' @param x Zvariant object.
+#'
+#' @return Character vector of spp feature names. 
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
+#'          \code{\link{groups}} 
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("featurenames", function(x) {
+  standardGeneric("featurenames")
+})
+
+#' @rdname zvariant-methods
+#' @aliases featurenames,Zvariant-method
+#' 
+setMethod("featurenames", "Zvariant", function(x) {
+  
+  if (is.na(x@spp.data) || !"name" %in% names(x@spp.data)) {
+    stop("No spp data found or it doesn't have 'name' columnd defined")
+  }
+  return(x@spp.data$name)
+})
+
 #' Get group codes of a class \code{Zvariant} instance.
 #' 
 #' If the particular variant doesn't use groups or doesn't have them assigned, 
@@ -117,6 +185,12 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   # Actual coded values are vector names. Assume numeric and try to coerce.
   keys <- as.numeric(names(value))
   group.codes <- x@groups$output.group
+  # Check that the keys actually are found in codes
+  if (!all(keys %in% unique(group.codes))) {
+    stop(paste("Key(s)", paste(keys[!keys %in% unique(group.codes)], collapse=", "), 
+                               "not found in group codes:", 
+               paste(group.codes, collapse=", ")))
+  }
   # Get the actual character vector indexes based on the names
   inds <- sapply(group.codes, function(y) {which(keys == y)})
   # Index the value vector
