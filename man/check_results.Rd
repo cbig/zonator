@@ -1,8 +1,8 @@
-\name{check_variant}
-\alias{check_variant}
+\name{check_results}
+\alias{check_results}
 \title{Check zvariant object's attributes for consistency.}
 \usage{
-  check_variant(object)
+  check_results(object)
 }
 \arguments{
   \item{object}{of class zvariant}

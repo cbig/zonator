@@ -38,6 +38,10 @@
   plotting functions.}
 
   \item{x}{Zvariant object.}
+
+  \item{group.names}{boolean indicating whether group codes
+  (FALSE) or names (TRUE) are used to indicate group.
+  (default: FALSE)}
 }
 \value{
   A named character vector containing the feature names. If

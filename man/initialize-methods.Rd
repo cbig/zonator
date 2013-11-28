@@ -9,9 +9,17 @@
 
   \item{bat.file}{Zonation specific batch (.bat) file to
   read the variant specifics from (must exist).}
+
+  \item{name}{Character string naming the variant.}
+
+  \item{bat.file}{Zonation specific batch (.bat) file to
+  read the variant specifics from (must exist).}
 }
 \description{
   Create an instance of the Zproject class using
+  new/initialize.
+
+  Create an instance of the Zresults class using
   new/initialize.
 
   Create an instance of the Zvariant class using
@@ -21,8 +29,12 @@
   Joona Lehtomaki <joona.lehtomaki@gmail.com>
 
   Joona Lehtomaki <joona.lehtomaki@gmail.com>
+
+  Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 \seealso{
+  \code{\link{initialize}}
+
   \code{\link{initialize}}
 
   \code{\link{initialize}}

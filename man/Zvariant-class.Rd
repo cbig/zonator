@@ -3,7 +3,7 @@
 \alias{Zvariant-class}
 \title{The Zvariant class}
 \description{
-  \code{Zvariant} class represents a Zonation anaylis
+  \code{Zvariant} class represents a Zonation analysis
   variant with the associated parameters.
 }
 \details{
