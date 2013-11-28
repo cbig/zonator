@@ -13,6 +13,8 @@
 \alias{has_results,Zvariant-method}
 \alias{plot}
 \alias{plot,Zvariant,missing-method}
+\alias{sppdata}
+\alias{sppdata,Zvariant-method}
 \title{Assign spp feature names to a class \code{Zvariant} instance.}
 \arguments{
   \item{x}{character vector. Can be named or not.}
@@ -34,6 +36,8 @@
 
   \item{...}{Additional arguments passed on to the speficic
   plotting functions.}
+
+  \item{x}{Zvariant object.}
 }
 \value{
   A named character vector containing the feature names. If
@@ -53,6 +57,8 @@
   boolean value
 
   Zvariant object
+
+  Data frame (x
 }
 \description{
   This is a replacement function for variant spp feature
@@ -79,6 +85,9 @@
   In the current implementation, only performance curves
   (feature-specific or grouped) are plotted. In the future,
   plot method should handle other types of results as well.
+
+  Method will also return group column with spp data if it
+  exists.
 }
 \details{
   Method itself is only a thin wrapper to functions
@@ -90,6 +99,8 @@
   the feature raster file path.
 }
 \author{
+  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
@@ -117,6 +128,8 @@
 
   \code{\link{Zvariant-class}} \code{\link{groupnames}}
   \code{\link{groups}}
+
+  \code{\link{Zvariant-class}}
 
   \code{\link{Zvariant-class}}
 
