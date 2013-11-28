@@ -7,7 +7,7 @@
 options(width=120)
 ```
 
-### Create `zonator` project based on existing data
+## Create `zonator` project based on existing data
 
 The following examples will use 
 [the basic Zonation tutorial data](https://github.com/cbig/zonation-tutorial/tree/master/basic)
@@ -76,14 +76,14 @@ useful methods for dealing with data parsed from various Zonation input files.
 Zonation spp-file is one the mandatory input files that always needs to be in
 place and thus all variants have one. When a new `Zvariant` instance is created
 the associated spp file is automatically parsed into it. All the spp data 
-(with group code column if available) can be retrieved using `sppdata`:
+(with group code column if available) can be retrieved using `sppdata()`:
 
 ```{r sppdata}
 sppdata(variant.caz)
 ```
 
 Feature names from the spp file/data can be accessed directly by using method
-`featurenames`.
+`featurenames()`.
 
 ```{r sppdata-names-2}
 featurenames(variant.caz)
@@ -103,20 +103,20 @@ sppdata(variant.caz)
 
 ### Groups
 
-Notice that data frames returned by `sppdata` in previous examples alreadt had
+Notice that data frames returned by `sppdata()` in previous examples alreadt had
 a column called "group". This is because all tutorial variants have groups 
 enabled by deafault. If a variant doesn't use groups, then this column will be
 missing.
 
 Group identities in Zonation input file are coded with integer values. Method
-`groups` will return just this integer vector:
+`groups()` will return just this integer vector:
 
 ```{r groups}
 groups(variant.caz)
 ```
 
 Groups can also have more informative names attached to them by using method
-`groupnames`. The format for setting (mapping) group names is stricts and 
+`groupnames()`. The format for setting (mapping) group names is stricts and 
 involves a named character vector in which (column) names correspond to integer
 group codes and character elements the group names to be assigned:
 
@@ -132,24 +132,10 @@ groupnames(variant.caz)
 ```
 
 Now group 1 is labeled "mammals" and group 2 is labeled "owls". Note that 
-`sppdata` has an optional argument `group.names` that can be set to `TRUE`
+`sppdata()` has an optional argument `group.names` that can be set to `TRUE`
 if group names are preferable to group codes (names have to be set first,
 though).
 
 ```{r sppdata-group-names}
 sppdata(variant.caz, group.names=TRUE)
 ```
-
-
-### Results
-
-Each variant can either already have results (i.e. Zonation run has completed) 
-or then not. This can be determined by:
-
-```{r has-results}
-has_results(variant.caz)
-```
-
-Value `TRUE` indicates that Zonation has already been run and results are 
-available and `FALSE` indicates that results are not available. For the tutorial
-data used here, all the results are available.
