@@ -33,6 +33,36 @@ test_that("Zvariant with results is created correctly", {
   correct.feature.data$name <- basename(tools::file_path_sans_ext(correct.feature.data$filepath))
   expect_identical(featurenames(results.variant), correct.feature.data$name,
                    "Test variant object's feature names not what expected")
+})
+
+test_that("Zvariant without results is created correctly", {
+  
+  # Variant with no results, no results
+  no.results.bat.file <- file.path(.options$setup.dir, 
+                                   "06_dummy_for_testing.batx")
+  expect_warning(no.results.variant <- new("Zvariant", 
+                                           bat.file=no.results.bat.file))
+  
+  # Groups
+  expect_false(has_results(no.results.variant),
+               "Test variant should not have results")
+  expect_true(is.na(groups(no.results.variant)),
+               "Test variant should not have groups")
+  
+  correct.grp.names <- c("mammals", "owls")
+  names(correct.grp.names) <- c(1, 2)
+  expect_error((groupnames(no.results.variant) <- correct.grp.names))
+}
+)
+
+context("Zvariant methods")
+
+test_that("Assigning and fetching feature names works", {
+  bat.file <- .options$bat.file
+  spp.file <- .options$spp.file
+  results.variant <- new("Zvariant", bat.file=bat.file)
+  
+  correct.feature.data <- read_spp(spp.file)
   
   # Test assigning feature names
   correct.feature.names <- c("Koala", "Masked owl", "Powerful owl", 
@@ -47,6 +77,15 @@ test_that("Zvariant with results is created correctly", {
   expect_true(all(correct.feature.data == results.variant@spp.data),
               paste("Test variant objects 'spp.data' slot does not correspond",
                     "to expectations"))
+})
+
+test_that("Assigning and fetching group names and identities works", {
+  bat.file <- .options$bat.file
+  spp.file <- .options$spp.file
+  results.variant <- new("Zvariant", bat.file=bat.file)
+
+  correct.feature.data <- read_spp(spp.file)
+  correct.feature.data$name <- basename(tools::file_path_sans_ext(correct.feature.data$filepath))
   
   # Groups
   expect_true(.hasSlot(results.variant, "groups"),
@@ -55,11 +94,11 @@ test_that("Zvariant with results is created correctly", {
   correct.grp.codes <- c(1, 2, 2, 1, 2, 1, 1)
   variant.grp.codes <- groups(results.variant)
   expect_identical(variant.grp.codes, correct.grp.codes, 
-              paste("Test variant group information wrong"))
+                   paste("Test variant group information wrong"))
   
   # The group names haven't been set, so there should be none
   expect_true(is.na(groupnames(results.variant)),
-                   "Test variant group names not NA although they haven't been set")
+              "Test variant group names not NA although they haven't been set")
   
   # Test assigning correct group names and codes
   correct.grp.names <- c("mammals", "owls")
@@ -87,25 +126,17 @@ test_that("Zvariant with results is created correctly", {
   expect_error(groupnames(results.variant) <- incorrect.grp.names)
   
   # Test for spp data and groups and spp names functionality
-  
 })
 
-test_that("Zvariant without results is created correctly", {
+test_that("Fetching results works", {
+  bat.file <- .options$bat.file
+  spp.file <- .options$spp.file
+  results.variant <- new("Zvariant", bat.file=bat.file)
   
-  # Variant with no results, no results
-  no.results.bat.file <- file.path(.options$setup.dir, 
-                                   "06_dummy_for_testing.batx")
-  expect_warning(no.results.variant <- new("Zvariant", 
-                                           bat.file=no.results.bat.file))
+  results.path <- file.path(.options$output.dir, "01_core_area_zonation")
+  correct.results <- new("Zresults", root=results.path)
   
-  # Groups
-  expect_false(has_results(no.results.variant),
-               "Test variant should not have results")
-  expect_true(is.na(groups(no.results.variant)),
-               "Test variant should not have groups")
-  
-  correct.grp.names <- c("mammals", "owls")
-  names(correct.grp.names) <- c(1, 2)
-  expect_error((groupnames(no.results.variant) <- correct.grp.names))
-}
-)
+  test.results <- results(results.variant)
+  expect_identical(correct.results, test.results,
+                   "Method results doesn't return what it is supposed to")
+})
