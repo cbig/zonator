@@ -264,3 +264,28 @@ setMethod("plot", signature(x="Zvariant", y="missing"),
     plot_curves(x@results[["curves"]], ...)
   }
 })
+
+#' Simple getter mehtod for spp data in a class \code{Zvariant}object.
+#' 
+#' @param x Zvariant object.
+#'
+#' @return Data frame (x@spp.data)
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("sppdata", function(x) {
+  standardGeneric("sppdata")
+})
+
+#' @rdname zvariant-methods
+#' @aliases sppdata,Zvariant-method
+#' 
+setMethod("sppdata", "Zvariant", function(x) {
+  return(x@spp.data)
+})
