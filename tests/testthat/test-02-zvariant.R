@@ -49,9 +49,6 @@ test_that("Zvariant with results is created correctly", {
   expect_true(all(correct.feature.data == results.variant@spp.data),
               paste("Test variant objects 'spp.data' slot does not correspond",
                     "to expectations"))
-  # Do the same for sppdata method
-  expect_true(all(correct.feature.data == sppdata(results.variant)),
-              paste("Method sppdata doesn't return what it's supposed to"))
   
   # Groups
   expect_true(.hasSlot(results.variant, "groups"),
@@ -72,6 +69,19 @@ test_that("Zvariant with results is created correctly", {
   groupnames(results.variant) <- correct.grp.names
   expect_identical(correct.grp.names, groupnames(results.variant),
                    "Test variant group names not what they're supposed to")
+  
+  # Test the sppdata method. NOTE that sppdata will cbind group code 
+  # column to the end! 
+  extended.feature.data <- cbind(correct.feature.data, correct.grp.codes)
+  names(extended.feature.data) <- c(names(correct.feature.data), "group")
+  expect_true(all(extended.feature.data == sppdata(results.variant)),
+              paste("Method sppdata doesn't return what it's supposed to"))
+  # Test also using group names
+  extended.feature.data <- cbind(correct.feature.data, results.variant@groups$name)
+  names(extended.feature.data) <- c(names(correct.feature.data), "group.name")
+  
+  expect_true(all(extended.feature.data == sppdata(results.variant, group.names=TRUE)),
+              paste("Method sppdata doesn't return what it's supposed to"))
   
   # Test assigning wrong group codes
   incorrect.grp.names <- c("foo", "bar")
