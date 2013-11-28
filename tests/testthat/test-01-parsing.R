@@ -110,7 +110,7 @@ test_that("Parsing a populated spp file works", {
   spp.data <- read_spp(spp.file)
   expect_true(is.data.frame(spp.data),
               "Spp data read in not a data frame")
-  # Check names
+  # Check column names
   expect_true(all(names(spp.data) == names(correct.data)),
               paste("Spp data names no what expected:", 
                     paste(names(spp.data), collapse=" ")))

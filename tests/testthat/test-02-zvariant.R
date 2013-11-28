@@ -30,6 +30,9 @@ test_that("Zvariant with results is created correctly", {
   expect_true(.hasSlot(results.variant, "spp.data"),
               "Test variant object doesn't have a slot 'spp.data'")
   correct.spp.data <- read_spp(spp.file)
+  # Generate the feature name that Zvariant should generate as well
+  correct.spp.data$name <- basename(tools::file_path_sans_ext(correct.spp.data$filepath))
+  
   # Check that the values match
   expect_true(all(correct.spp.data == results.variant@spp.data),
               paste("Test variant objects 'spp.data' slot does not correspond",

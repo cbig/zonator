@@ -70,7 +70,7 @@ setGeneric("groupnames", function(x) {
 #' 
 setMethod("groupnames", "Zvariant", function(x) {
   
-  if (is.na(x@groups) || !"group.names" %in% names(x@groups)) {
+  if (is.na(x@groups) || !"name" %in% names(x@groups)) {
     return(NA)
   }
   
@@ -78,7 +78,7 @@ setMethod("groupnames", "Zvariant", function(x) {
   groups.data <- x@groups
   # Get unique codes
   groups.codes <- unique(groups.data$output.group)
-  groups.names <- sapply(groups.codes, function(y) {groups.data[which(groups.data$output.group == y),]$group.names[1]})
+  groups.names <- sapply(groups.codes, function(y) {groups.data[which(groups.data$output.group == y),]$name[1]})
   names(groups.names) <- groups.codes
   return(groups.names)
 })
@@ -120,7 +120,7 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   # Get the actual character vector indexes based on the names
   inds <- sapply(group.codes, function(y) {which(keys == y)})
   # Index the value vector
-  x@groups$group.names <- value[inds]
+  x@groups$name <- value[inds]
   return(x)
 })
 
