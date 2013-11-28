@@ -1,5 +1,7 @@
 \docType{methods}
 \name{featurenames<-}
+\alias{curves}
+\alias{curves,Zvariant-method}
 \alias{featurenames}
 \alias{featurenames,Zvariant-method}
 \alias{featurenames<-}
@@ -13,6 +15,8 @@
 \alias{has_results,Zvariant-method}
 \alias{plot}
 \alias{plot,Zvariant,missing-method}
+\alias{results}
+\alias{results,Zvariant-method}
 \alias{sppdata}
 \alias{sppdata,Zvariant-method}
 \title{Assign spp feature names to a class \code{Zvariant} instance.}
@@ -39,9 +43,16 @@
 
   \item{x}{Zvariant object.}
 
+  \item{x}{Zvariant object.}
+
   \item{group.names}{boolean indicating whether group codes
   (FALSE) or names (TRUE) are used to indicate group.
   (default: FALSE)}
+
+  \item{x}{\code{Zresults} object.}
+
+  \item{groups}{logical indicating whether group curves
+  data should be returned.}
 }
 \value{
   A named character vector containing the feature names. If
@@ -62,7 +73,12 @@
 
   Zvariant object
 
+  Zresults object. If variant doesn't have results return
+  NA.
+
   Data frame (x
+
+  Data frame containing the curves file data.
 }
 \description{
   This is a replacement function for variant spp feature
@@ -90,8 +106,13 @@
   (feature-specific or grouped) are plotted. In the future,
   plot method should handle other types of results as well.
 
+  Simple getter method for results (\code{Zresults}) in a
+  class \code{Zvariant} object.
+
   Method will also return group column with spp data if it
   exists.
+
+  Get curves of a given \code{Zresults} object.
 }
 \details{
   Method itself is only a thin wrapper to functions
@@ -103,6 +124,10 @@
   the feature raster file path.
 }
 \author{
+  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
+  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
@@ -137,6 +162,11 @@
 
   \code{\link{Zvariant-class}}
 
+  \code{\link{Zresults-class}}
+
   \code{\link{Zvariant-class}}
+
+  \code{\link{Zresults-class}} \code{\link{read_curves}}
+  \code{\link{read_grp_curves}}
 }
 
