@@ -1,5 +1,8 @@
 \docType{methods}
-\name{groups}
+\name{featurenames<-}
+\alias{featurenames}
+\alias{featurenames,Zvariant-method}
+\alias{featurenames<-}
 \alias{groupnames}
 \alias{groupnames,Zvariant-method}
 \alias{groupnames<-}
@@ -10,8 +13,12 @@
 \alias{has_results,Zvariant-method}
 \alias{plot}
 \alias{plot,Zvariant,missing-method}
-\title{Get group codes of a class \code{Zvariant} instance.}
+\title{Assign spp feature names to a class \code{Zvariant} instance.}
 \arguments{
+  \item{x}{character vector. Can be named or not.}
+
+  \item{x}{Zvariant object.}
+
   \item{x}{Zvariant object.}
 
   \item{x}{Zvariant object.}
@@ -29,6 +36,11 @@
   plotting functions.}
 }
 \value{
+  A named character vector containing the feature names. If
+  there are no groups, return NA.
+
+  Character vector of spp feature names.
+
   A numeric vector containing the groups. If there are no
   groups, return NA.
 
@@ -43,6 +55,12 @@
   Zvariant object
 }
 \description{
+  This is a replacement function for variant spp feature
+  names.
+
+  Get spp feature names for a class \code{Zvariant}
+  instance.
+
   If the particular variant doesn't use groups or doesn't
   have them assigned, return NA. Note that here 'groups'
   means the first column in Zonation groups file ('output
@@ -67,7 +85,15 @@
   \code{\link{plot_curves}} and
   \code{\link{plot_grp_curves}}.
 }
+\note{
+  spp features have by default names that are derived from
+  the feature raster file path.
+}
 \author{
+  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
+  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
@@ -79,6 +105,11 @@
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
+  \code{\link{Zvariant-class}} \code{\link{featurenames}}
+
+  \code{\link{Zvariant-class}} \code{\link{groupnames}}
+  \code{\link{groups}}
+
   \code{\link{Zvariant-class}}
 
   \code{\link{Zvariant-class}} \code{\link{groupnames}}
