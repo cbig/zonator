@@ -4,7 +4,7 @@
 -->
 
 ```{r setup, echo=FALSE}
-options(width=120)
+options(width=160)
 ```
 
 ## Exploring results
@@ -28,3 +28,37 @@ has_results(variant.caz)
 Value `TRUE` indicates that Zonation has already been run and results are 
 available and `FALSE` indicates that results are not available. For the tutorial
 data used here, all the results are available.
+
+Results of a given variant can be extracted using `results()`.
+
+```{r get-results}
+results.caz <- results(variant.caz)
+```
+
+### Working with performance results (curves)
+
+Raw curves data (with or without groups) can be extracted from results using 
+`curves()`. Optional argument `groups` defines whether feature or group specific
+curves are returned.
+
+
+```{r curves}
+# Get feature-specific curves
+feature.curves <- curves(results.caz)
+head(feature.curves)
+```
+
+Columns are exaclty the same as in Zonation curves output file, except that 
+column names have shortened a little. Note also that the actual feature columns
+are named according to feature names in the `Zvariant` object these results 
+were deirved from. Thus whatever names you assigned to features prior to 
+extracting the results will be also seen here.
+
+Let's see  what the group curves data
+looks like:
+
+```{r grp-curves}
+# Get feature-specific curves
+feature.grp.curves <- curves(results.caz, groups=TRUE)
+head(feature.grp.curves)
+```
