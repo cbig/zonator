@@ -85,8 +85,13 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   .Object@dat.data <- read_ini(call.params$dat.file)
   
   # spp-file content ###########################################################
-  .Object@spp.data <- read_spp(call.params$spp.file)
+  spp.data <- read_spp(call.params$spp.file)
 
+  # Extract spp feature "names" from the raster file path
+  spp.data$name <- basename(tools::file_path_sans_ext(spp.data$filepath))
+  
+  .Object@spp.data <- spp.data
+  
   # groups content #############################################################
   
   # First we need to define whether groups are 1) used, and 2) available. 
