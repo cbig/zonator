@@ -1,0 +1,30 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Create zonator project based on existing data}
+-->
+
+```{r setup, echo=FALSE}
+options(width=120)
+```
+
+## Exploring results
+
+Each variant can either already have results (i.e. Zonation run has completed) 
+or then not. This can be determined by using method `has_results()`.
+
+```{r has-results, message=FALSE}
+library(zonator)
+
+# Start by creating a project using the tutorial data
+setup.dir <- system.file("extdata/tutorial/basic", package="zonator") 
+tutorial.project <- create_zproject(setup.dir)
+
+# Get a specific variant
+variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+
+has_results(variant.caz)
+```
+
+Value `TRUE` indicates that Zonation has already been run and results are 
+available and `FALSE` indicates that results are not available. For the tutorial
+data used here, all the results are available.
