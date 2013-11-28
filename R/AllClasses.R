@@ -38,6 +38,84 @@
 #' 
 setClass("Zproject", representation(root = "character", variants = "list"))
 
+# Zonation results --------------------------------------------------------
+
+#' Check zvariant object's attributes for consistency.
+#' 
+#' @param object of class zvariant
+#'
+#' @return A boolean value TRUE if everything is ok, otherwise a character 
+#'   vector of encounterd errors. All encountered warnings are printed 
+#'   on-the-fly. 
+#' 
+#' @keywords internal
+#' 
+#' @note For package internal use only
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+check_results <- function(object) {
+  
+  if (class(object) != "Zresults") {
+    stop(paste0("Object must be class Zresults (is ", class(object), ")"))
+  }
+  
+  errors <- character()
+  warnings <- character()
+  
+  if (!file.exists(object@root)) {
+    msg <- paste0("Results root path ", object@root, " does not exist")
+    errors <- c(errors, msg)
+  }  
+  
+  if (length(warnings) != 0) {
+    for (.warning in warnings) {
+      warning(.warning)
+    }
+  }
+  if (length(errors) == 0) TRUE else errors
+}
+
+#' The Zresults class
+#'
+#' \code{Zresults} class represents a full set of Zonation results associated 
+#' with a single variant (instance of class 
+#' \code{\link[zonator:Zvariant-class]{Zvariant-class}}).
+#'
+#' @note In the current implementation all the results must be found. Otherwise
+#' none are recorder.
+#'
+#'@section Slots: 
+#'  \describe{
+#'    \item{\code{parent}:}{\code{Zvariant} object to which results belong to.}
+#'    \item{\code{root}:}{Character string path pointing to the root (dir) of
+#'      the results.}
+#'    \item{\code{modified}:}{Character timestamp for when results were last modified.}
+#'    \item{\code{run.info}:}{Character file path for run info file.}
+#'    \item{\code{curves}:}{Data frame of curve (performance) results.}
+#'    \item{\code{grp.curves}:}{Data frame of group curve (performance) results.}
+#'    \item{\code{rank}:}{RasterLayer object of rank priority.}
+#'    \item{\code{wrscr}:}{RasterLayer object of weighted range-size corrected richness.}
+#'    \item{\code{prop}:}{RasterLayer object of the proportional loss of distribution.}
+#'    \item{\code{has.results}:}{Logical indicating if all the results are there.}
+#'  }
+#'
+#' @name Zresults
+#' @rdname Zresults-class
+#' @aliases Zresults-class
+#' @exportClass Zresults
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#' 
+setClass("Zresults", representation(root = "character",
+                                    modified = "POSIXct",
+                                    run.info = "character", 
+                                    curves = "data.frame",
+                                    grp.curves = "data.frame",
+                                    rank = "RasterLayer", 
+                                    wrscr = "RasterLayer",
+                                    prop = "RasterLayer",
+                                    has.results = "logical"),
+         validity = check_results)
+
 # Zonation variant ------------------------------------------------------------
 
 #' Check zvariant object's attributes for consistency.
@@ -45,7 +123,7 @@ setClass("Zproject", representation(root = "character", variants = "list"))
 #' @param object of class zvariant
 #'
 #' @return A boolean value TRUE if everything is ok, otherwise a character 
-#'   vector of encounterd errors. All encountered warning are printed 
+#'   vector of encounterd errors. All encountered warnings are printed 
 #'   on-the-fly. 
 #' 
 #' @keywords internal
@@ -55,8 +133,8 @@ setClass("Zproject", representation(root = "character", variants = "list"))
 #' 
 check_variant <- function(object) {
   
-  if (class(object) != "zvariant") {
-    stop(paste0("Object must be class zvariant (is ", class(object), ")"))
+  if (class(object) != "Zvariant") {
+    stop(paste0("Object must be class Zvariant (is ", class(object), ")"))
   }
   
   errors <- character()
@@ -116,7 +194,7 @@ check_variant <- function(object) {
 
 #' The Zvariant class
 #'
-#' \code{Zvariant} class represents a Zonation anaylis variant with the 
+#' \code{Zvariant} class represents a Zonation analysis variant with the 
 #' associated parameters.
 #' 
 #' Currently \code{Zvariant} must be instantiated based on an existing Zonation
@@ -142,5 +220,5 @@ check_variant <- function(object) {
 setClass("Zvariant", representation(name = "character", bat.file = "character",
                                     dat.data = "list", spp.data = "data.frame",
                                     groups = "data.frame",
-                                    call.params = "list", results = "list"),
+                                    call.params = "list", results = "Zresults"),
          validity = check_variant)

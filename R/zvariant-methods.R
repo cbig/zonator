@@ -224,10 +224,10 @@ setGeneric("has_results", function(x) {
 #' 
 setMethod("has_results", "Zvariant", function(x) {
   # [fix] - Should there be any results even if some are missing?
-  if (any(is.na(x@results))) {
-    return(FALSE)
-  } else {
+  if (x@results@has.results) {
     return(TRUE)
+  } else {
+    return(FALSE)
   }
 })
 
