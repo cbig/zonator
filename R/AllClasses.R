@@ -11,6 +11,32 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+
+# Zonation curves ---------------------------------------------------------
+
+#' The Zcurves class
+#'
+#' \code{Zcurves} class inherits class data.frame.
+#' 
+#' Class does no implement new methods, but it is used to override some 
+#' behaviour such as plot. Usually \code{Zcurves} object belongs to a 
+#' \code{\link[zonator:Zresults-class]{Zresults}} object.
+#'
+#' @section Slots: 
+#'  \describe{
+#'    \item{\code{groups}:}{Logical indicating if the curves information is
+#'    from groups.}
+#'
+#' @name Zproject
+#' @docType class
+#' @rdname Zproject-class
+#' @aliases Zproject-class
+#' @exportClass Zproject
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#' 
+
+setClass('curves', representation(groups='logical'), contains = 'data.frame')
+
 # Zonation project ------------------------------------------------------------
 
 #' The Zproject class
