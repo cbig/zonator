@@ -40,3 +40,4 @@ Collate:
     'zvariant-methods.R'
     'project.R'
     'zresults-methods.R'
+    'zcurves-methods.R'

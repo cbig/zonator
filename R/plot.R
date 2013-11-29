@@ -25,7 +25,7 @@
 #' @param binwidth Double value of bindwidth for \code{\link{geom_bar}}.
 #' @param title Character string title of the plot.
 #' 
-#' @references a \code{ggplot} object containing the plot.
+#' @return a \code{ggplot} object containing the plot.
 #' 
 #' @seealso \code{\link{geom_bar}}.
 #' 

@@ -27,15 +27,15 @@
 #'    \item{\code{groups}:}{Logical indicating if the curves information is
 #'    from groups.}
 #'
-#' @name Zproject
+#' @name Zcurves
 #' @docType class
-#' @rdname Zproject-class
-#' @aliases Zproject-class
-#' @exportClass Zproject
+#' @rdname Zcurves-class
+#' @aliases Zcurves-class
+#' @exportClass Zcurves
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #' 
 
-setClass('curves', representation(groups='logical'), contains = 'data.frame')
+setClass('Zcurves', representation(groups='logical'), contains = 'data.frame')
 
 # Zonation project ------------------------------------------------------------
 
