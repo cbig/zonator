@@ -13,6 +13,8 @@
 \alias{groups,Zvariant-method}
 \alias{has_results}
 \alias{has_results,Zvariant-method}
+\alias{performance}
+\alias{performance,Zvariant-method}
 \alias{plot}
 \alias{plot,Zvariant,missing-method}
 \alias{results}
@@ -53,6 +55,18 @@
 
   \item{groups}{logical indicating whether group curves
   data should be returned.}
+
+  \item{x}{\code{Zresults} object.}
+
+  \item{pr.lost}{numeric vector containing the fractions of
+  landscape lost for which the feature/group performance
+  values are wanted (default: 'all').}
+
+  \item{features}{character vector of features names to be
+  extracted. Must match with feature names in curves data}
+
+  \item{groups}{logical indicating whether group curves
+  data should be used (default: FALSE).}
 }
 \value{
   A named character vector containing the feature names. If
@@ -76,9 +90,14 @@
   Zresults object. If variant doesn't have results return
   NA.
 
-  Data frame (x
+  Data frame (object's spp.data)
 
   Data frame containing the curves file data.
+
+  Data frame containing the curves file data for selected
+  fractions of landscape lost. First column is pr_lost. If
+  feature names are provided and none are viable, return
+  NA.
 }
 \description{
   This is a replacement function for variant spp feature
@@ -106,13 +125,17 @@
   (feature-specific or grouped) are plotted. In the future,
   plot method should handle other types of results as well.
 
-  Simple getter method for results (\code{Zresults}) in a
-  class \code{Zvariant} object.
+  Since not all changes to Zvariant are reflected to its
+  Zresults (e.g. feature and group names) there may quite a
+  lot runtime patching going on.
 
   Method will also return group column with spp data if it
   exists.
 
   Get curves of a given \code{Zresults} object.
+
+  Get performance levels either for features or groups from
+  a \code{Zresults} object.
 }
 \details{
   Method itself is only a thin wrapper to functions
@@ -124,6 +147,8 @@
   the feature raster file path.
 }
 \author{
+  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
@@ -165,6 +190,9 @@
   \code{\link{Zresults-class}}
 
   \code{\link{Zvariant-class}}
+
+  \code{\link{Zresults-class}} \code{\link{read_curves}}
+  \code{\link{read_grp_curves}}
 
   \code{\link{Zresults-class}} \code{\link{read_curves}}
   \code{\link{read_grp_curves}}

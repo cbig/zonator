@@ -22,7 +22,7 @@
 #'
 #' @param infile Character file path to .curves.txt file.
 #'
-#' @return A DataFrame with all the information in the curves file. If the 
+#' @return Curves object with all the information in the curves file. If the 
 #'   requested file does not exist, return NA.
 #'
 #' @export
@@ -56,6 +56,8 @@ read_curves <- function(infile) {
   # Populate the rest of the header lines with sp headers and assign it
   header <- c(header, paste("f", 1:(ncol(curves) - length(header)), sep=""))
   colnames(curves) <- header
+  # Convert into a curves object
+  curves <- new("curves", curves, groups=FALSE)
   return(curves)
 }
 
@@ -99,6 +101,8 @@ read_grp_curves <- function(infile) {
                       sep="-")
   header <- c(header, rep.header)
   colnames(grp.curves) <- header
+  
+  grp.curves <- new("curves", grp.curves, groups=TRUE)
   
   return(grp.curves)
 }
