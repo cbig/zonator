@@ -86,8 +86,10 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #'
 #' @param x data frame containing Zonation's performance curve
 #'   (feature-specific) output.
-#' @param statistic character string indicating which statistic 
-#'   (\code{min}, \code{mean}) over all features is plotted.
+#' @param min logical indicating whether minimum over all features is plotted
+#' @param mean logical indicating whether the mean over all features is plotted
+#' @param w.mean logical indicating whether the weighted  mean over all features 
+#' is plotted
 #' @param features integer vector containing the IDs of features to be
 #'   plotted.
 #' @param monochrome Boolean indicating if the plot should be in 
@@ -104,25 +106,22 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-#' @examples \dontrun{
-#'   # This example assumes that variant do_abf.bat has been run
-#'   bat.file <- system.file("extdata/zonation-tutorial", "do_abf.bat",
-#'                            package="zonator")
-#'   abf.variant <- new("Zvariant", bat.file=bat.file)
-#'   plot(abf.variant)
-#'   plot(abf.variant, statistic="mean")
-#' }
-plot_curves <- function(x, statistic=NULL, features=NULL, monochrome=FALSE, 
-                          invert.x=FALSE, labels=NULL,  ...) {  
-  if (is.null(statistic)) {
-    index <- NULL
-  } else if (statistic == "min") {
-    index <- 3
-  } else if (statistic == "mean") {
-    index <- 4
-  }
+plot_curves <- function(x, min=FALSE, mean=FALSE, w.mean=FALSE, features=NULL, 
+                        monochrome=FALSE, invert.x=FALSE, ...) {  
   
-  col.ids <- 8:length(x)
+  extras <- NULL
+  
+  if (min) {
+    extras <- c(extras, 3)
+  }
+  if (mean) {
+    extras <- c(extras, 4)
+  }
+  if (w.mean) {
+    extras <- c(extras, 5)
+  }
+
+  col.ids <- 8:ncol(x)
   # Which features are actually included
   if (!is.null(features)) {
     # Don't include the 1st columns ave_prop_remp
