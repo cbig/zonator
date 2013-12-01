@@ -51,7 +51,34 @@ test_that("getting curves works", {
   correct.grp.curves <- read_grp_curves(grp.curves.file)
   expect_identical(correct.grp.curves, curves(test.results, groups=TRUE),
                    "Test results object's group curves data incorrect") 
-
+  
+  # Only selected curves. These are cost, ave_pr, and feats 1, 3 and 4
+  correct.selected.curves <- correct.curves[,c(1, 2, 4, 8, 10, 11)]
+  # Test with col names
+  expect_identical(correct.selected.curves, 
+                   curves(test.results, cols=c("cost", "ave_pr", "f1",
+                                               "f3", "f4")),
+                   "Method curves doesn't return right data with col names") 
+  # Test with col indexes
+  expect_identical(correct.selected.curves, 
+                   curves(test.results, cols=c(2, 4, 8, 10, 11)),
+                   "Method curves doesn't return right data with col indexes")
+  
+  # Test for faulty col names
+  
+  expect_warning(curves(test.results, cols=c("cost", "ave_pr", "f1",
+                                             "f3", "f4", "XXX")))
+  suppressWarnings(expect_identical(correct.selected.curves, 
+                   curves(test.results, cols=c("cost", "ave_pr", "f1",
+                                               "f3", "f4", "XXX")),
+                   "Method curves doesn't return right data with col names"))
+  # Test for faulty indexes
+  expect_warning(curves(test.results, cols=c(2, 4, 8, 10, 11, 200)))
+  suppressWarnings(expect_identical(correct.selected.curves, 
+                                    curves(test.results, 
+                                           cols=c(2, 4, 8, 10, 11, 200)),
+                  "Method curves doesn't return right data with indexes"))
+  
 })
 
 test_that("performance levels are reported right", {
@@ -69,6 +96,7 @@ test_that("performance levels are reported right", {
   row.ids <- sapply(breaks, function(x) {which(correct.curves$pr_lost >= x)[1]})
   
   levels.all <- correct.curves[row.ids, c(1, 8:ncol(correct.curves))]
+  row.names(levels.all) <- 1:nrow(levels.all)
   
   # Don't allow values < 0 or > 1 for pr.lost
   expect_error(performance(test.results, pr.lost=-0.1))
