@@ -116,7 +116,7 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   if (is.null(features)) {
     perf.data <- perf.data[,c(1, 8:ncol(perf.data))]
   }
-  row.ids <- sapply(breaks, function(y) {which(perf.data$pr_lost >= y)[1]})
+  row.ids <- sapply(pr.lost, function(y) {which(perf.data$pr_lost >= y)[1]})
   perf.data <- perf.data[row.ids,]
   row.names(perf.data) <- 1:nrow(perf.data)
   
