@@ -1,15 +1,22 @@
 \docType{methods}
-\name{get_variant}
+\name{get_variant
+Get a specified variant in a Zonation project}
 \alias{get_variant}
+\alias{get_variant
+Get a specified variant in a Zonation project}
 \alias{get_variant,Zproject-method}
 \alias{names}
 \alias{names,Zproject-method}
 \alias{nvariants}
+\alias{nvariants
+Get the number of variants included in a Zonation project}
 \alias{nvariants,Zproject-method}
 \alias{opendir}
+\alias{opendir
+Open the directory of a Zproject using the system file browser.
+
+Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE).}
 \alias{opendir,Zproject-method}
-\title{get_variant
-Get a specified variant in a Zonation project}
 \arguments{
   \item{x}{Zproject object.}
 
@@ -26,15 +33,6 @@ Get a specified variant in a Zonation project}
   int number of variants
 
   invisible
-}
-\description{
-  get_variant Get a specified variant in a Zonation project
-
-  nvariants Get the number of variants included in a
-  Zonation project
-
-  Currently support Windows Explorer (Windows) amd Dolphin
-  (Linux/KDE).
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

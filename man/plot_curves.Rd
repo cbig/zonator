@@ -2,9 +2,9 @@
 \alias{plot_curves}
 \title{Plot Zonation performance curves.}
 \usage{
-  plot_curves(x, groups = FALSE, min = FALSE, mean = FALSE,
-    w.mean = FALSE, features = NULL, monochrome = FALSE,
-    invert.x = FALSE, ...)
+  plot_curves(x, min = FALSE, mean = FALSE, w.mean = FALSE,
+    features = NULL, monochrome = FALSE, invert.x = FALSE,
+    ...)
 }
 \arguments{
   \item{x}{data frame containing Zonation's performance
