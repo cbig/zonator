@@ -11,28 +11,28 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' @rdname zproject-methods
+#' @rdname Zproject-methods
 #' @aliases get_variant,Zproject-method
 #' 
 setMethod("get_variant", c("Zproject", "ANY"), function(x, index) {
   return(x@variants[[index]])
 })
 
-#' @rdname zproject-methods
+#' @rdname Zproject-methods
 #' @aliases nvariants,Zproject-method
 #' 
 setMethod("nvariants", "Zproject", function(x) {
   return(length(x@variants))
 })
 
-#' @rdname zproject-methods
+#' @rdname Zproject-methods
 #' @aliases names,Zproject-method
 #' 
 setMethod("names", "Zproject", function(x) {
   return(names(x@variants))
 })
 
-#' @rdname zproject-methods
+#' @rdname Zproject-methods
 #' @aliases opendir,Zproject-method
 #'
 setMethod("opendir", "Zproject", function(object) {
