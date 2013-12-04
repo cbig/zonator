@@ -169,7 +169,8 @@ setMethod("groupnames", "Zvariant", function(x) {
 #' This is a replacement function for variant group names. If the particular 
 #' variant doesn't use groups the gives a warning.
 #'
-#' @param x named character vector.
+#' @param x Zvariant object.
+#' @param value named character vector.
 #'
 #' @return A named character vector containing the group names. If there are no 
 #'         groups, return NA.
@@ -208,6 +209,26 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   inds <- sapply(group.codes, function(y) {which(keys == y)})
   # Index the value vector
   x@groups$name <- value[inds]
+  if (has_results(x)) {
+    results.grp.names <- names(x@results@grp.curves)[3:length(x@results@grp.curves)]
+    
+    # Each group has 5 columns
+    ngroups <- length(results.grp.names) / 5
+    
+    if (length(value) != ngroups) {
+      stop(paste0("Character vector length (", length(value), " and object results ",
+                  "group curves header length (", ngroups, 
+                  " should be the same"))
+    }
+    for (i in 1:ngroups) {
+      group.id <- names(value[i])
+      group.name  <- value[[i]]
+      results.grp.names <- gsub(paste0("g", group.id), group.name, 
+                                results.grp.names)
+    }
+    new.grp.names <- c(names(x@results@grp.curves)[1:2], results.grp.names)
+    names(x@results@grp.curves) <- new.grp.names
+  } 
   return(x)
 })
 
