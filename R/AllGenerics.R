@@ -40,6 +40,55 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE) {
   standardGeneric("curves")
 })
 
+# featurenames ------------------------------------------------------------
+
+#' @name featurenames
+#' Get spp feature names for a class \code{Zvariant} instance.
+#'
+#' @param x Zvariant object.
+#'
+#' @return Character vector of spp feature names. 
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
+#'          \code{\link{groups}} 
+#' 
+#' @export
+#' @docType methods
+#' @rdname Zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("featurenames", function(x) {
+  standardGeneric("featurenames")
+})
+
+# featurenames<- ----------------------------------------------------------
+
+#' @name "featurenames<-"
+#' Assign spp feature names to a class \code{Zvariant} instance.
+#' 
+#' This is a replacement function for variant spp feature names.
+#' 
+#' @note spp features have by default names that are derived from the feature
+#' raster file path.
+#'
+#' @param x character vector. Can be named or not.
+#'
+#' @return A named character vector containing the feature names. If there are 
+#'         no groups, return NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{featurenames}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("featurenames<-", function(x, value) {
+  standardGeneric("featurenames<-")
+})
+
 # get_variant -------------------------------------------------------------
 
 #' @name get_variant
@@ -61,6 +110,106 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE) {
 #' 
 setGeneric("get_variant", function(x, index) {
   standardGeneric("get_variant")
+})
+
+# groups ------------------------------------------------------------------
+
+#' @name groups
+#' Get group codes of a class \code{Zvariant} instance.
+#' 
+#' If the particular variant doesn't use groups or doesn't have them assigned, 
+#' return NA. Note that here 'groups' means the first column in Zonation groups
+#' file ('output group').
+#'
+#' @param x Zvariant object.
+#'
+#' @return A numeric vector containing the groups. If there are no groups, return
+#'         NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("groups", function(x) {
+  standardGeneric("groups")
+})
+
+# groupnames --------------------------------------------------------------
+
+#' @name groupnames
+#' Get group names for a class \code{Zvariant} instance.
+#'
+#' @param x Zvariant object.
+#'
+#' @return A named character vector containing the group names. If there are no 
+#'         groups, return NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
+#'          \code{\link{groups}} 
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("groupnames", function(x) {
+  standardGeneric("groupnames")
+})
+
+# groupnames<- ------------------------------------------------------------
+
+#' @name "groupnames<-"
+#' Assign group names to a class \code{Zvariant} instance.
+#' 
+#' This is a replacement function for variant group names. If the particular 
+#' variant doesn't use groups the gives a warning.
+#'
+#' @param x Zvariant object.
+#' @param value named character vector.
+#'
+#' @return A named character vector containing the group names. If there are no 
+#'         groups, return NA.
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
+#'          \code{\link{groups}} 
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("groupnames<-", function(x, value) {
+  standardGeneric("groupnames<-")
+})
+
+# has_results -------------------------------------------------------------
+
+#' @name has_results
+#' Check if an instance of (class \code{Zvariant}) has results.
+#' 
+#' If the results are availbale (i.e. variants have been run) then the variant
+#' should have a list object containing the results.
+#'
+#' @param x Zvariant object.
+#'
+#' @return boolean value
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("has_results", function(x) {
+  standardGeneric("has_results")
 })
 
 # nvariants ---------------------------------------------------------------
@@ -163,4 +312,54 @@ setGeneric("plot_curves", function(x, groups=FALSE, min=FALSE, mean=FALSE,
                                    features=NULL, monochrome=FALSE, 
                                    invert.x=FALSE, ...) {
   standardGeneric("plot_curves")
+})
+
+# results -----------------------------------------------------------------
+
+#' @name results
+#' Getter method for results (\code{Zresults}) in a class 
+#' \code{Zvariant} object.
+#' 
+#' Since not all changes to Zvariant are reflected to its Zresults (e.g. feature
+#' and group names) there may quite a lot runtime patching going on.
+#' 
+#' @param x Zvariant object.
+#'
+#' @return Zresults object. If variant doesn't have results return NA.
+#' 
+#' @seealso \code{\link{Zresults-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("results", function(x) {
+  standardGeneric("results")
+})
+
+# sppdata -----------------------------------------------------------------
+
+#' @name sppdata
+#' Simple getter mehtod for spp data in a class \code{Zvariant}object.
+#' 
+#' Method will also return group column with spp data if it exists. 
+#' 
+#' @param x Zvariant object.
+#' @param group.names boolean indicating whether group codes (FALSE) or names
+#' (TRUE) are used to indicate group. (default: FALSE)
+#'
+#' @return Data frame (object's spp.data)
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname zvariant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("sppdata", function(x, group.names=FALSE) {
+  standardGeneric("sppdata")
 })
