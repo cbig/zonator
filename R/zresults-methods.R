@@ -41,53 +41,79 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE) {
 #' @aliases curves,Zvariant-method
 #' 
 setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
-  if (groups) {
-    return(x@grp.curves) 
-  } else {
     
-    if (is.null(cols)) {
-      return(x@curves)
-    } else {
-      # All col names in the curves data
-      col.names <- names(x@curves)
-      if (is.character(cols)) {
-        if (!all(cols %in% col.names)){
-          warning(paste("Column names", paste(cols[!cols %in% col.names], 
-                              collapse=", "), "not found in curves header"))
-          cols <- cols[cols %in% col.names]
-          if (length(cols) == 0) {
-            return(NA)
-          } 
-        }
-        inds <- sapply(cols, function(y) {which(y == col.names)})
-      } else if (is.numeric(cols)) {
-        inds <- cols
-        if (any(cols < 1)) {
-          warning(paste("Column indexes", paste(cols[which(cols < 1)], 
+  # Helper function to decide whether given names in indexes exist. Returns 
+  # a vector of indexes if names/indexes are actually found.
+  .check.names <- function(selected.names, actual.names) {
+    if (is.character(selected.names)) {
+      if (!all(selected.names %in% actual.names)){
+        warning(paste("Column names", 
+                      paste(selected.names[!selected.names %in% actual.names], 
+                                            collapse=", "), 
+                      "not found in curves header"))
+        selected.names <- selected.names[selected.names %in% actual.names]
+        if (length(selected.names) == 0) {
+          return(NULL)
+        } 
+      }
+      inds <- sapply(selected.names, function(y) {which(y == actual.names)})
+    } else if (is.numeric(selected.names)) {
+      inds <- selected.names
+      if (any(selected.names < 1)) {
+        warning(paste("Column indexes", 
+                      paste(selected.names[which(selected.names < 1)], 
                                               collapse=", "), 
-                        "smaller than 1"))
-          inds <- cols[which(cols >= 1)]
-        }
-        ncols <- ncol(x@curves)
-        if (any(cols > ncols)) {
-          warning(paste("Column indexes", paste(cols[which(cols > ncols)], 
-                                                collapse=", "), 
-                        "greater than ncol"))
-          inds <- cols[which(cols <= ncols)]
-        }
+                      "smaller than 1"))
+        inds <- selected.names[which(selected.names >= 1)]
       }
-      # pr_lost (index = 1) is always included
-      if (! 1 %in% inds) {
-        inds <- c(1, inds)
+      ncols <- length(actual.names)
+      if (any(selected.names > ncols)) {
+        warning(paste("Column indexes", 
+                      paste(selected.names[which(selected.names > ncols)], 
+                            collapse=", "), 
+                      "greater than ncol"))
+        inds <- selected.names[which(selected.names <= ncols)]
       }
-      
-      feature.curves <- x@curves[inds]
-      row.names(feature.curves) <- 1:nrow(feature.curves)
+    }
+    return(inds)
+  }
+  
+  if (is.null(cols)) {
+    # No specific columns selected, return everything
+    if (groups) {
+      curves.data <- x@grp.curves
+    } else {
+      curves.data <- x@curves
+    }
+  } else {
+    # All col names in the curves/group curves data
+    if (groups) {
+      col.names <- names(x@grp.curves)
+    } else {
+      col.names <- names(x@curves)
+    }
+    inds <- .check.names(cols, col.names)
+    
+    # Return NA if no inds are found
+    if (length(inds) == 0) {
+      return(NA)
     }
     
-      
-    return(feature.curves)
+    # pr_lost (index = 1) is always included
+    if (! 1 %in% inds) {
+      inds <- c(1, inds)
+    }
+    
+    if (groups) {
+      curves.data <- x@grp.curves[inds]  
+    } else {
+      curves.data <- x@curves[inds]
+    }
+    row.names(curves.data) <- 1:nrow(curves.data)
   }
+  
+  return(curves.data)
+  
 })
 
 #' Get performance levels either for features or groups from a \code{Zresults} 
