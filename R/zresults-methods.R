@@ -116,6 +116,13 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
   
 })
 
+#' @rdname Zresults-methods
+#' @aliases featurenames,Zresults-method
+#' 
+setMethod("featurenames", signature(x="Zresults"), function(x) {
+  return(names(x@curves)[8:ncol(x@curves)])
+})
+
 #' Get performance levels either for features or groups from a \code{Zresults} 
 #' object.
 #' 
@@ -169,4 +176,76 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   
   return(perf.data)
   
+})
+
+#' Plot Zonation performance curves.
+#' 
+#' @param x Zresults object.
+#' @param ... Additional arguments passed on to the speficic plotting 
+#'   functions.
+#'   
+#' @return ggplot2 object
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname Zresults-methods
+#' @aliases plot_curves,Zresults,missing-method
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("plot_curves", function(x, groups=FALSE, min=FALSE, mean=FALSE, 
+                                   w.mean=FALSE, 
+                                   features=NULL, monochrome=FALSE, 
+                                   invert.x=FALSE, ...) {
+  standardGeneric("plot_curves")
+})
+
+#' @rdname zvariant-methods
+#' @aliases plot_curves,Zresults,missing-method
+#'
+setMethod("plot_curves", signature("Zresults"), 
+          function(x, groups=FALSE, min=FALSE, mean=FALSE, w.mean=FALSE, 
+                   features=NULL, 
+                   monochrome=FALSE, invert.x=FALSE, ...)  {
+  if (groups) {
+    print("foo")
+  } else {
+    
+    # If no features are provided, get them all
+    if (length(features) == 0) {
+      features <- featurenames(x)
+    }
+    
+    # NOTE! Order matters here.
+    if (w.mean) {
+      extras <- c("w_pr", features)
+    }
+    if (mean) {
+      extras <- c("ave_pr", features)
+    }
+    if (min) {
+      features <- c("min_pr", features)
+    }
+    
+    curves.data <- curves(x, cols=features)
+  }
+  
+  x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
+                 measure.vars=2:ncol(curves.data))
+  
+  p <- ggplot(x.melt, aes(x=pr_lost, y=value, group=variable))
+  p <- p + geom_line(aes(colour = variable), size=1.0)
+  
+  if (monochrome) {
+    p <- p + theme_bw() + 
+      scale_colour_grey(name=.options[["curve.legend.title"]])
+    
+  } else {
+    p <- p + scale_colour_brewer(name=.options[["curve.legend.title"]],
+                                 palette="Set1", labels=labels)
+  }
+  
+  return(p)
 })
