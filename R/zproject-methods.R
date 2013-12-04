@@ -11,51 +11,11 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' get_variant
-#' Get a specified variant in a Zonation project
-#'
-#' @param x Zproject object.
-#' @param index int or string index defining the variant required.
-#'
-#' @return Zvariant object
-#' 
-#' @seealso \code{\link[zonator:Zproject-class]{Zproject-class}} 
-#'   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname zproject-methods
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("get_variant", function(x, index) {
-  standardGeneric("get_variant")
-})
-
 #' @rdname zproject-methods
 #' @aliases get_variant,Zproject-method
 #' 
 setMethod("get_variant", c("Zproject", "ANY"), function(x, index) {
   return(x@variants[[index]])
-})
-
-#' nvariants
-#' Get the number of variants included in a Zonation project
-#'
-#' @param x Zproject object.
-#'
-#' @return int number of variants
-#' 
-#' @seealso \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
-#'
-#' @export
-#' @docType methods
-#' @rdname zproject-methods
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#'
-setGeneric("nvariants", function(x) {
-  standardGeneric("nvariants")
 })
 
 #' @rdname zproject-methods
@@ -70,27 +30,6 @@ setMethod("nvariants", "Zproject", function(x) {
 #' 
 setMethod("names", "Zproject", function(x) {
   return(names(x@variants))
-})
-
-#' opendir
-#' Open the directory of a Zproject using the system file browser.
-#' 
-#' Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE).
-#'
-#' @param x object.
-#'
-#' @return invisible
-#' 
-#' @seealso \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
-#'
-#' @export
-#' @docType methods
-#' @rdname zproject-methods
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("opendir", function(object) { 
-  standardGeneric("opendir")
 })
 
 #' @rdname zproject-methods

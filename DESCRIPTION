@@ -23,8 +23,9 @@ Imports:
 BugReports: https://github.com/jlehtoma/zonator/issues
 VignetteBuilder: knitr
 Collate:
-    'options.R'
     'AllClasses.R'
+    'AllGenerics.R'
+    'options.R'
     'zonator-internal.R'
     'comparison.R'
     'plot.R'
