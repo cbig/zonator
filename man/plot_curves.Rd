@@ -2,17 +2,22 @@
 \alias{plot_curves}
 \title{Plot Zonation performance curves.}
 \usage{
-  plot_curves(x, statistic = NULL, features = NULL,
-    monochrome = FALSE, invert.x = FALSE, labels = NULL,
+  plot_curves(x, min = FALSE, mean = FALSE, w.mean = FALSE,
+    features = NULL, monochrome = FALSE, invert.x = FALSE,
     ...)
 }
 \arguments{
   \item{x}{data frame containing Zonation's performance
   curve (feature-specific) output.}
 
-  \item{statistic}{character string indicating which
-  statistic (\code{min}, \code{mean}) over all features is
-  plotted.}
+  \item{min}{logical indicating whether minimum over all
+  features is plotted}
+
+  \item{mean}{logical indicating whether the mean over all
+  features is plotted}
+
+  \item{w.mean}{logical indicating whether the weighted
+  mean over all features is plotted}
 
   \item{features}{integer vector containing the IDs of
   features to be plotted.}
@@ -32,16 +37,6 @@
 }
 \description{
   Plot Zonation performance curves.
-}
-\examples{
-\dontrun{
-  # This example assumes that variant do_abf.bat has been run
-  bat.file <- system.file("extdata/zonation-tutorial", "do_abf.bat",
-                           package="zonator")
-  abf.variant <- new("Zvariant", bat.file=bat.file)
-  plot(abf.variant)
-  plot(abf.variant, statistic="mean")
-}
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

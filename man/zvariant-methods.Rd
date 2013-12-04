@@ -53,6 +53,9 @@
 
   \item{x}{\code{Zresults} object.}
 
+  \item{cols}{numeric or character vector of columns to be
+  returned}
+
   \item{groups}{logical indicating whether group curves
   data should be returned.}
 
@@ -92,7 +95,8 @@
 
   Data frame (object's spp.data)
 
-  Data frame containing the curves file data.
+  Data frame containing the (selected) curves file data. If
+  column names are provided, but none are found, return NA.
 
   Data frame containing the curves file data for selected
   fractions of landscape lost. First column is pr_lost. If
@@ -132,7 +136,9 @@
   Method will also return group column with spp data if it
   exists.
 
-  Get curves of a given \code{Zresults} object.
+  pr_lost is always included in the returned data, but
+  other columns can be specified using \code{cols}
+  argument.
 
   Get performance levels either for features or groups from
   a \code{Zresults} object.
