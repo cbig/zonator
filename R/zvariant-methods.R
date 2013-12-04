@@ -73,7 +73,7 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -81,10 +81,10 @@ setGeneric("featurenames", function(x) {
   standardGeneric("featurenames")
 })
 
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' @aliases featurenames,Zvariant-method
 #' 
-setMethod("featurenames", "Zvariant", function(x) {
+setMethod("featurenames", signature(x="Zvariant"), function(x) {
   
   if (is.na(x@spp.data) || !"name" %in% names(x@spp.data)) {
     stop("No spp data found or it doesn't have 'name' columnd defined")
