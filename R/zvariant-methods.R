@@ -40,12 +40,25 @@ setGeneric("featurenames<-", function(x, value) {
 #' @aliases groupnames<-,Zvariant-method
 #' 
 setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
+  # Check names
+  value <- check_names(value)
   # Control for length, no cycling allowed
   if (length(value) != nrow(x@spp.data)) {
-    stop(paste0("Character vector length (", lenght(value), " and object spp ",
+    stop(paste0("Character vector length (", length(value), " and object spp ",
                 "data length (", nrow(x@spp.data), " should be the same"))
   }
   x@spp.data$name <- value
+  # Also deal with the resuts data if available
+  if (has_results(x)) {
+    results.feat.names <- names(x@results@curves)[8:length(x@results@curves)]
+    if (length(value) != length(results.feat.names)) {
+      stop(paste0("Character vector length (", length(value), " and object results ",
+                  "curves header length (", length(results.feat.names), 
+                  " should be the same"))
+    }
+    new.names <- c(names(x@results@curves)[1:7], value)
+    names(x@results@curves) <- new.names
+  } 
   return(x)
 })
 
@@ -291,16 +304,8 @@ setGeneric("results", function(x) {
 #' @aliases results,Zvariant-method
 #' 
 setMethod("results", c("Zvariant"), function(x) {
-  results <- x@results
-  if (results@has.results) {
-    # Fix feature names in curves header
-    org.names <- names(results@curves)[8:length(results@curves)]
-    if (length(org.names) != length(featurenames(x))) {
-      warning(paste("Number of features in result curves and feature names in",
-                    "variant not the same; Keeping the originals"))
-    } 
-    names(results@curves) <- c(names(results@curves)[1:7], featurenames(x))
-    return(results)
+  if (has_results(x)) {
+    return(x@results)
   } else {
     warning("Variant doesn't have results")
     return(NA)
