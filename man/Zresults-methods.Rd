@@ -1,10 +1,11 @@
 \docType{methods}
-\name{featurenames}
+\name{plot_curves
+Plot Zonation performance curves.}
 \alias{featurenames}
 \alias{featurenames,Zresults-method}
-\alias{plot_curves}
+\alias{plot_curves
+Plot Zonation performance curves.}
 \alias{plot_curves,Zresults,missing-method}
-\title{Plot Zonation performance curves.}
 \arguments{
   \item{x}{Zresults object.}
 
@@ -13,9 +14,6 @@
 }
 \value{
   ggplot2 object
-}
-\description{
-  Plot Zonation performance curves.
 }
 \author{
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
