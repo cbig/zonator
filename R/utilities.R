@@ -11,6 +11,41 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+
+#' A function check feature/group names.
+#' 
+#' Checks a vector of names only contains unique items and that the items are
+#' suitable for columns names. Function is strict so that if the vector is not 
+#' valid or it cannot be coerced to be one an error is induced. 
+#' 
+#' @param x Charcter or numeric vector.
+#'
+#' @return Valid vector of the original size.
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#'  
+check_names <- function(x) {
+  # Check for type
+  if (!any(is.character(x), is.numeric(x))) {
+    stop("Names vector must be either character of numeric")
+  }
+  # Check for only unique items
+  if (length(unique(x)) != length(x)) {
+    stop("All items in names vector must be unique")
+  }
+  # Check for empty names
+  if (any(x == "") || any(nchar(x) == 0)) {
+    stop("No item in names vector can be empty")
+  }
+  # Get rid of white space if present
+  if (any(grepl("\\s", x))) {
+    warning("Name items contain whitespaces, replacing with '.'")
+    x <- gsub("\\s", "\\.", x)
+  }
+  return(as.character(x))
+}
+
 #' A function to deal with potentially relative paths.
 #' 
 #' Checks if a path can be resolved (i.e. whether it exists). A additional
