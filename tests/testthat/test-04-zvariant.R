@@ -65,12 +65,18 @@ test_that("Assigning and fetching feature names works", {
   correct.feature.data <- read_spp(spp.file)
   
   # Test assigning feature names
-  correct.feature.names <- c("Koala", "Masked owl", "Powerful owl", 
-                             "Tiger quoll", "Sooty owl", "Squirrel glider",
-                             "Yellow-bellied glider")
+  correct.feature.names <- c("Koala", "Masked.owl", "Powerful.owl", 
+                             "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
+                             "Yellow-bellied.glider")
   featurenames(results.variant) <- correct.feature.names
   expect_identical(correct.feature.names, featurenames(results.variant),
                    "Test variant feature names not what they're supposed to")
+  
+  # Check for valid names
+  invalid.feature.names <- correct.feature.names
+  # Inroduce a duplicate name
+  invalid.feature.names[2] <- "Koala"
+  expect_error(featurenames(results.variant) <- invalid.feature.names)
   
   # Check that the values match, first patch the spp data with the names
   correct.feature.data$name <- correct.feature.names
