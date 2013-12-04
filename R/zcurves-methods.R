@@ -27,7 +27,7 @@
 #' @export
 #' @docType methods
 #' @rdname Zcurves-methods
-#' @aliases plot,Zcurves,missing-method
+#' @aliases plot,Zcurves,ANY-method
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #'  
