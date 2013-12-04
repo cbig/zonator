@@ -2,8 +2,6 @@
 \name{featurenames<-}
 \alias{curves}
 \alias{curves,Zvariant-method}
-\alias{featurenames}
-\alias{featurenames,Zvariant-method}
 \alias{featurenames<-}
 \alias{groupnames}
 \alias{groupnames,Zvariant-method}
@@ -17,6 +15,8 @@
 \alias{performance,Zvariant-method}
 \alias{plot}
 \alias{plot,Zvariant,missing-method}
+\alias{plot_curves}
+\alias{plot_curves,Zresults,missing-method}
 \alias{results}
 \alias{results,Zvariant-method}
 \alias{sppdata}
@@ -31,7 +31,7 @@
 
   \item{x}{Zvariant object.}
 
-  \item{x}{named character vector.}
+  \item{value}{named character vector.}
 
   \item{x}{Zvariant object.}
 
@@ -75,8 +75,6 @@
   A named character vector containing the feature names. If
   there are no groups, return NA.
 
-  Character vector of spp feature names.
-
   A numeric vector containing the groups. If there are no
   groups, return NA.
 
@@ -106,9 +104,6 @@
 \description{
   This is a replacement function for variant spp feature
   names.
-
-  Get spp feature names for a class \code{Zvariant}
-  instance.
 
   If the particular variant doesn't use groups or doesn't
   have them assigned, return NA. Note that here 'groups'
@@ -172,14 +167,9 @@
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
   \code{\link{Zvariant-class}} \code{\link{featurenames}}
-
-  \code{\link{Zvariant-class}} \code{\link{groupnames}}
-  \code{\link{groups}}
 
   \code{\link{Zvariant-class}}
 
