@@ -11,32 +11,6 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' Get curves data of a given \code{Zresults} object.
-#' 
-#' pr_lost is always included in the returned data, but other columns can be 
-#' specified using \code{cols} argument.
-#' 
-#' @param x \code{Zresults} object.
-#' @param cols numeric or character vector of columns to be returned 
-#' @param groups logical indicating whether group curves data should be 
-#' returned.
-#'
-#' @return Data frame containing the (selected) curves file data. If column 
-#' names are provided, but none are found, return NA.
-#' 
-#' @seealso \code{\link{Zresults-class}} \code{\link{read_curves}} 
-#' \code{\link{read_grp_curves}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname zvariant-methods
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("curves", function(x, cols=NULL, groups=FALSE) {
-  standardGeneric("curves")
-})
-
 #' @rdname zvariant-methods
 #' @aliases curves,Zvariant-method
 #' 
@@ -123,34 +97,6 @@ setMethod("featurenames", signature(x="Zresults"), function(x) {
   return(names(x@curves)[8:ncol(x@curves)])
 })
 
-#' Get performance levels either for features or groups from a \code{Zresults} 
-#' object.
-#' 
-#' @param x \code{Zresults} object.
-#' @param pr.lost numeric vector containing the fractions of landscape lost
-#' for which the feature/group performance values are wanted (default: 'all').
-#' @param features character vector of features names to be extracted. Must 
-#' match with feature names in curves data
-#' @param groups logical indicating whether group curves data should be 
-#' used (default: FALSE).
-#'
-#' @return Data frame containing the curves file data for selected fractions
-#' of landscape lost. First column is pr_lost. If feature names are provided and 
-#' none are viable, return NA.
-#' 
-#' @seealso \code{\link{Zresults-class}} \code{\link{read_curves}} 
-#' \code{\link{read_grp_curves}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname zvariant-methods
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE) {
-  standardGeneric("performance")
-})
-
 #' @rdname zvariant-methods
 #' @aliases performance,Zvariant-method
 #' 
@@ -176,30 +122,6 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   
   return(perf.data)
   
-})
-
-#' Plot Zonation performance curves.
-#' 
-#' @param x Zresults object.
-#' @param ... Additional arguments passed on to the speficic plotting 
-#'   functions.
-#'   
-#' @return ggplot2 object
-#' 
-#' @seealso \code{\link{Zvariant-class}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname Zresults-methods
-#' @aliases plot_curves,Zresults,missing-method
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("plot_curves", function(x, groups=FALSE, min=FALSE, mean=FALSE, 
-                                   w.mean=FALSE, 
-                                   features=NULL, monochrome=FALSE, 
-                                   invert.x=FALSE, ...) {
-  standardGeneric("plot_curves")
 })
 
 #' @rdname zvariant-methods
