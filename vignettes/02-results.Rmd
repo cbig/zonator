@@ -9,10 +9,9 @@ options(width=160)
 
 ## Exploring results
 
-Each variant can either already have results (i.e. Zonation run has completed) 
-or then not. This can be determined by using method `has_results()`.
+First, let's set up the scene.
 
-```{r has-results, message=FALSE}
+```{r setup-objects, message=FALSE}
 library(zonator)
 
 # Start by creating a project using the tutorial data
@@ -22,6 +21,19 @@ tutorial.project <- create_zproject(setup.dir)
 # Get a specific variant
 variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
 
+# Let's also rename the features and groups while we're at it
+featurenames(variant.caz) <- c("Koala", "Masked.owl", "Powerful.owl", 
+                             "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
+                             "Yellow-bellied.glider")
+labels <- c("mammals", "owls")
+names(labels) <- c(1, 2)
+groupnames(variant.caz) <- labels
+```
+
+Each variant can either already have results (i.e. Zonation run has completed) 
+or then not. This can be determined by using method `has_results()`.
+
+```{r has-results, message=FALSE}
 has_results(variant.caz)
 ```
 
@@ -54,11 +66,16 @@ are named according to feature names in the `Zvariant` object these results
 were deirved from. Thus whatever names you assigned to features prior to 
 extracting the results will be also seen here.
 
-Let's see  what the group curves data
-looks like:
+Let's see  what the group curves data looks like:
 
 ```{r grp-curves}
-# Get feature-specific curves
+# Get group-specific curves
 feature.grp.curves <- curves(results.caz, groups=TRUE)
 head(feature.grp.curves)
+```
+
+Performance data (curves) can also be easily plotted, feature- or group-wise.
+
+```{r curves-plotting}
+
 ```

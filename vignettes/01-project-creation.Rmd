@@ -90,12 +90,13 @@ featurenames(variant.caz)
 ```
 
 The generated names are not necessarily very informative and can be changed to
-new values:
+new values. Rememeber that the names need to be valid data frame column names
+(zontor will try to fix these even if you don't).
 
 ```{r sppdata-names-1}
-featurenames(variant.caz) <- c("Koala", "Masked owl", "Powerful owl", 
-                             "Tiger quoll", "Sooty owl", "Squirrel glider",
-                             "Yellow-bellied glider")
+featurenames(variant.caz) <- c("Koala", "Masked.owl", "Powerful.owl", 
+                             "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
+                             "Yellow-bellied.glider")
 featurenames(variant.caz)
 # Or all the spp data
 sppdata(variant.caz)
