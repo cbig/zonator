@@ -26,6 +26,7 @@
 #'  \describe{
 #'    \item{\code{groups}:}{Logical indicating if the curves information is
 #'    from groups.}
+#'  }
 #'
 #' @name Zcurves
 #' @docType class

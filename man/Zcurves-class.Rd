@@ -14,7 +14,7 @@
 }
 \section{Slots}{
   \describe{ \item{\code{groups}:}{Logical indicating if
-  the curves information is from groups.}
+  the curves information is from groups.} }
 }
 \author{
   Joona Lehtomaki <joona.lehtomaki@gmail.com>
