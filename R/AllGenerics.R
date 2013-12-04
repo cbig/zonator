@@ -13,7 +13,6 @@
 
 # curves ------------------------------------------------------------------
 
-#' @name curves
 #' Get curves data of a given \code{Zresults} object.
 #' 
 #' pr_lost is always included in the returned data, but other columns can be 
@@ -32,7 +31,7 @@
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -42,7 +41,6 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE) {
 
 # featurenames ------------------------------------------------------------
 
-#' @name featurenames
 #' Get spp feature names for a class \code{Zvariant} instance.
 #'
 #' @param x Zvariant object.
@@ -64,7 +62,6 @@ setGeneric("featurenames", function(x) {
 
 # featurenames<- ----------------------------------------------------------
 
-#' @name "featurenames<-"
 #' Assign spp feature names to a class \code{Zvariant} instance.
 #' 
 #' This is a replacement function for variant spp feature names.
@@ -81,7 +78,7 @@ setGeneric("featurenames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -91,7 +88,6 @@ setGeneric("featurenames<-", function(x, value) {
 
 # get_variant -------------------------------------------------------------
 
-#' @name get_variant
 #' Get a specified variant in a Zonation project
 #'
 #' @param x Zproject object.
@@ -104,7 +100,7 @@ setGeneric("featurenames<-", function(x, value) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zproject-methods
+#' @rdname Zproject-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -114,7 +110,6 @@ setGeneric("get_variant", function(x, index) {
 
 # groups ------------------------------------------------------------------
 
-#' @name groups
 #' Get group codes of a class \code{Zvariant} instance.
 #' 
 #' If the particular variant doesn't use groups or doesn't have them assigned, 
@@ -130,7 +125,7 @@ setGeneric("get_variant", function(x, index) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -140,7 +135,6 @@ setGeneric("groups", function(x) {
 
 # groupnames --------------------------------------------------------------
 
-#' @name groupnames
 #' Get group names for a class \code{Zvariant} instance.
 #'
 #' @param x Zvariant object.
@@ -153,7 +147,7 @@ setGeneric("groups", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -163,7 +157,6 @@ setGeneric("groupnames", function(x) {
 
 # groupnames<- ------------------------------------------------------------
 
-#' @name "groupnames<-"
 #' Assign group names to a class \code{Zvariant} instance.
 #' 
 #' This is a replacement function for variant group names. If the particular 
@@ -180,7 +173,7 @@ setGeneric("groupnames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -190,7 +183,6 @@ setGeneric("groupnames<-", function(x, value) {
 
 # has_results -------------------------------------------------------------
 
-#' @name has_results
 #' Check if an instance of (class \code{Zvariant}) has results.
 #' 
 #' If the results are availbale (i.e. variants have been run) then the variant
@@ -204,7 +196,7 @@ setGeneric("groupnames<-", function(x, value) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -214,7 +206,6 @@ setGeneric("has_results", function(x) {
 
 # nvariants ---------------------------------------------------------------
 
-#' @name nvariants
 #' Get the number of variants included in a Zonation project
 #'
 #' @param x Zproject object.
@@ -225,7 +216,7 @@ setGeneric("has_results", function(x) {
 #'
 #' @export
 #' @docType methods
-#' @rdname zproject-methods
+#' @rdname Zproject-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #'
@@ -235,7 +226,6 @@ setGeneric("nvariants", function(x) {
 
 # opendir -----------------------------------------------------------------
 
-#' @name opendir
 #' Open the directory of a Zproject using the system file browser.
 #' 
 #' Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE).
@@ -248,7 +238,7 @@ setGeneric("nvariants", function(x) {
 #'
 #' @export
 #' @docType methods
-#' @rdname zproject-methods
+#' @rdname Zproject-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -258,7 +248,6 @@ setGeneric("opendir", function(object) {
 
 # performance -------------------------------------------------------------
 
-#' @name performance
 #' Get performance levels either for features or groups from a \code{Zresults} 
 #' object.
 #' 
@@ -279,7 +268,7 @@ setGeneric("opendir", function(object) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zresults-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -289,7 +278,6 @@ setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE) {
 
 # plot_curves -------------------------------------------------------------
 
-#' @name plot_curves
 #' Plot Zonation performance curves.
 #' 
 #' @param x Zresults object.
@@ -316,7 +304,6 @@ setGeneric("plot_curves", function(x, groups=FALSE, min=FALSE, mean=FALSE,
 
 # results -----------------------------------------------------------------
 
-#' @name results
 #' Getter method for results (\code{Zresults}) in a class 
 #' \code{Zvariant} object.
 #' 
@@ -331,7 +318,7 @@ setGeneric("plot_curves", function(x, groups=FALSE, min=FALSE, mean=FALSE,
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -341,7 +328,6 @@ setGeneric("results", function(x) {
 
 # sppdata -----------------------------------------------------------------
 
-#' @name sppdata
 #' Simple getter mehtod for spp data in a class \code{Zvariant}object.
 #' 
 #' Method will also return group column with spp data if it exists. 
@@ -356,7 +342,7 @@ setGeneric("results", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 

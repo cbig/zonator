@@ -11,8 +11,8 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' @rdname zvariant-methods
-#' @aliases curves,Zvariant-method
+#' @rdname Zresults-methods
+#' @aliases curves,Zresults-method
 #' 
 setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
     
@@ -97,8 +97,8 @@ setMethod("featurenames", signature(x="Zresults"), function(x) {
   return(names(x@curves)[8:ncol(x@curves)])
 })
 
-#' @rdname zvariant-methods
-#' @aliases performance,Zvariant-method
+#' @rdname Zresults-methods
+#' @aliases performance,Zresults-method
 #' 
 setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
                                                  groups=FALSE) {
@@ -124,7 +124,7 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   
 })
 
-#' @rdname zvariant-methods
+#' @rdname Zvariant-methods
 #' @aliases plot_curves,Zresults,missing-method
 #'
 setMethod("plot_curves", signature("Zresults"), 
