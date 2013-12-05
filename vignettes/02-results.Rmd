@@ -51,31 +51,47 @@ results.caz <- results(variant.caz)
 
 Raw curves data (with or without groups) can be extracted from results using 
 `curves()`. Optional argument `groups` defines whether feature or group specific
-curves are returned.
+curves are returned. If you don't need every feature or aggregate statistic,
+you can also get the data for particular features.
 
 
 ```{r curves}
 # Get feature-specific curves
 feature.curves <- curves(results.caz)
 head(feature.curves)
+
+# Get just 2 species
+duo.curves <- curves(results.caz, cols=c("Koala", "Tiger.quoll"))
+head(duo.curves)
 ```
 
-Columns are exaclty the same as in Zonation curves output file, except that 
-column names have shortened a little. Note also that the actual feature columns
-are named according to feature names in the `Zvariant` object these results 
-were deirved from. Thus whatever names you assigned to features prior to 
-extracting the results will be also seen here.
+Columns are exaclty the same as in Zonation curves output file. Note also that 
+the actual feature columns are named according to feature names in the 
+`Zvariant` object these results were derived from. Thus whatever names you 
+assigned to features prior to extracting the results will be also seen here.
 
-Let's see  what the group curves data looks like:
+Let's see  what the group curves data looks like as a whole or for individual 
+groups:
 
 ```{r grp-curves}
 # Get group-specific curves
 feature.grp.curves <- curves(results.caz, groups=TRUE)
 head(feature.grp.curves)
+
+# Get all the aggregate stats for owls
+owls.grp.curves <- curves(results.caz, groups=TRUE, 
+                          cols=c("min.owls", "mean.owls", "max.owls",
+                                 "w.mean.owls", "ext2.owls"))
+head(owls.grp.curves)
 ```
+
+
+
+### Plotting performance curves
 
 Performance data (curves) can also be easily plotted, feature- or group-wise.
 
-```{r curves-plotting}
-
+```{r curves-plotting, fig.width=10}
+plot(feature.curves, invert.x=TRUE, main="All features")
+plot(duo.curves, invert.x=TRUE, main="Just few features")
 ```

@@ -10,8 +10,8 @@
 \alias{groups,Zvariant-method}
 \alias{has_results}
 \alias{has_results,Zvariant-method}
-\alias{plot_curves}
-\alias{plot_curves,Zresults,missing-method}
+\alias{plot}
+\alias{plot_curves,Zcurves,missing-method}
 \alias{results}
 \alias{results,Zvariant-method}
 \alias{sppdata}
