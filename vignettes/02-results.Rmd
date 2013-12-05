@@ -85,7 +85,31 @@ owls.grp.curves <- curves(results.caz, groups=TRUE,
 head(owls.grp.curves)
 ```
 
+Often a particular range of cell removal process is more interesting than the 
+whole range. `curves()` has arguments `lost.lower` and `lost.upper` to define 
+a specific range:
 
+```{r curves-range}
+
+# Get performance values for 2 species for a range between 60% and 75% of 
+# landscape lost 
+duo.curves.range <- curves(results.caz, cols=c("Koala", "Tiger.quoll"),
+                           lost.lower=0.6, lost.upper=0.75)
+head(duo.curves.range)
+tail(duo.curves.range)
+```
+
+Sometimes you might also be interested in performance values of features at 
+specific levels of landscape protection. For example, how much of the original
+occurence levels are remaining when 25%, 50%, and 75% of landscape is lost.
+Method `performance()` can give you exactly this information.
+
+```{r perfomance}
+# Define the levels of landscape lost
+lost.levels <- c(0.25, 0.50, 0.75)
+# Notice that performance operates with Zresults-object
+performance(results.caz, lost.levels)
+```
 
 ### Plotting performance curves
 
