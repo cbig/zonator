@@ -13,7 +13,7 @@
 
 # curves ------------------------------------------------------------------
 
-#' Get curves data of a given \code{Zresults} object.
+#' Get curves data of a Z* object.
 #' 
 #' pr_lost is always included in the returned data, but other columns can be 
 #' specified using \code{cols} argument.
@@ -294,32 +294,6 @@ setGeneric("opendir", function(object) {
 #' 
 setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE) {
   standardGeneric("performance")
-})
-
-# plot_curves -------------------------------------------------------------
-
-#' Plot Zonation performance curves.
-#' 
-#' @param x Zresults object.
-#' @param ... Additional arguments passed on to the speficic plotting 
-#'   functions.
-#'   
-#' @return ggplot2 object
-#' 
-#' @seealso \code{\link{Zvariant-class}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname Zresults-methods
-#' @aliases plot_curves,Zresults,missing-method
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("plot_curves", function(x, groups=FALSE, min=FALSE, mean=FALSE, 
-                                   w.mean=FALSE, 
-                                   features=NULL, monochrome=FALSE, 
-                                   invert.x=FALSE, ...) {
-  standardGeneric("plot_curves")
 })
 
 # results -----------------------------------------------------------------
