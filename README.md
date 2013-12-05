@@ -21,7 +21,7 @@ of running a Zonation analysis.
 
 ## Installing
 
-1. Make sure you have package `devtools` installed:  
+1. Make sure you have package `devtools` installed and loaded in R:  
 ```
 install.packages("devtools")
 ```  
