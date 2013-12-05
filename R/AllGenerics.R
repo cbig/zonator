@@ -31,7 +31,7 @@
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname curves-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -41,20 +41,40 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE) {
 
 # featurenames ------------------------------------------------------------
 
-#' Get spp feature names for a class \code{Zvariant} instance.
+#' Feature names a for Zonation variant.
 #'
-#' @param x Zvariant object.
+#' Getter function to retrieve names for analysis features used a given 
+#' Zonation variant.
+#'
+#' Argument \code{x} can be an instanve of one the following Z* classes:
+#' \itemize{
+#'   \item{\code{Zvariant}}
+#'   \item{\code{Zresults}}
+#' }
+#' @param x Z* object.
 #'
 #' @return Character vector of spp feature names. 
 #' 
-#' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
-#'          \code{\link{groups}} 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{Zresults-class}} 
+#'          \code{\link{groupnames}} \code{\link{groups}} 
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname featurenames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+#' @examples
+#' setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
+#' tutorial.project <- create_zproject(setup.dir)
+#' variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+#' 
+#' # Feature names for a Zvariant object
+#' featurenames(variant.caz)
+#' 
+#' # Feature names for a Zresults object
+#' results.caz <- results(variant.caz)
+#' featurenames(results.caz)
 #' 
 setGeneric("featurenames", function(x) {
   standardGeneric("featurenames")

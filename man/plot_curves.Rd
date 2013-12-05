@@ -29,9 +29,6 @@
   printed from 1 ("feature remaining", \code{FALSE}) or 0
   ("landscape under protection", \code{TRUE}).}
 
-  \item{labels}{character vector for custom feature
-  labels.}
-
   \item{...}{Additional arguments passed on to
   \code{\link{plot}}.}
 }

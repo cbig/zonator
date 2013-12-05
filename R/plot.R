@@ -97,7 +97,6 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' @param invert.x Boolean indicating if the X-axis is printed from 
 #'   1 ("feature remaining", \code{FALSE}) or 0 
 #'   ("landscape under protection", \code{TRUE}).  
-#' @param labels character vector for custom feature labels.
 #' @param ... Additional arguments passed on to \code{\link{plot}}.
 #' 
 #' @seealso \code{\link{read_curves}} and \code{\link{plot_grp_curves}}

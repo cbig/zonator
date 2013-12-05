@@ -1,9 +1,5 @@
 \docType{methods}
 \name{performance}
-\alias{curves}
-\alias{curves,Zresults-method}
-\alias{featurenames}
-\alias{featurenames,Zresults-method}
 \alias{performance}
 \alias{performance,Zresults-method}
 \alias{plot_curves}
