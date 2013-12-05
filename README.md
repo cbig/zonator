@@ -19,8 +19,6 @@ of running a Zonation analysis.
 1. Running Zonation.
 1. Post-processing (task such as results analysis and comparison, plotting etc).
 
-For more detailed examples, see the [wiki](https://github.com/jlehtoma/zonator/wiki).
-
 ## Installing
 
 1. Make sure you have package `devtools` installed:  
@@ -30,7 +28,7 @@ install.packages("devtools")
 
 2. Then install `zonator` directly from GitHub:  
 ```
-install_github("zonator", "jlehtoma")
+install_github("zonator", "cbig")
 ```  
 
 ## Developers
