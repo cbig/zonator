@@ -18,7 +18,14 @@
 #' pr_lost is always included in the returned data, but other columns can be 
 #' specified using \code{cols} argument.
 #' 
-#' @param x \code{Zresults} object.
+#' Arguments \code{upper} and \code{lower} can be used to define a specific 
+#' range of pr_lost to be returned.
+#' 
+#' @param x Z* object.
+#' @param lost.upper numeric defining the upper limit of pr_lost to be included
+#' [0.01, 1.0] (default: 1.0)
+#' @param lost.lower numeric defining the lower limit of pr_lost to be included
+#' [0.0, 0.99] (default: 0.0)
 #' @param cols numeric or character vector of columns to be returned 
 #' @param groups logical indicating whether group curves data should be 
 #' returned.
@@ -35,7 +42,8 @@
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("curves", function(x, cols=NULL, groups=FALSE) {
+setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0, 
+                              lost.upper=1.0) {
   standardGeneric("curves")
 })
 

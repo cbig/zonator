@@ -77,6 +77,44 @@ test_that("getting curves for individual features works", {
                                            cols=c(2, 4, 8, 10, 11, 200)),
                   "Method curves doesn't return right data with indexes"))
   
+  # Test for a given range
+  correct.selected.curves <- correct.curves[which(correct.curves$pr_lost <= 0.1),]
+  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
+                                 groups=FALSE,
+                                 is.feature=c(rep(FALSE, 7), rep(TRUE, ncol(correct.curves) - 7)))
+  expect_identical(correct.selected.curves, 
+                   curves(test.results, lost.upper=0.1),
+                   "Method curves doesn't return right data with pr_lost <= 0.1")
+  
+  # Test for a given range
+  correct.selected.curves <- correct.curves[which(correct.curves$pr_lost >= 0.1),]
+  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
+                                 groups=FALSE,
+                                 is.feature=c(rep(FALSE, 7), rep(TRUE, ncol(correct.curves) - 7)))
+  
+  expect_identical(correct.selected.curves, 
+                   curves(test.results, lost.lower=0.1),
+                   "Method curves doesn't return right data with pr_lost >= 0.1")
+  
+  correct.selected.curves <- correct.curves[which(correct.curves$pr_lost >= 0.1 & correct.curves$pr_lost <= 0.4),]
+  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
+                                 groups=FALSE,
+                                 is.feature=c(rep(FALSE, 7), rep(TRUE, ncol(correct.curves) - 7)))
+  
+  expect_identical(correct.selected.curves, 
+                   curves(test.results, lost.lower=0.1, lost.upper=0.4),
+                   "Method curves doesn't return right data with 0.1 <= pr_lost <= 0.4")
+  
+  expect_error(curves(test.results, lost.lower=0.4, lost.upper=0.1),
+               info="curves() should throw error on invalid range")
+  expect_error(curves(test.results, lost.lower=-0.1),
+               info="curves() should throw error on invalid lower range")
+  expect_error(curves(test.results, lost.lower=1.0),
+               info="curves() should throw error on invalid lower range")
+  expect_error(curves(test.results, lost.upper=1.1),
+               info="curves() should throw error on invalid upper range")
+  expect_error(curves(test.results, lost.upper=0.0),
+               info="curves() should throw error on invalid upper range")
 })
 
 test_that("getting curves for groups works", {
