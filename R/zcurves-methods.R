@@ -11,30 +11,101 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' Plot Zonation performance curves.
+#' @rdname curves-methods
+#' @aliases curves,Zcurves-method
 #' 
-#' Method itself is only a thin wrapper to functions 
-#' \code{\link{plot_curves}} and \code{\link{plot_grp_curves}}.
-#'
-#' @param x Zcurves object.
-#' @param ... Additional arguments passed on to the speficic plotting 
-#'   functions.
-#'   
-#' @return ggplot object
-#' 
-#' @seealso \code{\link{Zvariant-class}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname Zcurves-methods
-#' @aliases plot,Zcurves,ANY-method
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#'  
-setMethod("plot", signature(x="Zcurves", y="missing"), function(x, ...) {
-  if (x@groups) {
-    plot_grp_curves(x, ...)
+setMethod("curves", c("Zcurves"), function(x, cols=NULL) {
+  
+  if (is.null(cols)) {
+    curves.data <- x
   } else {
-    plot_curves(x, ...)
+    col.names <- names(x)
+
+    inds <- map_indexes(cols, col.names)
+    
+    # Return NA if no inds are found
+    if (length(inds) == 0) {
+      return(NA)
+    }
+    
+    # pr_lost (index = 1) is always included
+    if (! 1 %in% inds) {
+      inds <- c(1, inds)
+    }
+    
+    curves.data <- x[inds]
+
+    row.names(curves.data) <- 1:nrow(curves.data)
   }
+  return(curves.data)
+})
+
+#' @rdname featurenames-methods
+#' @aliases featurenames,Zcurves-method
+#' 
+setMethod("featurenames", signature("Zcurves"), function(x) {
+  return(names(x)[8:ncol(x)])
+})
+
+#' @rdname Zvariant-methods
+#' @aliases plot_curves,Zcurves,missing,logical-method
+#'
+setMethod("plot", signature(x="Zcurves", y="missing"), 
+          function(x, groups=FALSE,  min=FALSE, mean=FALSE, w.mean=FALSE, 
+                   features=NULL, monochrome=FALSE, invert.x=FALSE, main="",
+                   ...)  {
+  if (groups) {
+    print("foo")
+  } else {
+    
+    # If no features are provided, get them all
+    if (length(features) == 0) {
+      features <- featurenames(x)
+    }
+    
+    # NOTE! Order matters here.
+    if (w.mean) {
+      extras <- c("w_pr", features)
+    }
+    if (mean) {
+      extras <- c("ave_pr", features)
+    }
+    if (min) {
+      features <- c("min_pr", features)
+    }
+    
+    curves.data <- curves(x, cols=features)
+  }
+  
+  x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
+                 measure.vars=2:ncol(curves.data))
+  
+  p <- ggplot(x.melt, aes(x=pr_lost, y=value, group=variable))
+  p <- p + geom_line(aes(colour = variable), size=1.0)
+  
+  if (monochrome) {
+    p <- p + theme_bw() + 
+      scale_colour_grey(name=.options$curve.legend.title)
+    
+  } else {
+    p <- p + scale_colour_brewer(name=.options$curve.legend.title,
+                                 palette="Set1")
+  }
+  
+  x.scale <- seq(0, 1, 0.2)
+  y.scale <- seq(0, 1, 0.2)
+  
+  if (invert.x) {
+    p <- p + xlab(.options$curve.x.title.invert) + 
+             ylab(.options$curve.y.title) +
+             scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
+             scale_y_continuous(breaks=y.scale, labels=y.scale)
+  } else {
+    p <- p + xlab(.options$curve.x.title) + ylab(.options$curve.y.title)
+  }
+  
+  p <- p  + ggtitle(main)
+  p <- p + .options$curve.theme
+  
+  return(p)
 })
