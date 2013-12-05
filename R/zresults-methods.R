@@ -14,7 +14,19 @@
 #' @rdname curves-methods
 #' @aliases curves,Zresults-method
 #' 
-setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
+setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE,
+                                            lost.lower=0.0, lost.upper=1.0) {
+  
+  # Check the lower and upper limits for pr_lost
+  if (lost.lower < 0 | lost.lower > 0.99) {
+    stop("lost.lower must a numeric value between [0.0, 0.99]")
+  }
+  if (lost.upper > 1.0 | lost.upper < 0.01) {
+    stop("lost.upper must a numeric value between [0.01, 1.0]")
+  }
+  if (lost.upper <= lost.lower) {
+    stop("lost.upper must always be greater than lost.lower")
+  }
   
   if (is.null(cols)) {
     # No specific columns selected, return everything
@@ -23,6 +35,8 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
     } else {
       curves.data <- x@curves
     }
+    row.inds <- which(curves.data$pr_lost >= lost.lower & curves.data$pr_lost <= lost.upper)
+    curves.data <- curves.data[row.inds,]
     curves.data <- new("Zcurves", curves.data, groups=groups)
   } else {
     # All col names in the curves/group curves data
@@ -48,6 +62,8 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
     } else {
       curves.data <- x@curves[inds]
     }
+    row.inds <- which(curves.data$pr_lost >= lost.lower & curves.data$pr_lost <= lost.upper)
+    curves.data <- curves.data[row.inds,]
     row.names(curves.data) <- 1:nrow(curves.data)
     curves.data <- new("Zcurves", curves.data, groups=groups)
     # Update also feature identifier
