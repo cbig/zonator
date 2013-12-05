@@ -14,44 +14,7 @@
 #' @rdname curves-methods
 #' @aliases curves,Zresults-method
 #' 
-setMethod("curves", c("Zresults"), 
-          function(x, cols=NULL, groups=FALSE) {
-    
-  # Helper function to decide whether given names in indexes exist. Returns 
-  # a vector of indexes if names/indexes are actually found.
-  .check.names <- function(selected.names, actual.names) {
-    if (is.character(selected.names)) {
-      if (!all(selected.names %in% actual.names)){
-        warning(paste("Column names", 
-                      paste(selected.names[!selected.names %in% actual.names], 
-                                            collapse=", "), 
-                      "not found in curves header"))
-        selected.names <- selected.names[selected.names %in% actual.names]
-        if (length(selected.names) == 0) {
-          return(NULL)
-        } 
-      }
-      inds <- sapply(selected.names, function(y) {which(y == actual.names)})
-    } else if (is.numeric(selected.names)) {
-      inds <- selected.names
-      if (any(selected.names < 1)) {
-        warning(paste("Column indexes", 
-                      paste(selected.names[which(selected.names < 1)], 
-                                              collapse=", "), 
-                      "smaller than 1"))
-        inds <- selected.names[which(selected.names >= 1)]
-      }
-      ncols <- length(actual.names)
-      if (any(selected.names > ncols)) {
-        warning(paste("Column indexes", 
-                      paste(selected.names[which(selected.names > ncols)], 
-                            collapse=", "), 
-                      "greater than ncol"))
-        inds <- selected.names[which(selected.names <= ncols)]
-      }
-    }
-    return(inds)
-  }
+setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
   
   if (is.null(cols)) {
     # No specific columns selected, return everything
@@ -67,7 +30,7 @@ setMethod("curves", c("Zresults"),
     } else {
       col.names <- names(x@curves)
     }
-    inds <- .check.names(cols, col.names)
+    inds <- map_indexes(cols, col.names)
     
     # Return NA if no inds are found
     if (length(inds) == 0) {
@@ -86,9 +49,7 @@ setMethod("curves", c("Zresults"),
     }
     row.names(curves.data) <- 1:nrow(curves.data)
   }
-  
   return(curves.data)
-  
 })
 
 #' @rdname featurenames-methods
@@ -123,52 +84,4 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   
   return(perf.data)
   
-})
-
-#' @rdname Zvariant-methods
-#' @aliases plot_curves,Zresults,missing-method
-#'
-setMethod("plot_curves", signature("Zresults"), 
-          function(x, groups=FALSE, min=FALSE, mean=FALSE, w.mean=FALSE, 
-                   features=NULL, 
-                   monochrome=FALSE, invert.x=FALSE, ...)  {
-  if (groups) {
-    print("foo")
-  } else {
-    
-    # If no features are provided, get them all
-    if (length(features) == 0) {
-      features <- featurenames(x)
-    }
-    
-    # NOTE! Order matters here.
-    if (w.mean) {
-      extras <- c("w_pr", features)
-    }
-    if (mean) {
-      extras <- c("ave_pr", features)
-    }
-    if (min) {
-      features <- c("min_pr", features)
-    }
-    
-    curves.data <- curves(x, cols=features)
-  }
-  
-  x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
-                 measure.vars=2:ncol(curves.data))
-  
-  p <- ggplot(x.melt, aes(x=pr_lost, y=value, group=variable))
-  p <- p + geom_line(aes(colour = variable), size=1.0)
-  
-  if (monochrome) {
-    p <- p + theme_bw() + 
-      scale_colour_grey(name=.options[["curve.legend.title"]])
-    
-  } else {
-    p <- p + scale_colour_brewer(name=.options[["curve.legend.title"]],
-                                 palette="Set1", labels=labels)
-  }
-  
-  return(p)
 })
