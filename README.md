@@ -31,6 +31,15 @@ install.packages("devtools")
 install_github("zonator", "cbig")
 ```  
 
+## Examples
+
+Some examples are provided by the package vignettes. You can view these after installing the package by:
+
+```
+vignette("01-project-creation")
+vignette("02-results")
+```
+
 ## Developers
 
 * Joona Lehtomäki <joona.lehtomaki@gmail.com>
