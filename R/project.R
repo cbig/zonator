@@ -44,8 +44,7 @@
 #'       
 #'   }
 #'
-create_zproject <- function(root, variants, dat.from=NULL, 
-                            spp.from=NULL) {
+create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL) {
  if (!file.exists(root)) {
     # Create the new location
     dir.create(root)
