@@ -268,8 +268,14 @@ setGeneric("opendir", function(object) {
 
 # performance -------------------------------------------------------------
 
-#' Get performance levels either for features or groups from a \code{Zresults} 
-#' object.
+#' Get performance levels.
+#' 
+#' Method returns performance levels at specified levels of cell removal for 
+#' particular features (either for individual features or groups from a 
+#' \code{Zresults} object). 
+#' 
+#' @note In the current implementation, only average performance levels for 
+#' groups are returned.
 #' 
 #' @param x \code{Zresults} object.
 #' @param pr.lost numeric vector containing the fractions of landscape lost

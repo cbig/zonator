@@ -36,6 +36,9 @@ setMethod("curves", c("Zcurves"), function(x, cols=NULL) {
     curves.data <- x[inds]
 
     row.names(curves.data) <- 1:nrow(curves.data)
+    curves.data <- new("Zcurves", curves.data, groups=x@groups)
+    # Update also feature identifier
+    curves.data@is.feature <- x@is.feature[inds]
   }
   return(curves.data)
 })
@@ -44,7 +47,7 @@ setMethod("curves", c("Zcurves"), function(x, cols=NULL) {
 #' @aliases featurenames,Zcurves-method
 #' 
 setMethod("featurenames", signature("Zcurves"), function(x) {
-  return(names(x)[8:ncol(x)])
+  return(names(x)[x@is.feature])
 })
 
 #' @rdname Zvariant-methods
@@ -73,12 +76,13 @@ setMethod("plot", signature(x="Zcurves", y="missing"),
     if (min) {
       features <- c("min_pr", features)
     }
-    
     curves.data <- curves(x, cols=features)
   }
   
-  x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
-                 measure.vars=2:ncol(curves.data))
+  # Melt will give a warning here:
+  # Setting class(x) to NULL;   result will no longer be an S4 objec
+  suppressWarnings(x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
+                                  measure.vars=2:ncol(curves.data)))
   
   p <- ggplot(x.melt, aes(x=pr_lost, y=value, group=variable))
   p <- p + geom_line(aes(colour = variable), size=1.0)

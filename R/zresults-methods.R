@@ -23,6 +23,7 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
     } else {
       curves.data <- x@curves
     }
+    curves.data <- new("Zcurves", curves.data, groups=groups)
   } else {
     # All col names in the curves/group curves data
     if (groups) {
@@ -48,6 +49,9 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
       curves.data <- x@curves[inds]
     }
     row.names(curves.data) <- 1:nrow(curves.data)
+    curves.data <- new("Zcurves", curves.data, groups=groups)
+    # Update also feature identifier
+    curves.data@is.feature <- x@curves@is.feature[inds]
   }
   return(curves.data)
 })
@@ -56,7 +60,7 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
 #' @aliases featurenames,Zresults-method
 #' 
 setMethod("featurenames", signature("Zresults"), function(x) {
-  return(names(x@curves)[8:ncol(x@curves)])
+  return(names(x@curves)[x@curves@is.feature])
 })
 
 #' @rdname Zresults-methods
@@ -64,24 +68,33 @@ setMethod("featurenames", signature("Zresults"), function(x) {
 #' 
 setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
                                                  groups=FALSE) {
-
   if (any(pr.lost < 0 || pr.lost > 1.0)) {
     stop("Proportion landscape lost (pr.lost) values must be 0 < pr.lost < 1")
   }
-  perf.data <- curves(x, cols=features)
-  # curves() can return a NA if now features are found. If this happens, return
+  
+  # If groups are used, the names of the groups need to be patched because only
+  # mean values are needed
+  if (groups && !is.null(features)) {
+    features <- paste0("mean.", features)
+  }
+  
+  perf.data <- curves(x, cols=features, groups=groups)
+  # curves() can return a NA if no features are found. If this happens, return
   # NA as well
   if (length(perf.data) < 2) {
     return(NA)
   }
+  
+  # Which column index marks the start of the actual feature data
+  start <- ifelse(groups, 3, 8)
+  
   # [fix] - Ugly
   if (is.null(features)) {
-    perf.data <- perf.data[,c(1, 8:ncol(perf.data))]
+    perf.data <- perf.data[,c(1, start:ncol(perf.data))]
   }
   row.ids <- sapply(pr.lost, function(y) {which(perf.data$pr_lost >= y)[1]})
   perf.data <- perf.data[row.ids,]
   row.names(perf.data) <- 1:nrow(perf.data)
   
   return(perf.data)
-  
 })

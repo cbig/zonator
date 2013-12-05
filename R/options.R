@@ -16,10 +16,10 @@
 # Graphics options --------------------------------------------------------
 
 curve.theme <- theme(plot.title=element_text(face="bold", size=20),
-                     axis.title.x=element_text(size=24),
-                     axis.title.y=element_text(size=24),
-                     axis.text.x=element_text(size=20),
-                     axis.text.y=element_text(size=20),
+                     axis.title.x=element_text(size=20),
+                     axis.title.y=element_text(size=20),
+                     axis.text.x=element_text(size=18),
+                     axis.text.y=element_text(size=18),
                      axis.ticks = element_line(size = 1),
                      legend.text=element_text(size=14),
                      legend.title=element_text(size=16),

@@ -48,8 +48,11 @@ test_that("getting curves for individual features works", {
   
   # Only selected curves. These are cost, ave_pr, and feats 1, 3 and 4
   correct.selected.curves <- correct.curves[,c(1, 2, 4, 8, 10, 11)]
+  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
+                                 groups=FALSE,
+                                 is.feature=c(FALSE, FALSE, FALSE, 
+                                              TRUE, TRUE, TRUE))
   # Test with col names
-  #browser()
   expect_identical(correct.selected.curves, 
                    curves(test.results, cols=c("cost", "ave_pr", "f1",
                                                "f3", "f4")),
@@ -89,7 +92,12 @@ test_that("getting curves for groups works", {
                    "Method curves doesn't get he right group curves data")
   
   # Only selected curves. These are cost, ave_pr, and feats 1, 3 and 4
-  correct.selected.grp.curves <- correct.grp.curves[,c(1, 2, 4, 8, 10, 11)]
+  inds <- c(1, 2, 4, 8, 10, 11)
+  correct.selected.grp.curves <- correct.grp.curves[,inds]
+  correct.selected.grp.curves <- new("Zcurves", correct.selected.grp.curves, 
+                                     groups=TRUE,
+                                     is.feature=c(FALSE, FALSE, FALSE, 
+                                                  TRUE, TRUE, TRUE))
   # Test with col names
   expect_identical(correct.selected.grp.curves, 
                    curves(test.results, groups=TRUE,
@@ -120,7 +128,7 @@ test_that("getting curves for groups works", {
   
 })
 
-test_that("performance levels are reported right", {
+test_that("performance levels are reported right for individual features", {
   
   results.path <- file.path(.options$output.dir, "01_core_area_zonation")
   test.results <- new("Zresults", root=results.path)
@@ -142,63 +150,59 @@ test_that("performance levels are reported right", {
   expect_error(performance(test.results, pr.lost=1.1))
   
   # Get all features
-  expect_identical(levels.all, performance(test.results, pr.lost=breaks),
+  expect_equivalent(levels.all, performance(test.results, pr.lost=breaks),
                    "Method performance doesn't return levels right")
-  
   # Get levels for a specific feature/features
   levels.feat1 <- data.frame(pr_lost=levels.all$pr_lost, f1=levels.all$f1)
-  expect_identical(levels.feat1, performance(test.results, pr.lost=breaks,
+  expect_equivalent(levels.feat1, performance(test.results, pr.lost=breaks,
                                              features="f1"),
                    "Method performance doesn't return level for 1 feature right")
+  
   levels.feats1.5 <- data.frame(pr_lost=levels.all$pr_lost, f1=levels.all$f1,
                                 f5=levels.all$f5)
-  expect_identical(levels.feats1.5, performance(test.results, pr.lost=breaks,
+  expect_equivalent(levels.feats1.5, performance(test.results, pr.lost=breaks,
                                                 features=c("f1", "f5")),
                    "Method performance doesn't return levels for several features right")
+  
   # Test for invalid feature name
   expect_warning(performance(test.results, pr.lost=breaks, features="fX1"))
   suppressWarnings(expect_true(is.na(performance(test.results, pr.lost=breaks, 
                                                  features="fX1"))))
 })
 
-test_that("performance levels are reported right", {
+test_that("performance levels are reported right for groups", {
   
   results.path <- file.path(.options$output.dir, "01_core_area_zonation")
   test.results <- new("Zresults", root=results.path)
   
-  curves.file <- file.path(results.path, "01_core_area_zonation.curves.txt")
+  curves.file <- file.path(results.path, "01_core_area_zonation.grp_curves.txt")
   
-  correct.curves <- read_curves(curves.file)
+  correct.curves <- read_grp_curves(curves.file)
   
   # Test for individual feature for several thresholds
   # Get the right rows
   breaks <- c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
   row.ids <- sapply(breaks, function(x) {which(correct.curves$pr_lost >= x)[1]})
   
-  levels.all <- correct.curves[row.ids, c(1, 8:ncol(correct.curves))]
+  levels.all <- correct.curves[row.ids, c(1, 3:ncol(correct.curves))]
   row.names(levels.all) <- 1:nrow(levels.all)
   
-  # Don't allow values < 0 or > 1 for pr.lost
-  expect_error(performance(test.results, pr.lost=-0.1))
-  expect_error(performance(test.results, pr.lost=1.1))
-  
   # Get all features
-  expect_identical(levels.all, performance(test.results, pr.lost=breaks),
-                   "Method performance doesn't return levels right")
+  expect_equivalent(levels.all, performance(test.results, pr.lost=breaks, 
+                                           groups=TRUE),
+                   "Method performance doesn't return group levels right")
   
   # Get levels for a specific feature/features
-  levels.feat1 <- data.frame(pr_lost=levels.all$pr_lost, f1=levels.all$f1)
-  expect_identical(levels.feat1, performance(test.results, pr.lost=breaks,
-                                             features="f1"),
-                   "Method performance doesn't return level for 1 feature right")
-  levels.feats1.5 <- data.frame(pr_lost=levels.all$pr_lost, f1=levels.all$f1,
-                                f5=levels.all$f5)
-  expect_identical(levels.feats1.5, performance(test.results, pr.lost=breaks,
-                                                features=c("f1", "f5")),
-                   "Method performance doesn't return levels for several features right")
-  # Test for invalid feature name
-  expect_warning(performance(test.results, pr.lost=breaks, features="fX1"))
-  suppressWarnings(expect_true(is.na(performance(test.results, pr.lost=breaks, 
-                                                 features="fX1"))))
+  levels.grp1 <- data.frame(pr_lost=levels.all$pr_lost, mean.g1=levels.all$mean.g1)
+  expect_equivalent(levels.grp1, performance(test.results, pr.lost=breaks,
+                                             features="g1", groups=TRUE),
+                   "Method performance doesn't return level for 1 group right")
+  levels.grps1.2 <- data.frame(pr_lost=levels.all$pr_lost, 
+                               mean.g1=levels.all$mean.g1,
+                               mean.g2=levels.all$mean.g2)
+  expect_equivalent(levels.grps1.2, performance(test.results, pr.lost=breaks,
+                                               features=c("g1", "g2"), 
+                                               groups=TRUE),
+                   "Method performance doesn't return levels for several groups right")
 })
 
