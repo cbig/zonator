@@ -1,3 +1,19 @@
+## CHANGES IN VERSION 0.3.0 (2013-12-05)
+
+* Much of the internal functionality has been re-written
+* Documentation is improving, but still needs a lot of work
+
+### NEW FEATURES
+
+* New classes `Zresults` and `Zcurves`. See docs for methods and structure.
+
+* New methods for class `Zvariant`:
+  - `groupnames<-`: assign human readable group names
+  - `groupnames`: get assigned unique groupnames and codes
+  - `has_results`: returns TRUE/FALSE depending on whether the variant has 
+  results or not
+  - `results`: returns a `Zresults` object specific to a `Zvariant` object
+
 ## CHANGES IN VERSION 0.2.2 (2013-11-28)
 
 * Feature can be named for each variant and feature and group identities can
