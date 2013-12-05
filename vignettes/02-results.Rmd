@@ -109,6 +109,9 @@ Method `performance()` can give you exactly this information.
 lost.levels <- c(0.25, 0.50, 0.75)
 # Notice that performance operates with Zresults-object
 performance(results.caz, lost.levels)
+
+# Same can be done for groups
+performance(results.caz, lost.levels, groups=TRUE)
 ```
 
 ### Plotting performance curves
