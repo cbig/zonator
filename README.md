@@ -26,7 +26,7 @@ of running a Zonation analysis.
 install.packages("devtools")
 ```  
 
-2. Then install `zonator` directly from GitHub:  
+2. Then install `zonator` directly from GitHub (run the following line in R:  
 ```
 install_github("zonator", "cbig")
 ```  
