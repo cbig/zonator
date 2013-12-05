@@ -13,7 +13,7 @@
 
 #' @name featurenames<-
 #' @rdname Zvariant-methods
-#' @aliases groupnames<-,Zvariant-method
+#' @aliases groupnames<-,Zvariant,character-method
 #' 
 setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
   # Check names
@@ -38,10 +38,10 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
   return(x)
 })
 
-#' @rdname Zvariant-methods
+#' @rdname featurenames-methods
 #' @aliases featurenames,Zvariant-method
 #' 
-setMethod("featurenames", signature(x="Zvariant"), function(x) {
+setMethod("featurenames", signature("Zvariant"), function(x) {
   
   if (is.na(x@spp.data) || !"name" %in% names(x@spp.data)) {
     stop("No spp data found or it doesn't have 'name' columnd defined")

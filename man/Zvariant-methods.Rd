@@ -1,12 +1,10 @@
 \docType{methods}
-\name{curves}
-\alias{curves}
-\alias{featurenames}
-\alias{featurenames,Zvariant-method}
+\name{featurenames<-}
 \alias{featurenames<-}
 \alias{groupnames}
 \alias{groupnames,Zvariant-method}
 \alias{groupnames<-}
+\alias{groupnames<-,Zvariant,character-method}
 \alias{groupnames<-,Zvariant-method}
 \alias{groups}
 \alias{groups,Zvariant-method}
@@ -18,18 +16,8 @@
 \alias{results,Zvariant-method}
 \alias{sppdata}
 \alias{sppdata,Zvariant-method}
-\title{Get curves data of a given \code{Zresults} object.}
+\title{Assign spp feature names to a class \code{Zvariant} instance.}
 \arguments{
-  \item{x}{\code{Zresults} object.}
-
-  \item{cols}{numeric or character vector of columns to be
-  returned}
-
-  \item{groups}{logical indicating whether group curves
-  data should be returned.}
-
-  \item{x}{Zvariant object.}
-
   \item{x}{character vector. Can be named or not.}
 
   \item{x}{Zvariant object.}
@@ -51,11 +39,6 @@
   (default: FALSE)}
 }
 \value{
-  Data frame containing the (selected) curves file data. If
-  column names are provided, but none are found, return NA.
-
-  Character vector of spp feature names.
-
   A named character vector containing the feature names. If
   there are no groups, return NA.
 
@@ -76,13 +59,6 @@
   Data frame (object's spp.data)
 }
 \description{
-  pr_lost is always included in the returned data, but
-  other columns can be specified using \code{cols}
-  argument.
-
-  Get spp feature names for a class \code{Zvariant}
-  instance.
-
   This is a replacement function for variant spp feature
   names.
 
@@ -126,18 +102,8 @@
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
   Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-  \code{\link{Zresults-class}} \code{\link{read_curves}}
-  \code{\link{read_grp_curves}}
-
-  \code{\link{Zvariant-class}} \code{\link{groupnames}}
-  \code{\link{groups}}
-
   \code{\link{Zvariant-class}} \code{\link{featurenames}}
 
   \code{\link{Zvariant-class}}

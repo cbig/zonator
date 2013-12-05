@@ -11,10 +11,11 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' @rdname Zresults-methods
+#' @rdname curves-methods
 #' @aliases curves,Zresults-method
 #' 
-setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
+setMethod("curves", c("Zresults"), 
+          function(x, cols=NULL, groups=FALSE) {
     
   # Helper function to decide whether given names in indexes exist. Returns 
   # a vector of indexes if names/indexes are actually found.
@@ -90,10 +91,10 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE) {
   
 })
 
-#' @rdname Zresults-methods
+#' @rdname featurenames-methods
 #' @aliases featurenames,Zresults-method
 #' 
-setMethod("featurenames", signature(x="Zresults"), function(x) {
+setMethod("featurenames", signature("Zresults"), function(x) {
   return(names(x@curves)[8:ncol(x@curves)])
 })
 
