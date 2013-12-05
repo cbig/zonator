@@ -43,3 +43,26 @@ test_that("name checking works", {
                                 "check_names() does not deal with whitespace in correct way"))
   
 })
+
+test_that("index mapping works", {
+  
+  data(diamonds)
+  
+  correct.inds <- c(1, 3, 4, 6)
+  expect_equal(map_indexes(c("carat", "color", "clarity", "table"),
+                           names(diamonds)),
+               correct.inds,
+               "map_indexes() does not return the right index values with names")
+  
+  expect_warning(map_indexes(c("carat", "color", "clarity", "table", "XXX"),
+                             names(diamonds)),
+                 infor="map_indexes() does not warn about missing header name")
+  
+  suppressWarnings(expect_true(is.null(map_indexes(c("XXX"), names(diamonds))),
+              "map_indexes() does not return NULL when no names are found"))
+  
+  expect_equal(map_indexes(correct.inds,
+                           1:ncol(diamonds)),
+               correct.inds,
+               "map_indexes() does not return the right index values with indexes")
+  })

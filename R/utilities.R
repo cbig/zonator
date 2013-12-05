@@ -11,7 +11,6 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-
 #' A function check feature/group names.
 #' 
 #' Checks a vector of names only contains unique items and that the items are
@@ -118,6 +117,55 @@ line_as_numeric <- function(x) {
 
 line_as_string <- function(x) {
   return(unlist(strsplit(x, "\\s+")))
+}
+
+#' Map vector to actual column indexes.
+#' 
+#' Compare a vector of column names or indexes against another vector which is
+#' known to be true.
+#' 
+#' 
+#'
+#' @param x Character or numeric vector of possible matches.
+#' @param y Character or numeric vector of true values.
+#'
+#' \code{x} and \code{y} must be of the same length.
+#'
+#' @return A numeric vector of the same length of x and y containing matched
+#' column indexes.
+#'
+#' @keywords zonation, results
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @export
+#'
+
+map_indexes <- function(x, y) {
+  if (is.character(x)) {
+    if (!all(x %in% y)){
+      warning(paste("Column names", paste(x[!x %in% y], collapse=", "), 
+                    "not found in curves header"))
+      x <- x[x %in% y]
+      if (length(x) == 0) {
+        return(NULL)
+      } 
+    }
+    inds <- sapply(x, function(xx) {which(xx == y)})
+  } else if (is.numeric(x)) {
+    inds <- x
+    if (any(x < 1)) {
+      warning(paste("Column indexes", paste(x[which(x < 1)], collapse=", "), 
+                    "smaller than 1"))
+      inds <- x[which(x >= 1)]
+    }
+    ncols <- length(y)
+    if (any(x > ncols)) {
+      warning(paste("Column indexes", paste(x[which(x > ncols)], collapse=", "), 
+                    "greater than ncol"))
+      inds <- x[which(x <= ncols)]
+    }
+  }
+  return(as.numeric(inds))
 }
 
 #' Requires a given package and if not present installs and loads it.
