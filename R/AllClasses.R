@@ -94,7 +94,7 @@ check_results <- function(object) {
   
   errors <- character()
   warnings <- character()
-  
+
   if (!file.exists(object@root)) {
     msg <- paste0("Results root path ", object@root, " does not exist")
     errors <- c(errors, msg)
@@ -176,43 +176,40 @@ check_variant <- function(object) {
   # Check the batch file call parameters
   call.params <- object@call.params
   
-  if (is.null(check.path(call.params[["dat.file"]]))) {
-    msg <- paste0("dat-file ", call.params[["dat.file"]], " cannot be found")
+  if (is.null(check_path(call.params$dat.file))) {
+    msg <- paste0("dat-file ", call.params$dat.file, " cannot be found")
     errors <- c(errors, msg)
   }
   
-  if (is.null(check.path(call.params[["spp.file"]]))) {
-    msg <- paste0("spp-file ", call.params[["spp.file"]], " cannot be found")
+  if (is.null(check_path(call.params$spp.file))) {
+    msg <- paste0("spp-file ", call.params$spp.file, " cannot be found")
     errors <- c(errors, msg)
   }
   
-  if (is.null(check.path(call.params[["dat.file"]]))) {
-    msg <- paste0("dat-file ", call.params[["dat.file"]], " cannot be found")
+  if (is.null(check_path(call.params$dat.file))) {
+    msg <- paste0("dat-file ", call.params$dat.file, " cannot be found")
     errors <- c(errors, msg)
   }
+
+  # No need to check output folder as it can be created later. This simply 
+  # implies that results are not available.
   
-  if (is.null(check.path(call.params[["output.file"]]))) {
-    msg <- paste0("Output location ", call.params[["output.file"]], 
-                  " does not seem to exist.")
-    warnings <- c(warnings, msg)
-  }
-  
-  if (call.params[["uc.alpha"]] < 0) {
+  if (call.params$uc.alpha < 0) {
     # FIXME: is there an upper bound?
     msg <- paste0("Uncertainty parameter alpha cannot be negative: ", 
-                  call.params[["uc.alpha"]])
+                  call.params$uc.alpha)
     errors <- c(errors, msg)
   }
   
-  if (!call.params[["ds.switch"]] %in% c(0, 1)) {
+  if (!call.params$ds.switch %in% c(0, 1)) {
     msg <- paste0("Distribution smoothing switch must be 0 or 1: ", 
-                  call.params[["ds.switch"]])
+                  call.params$ds.switch)
     errors <- c(errors, msg)
   }
   
-  if (!call.params[["close.window"]] %in% c(0, 1)) {
+  if (!call.params$close.window %in% c(0, 1)) {
     msg <- paste0("Close window switch must be 0 or 1: ", 
-                  call.params[["close.window"]])
+                  call.params$close.window)
     errors <- c(errors, msg)
   }
   
