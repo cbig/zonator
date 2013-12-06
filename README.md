@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/jlehtoma/zonator.png)](https://travis-ci.org/jlehtoma/zonator)
-[![Stories in Ready](https://badge.waffle.io/jlehtoma/zonator.png?label=ready)](http://waffle.io/jlehtoma/zonator)
+[![Build Status](https://travis-ci.org/cbig/zonator.png)](https://travis-ci.org/cbig/zonator)
+[![Stories in Ready](https://badge.waffle.io/cbig/zonator.png?label=ready)](http://waffle.io/cbig/zonator)
 
 # zonator
 
@@ -21,15 +21,24 @@ of running a Zonation analysis.
 
 ## Installing
 
-1. Make sure you have package `devtools` installed:  
+1. Make sure you have package `devtools` installed and loaded in R:  
 ```
 install.packages("devtools")
 ```  
 
-2. Then install `zonator` directly from GitHub:  
+2. Then install `zonator` directly from GitHub by running the following line in R:  
 ```
 install_github("zonator", "cbig")
 ```  
+
+## Examples
+
+Some examples are provided by the package vignettes. You can view these after installing the package by:
+
+```
+vignette("01-project-creation")
+vignette("02-results")
+```
 
 ## Developers
 
