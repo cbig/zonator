@@ -33,7 +33,7 @@ setMethod("initialize", "Zproject", function(.Object, root) {
   variants <- list()
   
   # List all the bat-files
-  bat.files <- list.files(root, ".bat$", full.names=TRUE)
+  bat.files <- list.files(root, ".bat$", full.names=TRUE, recursive=TRUE)
   
   for (bat.file in bat.files) {
     variant <- new("Zvariant", bat.file=bat.file)
@@ -60,15 +60,15 @@ setMethod("initialize", "Zproject", function(.Object, root) {
 #' 
 setMethod("initialize", "Zresults", function(.Object, root) {
   
-  .Object@root = root
-  .Object@has.results = TRUE
-  
   # Find various result files from the root path which must exist
   if (!file.exists(root)) {
     warning("Results root path ", root, " does not exist")
     .Object@has.results = FALSE
     return(.Object)
   }
+  
+  .Object@root = root
+  .Object@has.results = TRUE
   
   # Helper function
   get_file <- function(output.folder, x) {
@@ -169,6 +169,8 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   call.params <- read_bat(bat.file)
   .Object@call.params <- call.params
   
+  f <- validObject(.Object)
+  
   # NOTE: dat-file and spp-file existence has already been checked by zvariant
   # initializer checker function
   
@@ -190,8 +192,9 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   if ("use_groups" %in% names(settings)) {
     if (settings$use_groups == 1) {
       if ("groups_file" %in% names(settings)) {
-        .Object@groups <- read_groups(file.path(dirname(bat.file), 
-                                                settings$groups_file))
+        groups.file <- check_path(settings$groups_file, dirname(bat.file),
+                                  require.file=TRUE)
+        .Object@groups <- read_groups(groups.file)
       }
     }
   }

@@ -70,7 +70,7 @@ test_that("Parsing an invalid groups file works", {
                              package="zonator")
   
   expect_error(groups.data <- read_groups(groups.file), 
-               "More or less than 5 columns in groups file, check the file")
+               info="Invalid groups file should throw an error")
   
 })
 

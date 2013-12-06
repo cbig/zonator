@@ -47,13 +47,15 @@ check_names <- function(x) {
 
 #' A function to deal with potentially relative paths.
 #' 
-#' Checks if a path can be resolved (i.e. whether it exists). A additional
+#' Checks if a path can be resolved (i.e. whether it exists). An additional
 #' parameter \code{parent.path} can be provided, in which case \code{x} is 
 #' appended to it and the concatenated path is checked for existence. If the 
 #' path cannot be resolved, raise an error.
 #'
 #' @param x Character string path.
 #' @param parent.path Character string root path.
+#' @param require.file Logical indicating if a file is required for return or
+#' if an existing parent folder is enough
 #'
 #' @return A cleaned character string
 #' 
@@ -65,10 +67,24 @@ check_names <- function(x) {
 #'       
 #'   }
 #'  
-check_path <- function(x, parent.path=NULL) {
+check_path <- function(x, parent.path=NULL, require.file=FALSE) {
   
   # Check and replace path separators
-  x <- gsub("\\\\", "/", x)
+  x <- normalizePath(x, mustWork=FALSE)
+
+  # Deal with potentially relative paths in x. Note that if there is no 
+  # parent.path relative paths do not make any difference.
+  if (grepl("\\.{2}/", x) && !is.null(parent.path)) {
+    match <- gregexpr("\\.{2}/", x)[[1]]
+    # How many '../' token are there in x?
+    dot.tokens <- length(attr(match, "match.length"))
+    # Get rid of the tokens
+    x <- gsub("\\.{2}/", "", x)
+    # Break the parent path to elements
+    dir.elements <- unlist(strsplit(parent.path, .Platform$file.sep))
+    parent.path <- paste(dir.elements[1:(length(dir.elements)-dot.tokens)], 
+                         collapse=.Platform$file.sep)
+  }
   
   # Is x valid file path on its own?
   if (file.exists(x)) {
@@ -80,14 +96,14 @@ check_path <- function(x, parent.path=NULL) {
       return(path)
     } else {
       # Is the parent path at least valid?
-      if (file.exists(parent.path)) {
+      if (file.exists(parent.path) && !require.file) {
         return(parent.path)
       } else {
-        return(NULL)
+        stop("Path ", x, parent.path, " cannot be resolved.")
       }
     }
   } else {
-    stop("Path cannot be resolved.")
+    stop("Path ", x, parent.path, " cannot be resolved.")
   }
 }
 

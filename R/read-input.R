@@ -82,16 +82,15 @@ read_groups <- function(infile) {
   }
   
   groups.data <- tryCatch({
-    dat <- read.table(infile, as.is=TRUE, colClasses=rep("numeric", 5))
-  },
-                       error=function(cond) {
-                         message(paste("groups file doesn't seem to contain anything:", infile))
-                         return(data.frame())
-                       }
-  )
+    read.table(infile, as.is=TRUE, colClasses=rep("numeric", 5))
+  }, error=function(cond) {
+    message(paste("groups file doesn't seem to contain anything:", infile))
+    return(data.frame())
+  })
   
-  if (base::ncol(dat) != 5) {
-    stop("More or less than 5 columns in groups file, check the file")
+  if (base::ncol(groups.data) != 5) {
+    stop("More or less than 5 columns in groups file, check the file:",
+            infile)
   }
     
   if (any(dim(groups.data) != c(0, 0))) {
@@ -123,7 +122,7 @@ read_ini <- function(infile) {
     # Backward slash will cause problems as well
     lines <- chartr("\\", "/", lines)
     # If relative paths are used, replace ".." with the absolute path
-    lines <- gsub("\\.\\.", dirname(infile), lines)
+    #lines <- gsub("\\.\\.", dirname(infile), lines)
     
     connection <- textConnection(lines)
     d <- read.table(connection, as.is = TRUE, sep = "=", fill = TRUE)

@@ -66,3 +66,44 @@ test_that("index mapping works", {
                correct.inds,
                "map_indexes() does not return the right index values with indexes")
   })
+
+test_that("path checking works", {
+  # This file will actually exist
+  path1 <- tempfile(fileext = ".txt")
+  path2 <- tempfile(fileext = ".txt")
+  file.name1 <- basename(path1)
+  file.name2 <- basename(path2)
+  dir.name1 <- dirname(path1)
+  dir.name2 <- paste0(dirname(path2), "fhasjkldfhlru")
+  # Create only the first file path
+  file.create(path1)
+  
+  expect_equal(path1, check_path(path1),
+               "check_path() does not return a valid path with full path")
+  expect_equal(path1, check_path(file.name1, dir.name1),
+               "check_path() does not return a valid path with valid file and dir names")
+  expect_equal(dir.name1, check_path(file.name2, dir.name1),
+               "check_path() does not return only valid parent dir")
+  
+  expect_error(check_path(file.name1),
+               info="check_path() should throw error if only file name is provided")
+  expect_error(check_path(file.name2, dir.name2),
+               info="check_path() should throw error if missing file and dir names are provided")
+  
+  # Test relative path normalization
+  # This dir doesn't actually exist
+  deep.dir <- file.path(dir.name1, "kfsjlkdfjl", "adfhjklf")
+  rel.file <- file.path("..", "..", file.name1)
+  
+  expect_equal(path1, check_path(rel.file, deep.dir),
+               "check_path() does not normalize relative path correctly")
+  
+  deep.dir2 <- file.path(dir.name1, "kfsjlkdfjl")
+  rel.file2 <- file.path("..", file.name1)
+  
+  expect_equal(path1, check_path(rel.file2, deep.dir2),
+               "check_path() does not normalize relative path correctly")
+  
+  unlink(path1)
+  unlink(path2)
+})
