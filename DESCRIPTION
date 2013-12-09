@@ -9,7 +9,7 @@ License: FreeBSD
 Maintainer: Joona Lehtomaki <joona.lehtomaki@gmail.com>
 Description: More about what it does (maybe more than one line)
 Depends:
-    R (>= 3.0.1),
+    R (>= 2.15.2),
     ggplot2,
     plyr,
     raster,
