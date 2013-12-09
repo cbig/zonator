@@ -1,3 +1,13 @@
+## CHANGES IN VERSION 0.3.1 (2013-12-06)
+
+### BUG FIXES
+
+* `check_paths` now deals correctly with relative path componentss 
+
+### NEW FEATURES
+
+* bat-files are read recursively when creating a project (~~[issue20](https://github.com/cbig/zonator/issues/20)~~)
+
 ## CHANGES IN VERSION 0.3.0 (2013-12-05)
 
 * Much of the internal functionality has been re-written
