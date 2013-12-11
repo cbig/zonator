@@ -11,3 +11,4 @@ vignettes/*.html
 vignettes/*.md
 vignettes/figure/*
 zonator.Rproj
+_site/
