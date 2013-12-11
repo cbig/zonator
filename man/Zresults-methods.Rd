@@ -2,8 +2,13 @@
 \name{performance}
 \alias{performance}
 \alias{performance,Zresults-method}
-\title{Get performance levels either for features or groups from a \code{Zresults}
-object.}
+\title{Get performance levels.}
+\usage{
+performance(x, pr.lost, features = "all", groups = FALSE)
+
+\S4method{performance}{Zresults}(x, pr.lost, features = NULL,
+  groups = FALSE)
+}
 \arguments{
   \item{x}{\code{Zresults} object.}
 
@@ -18,20 +23,24 @@ object.}
   data should be used (default: FALSE).}
 }
 \value{
-  Data frame containing the curves file data for selected
-  fractions of landscape lost. First column is pr_lost. If
-  feature names are provided and none are viable, return
-  NA.
+Data frame containing the curves file data for selected
+fractions of landscape lost. First column is pr_lost. If
+feature names are provided and none are viable, return NA.
 }
 \description{
-  Get performance levels either for features or groups from
-  a \code{Zresults} object.
+Method returns performance levels at specified levels of
+cell removal for particular features (either for individual
+features or groups from a \code{Zresults} object).
+}
+\note{
+In the current implementation, only average performance
+levels for groups are returned.
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-  \code{\link{Zresults-class}} \code{\link{read_curves}}
-  \code{\link{read_grp_curves}}
+\code{\link{Zresults-class}} \code{\link{read_curves}}
+\code{\link{read_grp_curves}}
 }
 

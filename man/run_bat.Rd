@@ -2,7 +2,7 @@
 \alias{run_bat}
 \title{Try to run a given batch (bat) files.}
 \usage{
-  run_bat(bat.file, exe = "zig3")
+run_bat(bat.file, exe = "zig3")
 }
 \arguments{
   \item{bat.file}{Character string path to a Zonation batch
@@ -12,11 +12,11 @@
   Zonation executable (default: zig3).}
 }
 \value{
-  A logical indicating whether running the batch file was
-  successful.
+A logical indicating whether running the batch file was
+successful.
 }
 \description{
-  Try to run a given batch (bat) files.
+Try to run a given batch (bat) files.
 }
 \examples{
 \dontrun{
@@ -24,6 +24,6 @@
 }
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 

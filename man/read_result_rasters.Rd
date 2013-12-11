@@ -2,7 +2,7 @@
 \alias{read_result_rasters}
 \title{Read Zonation-specific raster result files.}
 \usage{
-  read_result_rasters(rasters, path = NULL, format = NULL)
+read_result_rasters(rasters, path = NULL, format = NULL)
 }
 \arguments{
   \item{rasters}{Character vector of raster names.}
@@ -14,16 +14,15 @@
   format used (i.e. the file extension).}
 }
 \value{
-  A \code{\link[raster:BasicRaster-class]{RasterStack}}
-  object of result rasters.
+A \code{\link[raster:BasicRaster-class]{RasterStack}}
+object of result rasters.
 }
 \description{
-  Input rasters are given as raster names (i.e. without the
-  raster file extension). Additional root (folder) path and
-  file extension can be provided to construct the full
-  paths.
+Input rasters are given as raster names (i.e. without the
+raster file extension). Additional root (folder) path and
+file extension can be provided to construct the full paths.
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 

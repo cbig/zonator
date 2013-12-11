@@ -2,15 +2,15 @@
 \alias{get_tutorialdir}
 \title{Get the directory of Zonation tutorial.}
 \usage{
-  get_tutorialdir()
+get_tutorialdir()
 }
 \value{
-  path Character path to Zonation tutorial directory.
+path Character path to Zonation tutorial directory.
 }
 \description{
-  Get the directory of Zonation tutorial.
+Get the directory of Zonation tutorial.
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 

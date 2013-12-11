@@ -3,7 +3,7 @@
 \title{Parse the content of a Zonation batch (bat) file and make OS specific
 adjustments if needed.}
 \usage{
-  parse_bat(bat.file, exe = NULL)
+parse_bat(bat.file, exe = NULL)
 }
 \arguments{
   \item{bat.file}{Character string path to a Zonation batch
@@ -13,14 +13,13 @@ adjustments if needed.}
   executable specified in the bat-file.}
 }
 \value{
-  A character string command sequence suitable for
-  execution.
+A character string command sequence suitable for execution.
 }
 \description{
-  The main issues faced between differerent platforms are
-  the name of the executable, ways of calling it, and path
-  separators. Relative file paths need to be expanded into
-  full absolute paths.
+The main issues faced between differerent platforms are the
+name of the executable, ways of calling it, and path
+separators. Relative file paths need to be expanded into
+full absolute paths.
 }
 \examples{
 \dontrun{
@@ -28,6 +27,6 @@ adjustments if needed.}
 }
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 
