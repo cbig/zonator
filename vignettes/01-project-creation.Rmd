@@ -35,7 +35,7 @@ for (bat.file in bat.files) {
 You can create a new zonator project based on existing results by doing the 
 following:
 
-```{r creat-zproject}
+```{r creat-zproject, message=FALSE}
 tutorial.project <- create_zproject(setup.dir)
 ```
 
