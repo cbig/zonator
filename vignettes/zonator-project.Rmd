@@ -7,7 +7,7 @@
 options(width=120)
 ```
 
-## Create `zonator` project based on existing data
+## Create zonator project based on existing data
 
 The following examples will use 
 [the basic Zonation tutorial data](https://github.com/cbig/zonation-tutorial/tree/master/basic)
