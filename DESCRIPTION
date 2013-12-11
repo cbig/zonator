@@ -22,23 +22,3 @@ Imports:
     methods
 BugReports: https://github.com/jlehtoma/zonator/issues
 VignetteBuilder: knitr
-Collate:
-    'AllClasses.R'
-    'AllGenerics.R'
-    'options.R'
-    'zonator-internal.R'
-    'comparison.R'
-    'plot.R'
-    'read-output-raster.R'
-    'write-input.R'
-    'utilities.R'
-    'curves.R'
-    'ppa.R'
-    'read-input.R'
-    'zonation.R'
-    'initialize-methods.R'
-    'zproject-methods.R'
-    'zvariant-methods.R'
-    'project.R'
-    'zresults-methods.R'
-    'zcurves-methods.R'
