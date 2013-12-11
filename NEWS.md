@@ -1,12 +1,15 @@
-## CHANGES IN VERSION 0.3.1 (2013-12-06)
-
-### BUG FIXES
-
-* `check_paths` now deals correctly with relative path componentss 
+## CHANGES IN VERSION 0.3.1 (2013-12-11)
 
 ### NEW FEATURES
 
 * bat-files are read recursively when creating a project (~~[issue20](https://github.com/cbig/zonator/issues/20)~~)
+* `check_paths` now deals with relative path components 
+* `has_results` now returns a list of logicals instead of a single logical
+
+* New methods for class `Zresults`:
+  - `has_results`: returns a list of TRUE/FALSE depending on whether the 
+  particular results items (curves, grp.curves, rank, wrscr, prop) are available
+  or not
 
 ## CHANGES IN VERSION 0.3.0 (2013-12-05)
 
