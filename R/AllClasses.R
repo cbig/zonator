@@ -129,7 +129,6 @@ check_results <- function(object) {
 #'    \item{\code{rank}:}{RasterLayer object of rank priority.}
 #'    \item{\code{wrscr}:}{RasterLayer object of weighted range-size corrected richness.}
 #'    \item{\code{prop}:}{RasterLayer object of the proportional loss of distribution.}
-#'    \item{\code{has.results}:}{Logical indicating if all the results are there.}
 #'  }
 #'
 #' @name Zresults
@@ -145,8 +144,7 @@ setClass("Zresults", representation(root = "character",
                                     grp.curves = "data.frame",
                                     rank = "RasterLayer", 
                                     wrscr = "RasterLayer",
-                                    prop = "RasterLayer",
-                                    has.results = "logical"),
+                                    prop = "RasterLayer"),
          validity = check_results)
 
 # Zonation variant ------------------------------------------------------------

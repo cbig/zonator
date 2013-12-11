@@ -25,7 +25,7 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
   }
   x@spp.data$name <- value
   # Also deal with the resuts data if available
-  if (has_results(x)) {
+  if (has_results(x)$curves) {
     results.feat.names <- names(x@results@curves)[8:length(x@results@curves)]
     if (length(value) != length(results.feat.names)) {
       stop(paste0("Character vector length (", length(value), " and object results ",
@@ -99,7 +99,7 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   inds <- sapply(group.codes, function(y) {which(keys == y)})
   # Index the value vector
   x@groups$name <- value[inds]
-  if (has_results(x)) {
+  if (has_results(x)$grp.curves) {
     results.grp.names <- names(x@results@grp.curves)[3:length(x@results@grp.curves)]
     
     # Each group has 5 columns
@@ -122,23 +122,20 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   return(x)
 })
 
-#' @rdname Zvariant-methods
+#' @rdname has_results-methods
 #' @aliases has_results,Zvariant-method
 #' 
 setMethod("has_results", "Zvariant", function(x) {
-  # [fix] - Should there be any results even if some are missing?
-  if (x@results@has.results) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  return(has_results(x@results))
 })
 
 #' @rdname Zvariant-methods
 #' @aliases results,Zvariant-method
 #' 
 setMethod("results", c("Zvariant"), function(x) {
-  if (has_results(x)) {
+  res <-  unlist(has_results(x))
+  # Return results whenever there is at least 1 result item available
+  if (any(res)) {
     return(x@results)
   } else {
     warning("Variant doesn't have results")

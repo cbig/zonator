@@ -21,8 +21,8 @@ test_that("Zvariant with results is created correctly", {
                     results.variant@bat.file))
   
   # Results
-  expect_true(has_results(results.variant), 
-              "Test variant doesn't have results although it should")
+  expect_true(all(unlist(has_results(results.variant))), 
+              "Test variant doesn't have all results although it should")
   
   # spp-data
   expect_true(.hasSlot(results.variant, "spp.data"),
@@ -44,7 +44,8 @@ test_that("Zvariant without results is created correctly", {
                                            bat.file=no.results.bat.file))
   
   # Groups
-  expect_false(has_results(no.results.variant),
+  res <-unlist(has_results(no.results.variant))
+  expect_false(all(res),
                "Test variant should not have results")
   expect_true(is.na(groups(no.results.variant)),
                "Test variant should not have groups")

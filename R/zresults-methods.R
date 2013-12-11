@@ -79,6 +79,23 @@ setMethod("featurenames", signature("Zresults"), function(x) {
   return(names(x@curves)[x@curves@is.feature])
 })
 
+#' @rdname has_results-methods
+#' @aliases has_results,Zvariant-method
+#' 
+setMethod("has_results", "Zresults", function(x) {
+  
+  res <- list()
+  
+  # Construct results diagnostics based on slot content
+  res$curves <- (!length(x@curves) == 0)
+  res$grp.curves <- (!length(x@grp.curves) == 0)
+  res$rank <- hasValues(x@rank)
+  res$wrscr <- hasValues(x@wrscr)
+  res$prop <- hasValues(x@prop)
+  
+  return(res)
+})
+
 #' @rdname Zresults-methods
 #' @aliases performance,Zresults-method
 #' 

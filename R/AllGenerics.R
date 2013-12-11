@@ -211,14 +211,36 @@ setGeneric("groupnames<-", function(x, value) {
 
 # has_results -------------------------------------------------------------
 
-#' Check if an instance of (class \code{Zvariant}) has results.
+#' Check which (if any) results an instance of (class \code{Zvariant}) has.
 #' 
 #' If the results are availbale (i.e. variants have been run) then the variant
-#' should have a list object containing the results.
+#' should have a list object containing the results. 
+#' 
+#' The value returned is a list of logical where key of each element corresponds
+#' to a specific type of results. E.g.
+#' 
+#' $curves
+#' [1] FALSE
+#' 
+#' $grp.curves
+#' [1] FALSE
+#' 
+#' $rank
+#' [1] FALSE
+#' 
+#' $rank
+#' [1] FALSE
+#' 
+#' $wrscr
+#' [1] FALSE
+#' 
+#' $prop
+#' [1] FALSE
+#' 
 #'
 #' @param x Zvariant object.
 #'
-#' @return boolean value
+#' @return list of logical values
 #' 
 #' @seealso \code{\link{Zvariant-class}}
 #' 
@@ -318,9 +340,11 @@ setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE) {
 #' Since not all changes to Zvariant are reflected to its Zresults (e.g. feature
 #' and group names) there may quite a lot runtime patching going on.
 #' 
+#' Results are returned even if only part of them are available. 
+#' 
 #' @param x Zvariant object.
 #'
-#' @return Zresults object. If variant doesn't have results return NA.
+#' @return Zresults object. If variant doesn't have any results return NA.
 #' 
 #' @seealso \code{\link{Zresults-class}}
 #' 
