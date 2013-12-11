@@ -7,5 +7,7 @@ NEWS.html
 README.html
 inst/
 stash/
-vignettes/
+vignettes/*.html
+vignettes/*.md
+vignettes/figure/*
 zonator.Rproj
