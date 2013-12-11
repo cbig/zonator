@@ -1,0 +1,11 @@
+.RData
+.Rbuildignore
+.Rhistory
+.Rproj.user/
+.directory
+NEWS.html
+README.html
+inst/
+stash/
+vignettes/
+zonator.Rproj
