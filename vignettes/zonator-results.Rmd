@@ -31,9 +31,10 @@ groupnames(variant.caz) <- labels
 ```
 
 Each variant can either already have results (i.e. Zonation run has completed) 
-or then not. This can be determined by using method `has_results()`.
+or then not. Which results exactly are available can be determined by using 
+method `has_results()`.
 
-```{r has-results, message=FALSE}
+```{r has-results, message=FALSE} 
 has_results(variant.caz)
 ```
 
