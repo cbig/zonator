@@ -2,9 +2,8 @@
 \alias{plot_hist}
 \title{Create a ggplot2 histogram of a \code{RasterLayer}.}
 \usage{
-  plot_hist(x, mask.obj = NULL, add.mean = FALSE,
-    add.median = FALSE, save.dir = "", binwidth = 0.05,
-    title = NULL)
+plot_hist(x, mask.obj = NULL, add.mean = FALSE, add.median = FALSE,
+  save.dir = "", binwidth = 0.05, title = NULL)
 }
 \arguments{
   \item{x}{\code{RasterLayer} object containing the spatial
@@ -29,15 +28,15 @@
   \item{title}{Character string title of the plot.}
 }
 \value{
-  a \code{ggplot} object containing the plot.
+a \code{ggplot} object containing the plot.
 }
 \description{
-  Create a ggplot2 histogram of a \code{RasterLayer}.
+Create a ggplot2 histogram of a \code{RasterLayer}.
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-  \code{\link{geom_bar}}.
+\code{\link{geom_bar}}.
 }
 

@@ -2,9 +2,8 @@
 \alias{plot_grp_curves}
 \title{Plot Zonation grouped performance curves.}
 \usage{
-  plot_grp_curves(x, statistic = "mean", groups = NULL,
-    monochrome = FALSE, main = NULL, invert.x = FALSE,
-    labels = NULL, ...)
+plot_grp_curves(x, statistic = "mean", groups = NULL, monochrome = FALSE,
+  main = NULL, invert.x = FALSE, labels = NULL, ...)
 }
 \arguments{
   \item{x}{data frame containing Zonation's performance
@@ -34,12 +33,12 @@
   \code{\link{plot}}.}
 }
 \description{
-  Plot Zonation grouped performance curves.
+Plot Zonation grouped performance curves.
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-  \code{\link{read_curves}} and \code{\link{plot_curves}}.
+\code{\link{read_curves}} and \code{\link{plot_curves}}.
 }
 

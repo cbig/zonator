@@ -1,16 +1,17 @@
+\docType{class}
 \name{Zvariant}
 \alias{Zvariant}
 \alias{Zvariant-class}
 \title{The Zvariant class}
 \description{
-  \code{Zvariant} class represents a Zonation analysis
-  variant with the associated parameters.
+\code{Zvariant} class represents a Zonation analysis
+variant with the associated parameters.
 }
 \details{
-  Currently \code{Zvariant} must be instantiated based on
-  an existing Zonation batch file. If the variant has been
-  run, then the results are also associated with the
-  instance of \code{Zvariant-class}.
+Currently \code{Zvariant} must be instantiated based on an
+existing Zonation batch file. If the variant has been run,
+then the results are also associated with the instance of
+\code{Zvariant-class}.
 }
 \section{Slots}{
   \describe{ \item{\code{name}:}{Character string name of
@@ -22,6 +23,6 @@
   frames).} }
 }
 \author{
-  Joona Lehtomaki <joona.lehtomaki@gmail.com>
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 

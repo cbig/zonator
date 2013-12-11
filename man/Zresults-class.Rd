@@ -1,16 +1,16 @@
+\docType{class}
 \name{Zresults}
 \alias{Zresults}
 \alias{Zresults-class}
 \title{The Zresults class}
 \description{
-  \code{Zresults} class represents a full set of Zonation
-  results associated with a single variant (instance of
-  class
-  \code{\link[zonator:Zvariant-class]{Zvariant-class}}).
+\code{Zresults} class represents a full set of Zonation
+results associated with a single variant (instance of class
+\code{\link[zonator:Zvariant-class]{Zvariant-class}}).
 }
 \note{
-  In the current implementation all the results must be
-  found. Otherwise none are recorder.
+In the current implementation all the results must be
+found. Otherwise none are recorder.
 }
 \section{Slots}{
   \describe{ \item{\code{parent}:}{\code{Zvariant} object
@@ -32,6 +32,6 @@
   results are there.} }
 }
 \author{
-  Joona Lehtomaki <joona.lehtomaki@gmail.com>
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 

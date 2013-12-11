@@ -2,7 +2,7 @@
 \alias{require_package}
 \title{Requires a given package and if not present installs and loads it.}
 \usage{
-  require_package(package, ...)
+require_package(package, ...)
 }
 \arguments{
   \item{package}{Character name of a package.}
@@ -11,10 +11,10 @@
   \code{\link{install.packages}}.}
 }
 \description{
-  Requires a given package and if not present installs and
-  loads it.
+Requires a given package and if not present installs and
+loads it.
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 

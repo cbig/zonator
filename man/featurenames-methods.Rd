@@ -1,23 +1,33 @@
 \docType{methods}
 \name{featurenames}
 \alias{featurenames}
+\alias{featurenames,Zcurves-method}
 \alias{featurenames,Zresults-method}
 \alias{featurenames,Zvariant-method}
 \title{Feature names a for Zonation variant.}
+\usage{
+featurenames(x)
+
+\S4method{featurenames}{Zcurves}(x)
+
+\S4method{featurenames}{Zresults}(x)
+
+\S4method{featurenames}{Zvariant}(x)
+}
 \arguments{
   \item{x}{Z* object.}
 }
 \value{
-  Character vector of spp feature names.
+Character vector of spp feature names.
 }
 \description{
-  Getter function to retrieve names for analysis features
-  used a given Zonation variant.
+Getter function to retrieve names for analysis features
+used a given Zonation variant.
 }
 \details{
-  Argument \code{x} can be an instanve of one the following
-  Z* classes: \itemize{ \item{\code{Zvariant}}
-  \item{\code{Zresults}} }
+Argument \code{x} can be an instanve of one the following
+Z* classes: \itemize{ \item{\code{Zvariant}}
+\item{\code{Zresults}} }
 }
 \examples{
 setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
@@ -32,10 +42,10 @@ results.caz <- results(variant.caz)
 featurenames(results.caz)
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-  \code{\link{Zvariant-class}} \code{\link{Zresults-class}}
-  \code{\link{groupnames}} \code{\link{groups}}
+\code{\link{Zvariant-class}} \code{\link{Zresults-class}}
+\code{\link{groupnames}} \code{\link{groups}}
 }
 

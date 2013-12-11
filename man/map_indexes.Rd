@@ -1,0 +1,28 @@
+\name{map_indexes}
+\alias{map_indexes}
+\title{Map vector to actual column indexes.}
+\usage{
+map_indexes(x, y)
+}
+\arguments{
+  \item{x}{Character or numeric vector of possible
+  matches.}
+
+  \item{y}{Character or numeric vector of true values.
+
+  \code{x} and \code{y} must be of the same length.}
+}
+\value{
+A numeric vector of the same length of x and y containing
+matched column indexes.
+}
+\description{
+Compare a vector of column names or indexes against another
+vector which is known to be true.
+}
+\author{
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
+\keyword{results}
+\keyword{zonation,}
+

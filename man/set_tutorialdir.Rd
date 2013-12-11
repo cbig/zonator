@@ -3,16 +3,16 @@
 \title{Set the package options to point to a correct location of the Zonation
 tutorial}
 \usage{
-  set_tutorialdir(x)
+set_tutorialdir(x)
 }
 \arguments{
   \item{x}{Character string directory path.}
 }
 \description{
-  Set the package options to point to a correct location of
-  the Zonation tutorial
+Set the package options to point to a correct location of
+the Zonation tutorial
 }
 \author{
-  Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 
