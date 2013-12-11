@@ -60,15 +60,15 @@ setMethod("initialize", "Zproject", function(.Object, root) {
 #' 
 setMethod("initialize", "Zresults", function(.Object, root) {
   
+  result.list <- list()
+  
   # Find various result files from the root path which must exist
   if (!file.exists(root)) {
     warning("Results root path ", root, " does not exist")
-    .Object@has.results = FALSE
     return(.Object)
   }
   
   .Object@root = root
-  .Object@has.results = TRUE
   
   # Helper function
   get_file <- function(output.folder, x) {
@@ -94,40 +94,30 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   # Curves file is named *.curves.txt. NOTE: if the file does not exist,
   # returns NA.
   curve.file <- get_file(root, "\\.curves\\.txt")
-  if (is.na(curve.file)) {
-    .Object@has.results = FALSE
-  } else {
+  if (!is.na(curve.file)) {
     .Object@curves <- read_curves(curve.file)
   }
     
   # Group curves file is named *.grp_curves.txt. NOTE: if the file does not 
   # exist, returns NA.
   grp.curve.file <- get_file(root, "\\.grp_curves\\.txt")
-  if (is.na(grp.curve.file)) {
-    .Object@has.results = FALSE
-  } else {
+  if (!is.na(grp.curve.file)) {
     .Object@grp.curves <- read_grp_curves(grp.curve.file)
   }
     
   # Rank raster file is named *.rank.*
   rank.raster.file <- get_file(root, "\\.rank\\.")
-  if (is.na(rank.raster.file)) {
-    .Object@has.results = FALSE
-  } else {
+  if (!is.na(rank.raster.file)) {
     .Object@rank <- raster(rank.raster.file)  
   }
   
   wrscr.raster.file <- get_file(root, "\\.wrscr\\.")
-  if (is.na(wrscr.raster.file)) {
-    .Object@has.results = FALSE
-  } else {
+  if (!is.na(wrscr.raster.file)) {
     .Object@wrscr <- raster(wrscr.raster.file)  
   }
   
   prop.raster.file <- get_file(root, "\\.prop\\.")
-  if (is.na(prop.raster.file)) {
-    .Object@has.results = FALSE
-  } else {
+  if (!is.na(prop.raster.file)) {
     .Object@prop <- raster(prop.raster.file)  
   }
   
