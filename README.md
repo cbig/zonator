@@ -19,10 +19,11 @@ of running a Zonation analysis.
 1. Running Zonation.
 1. Post-processing (task such as results analysis and comparison, plotting etc).
 
-## Installing
+## Installation
 
 1. Make sure you have package `devtools` installed and loaded in R:  
 ```
+# Open R prompt or RStudio and type the following on the command line
 install.packages("devtools")
 ```  
 
@@ -36,8 +37,8 @@ install_github("zonator", "cbig")
 Some examples are provided by the package vignettes. You can view these after installing the package by:
 
 ```
-vignette("01-project-creation")
-vignette("02-results")
+vignette("zonator-project")
+vignette("zonator-results")
 ```
 
 ## Developers
