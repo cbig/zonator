@@ -49,12 +49,12 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0,
 
 # featurenames ------------------------------------------------------------
 
-#' Feature names a for Zonation variant.
+#' Feature names of Zonation variant.
 #'
 #' Getter function to retrieve names for analysis features used a given 
 #' Zonation variant.
 #'
-#' Argument \code{x} can be an instanve of one the following Z* classes:
+#' Argument \code{x} can be an instance of one the following Z* classes:
 #' \itemize{
 #'   \item{\code{Zvariant}}
 #'   \item{\code{Zresults}}
@@ -72,7 +72,7 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0,
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-#' @examples
+#' @examples 
 #' setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
 #' tutorial.project <- create_zproject(setup.dir)
 #' variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
@@ -90,7 +90,8 @@ setGeneric("featurenames", function(x) {
 
 # featurenames<- ----------------------------------------------------------
 
-#' Assign spp feature names to a class \code{Zvariant} instance.
+#' Assign spp feature names to a \code{Zvariant} or \code{\link{Zresults}}
+#' instance.
 #' 
 #' This is a replacement function for variant spp feature names.
 #' 
@@ -102,11 +103,12 @@ setGeneric("featurenames", function(x) {
 #' @return A named character vector containing the feature names. If there are 
 #'         no groups, return NA.
 #' 
-#' @seealso \code{\link{Zvariant-class}} \code{\link{featurenames}}
+#' @seealso \code{\link{Zvariant-class}} \code{\link{Zresults-class}} 
+#' \code{\link{featurenames}}
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname featurenames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -128,7 +130,7 @@ setGeneric("featurenames<-", function(x, value) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zproject-methods
+#' @rdname get_variant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -153,7 +155,7 @@ setGeneric("get_variant", function(x, index) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname groups-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -175,7 +177,7 @@ setGeneric("groups", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname groupnames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -201,7 +203,7 @@ setGeneric("groupnames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname groupnames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -211,7 +213,7 @@ setGeneric("groupnames<-", function(x, value) {
 
 # has_results -------------------------------------------------------------
 
-#' Check which (if any) results an instance of (class \code{Zvariant}) has.
+#' Check which results a Z* object has.
 #' 
 #' If the results are availbale (i.e. variants have been run) then the variant
 #' should have a list object containing the results. 
@@ -219,26 +221,24 @@ setGeneric("groupnames<-", function(x, value) {
 #' The value returned is a list of logical where key of each element corresponds
 #' to a specific type of results. E.g.
 #' 
-#' $curves
-#' [1] FALSE
-#' 
-#' $grp.curves
-#' [1] FALSE
-#' 
-#' $rank
-#' [1] FALSE
-#' 
-#' $rank
-#' [1] FALSE
-#' 
-#' $wrscr
-#' [1] FALSE
-#' 
-#' $prop
-#' [1] FALSE
+#' \code{
+#'  $curves\cr
+#'  [1] FALSE\cr
+#'  $grp.curves\cr 
+#'  [1] FALSE\cr
+#'  $rank\cr
+#'  [1] FALSE\cr
+#'  $rank\cr
+#'  [1] FALSE\cr
+#'  $wrscr\cr
+#'  [1] FALSE\cr
+#'  $prop\cr
+#'  [1] FALSE\cr
+#' }
 #' 
 #'
-#' @param x Zvariant object.
+#' @param x \code{\link[zonator]{Zvariant-class}} or 
+#' \code{\link[zonator:Zresults-class]{Zresults}} object.
 #'
 #' @return list of logical values
 #' 
@@ -246,7 +246,7 @@ setGeneric("groupnames<-", function(x, value) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname has_results-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -266,7 +266,7 @@ setGeneric("has_results", function(x) {
 #'
 #' @export
 #' @docType methods
-#' @rdname Zproject-methods
+#' @rdname nvariants-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #'
@@ -288,7 +288,7 @@ setGeneric("nvariants", function(x) {
 #'
 #' @export
 #' @docType methods
-#' @rdname Zproject-methods
+#' @rdname opendir-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -324,7 +324,7 @@ setGeneric("opendir", function(object) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zresults-methods
+#' @rdname performance-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -350,7 +350,7 @@ setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname results-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -374,7 +374,7 @@ setGeneric("results", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname Zvariant-methods
+#' @rdname sppdata-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 

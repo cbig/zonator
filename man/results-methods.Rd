@@ -1,0 +1,34 @@
+\docType{methods}
+\name{results}
+\alias{results}
+\alias{results,Zvariant-method}
+\title{Getter method for results (\code{Zresults}) in a class
+\code{Zvariant} object.}
+\usage{
+results(x)
+
+\S4method{results}{Zvariant}(x)
+}
+\arguments{
+  \item{x}{Zvariant object.}
+}
+\value{
+Zresults object. If variant doesn't have any results return
+NA.
+}
+\description{
+Since not all changes to Zvariant are reflected to its
+Zresults (e.g. feature and group names) there may quite a
+lot runtime patching going on.
+}
+\details{
+Results are returned even if only part of them are
+available.
+}
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}
+\seealso{
+\code{\link{Zresults-class}}
+}
+
