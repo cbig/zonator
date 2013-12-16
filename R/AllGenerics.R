@@ -314,6 +314,8 @@ setGeneric("opendir", function(object) {
 #' match with feature names in curves data
 #' @param groups logical indicating whether group curves data should be 
 #' used (default: FALSE).
+#' @param melted logical indicating whether the data.frame returned should be in 
+#' melted format (default: FALSE)
 #'
 #' @return Data frame containing the curves file data for selected fractions
 #' of landscape lost. First column is pr_lost. If feature names are provided and 
@@ -328,7 +330,8 @@ setGeneric("opendir", function(object) {
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE) {
+setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE,
+                                   melted=FALSE) {
   standardGeneric("performance")
 })
 
