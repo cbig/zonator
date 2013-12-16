@@ -72,10 +72,10 @@ setMethod("plot", signature(x="Zcurves", y="missing"),
     
     # NOTE! Order matters here.
     if (w.mean) {
-      extras <- c("w_pr", features)
+      features <- c("w_pr", features)
     }
     if (mean) {
-      extras <- c("ave_pr", features)
+      features <- c("ave_pr", features)
     }
     if (min) {
       features <- c("min_pr", features)
