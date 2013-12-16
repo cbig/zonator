@@ -99,7 +99,7 @@ setMethod("has_results", "Zresults", function(x) {
 #' @aliases performance,Zresults-method
 #' 
 setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
-                                                 groups=FALSE) {
+                                                 groups=FALSE, melted=FALSE) {
   if (any(pr.lost < 0 || pr.lost > 1.0)) {
     stop("Proportion landscape lost (pr.lost) values must be 0 < pr.lost < 1")
   }
@@ -126,6 +126,22 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   }
   row.ids <- sapply(pr.lost, function(y) {which(perf.data$pr_lost >= y)[1]})
   perf.data <- perf.data[row.ids,]
+  
+  if (melted) {
+    # Transpose feature names as a column and performance levels as consecutive
+    # cols
+    performances <- list()
+    features <- names(perf.data)[2:ncol(perf.data)]
+    
+    for (i in 1:length(perf.data$pr_lost)) {
+      perf.df <- data.frame(feature=features, 
+                            pr.lost=pr.lost[i],
+                            perf.levels=unlist(perf.data[i,][2:ncol(perf.data)]))
+      performances[[i]] <- perf.df
+    }
+    perf.data <- do.call("rbind", performances)
+  }
+  
   row.names(perf.data) <- 1:nrow(perf.data)
   
   return(perf.data)
