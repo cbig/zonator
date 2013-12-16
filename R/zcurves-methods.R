@@ -50,7 +50,11 @@ setMethod("featurenames", signature("Zcurves"), function(x) {
   return(names(x)[x@is.feature])
 })
 
-#' @rdname Zvariant-methods
+#' Plot a Zcurves object
+#' 
+#' Plot a XY line plot of given Zonation performance curves.
+#' 
+#' @rdname plot-methods
 #' @aliases plot_curves,Zcurves,missing,logical-method
 #'
 setMethod("plot", signature(x="Zcurves", y="missing"), 

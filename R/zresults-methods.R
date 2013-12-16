@@ -80,7 +80,6 @@ setMethod("featurenames", signature("Zresults"), function(x) {
 })
 
 #' @rdname has_results-methods
-#' @aliases has_results,Zvariant-method
 #' 
 setMethod("has_results", "Zresults", function(x) {
   
@@ -96,7 +95,7 @@ setMethod("has_results", "Zresults", function(x) {
   return(res)
 })
 
-#' @rdname Zresults-methods
+#' @rdname performance-methods
 #' @aliases performance,Zresults-method
 #' 
 setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,

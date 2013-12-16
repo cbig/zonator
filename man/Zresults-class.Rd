@@ -27,9 +27,7 @@ found. Otherwise none are recorder.
   \item{\code{wrscr}:}{RasterLayer object of weighted
   range-size corrected richness.}
   \item{\code{prop}:}{RasterLayer object of the
-  proportional loss of distribution.}
-  \item{\code{has.results}:}{Logical indicating if all the
-  results are there.} }
+  proportional loss of distribution.} }
 }
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>

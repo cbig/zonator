@@ -11,28 +11,32 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-#' @rdname Zproject-methods
+#' @rdname get_variant-methods
 #' @aliases get_variant,Zproject-method
 #' 
 setMethod("get_variant", c("Zproject", "ANY"), function(x, index) {
   return(x@variants[[index]])
 })
 
-#' @rdname Zproject-methods
+#' @rdname nvariants-methods
 #' @aliases nvariants,Zproject-method
 #' 
 setMethod("nvariants", "Zproject", function(x) {
   return(length(x@variants))
 })
 
-#' @rdname Zproject-methods
+#' Names of variants in Zproject
+#' 
+#' Get the names of all the variants within a given \code{\link{Zproject}}.
+#' 
+#' @rdname names-methods
 #' @aliases names,Zproject-method
 #' 
 setMethod("names", "Zproject", function(x) {
   return(names(x@variants))
 })
 
-#' @rdname Zproject-methods
+#' @rdname opendir-methods
 #' @aliases opendir,Zproject-method
 #'
 setMethod("opendir", "Zproject", function(object) {

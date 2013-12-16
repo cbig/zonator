@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 #' @name featurenames<-
-#' @rdname Zvariant-methods
+#' @rdname featurenames-methods
 #' @aliases groupnames<-,Zvariant,character-method
 #' 
 setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
@@ -49,7 +49,7 @@ setMethod("featurenames", signature("Zvariant"), function(x) {
   return(x@spp.data$name)
 })
 
-#' @rdname Zvariant-methods
+#' @rdname groups-methods
 #' @aliases groups,Zvariant-method
 #' 
 setMethod("groups", "Zvariant", function(x) {
@@ -60,7 +60,7 @@ setMethod("groups", "Zvariant", function(x) {
   }
 })
 
-#' @rdname Zvariant-methods
+#' @rdname groupnames-methods
 #' @aliases groupnames,Zvariant-method
 #' 
 setMethod("groupnames", "Zvariant", function(x) {
@@ -79,7 +79,7 @@ setMethod("groupnames", "Zvariant", function(x) {
 })
 
 #' @name groupnames<-
-#' @rdname Zvariant-methods
+#' @rdname groupnames-methods
 #' @aliases groupnames<-,Zvariant-method
 #' 
 setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
@@ -123,13 +123,12 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
 })
 
 #' @rdname has_results-methods
-#' @aliases has_results,Zvariant-method
 #' 
 setMethod("has_results", "Zvariant", function(x) {
   return(has_results(x@results))
 })
 
-#' @rdname Zvariant-methods
+#' @rdname results-methods
 #' @aliases results,Zvariant-method
 #' 
 setMethod("results", c("Zvariant"), function(x) {
@@ -143,7 +142,7 @@ setMethod("results", c("Zvariant"), function(x) {
   }
 })
 
-#' @rdname Zvariant-methods
+#' @rdname sppdata-methods
 #' @aliases sppdata,Zvariant-method
 #' 
 setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
