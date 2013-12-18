@@ -229,3 +229,28 @@ set_tutorialdir <- function(x) {
 get_tutorialdir <- function() {
   return(get("tutorial.dir", .options))
 }
+
+#' Get unique group names.
+#' 
+#' Method extracts group names directly from group curves data frame header
+#' based on a hard-coded set of prefixes
+#' 
+#' @param x data frame groups data.
+#' 
+#' @return character vector of unique group names
+#' 
+#' @keywords internal
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+unique_grp_names <- function(x) {
+  # Leave pr.lost and cost out
+  group.names <- names(x)[-c(1, 2)]
+  # Since group name can be whatever, just replace the known header prefixes 
+  # with nothing
+  prefixes <- '(min\\.|mean\\.|max\\.|w\\.mean\\.|ext2\\.)'
+  group.names <- gsub(prefixes, "", group.names)
+  group.names <- unique(group.names)
+
+  return(group.names)
+}

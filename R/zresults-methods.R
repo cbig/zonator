@@ -87,15 +87,8 @@ setMethod("groupnames", "Zresults", function(x) {
   
   # Get all the groups data
   group.data <- x@grp.curves
-  # Leave pr.lost and cost out
-  group.names <- names(group.data)[-c(1, 2)]
-  # Since group name can be whatever, just replace the known header prefixes 
-  # with nothing
-  prefixes <- '(min\\.|mean\\.|max\\.|w\\.mean\\.|ext2\\.)'
-  group.names <- gsub(prefixes, "", group.names)
-  group.names <- unique(group.names)
   
-  return(group.names)
+  return(unique_grp_names(group.data))
 })
 
 #' @rdname has_results-methods

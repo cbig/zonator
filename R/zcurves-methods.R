@@ -50,6 +50,18 @@ setMethod("featurenames", signature("Zcurves"), function(x) {
   return(names(x)[x@is.feature])
 })
 
+setMethod("groupnames", "Zcurves", function(x) {
+  
+  if (any(dim(x) == c(0, 0)) || !x@groups) {
+    return(NA)
+  }
+  
+  # Get all the groups data
+  group.data <- x
+  
+  return(unique_grp_names(group.data))
+})
+
 #' Plot a Zcurves object
 #' 
 #' Plot a XY line plot of given Zonation performance curves.
@@ -58,19 +70,30 @@ setMethod("featurenames", signature("Zcurves"), function(x) {
 #' @aliases plot_curves,Zcurves,missing,logical-method
 #'
 setMethod("plot", signature(x="Zcurves", y="missing"), 
-          function(x, groups=FALSE,  min=FALSE, mean=FALSE, w.mean=FALSE, 
-                   features=NULL, monochrome=FALSE, invert.x=FALSE, main="",
+          function(x, min=FALSE, mean=FALSE, w.mean=FALSE, max=FALSE,
+                   subs=NULL, monochrome=FALSE, invert.x=FALSE, main="",
                    ...)  {
-  if (groups) {
-    print("foo")
+            
+  if (x@groups) {
+    # If no subset is provided, get all groups
+    if (length(subs) == 0) {
+      grps <- groupnames(x)
+    }
+    # Group curves column is different to that of features, it's:
+    # min.GROUP mean.GROUP max.GROUP w.mean.GROUP ext2.GROUP
+    browser()
+    
   } else {
     
-    # If no features are provided, get them all
-    if (length(features) == 0) {
+    # If no subset is provided, get all features
+    if (length(subs) == 0) {
       features <- featurenames(x)
     }
-    
+  
     # NOTE! Order matters here.
+    if (max) {
+      warning("max is not applicable for individual features")
+    }
     if (w.mean) {
       features <- c("w_pr", features)
     }
