@@ -115,6 +115,20 @@ performance(results.caz, lost.levels)
 performance(results.caz, lost.levels, groups=TRUE)
 ```
 
+**Pro tip!** If you're a heavy user of Hadley Wickham's excellent 
+[ggplot2](http://ggplot2.org/) package you might a lot of time 
+[reshaping](http://www.statmethods.net/management/reshape.html) your data. 
+Method `performance()` also has an optional argument `melted` which if set TRUE 
+will make the method return performance data in a melted format and thus readily 
+suitable for ggplot2-plotting (see below for a plotting example).
+
+```{r perfomance-melted}
+# Define the levels of landscape lost
+lost.levels <- c(0.25, 0.50, 0.75)
+# Notice that performance operates with Zresults-object
+performance(results.caz, lost.levels, melted=TRUE)
+```
+
 ### Plotting performance curves
 
 Performance data (curves) can also be easily plotted, feature- or group-wise.
@@ -133,14 +147,13 @@ know how much of the original occurrenve level each of species in our tutorial
 data has left when 10% percent of the landscape is under conservation, you 
 could do the following:
 
-```{r perfomance-hist}
+```{r perfomance-hist, fig.width=10}
+# NOTE: we're using melted=TRUE here
 occr.remaining <- performance(results.caz, c(0.9, 0.95, 0.98), melted=TRUE)
 ggplot(occr.remaining, aes(x = factor(feature), y = perf.levels,
                            fill=factor(pr.lost))) + 
   geom_bar(position="dodge", stat = "identity")
 
-plot(feature.curves, invert.x=TRUE, main="All features", w.mean=TRUE, mean=TRUE,
-     features=c('Koala'))
 ```
 
 
