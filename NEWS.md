@@ -1,5 +1,9 @@
 ## CHANGES IN VERSION 0.3.2 (2013-12-XX)
 
+* Class `Zcurves` has been refactored to 2 classes: `ZCurvesDataFrame` and 
+`ZGroupCurvesDataFrame`. Change was introduced mostly to handle performance
+curves plotting more sensibly.
+
 ### NEW FEATURES
 
 * Generic `groupnames` now returns a character vector instead of a named 
