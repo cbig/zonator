@@ -111,15 +111,21 @@ test_that("Assigning and fetching group names and identities works", {
   expect_identical(variant.grp.codes, correct.grp.codes, 
                    paste("Test variant group information wrong"))
   
+  # Variant with no groups
+  no.grps.bat.file <- file.path(.options$setup.dir, 
+                                "03_boundary_length_penalty.bat")
+  no.grps.results.variant <- new("Zvariant", bat.file=no.grps.bat.file)
+  
+  
   # The group names haven't been set, so there should be none
-  expect_true(is.na(groupnames(results.variant)),
+  expect_true(is.na(groupnames(no.grps.results.variant)),
               "Test variant group names not NA although they haven't been set")
   
   # Test assigning correct group names and codes
   correct.grp.names <- c("mammals", "owls")
   names(correct.grp.names) <- c(1, 2)
   groupnames(results.variant) <- correct.grp.names
-  expect_identical(correct.grp.names, groupnames(results.variant),
+  expect_identical(as.vector(correct.grp.names), groupnames(results.variant),
                    "Test variant group names not what they're supposed to")
   
   # Test the sppdata method. NOTE that sppdata will cbind group code 
@@ -140,5 +146,15 @@ test_that("Assigning and fetching group names and identities works", {
   names(incorrect.grp.names) <- c(4, 5)
   expect_error(groupnames(results.variant) <- incorrect.grp.names)
   
-  # Test for spp data and groups and spp names functionality
+  # Names should be reflected in results group curve headers as well
+  variant.results <- results(results.variant)
+  expect_identical(as.vector(correct.grp.names), groupnames(variant.results),
+                   paste("Test variant object's results does not return",
+                         "the correct group names"))
+  
+  # Test that method implementations for Zvariant and Zresults return the same
+  # group names
+  expect_identical(groupnames(results.variant), groupnames(variant.results),
+                   paste("Generic method groupnames does not return the same",
+                         "values for group names"))
 })

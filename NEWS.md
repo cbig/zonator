@@ -1,3 +1,13 @@
+## CHANGES IN VERSION 0.3.2 (2013-12-XX)
+
+### NEW FEATURES
+
+* Generic `groupnames` now returns a character vector instead of a named 
+character vector (with names being the original group numbers)
+
+* New methods for class `Zresults`:
+  - `groupnames`
+
 ## CHANGES IN VERSION 0.3.1 (2013-12-11)
 
 ### NEW FEATURES

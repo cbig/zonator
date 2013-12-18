@@ -65,7 +65,7 @@ setMethod("groups", "Zvariant", function(x) {
 #' 
 setMethod("groupnames", "Zvariant", function(x) {
   
-  if (is.na(x@groups) || !"name" %in% names(x@groups)) {
+  if (any(dim(x@groups) == c(0, 0))) {
     return(NA)
   }
   
@@ -74,7 +74,6 @@ setMethod("groupnames", "Zvariant", function(x) {
   # Get unique codes
   groups.codes <- unique(groups.data$output.group)
   groups.names <- sapply(groups.codes, function(y) {groups.data[which(groups.data$output.group == y),]$name[1]})
-  names(groups.names) <- groups.codes
   return(groups.names)
 })
 

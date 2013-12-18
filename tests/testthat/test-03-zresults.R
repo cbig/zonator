@@ -244,3 +244,11 @@ test_that("performance levels are reported right for groups", {
                    "Method performance doesn't return levels for several groups right")
 })
 
+test_that("featurenanmes are reported right", {
+  
+correct.names <- c("f1", "f2", "f3", "f4", "f5", "f6", "f7")
+
+expect_equal(correct.names, featurenames(test.results),
+             "Method featurenames doesn't return the right feature names")
+
+})
