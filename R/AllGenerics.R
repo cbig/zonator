@@ -169,7 +169,7 @@ setGeneric("groups", function(x) {
 #'
 #' @param x Zvariant object.
 #'
-#' @return A named character vector containing the group names. If there are no 
+#' @return A character vector containing the group names. If there are no 
 #'         groups, return NA.
 #' 
 #' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 

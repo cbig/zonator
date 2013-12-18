@@ -79,6 +79,25 @@ setMethod("featurenames", signature("Zresults"), function(x) {
   return(names(x@curves)[x@curves@is.feature])
 })
 
+setMethod("groupnames", "Zresults", function(x) {
+  
+  if (any(dim(x@grp.curves) == c(0, 0))) {
+    return(NA)
+  }
+  
+  # Get all the groups data
+  group.data <- x@grp.curves
+  # Leave pr.lost and cost out
+  group.names <- names(group.data)[-c(1, 2)]
+  # Since group name can be whatever, just replace the known header prefixes 
+  # with nothing
+  prefixes <- '(min\\.|mean\\.|max\\.|w\\.mean\\.|ext2\\.)'
+  group.names <- gsub(prefixes, "", group.names)
+  group.names <- unique(group.names)
+  
+  return(group.names)
+})
+
 #' @rdname has_results-methods
 #' 
 setMethod("has_results", "Zresults", function(x) {
