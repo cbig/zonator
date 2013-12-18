@@ -48,8 +48,7 @@ test_that("getting curves for individual features works", {
   
   # Only selected curves. These are cost, ave_pr, and feats 1, 3 and 4
   correct.selected.curves <- correct.curves[,c(1, 2, 4, 8, 10, 11)]
-  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
-                                 groups=FALSE,
+  correct.selected.curves <- new("ZCurvesDataFrame", correct.selected.curves, 
                                  is.feature=c(FALSE, FALSE, FALSE, 
                                               TRUE, TRUE, TRUE))
   # Test with col names
@@ -79,8 +78,7 @@ test_that("getting curves for individual features works", {
   
   # Test for a given range
   correct.selected.curves <- correct.curves[which(correct.curves$pr_lost <= 0.1),]
-  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
-                                 groups=FALSE,
+  correct.selected.curves <- new("ZCurvesDataFrame", correct.selected.curves, 
                                  is.feature=c(rep(FALSE, 7), rep(TRUE, ncol(correct.curves) - 7)))
   expect_identical(correct.selected.curves, 
                    curves(test.results, lost.upper=0.1),
@@ -88,8 +86,7 @@ test_that("getting curves for individual features works", {
   
   # Test for a given range
   correct.selected.curves <- correct.curves[which(correct.curves$pr_lost >= 0.1),]
-  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
-                                 groups=FALSE,
+  correct.selected.curves <- new("ZCurvesDataFrame", correct.selected.curves, 
                                  is.feature=c(rep(FALSE, 7), rep(TRUE, ncol(correct.curves) - 7)))
   
   expect_identical(correct.selected.curves, 
@@ -97,8 +94,7 @@ test_that("getting curves for individual features works", {
                    "Method curves doesn't return right data with pr_lost >= 0.1")
   
   correct.selected.curves <- correct.curves[which(correct.curves$pr_lost >= 0.1 & correct.curves$pr_lost <= 0.4),]
-  correct.selected.curves <- new("Zcurves", correct.selected.curves, 
-                                 groups=FALSE,
+  correct.selected.curves <- new("ZCurvesDataFrame", correct.selected.curves, 
                                  is.feature=c(rep(FALSE, 7), rep(TRUE, ncol(correct.curves) - 7)))
   
   expect_identical(correct.selected.curves, 
@@ -132,9 +128,9 @@ test_that("getting curves for groups works", {
   # Only selected curves. These are cost, ave_pr, and feats 1, 3 and 4
   inds <- c(1, 2, 4, 8, 10, 11)
   correct.selected.grp.curves <- correct.grp.curves[,inds]
-  correct.selected.grp.curves <- new("Zcurves", correct.selected.grp.curves, 
-                                     groups=TRUE,
-                                     is.feature=c(FALSE, FALSE, FALSE, 
+  correct.selected.grp.curves <- new("ZGroupCurvesDataFrame", 
+                                     correct.selected.grp.curves, 
+                                     is.group=c(FALSE, FALSE, TRUE, 
                                                   TRUE, TRUE, TRUE))
   # Test with col names
   expect_identical(correct.selected.grp.curves, 

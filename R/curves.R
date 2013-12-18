@@ -60,7 +60,7 @@ read_curves <- function(infile) {
   header <- c(header, paste("f", 1:(ncol(curves) - length(header)), sep=""))
   colnames(curves) <- header
   # Convert into a curves object
-  curves <- new("Zcurves", curves, groups=FALSE, 
+  curves <- new("ZCurvesDataFrame", curves, 
                 is.feature=c(rep(FALSE, 7), rep(TRUE, ncol(curves) - 7)))
   return(curves)
 }
@@ -107,8 +107,8 @@ read_grp_curves <- function(infile) {
   header <- c(header, rep.header)
   colnames(grp.curves) <- header
   
-  grp.curves <- new("Zcurves", grp.curves, groups=TRUE,
-                    is.feature=c(rep(FALSE, 2), rep(TRUE, ncol(grp.curves) - 2)))
+  grp.curves <- new("ZGroupCurvesDataFrame", grp.curves,
+                    is.group=c(rep(FALSE, 2), rep(TRUE, ncol(grp.curves) - 2)))
   
   return(grp.curves)
 }

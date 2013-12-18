@@ -31,13 +31,17 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE,
   if (is.null(cols)) {
     # No specific columns selected, return everything
     if (groups) {
-      curves.data <- x@grp.curves
+      curves.data <- x@grp.curves 
     } else {
       curves.data <- x@curves
     }
     row.inds <- which(curves.data$pr_lost >= lost.lower & curves.data$pr_lost <= lost.upper)
     curves.data <- curves.data[row.inds,]
-    curves.data <- new("Zcurves", curves.data, groups=groups)
+    if (groups) {
+      curves.data <- new("ZGroupCurvesDataFrame", curves.data)
+    } else {
+      curves.data <- new("ZCurvesDataFrame", curves.data)
+    }
   } else {
     # All col names in the curves/group curves data
     if (groups) {
@@ -65,9 +69,15 @@ setMethod("curves", c("Zresults"), function(x, cols=NULL, groups=FALSE,
     row.inds <- which(curves.data$pr_lost >= lost.lower & curves.data$pr_lost <= lost.upper)
     curves.data <- curves.data[row.inds,]
     row.names(curves.data) <- 1:nrow(curves.data)
-    curves.data <- new("Zcurves", curves.data, groups=groups)
-    # Update also feature identifier
-    curves.data@is.feature <- x@curves@is.feature[inds]
+  
+    if (groups) {
+      curves.data <- new("ZGroupCurvesDataFrame", curves.data)
+      # Update also feature identifier
+      curves.data@is.group <- x@grp.curves@is.group[inds]
+    } else {
+      curves.data <- new("ZCurvesDataFrame", curves.data)
+      curves.data@is.feature <- x@curves@is.feature[inds]
+    }
   }
   return(curves.data)
 })
