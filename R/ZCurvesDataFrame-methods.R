@@ -50,126 +50,83 @@ setMethod("featurenames", signature("ZCurvesDataFrame"), function(x) {
   return(names(x)[x@is.feature])
 })
 
-#' Plot a Zcurves object
-#' 
-#' Plot a XY line plot of given Zonation performance curves.
-#' 
-#' @rdname plot-methods
-#' @aliases plot,ZCurvesDataFrame,missing,logical-method
+#' Plot Zonation performance curves for individual features.
 #'
+#' Generic plotting function for plotting feature performance curves. The method
+#' does some data pre-processing specific to \code{\link{ZCurvesDataFrame}}
+#' object before passing the data and arguments for \code{\link{plot_curves}}.
+#' 
+#' @note If no other statistic is selected, \code{mean} will be set to TRUE and
+#' plotted.
+#'
+#' @param x \code{\link{ZCurvesDataFrame}} object.
+#' @param min logical plot the minimum feature performance of a group 
+#' (default: FALSE).
+#' @param mean logical plot the minimum feature performance of a group 
+#' (default: FALSE). If no other statistic is used, mean will always be plotted.
+#' If other satistic(s) are plotted and mean is to be disabled, this will have 
+#' to be done by setting \code{mean} explicitly to FALSE.
+#' @param w.mean logical plot the weighted mean feature performance of a group 
+#' (default: FALSE).
+#' @param ext logical plot extinction risk of a group (default: FALSE).
+#' @param subs character vector defining the names of features (subset of all 
+#' features) to be plotted.
+#'
+#' @param ... Additional arguments passed on to \code{\link{plot_curves}}.
+#' 
+#' @seealso \code{\link{read_curves}} and \code{\link{plot_curves}}.
+#' 
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
 setMethod("plot", signature(x="ZCurvesDataFrame", y="missing"), 
-          function(x, min=FALSE, mean=FALSE, w.mean=FALSE, max=FALSE, ext=FALSE,
-                   subs=NULL, monochrome=FALSE, invert.x=FALSE, main="",
-                   ...)  {
-  
-  if (x@groups) {
-    # If no other stat is provided, set mean to TRUE
-    if (!any(min, w.mean, max, ext)) {
-      mean <- TRUE
-    }
+          function(x, min=FALSE, mean=FALSE, w.mean=FALSE, ext=FALSE,
+                   subs=NULL, ...)  {
     
-    # If no subset is provided, get all groups
-    if (length(subs) == 0) {
-      grp.names <- groupnames(x)
-    } else {
-      grp.names <- subs
-    }
-    # Group curves column is different to that of features, it's:
-    # min.GROUP mean.GROUP max.GROUP w.mean.GROUP ext2.GROUP
-    selected <- list()
-    
-    .sub.curves <- function(stat, name, size=0.6, lty=1) {
-      col.name <- paste0(stat, '.', name)
-      sub.curves <- curves(x, cols=col.name, groups=TRUE)
-      names(sub.curves) <- c('pr_lost', 'value')
-      sub.curves$group <- factor(name)
-      sub.curves$stat <- stat
-      sub.curves$size <- size
-      sub.curves$lty <- factor(lty)
-      sub.curves$variable <- factor(col.name)
-      # We need to coerce Zcurves to a data frame here for later rbinding
-      return(data.frame(sub.curves))
-    }
-    
-    for (name in grp.names) {
-      if (min) {
-        selected[[paste0('min.', name)]] <- .sub.curves('min', name, lty=3)
-      }
-      if (mean) {
-        selected[[paste0('mean.', name)]] <- .sub.curves('mean', name)
-      }
-      if (max) {
-        selected[[paste0('max.', name)]] <- .sub.curves('max', name, lty=2)
-      }
-      if (w.mean) {
-        selected[[paste0('w.mean.', name)]] <- .sub.curves('w.mean', name, 
-                                                           lty=4)
-      }
-      if (ext) {
-        selected[[paste0('ext2.', name)]] <- .sub.curves('ext2', name, lty=5)
-      }
-    }
-    x.melt <- do.call("rbind", selected)
-    row.names(x.melt) <- 1:nrow(x.melt)
-    
+  # If no subset is provided, get all features
+  if (length(subs) == 0) {
+    selected <- featurenames(x)
   } else {
-    
-    # If no subset is provided, get all features
-    if (length(subs) == 0) {
-      selected <- featurenames(x)
-    } else {
-      selected <- subs
-    }
-  
-    # NOTE! Order matters here.
-    if (max) {
-      warning("max is not applicable for individual features")
-    }
-    if (w.mean) {
-      selected <- c("w_pr", selected)
-    }
-    if (mean) {
-      selected <- c("ave_pr", selected)
-    }
-    if (min) {
-      selected <- c("min_pr", selected)
-    }
-    curves.data <- curves(x, cols=selected)
-    
-    # Melt will give a warning here:
-    # Setting class(x) to NULL;   result will no longer be an S4 objec
-    suppressWarnings(x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
-                                    measure.vars=2:ncol(curves.data)))
+    selected <- subs
   }
+
+  curves.data <- curves(x, cols=selected)
   
-  p <- ggplot(x.melt, aes(x=pr_lost, y=value, colour=group, linetype=stat), 
-              size=size)
-  p <- p + geom_line() + guides(colour = guide_legend("title"),
-                                linetype = guide_legend("title"))
+  # Melt will give a warning here:
+  # Setting class(x) to NULL;   result will no longer be an S4 objec
+  suppressWarnings(x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
+                                  measure.vars=2:ncol(curves.data)))
+  x.melt$stat <- "feature"
   
-  if (monochrome) {
-    p <- p + theme_bw() + 
-      scale_colour_grey(name=.options$curve.legend.title)
-    
-  } else {
-    p <- p + scale_colour_brewer(name=.options$curve.legend.title,
-                                 palette="Set1")
+  # Get possible extra stats fields
+  if (w.mean) {
+    w.mean.curves <- curves(x, cols="w_pr")
+    w.mean.curves <- data.frame(pr_lost=w.mean.curves$pr_lost, 
+                                variable="Weighted avr prop over all feats", 
+                                value=w.mean.curves$w_pr, 
+                                stat="w.mean")
+    x.melt <- rbind(w.mean.curves, x.melt)
   }
-  
-  x.scale <- seq(0, 1, 0.2)
-  y.scale <- seq(0, 1, 0.2)
-  
-  if (invert.x) {
-    p <- p + xlab(.options$curve.x.title.invert) + 
-             ylab(.options$curve.y.title) +
-             scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
-             scale_y_continuous(breaks=y.scale, labels=y.scale)
-  } else {
-    p <- p + xlab(.options$curve.x.title) + ylab(.options$curve.y.title)
+  if (mean) {
+    mean.curves <- curves(x, cols="ave_pr")
+    mean.curves <- data.frame(pr_lost=mean.curves$pr_lost, 
+                              variable="Avr prop over all feats",
+                             value=mean.curves$ave_pr, stat="mean")
+    x.melt <- rbind(mean.curves, x.melt)
   }
+  if (min) {
+    min.curves <- curves(x, cols="min_pr")
+    min.curves <- data.frame(pr_lost=min.curves$pr_lost, 
+                             variable="Minimum prop of all feats",
+                             value=min.curves$min_pr, stat="min")
+    x.melt <- rbind(min.curves, x.melt)
+  }
+  # Rename 'variable' to 'name'. This is needed to retain compatiblity 
+  # with plot_curves
+  names(x.melt) <- c('pr_lost', 'name', 'value', 'stat')
   
-  p <- p  + ggtitle(main)
-  p <- p + .options$curve.theme
+  p <- plot_curves(x.melt, legend.title=.options$curve.legend.title, ...)
   
   return(p)
 })

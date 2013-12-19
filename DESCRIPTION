@@ -12,6 +12,7 @@ Depends:
     R (>= 2.15.2),
     ggplot2,
     plyr,
+    RColorBrewer,
     raster,
     reshape2,
     tools

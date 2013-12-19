@@ -9,8 +9,14 @@ curves plotting more sensibly.
 * Generic `groupnames` now returns a character vector instead of a named 
 character vector (with names being the original group numbers)
 
+* `plot` now works for `ZCurvesDataFrame` and `ZGroupCurvesDataFrame` objecs.
+
 * New methods for class `Zresults`:
   - `groupnames`
+  
+## NEW DEPENDENCIES
+
+* RColorBrewer 
 
 ## CHANGES IN VERSION 0.3.1 (2013-12-11)
 

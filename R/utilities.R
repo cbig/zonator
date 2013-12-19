@@ -230,6 +230,34 @@ get_tutorialdir <- function() {
   return(get("tutorial.dir", .options))
 }
 
+#' Get subset of curves/group curves columns.
+#' 
+#' Function gets a single column (feature/group/stat) from curves or group 
+#' curves. Useful for construction melt-type data frames for plotting.
+#' 
+#' @param x ZCurvesDataFrame or ZGroupCurvesDataFrame object
+#' @param stat character string of the statistic used ['min', 'mean', 'max',
+#' 'w.mean', 'ext2'].
+#' @param name character name of a group/feature.
+#' @param size numeric defining line width.
+#' @param lty integer defining line type.
+#' 
+#' @return data frame for a single column in curves / group curves data.
+#' 
+#' @keywords internal
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+sub_curves <- function(x, stat, name, size=0.6, lty=1) {
+  col.name <- paste0(stat, '.', name)
+  sub.curves <- curves(x, cols=col.name, groups=TRUE)
+  names(sub.curves) <- c('pr_lost', 'value')
+  sub.curves$name <- name
+  sub.curves$stat <- stat
+  # We need to coerce Zcurves to a data frame here for later rbinding
+  return(data.frame(sub.curves))
+}
+
 #' Get unique group names.
 #' 
 #' Method extracts group names directly from group curves data frame header
