@@ -55,23 +55,31 @@ setMethod("groupnames", "ZGroupCurvesDataFrame", function(x) {
   return(unique_grp_names(group.data))
 })
 
-#' Plot Zonation grouped performance curves.
+#' Plot Zonation performance curves for groups.
 #'
-#' @param x data frame containing Zonation's performance curve
-#'   (group-specific) output.
-#' @param statistic character string indicating which statistic 
-#'   (\code{min}, \code{mean}, \code{max}, \code{w.mean}, \code{ext2}) over all 
-#'   feature groups is plotted.
-#' @param groups integer vector containing the IDs of groups to be
-#'   plotted.
-#' @param monochrome Boolean indicating if the plot should be in 
-#'   monochrome colors only.
-#' @param main Character string plot title. 
-#' @param invert.x Boolean indicating if the X-axis is printed from 
-#'   1 ("feature remaining", \code{FALSE}) or 0 
-#'   ("landscape under protection", \code{TRUE}).  
-#' @param labels character vector for custom feature labels.
-#' @param ... Additional arguments passed on to \code{\link{plot}}.
+#' Generic plotting function for plotting group performance curves. The method
+#' does some data pre-processing specific to \code{\link{ZGroupCurvesDataFrame}}
+#' object before passing the data and arguments for \code{\link{plot_curves}}.
+#' 
+#' @note If no other statistic is selected, \code{mean} will be set to TRUE and
+#' plotted.
+#'
+#' @param x \code{\link{ZGroupCurvesDataFrame}} object.
+#' @param min logical plot the minimum feature performance of a group 
+#' (default: FALSE).
+#' @param mean logical plot the minimum feature performance of a group 
+#' (default: FALSE). If no other statistic is used, mean will always be plotted.
+#' If other satistic(s) are plotted and mean is to be disabled, this will have 
+#' to be done by setting \code{mean} explicitly to FALSE.
+#' @param max logical plot the maxmimun feature performance of a group 
+#' (default: FALSE).
+#' @param w.mean logical plot the weighted mean feature performance of a group 
+#' (default: FALSE).
+#' @param ext logical plot extinction risk of a group (default: FALSE).
+#' @param subs character vector defining the names of groups (subset of all 
+#' groups) to be plotted.
+#'
+#' @param ... Additional arguments passed on to \code{\link{plot_curves}}.
 #' 
 #' @seealso \code{\link{read_curves}} and \code{\link{plot_curves}}.
 #' 
@@ -81,8 +89,7 @@ setMethod("groupnames", "ZGroupCurvesDataFrame", function(x) {
 #' 
 setMethod("plot", signature(x="ZGroupCurvesDataFrame", y="missing"), 
           function(x, min=FALSE, mean=FALSE, w.mean=FALSE, max=FALSE, ext=FALSE,
-                   subs=NULL, monochrome=FALSE, invert.x=FALSE, main="",
-                   ...)  {
+                   subs=NULL, ...)  {
   
   # If no other stat is provided, set mean to TRUE
   if (!any(min, w.mean, max, ext)) {
@@ -99,62 +106,30 @@ setMethod("plot", signature(x="ZGroupCurvesDataFrame", y="missing"),
   # min.GROUP mean.GROUP max.GROUP w.mean.GROUP ext2.GROUP
   selected <- list()
   
-  .sub.curves <- function(stat, name, size=0.6, lty=1) {
-    col.name <- paste0(stat, '.', name)
-    sub.curves <- curves(x, cols=col.name, groups=TRUE)
-    names(sub.curves) <- c('pr_lost', 'value')
-    sub.curves$group <- name
-    sub.curves$stat <- stat
-    # We need to coerce Zcurves to a data frame here for later rbinding
-    return(data.frame(sub.curves))
-  }
-  
   for (name in grp.names) {
     if (min) {
-      selected[[paste0('min.', name)]] <- .sub.curves('min', name, lty=3)
+      selected[[paste0('min.', name)]] <- sub_curves(x, 'min', name, lty=3)
     }
     if (mean) {
-      selected[[paste0('mean.', name)]] <- .sub.curves('mean', name)
+      selected[[paste0('mean.', name)]] <- sub_curves(x, 'mean', name)
     }
     if (max) {
-      selected[[paste0('max.', name)]] <- .sub.curves('max', name, lty=2)
+      selected[[paste0('max.', name)]] <- sub_curves(x, 'max', name, lty=2)
     }
     if (w.mean) {
-      selected[[paste0('w.mean.', name)]] <- .sub.curves('w.mean', name, lty=4)
+      selected[[paste0('w.mean.', name)]] <- sub_curves(x, 'w.mean', name, 
+                                                        lty=4)
     }
     if (ext) {
-      selected[[paste0('ext2.', name)]] <- .sub.curves('ext2', name, lty=5)
+      selected[[paste0('ext2.', name)]] <- sub_curves(x, 'ext2', name, lty=5)
     }
   }
   
   x.melt <- do.call("rbind", selected)
   row.names(x.melt) <- 1:nrow(x.melt)
   
-  p <- plot_curves(x.melt)
-  
-  #if (monochrome) {
-  #  p <- p + theme_bw() + 
-  #    scale_colour_grey(name=.options$curve.legend.title)
-  #  
-  #} else {
-  #  p <- p + scale_colour_brewer(name=.options$curve.legend.title,
-  #                               palette="Set1")
-  #}
-  
-  x.scale <- seq(0, 1, 0.2)
-  y.scale <- seq(0, 1, 0.2)
-  
-  if (invert.x) {
-    p <- p + xlab(.options$curve.x.title.invert) + 
-             ylab(.options$curve.y.title) +
-             scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
-             scale_y_continuous(breaks=y.scale, labels=y.scale)
-  } else {
-    p <- p + xlab(.options$curve.x.title) + ylab(.options$curve.y.title)
-  }
-  
-  p <- p  + ggtitle(main)
-  p <- p + .options$curve.theme
+  p <- plot_curves(x.melt, legend.title=.options$grp.curve.legend.title, 
+                   groups=TRUE, ...)
   
   return(p)
 })

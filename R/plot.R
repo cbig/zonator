@@ -182,6 +182,17 @@ plot_curves <- function(x, min=FALSE, mean=FALSE, w.mean=FALSE, features=NULL,
 #' Method ...
 #' 
 #' @param x data frame of curves of groups curves data.
+#' @param monochrome logical defining if a monochrome color scheme is used
+#' (default: FALSE).
+#' @param invert.x logical indicating if the X-axis is printed from 
+#'   1 ("feature remaining", \code{FALSE}) or 0 
+#'   ("landscape under protection", \code{TRUE}). 
+#' @param main character string title for the plot (deafault: 'Performance 
+#' curves').
+#' @param legend.title character string title for legend (default: 'Performance)
+#' .
+#' @param groups logical indicating whether the plotted data is groups or not
+#' (default: FALSE).
 #' 
 #' @return ggplot2 object
 #' 
@@ -190,39 +201,86 @@ plot_curves <- function(x, min=FALSE, mean=FALSE, w.mean=FALSE, features=NULL,
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
 
-plot_curves <- function(dat) {
+plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE, 
+                        main='Performance curves', legend.title='Performance',
+                        groups=FALSE) {
   
-  iact.levels <- levels(interaction(dat$group, dat$stat))
-  iact.labels <- gsub('\\.', ', ', iact.levels)
-  iact.groups <- gsub('\\..*$', '', iact.levels)
-  iact.stats <- gsub('^.*\\.', '', iact.levels)
-  lty.map <- list('mean'=1, 'min'=3, 'max'=2, 'w.mean'=4, 'ext2'=5)
-  size.map <- list('mean'=1.1, 'min'=0.7, 'max'=0.7, 'w.mean'=0.7, 'ext2'=0.7)
+  if (groups) {
+    iact.levels <- levels(interaction(dat$name, dat$stat))
+    iact.labels <- gsub('\\.', ', ', iact.levels)
+    iact.names <- gsub('\\..*$', '', iact.levels)
+    iact.stats <- gsub('^.*\\.', '', iact.levels)
+  } else {
+    iact.levels <- levels(dat$name)
+    iact.labels <- gsub('\\.', ' ', iact.levels)
+    iact.names <- iact.levels
+    iact.stats <- unique(data.frame(name=dat$name, stat=dat$stat))$stat
+  }
+  
+  if (groups) {
+    lty.map <- list('mean'=1, 'min'=3, 'max'=2, 'w.mean'=4, 'ext2'=5)
+    size.map <- list('mean'=1.1, 'min'=0.7, 'max'=0.7, 'w.mean'=0.7, 'ext2'=0.7)
+  } else {
+    lty.map <- list('feature'=1, 'mean'=2, 'min'=3, 'w.mean'=4, 'ext2'=5)
+    size.map <- list('feature'=1.1, 'mean'=0.7, 'min'=0.7, 'w.mean'=0.7, 
+                     'ext2'=0.7)
+  }
+  
+  
   lty.values <- sapply(iact.stats, function(x) {
     lty.map[[grep(paste0('^', x), names(lty.map))]]
     }, USE.NAMES=FALSE)
   size.values <- sapply(iact.stats, function(x) {
     size.map[[grep(paste0('^', x), names(size.map))]]
     }, USE.NAMES=FALSE)
-  cols <- suppressWarnings(brewer.pal(length(unique(iact.groups)), "Set1"))
-  colour.values <- sapply(iact.groups, function(x) {
-    cols[which(x == unique(iact.groups))]
+  
+  if (monochrome) {
+    cols <- grey.colors(n=length(unique(iact.names)))
+  } else {
+    cols <- suppressWarnings(brewer.pal(length(unique(iact.names)), "Set1"))
+  }
+  
+  colour.values <- sapply(iact.names, function(x) {
+    cols[which(x == unique(iact.names))]
     }, USE.NAMES=FALSE)
-  #browser()
-  p <- ggplot(dat, aes(x=pr_lost, y=value, colour=interaction(group, stat)))
-  p <- p + geom_line(aes(linetype=interaction(group, stat), 
-                     size=interaction(group, stat))) + 
-        scale_colour_manual(name="Performance",
-                            breaks=iact.levels,
-                            labels=iact.labels,
-                            values=colour.values) +
-        scale_linetype_manual(name="Performance",
-                              breaks=iact.levels,
-                              labels=iact.labels,
-                              values=lty.values) +
-        scale_size_manual(name="Performance",
-                          breaks=iact.levels,
-                          labels=iact.labels,
-                          values=size.values)
+
+  if (groups) {
+    p <- ggplot(dat, aes(x=pr_lost, y=value, colour=interaction(name, stat)))
+    p <- p + geom_line(aes(linetype=interaction(name, stat), 
+                       size=interaction(name, stat)))
+  } else {
+    p <- ggplot(dat, aes(x=pr_lost, y=value, colour=name))
+    p <- p + geom_line(aes(linetype=name, 
+                           size=name))
+  }
+        
+  p <- p + scale_colour_manual(name=legend.title,
+                               breaks=iact.levels,
+                               labels=iact.labels,
+                               values=colour.values) +
+           scale_linetype_manual(name=legend.title,
+                                 breaks=iact.levels,
+                                 labels=iact.labels,
+                                 values=lty.values) +
+           scale_size_manual(name=legend.title,
+                             breaks=iact.levels,
+                             labels=iact.labels,
+                             values=size.values)
+  
+  x.scale <- seq(0, 1, 0.2)
+  y.scale <- seq(0, 1, 0.2)
+  
+  if (invert.x) {
+    p <- p + xlab(.options$curve.x.title.invert) + 
+      ylab(.options$curve.y.title) +
+      scale_x_continuous(breaks=x.scale, labels=1-x.scale) + 
+      scale_y_continuous(breaks=y.scale, labels=y.scale)
+  } else {
+    p <- p + xlab(.options$curve.x.title) + ylab(.options$curve.y.title)
+  }
+  
+  p <- p  + ggtitle(main)
+  p <- p + .options$curve.theme
+  
   return(p)
 }
