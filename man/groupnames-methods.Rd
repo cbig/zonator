@@ -20,8 +20,8 @@ groupnames(x) <- value
   \item{value}{named character vector.}
 }
 \value{
-A named character vector containing the group names. If
-there are no groups, return NA.
+A character vector containing the group names. If there are
+no groups, return NA.
 
 A named character vector containing the group names. If
 there are no groups, return NA.

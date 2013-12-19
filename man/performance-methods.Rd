@@ -4,10 +4,10 @@
 \alias{performance,Zresults-method}
 \title{Get performance levels.}
 \usage{
-performance(x, pr.lost, features = "all", groups = FALSE)
+performance(x, pr.lost, features = "all", groups = FALSE, melted = FALSE)
 
 \S4method{performance}{Zresults}(x, pr.lost, features = NULL,
-  groups = FALSE)
+  groups = FALSE, melted = FALSE)
 }
 \arguments{
   \item{x}{\code{Zresults} object.}
@@ -21,6 +21,9 @@ performance(x, pr.lost, features = "all", groups = FALSE)
 
   \item{groups}{logical indicating whether group curves
   data should be used (default: FALSE).}
+
+  \item{melted}{logical indicating whether the data.frame
+  returned should be in melted format (default: FALSE)}
 }
 \value{
 Data frame containing the curves file data for selected

@@ -2,8 +2,9 @@
 \alias{plot_curves}
 \title{Plot Zonation performance curves.}
 \usage{
-plot_curves(x, min = FALSE, mean = FALSE, w.mean = FALSE,
-  features = NULL, monochrome = FALSE, invert.x = FALSE, ...)
+plot_curves(x)
+
+plot_curves(x)
 }
 \arguments{
   \item{x}{data frame containing Zonation's performance
@@ -30,14 +31,24 @@ plot_curves(x, min = FALSE, mean = FALSE, w.mean = FALSE,
 
   \item{...}{Additional arguments passed on to
   \code{\link{plot}}.}
+
+  \item{x}{data frame of curves of groups curves data.}
+}
+\value{
+ggplot2 object
 }
 \description{
 Plot Zonation performance curves.
+
+Method ...
 }
 \author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
 \code{\link{read_curves}} and \code{\link{plot_grp_curves}}
 }
+\keyword{internal}
 

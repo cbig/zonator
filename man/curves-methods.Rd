@@ -1,13 +1,16 @@
 \docType{methods}
 \name{curves}
 \alias{curves}
-\alias{curves,Zcurves-method}
+\alias{curves,ZCurvesDataFrame-method}
+\alias{curves,ZGroupCurvesDataFrame-method}
 \alias{curves,Zresults-method}
 \title{Get curves data of a Z* object.}
 \usage{
 curves(x, cols = NULL, groups = FALSE, lost.lower = 0, lost.upper = 1)
 
-\S4method{curves}{Zcurves}(x, cols = NULL)
+\S4method{curves}{ZCurvesDataFrame}(x, cols = NULL)
+
+\S4method{curves}{ZGroupCurvesDataFrame}(x, cols = NULL)
 
 \S4method{curves}{Zresults}(x, cols = NULL, groups = FALSE,
   lost.lower = 0, lost.upper = 1)
