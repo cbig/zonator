@@ -72,17 +72,18 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0,
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-#' @examples 
-#' setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
-#' tutorial.project <- create_zproject(setup.dir)
-#' variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+#' @examples \dontrun{
+#'  setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
+#'  tutorial.project <- create_zproject(setup.dir)
+#'  variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
 #' 
-#' # Feature names for a Zvariant object
-#' featurenames(variant.caz)
+#'  # Feature names for a Zvariant object
+#'  featurenames(variant.caz)
 #' 
-#' # Feature names for a Zresults object
-#' results.caz <- results(variant.caz)
-#' featurenames(results.caz)
+#'  # Feature names for a Zresults object
+#'  results.caz <- results(variant.caz)
+#'  featurenames(results.caz)
+#' }
 #' 
 setGeneric("featurenames", function(x) {
   standardGeneric("featurenames")
