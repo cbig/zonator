@@ -1,7 +1,7 @@
 \docType{methods}
 \name{featurenames}
 \alias{featurenames}
-\alias{featurenames,Zcurves-method}
+\alias{featurenames,ZCurvesDataFrame-method}
 \alias{featurenames,Zresults-method}
 \alias{featurenames,Zvariant-method}
 \alias{featurenames<-}
@@ -12,7 +12,7 @@ featurenames(x)
 
 featurenames(x) <- value
 
-\S4method{featurenames}{Zcurves}(x)
+\S4method{featurenames}{ZCurvesDataFrame}(x)
 
 \S4method{featurenames}{Zresults}(x)
 

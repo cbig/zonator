@@ -1,12 +1,12 @@
 \docType{methods}
-\name{plot,Zcurves,missing-method}
-\alias{plot,Zcurves,missing-method}
-\alias{plot_curves,Zcurves,missing,logical-method}
+\name{plot,ZCurvesDataFrame,missing-method}
+\alias{plot,ZCurvesDataFrame,missing,logical-method}
+\alias{plot,ZCurvesDataFrame,missing-method}
 \title{Plot a Zcurves object}
 \usage{
-\S4method{plot}{Zcurves,missing}(x, groups = FALSE, min = FALSE,
-  mean = FALSE, w.mean = FALSE, features = NULL, monochrome = FALSE,
-  invert.x = FALSE, main = "", ...)
+\S4method{plot}{ZCurvesDataFrame,missing}(x, min = FALSE, mean = FALSE,
+  w.mean = FALSE, max = FALSE, ext = FALSE, subs = NULL,
+  monochrome = FALSE, invert.x = FALSE, main = "", ...)
 }
 \arguments{
   \item{x}{the coordinates of points in the plot.
