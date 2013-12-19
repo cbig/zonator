@@ -58,12 +58,12 @@ you can also get the data for particular features.
 
 ```{r curves}
 # Get feature-specific curves
-feature.curves <- curves(results.caz)
-head(feature.curves)
+feature.curves.caz <- curves(results.caz)
+head(feature.curves.caz)
 
 # Get just 2 species
-duo.curves <- curves(results.caz, cols=c("Koala", "Tiger.quoll"))
-head(duo.curves)
+duo.curves.caz <- curves(results.caz, cols=c("Koala", "Tiger.quoll"))
+head(duo.curves.caz)
 ```
 
 Columns are exaclty the same as in Zonation curves output file. Note also that 
@@ -76,14 +76,14 @@ groups:
 
 ```{r grp-curves}
 # Get group-specific curves
-feature.grp.curves <- curves(results.caz, groups=TRUE)
-head(feature.grp.curves)
+feature.grp.curves.caz <- curves(results.caz, groups=TRUE)
+head(feature.grp.curves.caz)
 
 # Get all the aggregate stats for owls
-owls.grp.curves <- curves(results.caz, groups=TRUE, 
-                          cols=c("min.owls", "mean.owls", "max.owls",
-                                 "w.mean.owls", "ext2.owls"))
-head(owls.grp.curves)
+owls.grp.curves.caz <- curves(results.caz, groups=TRUE, 
+                              cols=c("min.owls", "mean.owls", "max.owls",
+                                     "w.mean.owls", "ext2.owls"))
+head(owls.grp.curves.caz)
 ```
 
 Often a particular range of cell removal process is more interesting than the 
@@ -94,10 +94,10 @@ a specific range:
 
 # Get performance values for 2 species for a range between 60% and 75% of 
 # landscape lost 
-duo.curves.range <- curves(results.caz, cols=c("Koala", "Tiger.quoll"),
-                           lost.lower=0.6, lost.upper=0.75)
-head(duo.curves.range)
-tail(duo.curves.range)
+duo.curves.caz.range <- curves(results.caz, cols=c("Koala", "Tiger.quoll"),
+                               lost.lower=0.6, lost.upper=0.75)
+head(duo.curves.caz.range)
+tail(duo.curves.caz.range)
 ```
 
 Sometimes you might also be interested in performance values of features at 
@@ -131,11 +131,86 @@ performance(results.caz, lost.levels, melted=TRUE)
 
 ### Plotting performance curves
 
-Performance data (curves) can also be easily plotted, feature- or group-wise.
+To make plotting examples more interesting, let's use also another variant that
+uses Zonation's masking capability.
 
-```{r curves-plotting, fig.width=10}
-plot(feature.curves, invert.x=TRUE, main="All features")
-plot(duo.curves, invert.x=TRUE, main="Just few features")
+```{r mask-variant}
+variant.mask <- get_variant(tutorial.project, "05_hierarchical_removal_mask")
+
+featurenames(variant.mask) <- c("Koala", "Masked.owl", "Powerful.owl", 
+                             "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
+                             "Yellow-bellied.glider")
+labels <- c("mammals", "owls")
+names(labels) <- c(1, 2)
+groupnames(variant.mask) <- labels
+
+results.mask <- results(variant.mask)
+feature.curves.mask <- curves(results.mask)
+feature.grp.curves.mask <- curves(results.mask, groups=TRUE)
+```
+
+Performance data (curves) can also be easily plotted, feature- or group-wise:
+
+```{r curves-plotting-1, fig.width=10}
+plot(feature.curves.caz)
+```
+
+Plotting-methods for `ZCurvesDataFrame` and `ZGroupCurvesDataFrame` classes 
+include a couple of convience arguments as well. By defaul, the scale on x-axis
+ranges from 0 to 1 and has a label "Prop. of landscape lost". The other way of 
+presenting the x-axis is to have it range from 1 to 0 and label it "Proportion
+of landscape under conservation". This behavior can be controlle by using the
+argument `invert.x` for `plot-method`. The title of the plot can be set using
+`main`-argument.
+
+```{r curves-plotting-2, fig.width=10}
+plot(feature.curves.caz, invert.x=TRUE, main="All features")
+```
+
+Argument `subs` can have a character vector of feature names to be plotted, i.e.
+a subset of all features. Different overall statistics can also be plotted. 
+Statistics supported are: `mean`, `min`, and `w.mean` for feature-specific 
+curves. Each of these is a logical argument that can be set to `TRUE`/`FALSE`.
+They correspond to "Average proportion remaining over all features", 
+"Minimum proportion remaining over all features", and
+"Weighted average proportion remaining over all features" respectively. 
+
+```{r curves-plotting-3, fig.width=10}
+plot(feature.curves.caz, invert.x=TRUE, main="Just few features", 
+     subs=c('Yellow-bellied.glider', 'Sooty.owl'), mean=TRUE)
+```
+
+Group-specific curves can be plotted in similar fashion.
+
+```{r curves-plotting-4, fig.width=10}
+plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups")
+```
+
+Subsetting works the same as with individual features.
+
+```{r curves-plotting-5, fig.width=10}
+plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups", subs=c('owls'))
+```
+
+Both feature- and group-specific curve plotting methods also have an argument
+called `monochrome`. Setting this argument to `TRUE` will use only monochrome
+colours which may be useful e.g. for publication figures.
+
+```{r curves-plotting-6, fig.width=10}
+plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups", monochrome=TRUE)
+```
+
+Group plotting also has a set of statistics which can be plotted, but the 
+behaviour is slightly different to that of features. What is plotted by default 
+are group-specific mean values. Other statistics are `min`, `max`, and `w.mean`
+which correspond to "Minimum proportion remaining for a feature within group",
+"Maxmimum proportion remaining for a feature within group", and 
+"Weighted average proportion remaining for group". Note that `mean` will always
+be `TRUE` unless it's explicitly set to `FALSE`.
+
+```{r curves-plotting-7, fig.width=10}
+plot(feature.grp.curves.mask, invert.x=TRUE, main="All groups", mean=TRUE, 
+     min=TRUE, max=TRUE)
 ```
 
 ### Plotting performance levels
