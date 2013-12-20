@@ -1,4 +1,8 @@
-## CHANGES IN VERSION 0.3.2 (2013-12-XX)
+## CHANGES IN VERSION 0.3.2 (2013-12-20)
+
+Maintance update, R CMD check and TravisCI test passes after few minor fixes.
+
+## CHANGES IN VERSION 0.3.2 (2013-12-19)
 
 * Class `Zcurves` has been refactored to 2 classes: `ZCurvesDataFrame` and 
 `ZGroupCurvesDataFrame`. Change was introduced mostly to handle performance

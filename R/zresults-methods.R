@@ -89,6 +89,9 @@ setMethod("featurenames", signature("Zresults"), function(x) {
   return(names(x@curves)[x@curves@is.feature])
 })
 
+#' @rdname groupnames-methods
+#' @aliases groupnames,Zresults-method
+#' 
 setMethod("groupnames", "Zresults", function(x) {
   
   if (any(dim(x@grp.curves) == c(0, 0))) {

@@ -17,10 +17,14 @@ then the results are also associated with the instance of
   \describe{ \item{\code{name}:}{Character string name of
   the variant.} \item{\code{bat.file}:}{Character string
   path to a Zonation-style batch file.}
-  \item{\code{call.params}:}{Lista of parsed call
-  parameters from the batch file.}
-  \item{\code{results}:}{List holding the results (data
-  frames).} }
+  \item{\code{dat.data}:}{List holding the parsed data from
+  Zonation dat-file} \item{\code{spp.data}:}{Data frame
+  holding the parsed data from Zonation spp-file}
+  \item{\code{groups}:}{Data frame holding the parsed data
+  from Zonation groups-file}
+  \item{\code{call.params}:}{List of parsed call parameters
+  from the batch file.} \item{\code{results}:}{List holding
+  the results (data frames).} }
 }
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>

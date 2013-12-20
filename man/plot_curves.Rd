@@ -68,7 +68,7 @@ Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link{read_curves}} and \code{\link{plot_grp_curves}}
+\code{\link{read_curves}}
 }
 \keyword{internal}
 

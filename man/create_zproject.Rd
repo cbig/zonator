@@ -33,11 +33,6 @@ converted into a Zvariant-object.
 Alternatively an empty project can be created by supplying
 a root path that does not exist as an argument.
 }
-\examples{
-\dontrun{
-
-  }
-}
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }

@@ -99,7 +99,9 @@ setGeneric("featurenames", function(x) {
 #' @note spp features have by default names that are derived from the feature
 #' raster file path.
 #'
-#' @param x character vector. Can be named or not.
+#' @param x \code{\link{Zvariant-class}} or \code{\link{Zresults-class}} object.
+#' @param value character vector of feature names to be assigned. Can be named 
+#'   or not.
 #'
 #' @return A named character vector containing the feature names. If there are 
 #'         no groups, return NA.
@@ -109,7 +111,7 @@ setGeneric("featurenames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname featurenames-methods
+#' @rdname featurenames<--methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -188,23 +190,25 @@ setGeneric("groupnames", function(x) {
 
 # groupnames<- ------------------------------------------------------------
 
-#' Assign group names to a class \code{Zvariant} instance.
+#' Assign group names
 #' 
-#' This is a replacement function for variant group names. If the particular 
-#' variant doesn't use groups the gives a warning.
+#' Group names can be assigned to a \code{\link{Zvariant}} or 
+#' \code{\link{Zresults}} object. This is a replacement function for variant 
+#' group names. If the particular variant doesn't use groups the gives a 
+#' warning.
 #'
-#' @param x Zvariant object.
+#' @param x \code{\link{Zvariant}} or \code{\link{Zresults}} object
 #' @param value named character vector.
 #'
 #' @return A named character vector containing the group names. If there are no 
 #'         groups, return NA.
 #' 
 #' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
-#'          \code{\link{groups}} 
+#'          \code{\link{Zresults}} \code{\link{groups}} 
 #' 
 #' @export
 #' @docType methods
-#' @rdname groupnames-methods
+#' @rdname groupnames<--methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -220,24 +224,8 @@ setGeneric("groupnames<-", function(x, value) {
 #' should have a list object containing the results. 
 #' 
 #' The value returned is a list of logical where key of each element corresponds
-#' to a specific type of results. E.g.
+#' to a specific type of results.
 #' 
-#' \code{
-#'  $curves\cr
-#'  [1] FALSE\cr
-#'  $grp.curves\cr 
-#'  [1] FALSE\cr
-#'  $rank\cr
-#'  [1] FALSE\cr
-#'  $rank\cr
-#'  [1] FALSE\cr
-#'  $wrscr\cr
-#'  [1] FALSE\cr
-#'  $prop\cr
-#'  [1] FALSE\cr
-#' }
-#' 
-#'
 #' @param x \code{\link[zonator]{Zvariant-class}} or 
 #' \code{\link[zonator:Zresults-class]{Zresults}} object.
 #'
@@ -281,7 +269,7 @@ setGeneric("nvariants", function(x) {
 #' 
 #' Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE).
 #'
-#' @param x object.
+#' @param x a \code{\link{Zproject}} object.
 #'
 #' @return invisible
 #' 
@@ -293,7 +281,7 @@ setGeneric("nvariants", function(x) {
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("opendir", function(object) { 
+setGeneric("opendir", function(x) { 
   standardGeneric("opendir")
 })
 

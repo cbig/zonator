@@ -62,11 +62,6 @@ check_names <- function(x) {
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #'  
-#' @examples
-#'   \dontrun{
-#'       
-#'   }
-#'  
 check_path <- function(x, parent.path=NULL, require.file=FALSE) {
   
   # Check and replace path separators

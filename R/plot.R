@@ -99,7 +99,7 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #'   ("landscape under protection", \code{TRUE}).  
 #' @param ... Additional arguments passed on to \code{\link{plot}}.
 #' 
-#' @seealso \code{\link{read_curves}} and \code{\link{plot_grp_curves}}
+#' @seealso \code{\link{read_curves}}
 #' 
 #' @export
 #' 

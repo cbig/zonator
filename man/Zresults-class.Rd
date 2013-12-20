@@ -13,10 +13,8 @@ In the current implementation all the results must be
 found. Otherwise none are recorder.
 }
 \section{Slots}{
-  \describe{ \item{\code{parent}:}{\code{Zvariant} object
-  to which results belong to.}
-  \item{\code{root}:}{Character string path pointing to the
-  root (dir) of the results.}
+  \describe{ \item{\code{root}:}{Character string path
+  pointing to the root (dir) of the results.}
   \item{\code{modified}:}{Character timestamp for when
   results were last modified.}
   \item{\code{run.info}:}{Character file path for run info

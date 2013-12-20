@@ -1,0 +1,49 @@
+\docType{methods}
+\name{plot,ZCurvesDataFrame,missing-method}
+\alias{plot,ZCurvesDataFrame,missing-method}
+\title{Plot Zonation performance curves for individual features.}
+\usage{
+\S4method{plot}{ZCurvesDataFrame,missing}(x, min = FALSE, mean = FALSE,
+  w.mean = FALSE, ext = FALSE, subs = NULL, ...)
+}
+\arguments{
+  \item{x}{\code{\link{ZCurvesDataFrame}} object.}
+
+  \item{min}{logical plot the minimum feature performance
+  of a group (default: FALSE).}
+
+  \item{mean}{logical plot the minimum feature performance
+  of a group (default: FALSE). If no other statistic is
+  used, mean will always be plotted. If other satistic(s)
+  are plotted and mean is to be disabled, this will have to
+  be done by setting \code{mean} explicitly to FALSE.}
+
+  \item{w.mean}{logical plot the weighted mean feature
+  performance of a group (default: FALSE).}
+
+  \item{ext}{logical plot extinction risk of a group
+  (default: FALSE).}
+
+  \item{subs}{character vector defining the names of
+  features (subset of all features) to be plotted.}
+
+  \item{...}{Additional arguments passed on to
+  \code{\link{plot_curves}}.}
+}
+\description{
+Generic plotting function for plotting feature performance
+curves. The method does some data pre-processing specific
+to \code{\link{ZCurvesDataFrame}} object before passing the
+data and arguments for \code{\link{plot_curves}}.
+}
+\note{
+If no other statistic is selected, \code{mean} will be set
+to TRUE and plotted.
+}
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}
+\seealso{
+\code{\link{read_curves}} and \code{\link{plot_curves}}.
+}
+

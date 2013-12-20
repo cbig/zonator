@@ -25,11 +25,7 @@ results.
 }
 \details{
 The value returned is a list of logical where key of each
-element corresponds to a specific type of results. E.g.
-
-\code{ $curves\cr [1] FALSE\cr $grp.curves\cr [1] FALSE\cr
-$rank\cr [1] FALSE\cr $rank\cr [1] FALSE\cr $wrscr\cr [1]
-FALSE\cr $prop\cr [1] FALSE\cr }
+element corresponds to a specific type of results.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

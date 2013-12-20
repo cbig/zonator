@@ -145,7 +145,6 @@ check_results <- function(object) {
 #'
 #'@section Slots: 
 #'  \describe{
-#'    \item{\code{parent}:}{\code{Zvariant} object to which results belong to.}
 #'    \item{\code{root}:}{Character string path pointing to the root (dir) of
 #'      the results.}
 #'    \item{\code{modified}:}{Character timestamp for when results were last modified.}
@@ -260,7 +259,13 @@ check_variant <- function(object) {
 #'    \item{\code{name}:}{Character string name of the variant.}
 #'    \item{\code{bat.file}:}{Character string path to a Zonation-style batch 
 #'      file.}
-#'    \item{\code{call.params}:}{Lista of parsed call parameters from the 
+#'    \item{\code{dat.data}:}{List holding the parsed data from Zonation 
+#'      dat-file}
+#'    \item{\code{spp.data}:}{Data frame holding the parsed data from Zonation 
+#'      spp-file}
+#'    \item{\code{groups}:}{Data frame holding the parsed data from Zonation 
+#'      groups-file}
+#'    \item{\code{call.params}:}{List of parsed call parameters from the 
 #'      batch file.}
 #'    \item{\code{results}:}{List holding the results (data frames).}
 #'  }

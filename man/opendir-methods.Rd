@@ -4,12 +4,12 @@
 \alias{opendir,Zproject-method}
 \title{Open the directory of a Zproject using the system file browser.}
 \usage{
-opendir(object)
+opendir(x)
 
-\S4method{opendir}{Zproject}(object)
+\S4method{opendir}{Zproject}(x)
 }
 \arguments{
-  \item{x}{object.}
+  \item{x}{a \code{\link{Zproject}} object.}
 }
 \value{
 invisible

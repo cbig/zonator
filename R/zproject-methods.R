@@ -39,10 +39,10 @@ setMethod("names", "Zproject", function(x) {
 #' @rdname opendir-methods
 #' @aliases opendir,Zproject-method
 #'
-setMethod("opendir", "Zproject", function(object) {
+setMethod("opendir", "Zproject", function(x) {
   if (.Platform['OS.type'] == "windows"){
-    shell.exec(object@root)
+    shell.exec(x@root)
   } else {
-    system(paste("dolphin", object@root, "&"))
+    system(paste("dolphin", x@root, "&"))
   }
 })
