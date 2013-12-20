@@ -1,41 +1,48 @@
 \docType{methods}
 \name{plot,ZGroupCurvesDataFrame,missing-method}
 \alias{plot,ZGroupCurvesDataFrame,missing-method}
-\title{Plot Zonation grouped performance curves.}
+\title{Plot Zonation performance curves for groups.}
 \usage{
 \S4method{plot}{ZGroupCurvesDataFrame,missing}(x, min = FALSE, mean = FALSE,
-  w.mean = FALSE, max = FALSE, ext = FALSE, subs = NULL,
-  monochrome = FALSE, invert.x = FALSE, main = "", ...)
+  w.mean = FALSE, max = FALSE, ext = FALSE, subs = NULL, ...)
 }
 \arguments{
-  \item{x}{data frame containing Zonation's performance
-  curve (group-specific) output.}
+  \item{x}{\code{\link{ZGroupCurvesDataFrame}} object.}
 
-  \item{statistic}{character string indicating which
-  statistic (\code{min}, \code{mean}, \code{max},
-  \code{w.mean}, \code{ext2}) over all feature groups is
-  plotted.}
+  \item{min}{logical plot the minimum feature performance
+  of a group (default: FALSE).}
 
-  \item{groups}{integer vector containing the IDs of groups
-  to be plotted.}
+  \item{mean}{logical plot the minimum feature performance
+  of a group (default: FALSE). If no other statistic is
+  used, mean will always be plotted. If other satistic(s)
+  are plotted and mean is to be disabled, this will have to
+  be done by setting \code{mean} explicitly to FALSE.}
 
-  \item{monochrome}{Boolean indicating if the plot should
-  be in monochrome colors only.}
+  \item{max}{logical plot the maxmimun feature performance
+  of a group (default: FALSE).}
 
-  \item{main}{Character string plot title.}
+  \item{w.mean}{logical plot the weighted mean feature
+  performance of a group (default: FALSE).}
 
-  \item{invert.x}{Boolean indicating if the X-axis is
-  printed from 1 ("feature remaining", \code{FALSE}) or 0
-  ("landscape under protection", \code{TRUE}).}
+  \item{ext}{logical plot extinction risk of a group
+  (default: FALSE).}
 
-  \item{labels}{character vector for custom feature
-  labels.}
+  \item{subs}{character vector defining the names of groups
+  (subset of all groups) to be plotted.}
 
   \item{...}{Additional arguments passed on to
-  \code{\link{plot}}.}
+  \code{\link{plot_curves}}.}
 }
 \description{
-Plot Zonation grouped performance curves.
+Generic plotting function for plotting group performance
+curves. The method does some data pre-processing specific
+to \code{\link{ZGroupCurvesDataFrame}} object before
+passing the data and arguments for
+\code{\link{plot_curves}}.
+}
+\note{
+If no other statistic is selected, \code{mean} will be set
+to TRUE and plotted.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

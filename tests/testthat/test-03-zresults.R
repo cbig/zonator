@@ -242,9 +242,12 @@ test_that("performance levels are reported right for groups", {
 
 test_that("featurenanmes are reported right", {
   
-correct.names <- c("f1", "f2", "f3", "f4", "f5", "f6", "f7")
+  results.path <- file.path(.options$output.dir, "01_core_area_zonation")
+  test.results <- new("Zresults", root=results.path)
+  
+  correct.names <- c("f1", "f2", "f3", "f4", "f5", "f6", "f7")
 
-expect_equal(correct.names, featurenames(test.results),
+  expect_equal(correct.names, featurenames(test.results),
              "Method featurenames doesn't return the right feature names")
 
 })

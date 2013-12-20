@@ -46,16 +46,18 @@ spp features have by default names that are derived from
 the feature raster file path.
 }
 \examples{
-setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
-tutorial.project <- create_zproject(setup.dir)
-variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+\dontrun{
+ setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
+ tutorial.project <- create_zproject(setup.dir)
+ variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
 
-# Feature names for a Zvariant object
-featurenames(variant.caz)
+ # Feature names for a Zvariant object
+ featurenames(variant.caz)
 
-# Feature names for a Zresults object
-results.caz <- results(variant.caz)
-featurenames(results.caz)
+ # Feature names for a Zresults object
+ results.caz <- results(variant.caz)
+ featurenames(results.caz)
+}
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
