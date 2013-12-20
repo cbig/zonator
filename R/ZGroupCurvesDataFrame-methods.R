@@ -43,6 +43,9 @@ setMethod("curves", c("ZGroupCurvesDataFrame"), function(x, cols=NULL) {
   return(curves.data)
 })
 
+#' @rdname groupnames-methods
+#' @aliases groupnames,ZGroupCurvesDataFrame-method
+#' 
 setMethod("groupnames", "ZGroupCurvesDataFrame", function(x) {
   
   if (any(dim(x) == c(0, 0))) {

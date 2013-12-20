@@ -61,10 +61,6 @@ check_zonation <- function(exe="zig3") {
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-#' @examples \dontrun{
-#' 
-#' }
-#' 
 parse_bat <- function(bat.file, exe=NULL) {
   # Read in the content of the bat file, surpress any info
   cmd.sequence <- scan(file=bat.file, "character", sep=" ", quiet=TRUE)
@@ -101,10 +97,6 @@ parse_bat <- function(bat.file, exe=NULL) {
 #' @export
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-#' @examples \dontrun{
-#' 
-#' }
 #' 
 run_bat <- function(bat.file, exe="zig3") {
   if (!file.exists(bat.file)) {

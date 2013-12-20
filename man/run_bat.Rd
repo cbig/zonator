@@ -18,11 +18,6 @@ successful.
 \description{
 Try to run a given batch (bat) files.
 }
-\examples{
-\dontrun{
-
-}
-}
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }

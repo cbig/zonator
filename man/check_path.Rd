@@ -23,11 +23,6 @@ in which case \code{x} is appended to it and the
 concatenated path is checked for existence. If the path
 cannot be resolved, raise an error.
 }
-\examples{
-\dontrun{
-
-  }
-}
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }

@@ -21,11 +21,6 @@ name of the executable, ways of calling it, and path
 separators. Relative file paths need to be expanded into
 full absolute paths.
 }
-\examples{
-\dontrun{
-
-}
-}
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }

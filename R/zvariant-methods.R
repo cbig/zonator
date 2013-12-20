@@ -13,7 +13,7 @@
 
 #' @name featurenames<-
 #' @rdname featurenames-methods
-#' @aliases groupnames<-,Zvariant,character-method
+#' @aliases featurenames<-,Zvariant,character-method
 #' 
 setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
   # Check names
@@ -79,7 +79,7 @@ setMethod("groupnames", "Zvariant", function(x) {
 
 #' @name groupnames<-
 #' @rdname groupnames-methods
-#' @aliases groupnames<-,Zvariant-method
+#' @aliases groupnames<-,Zvariant,character-method
 #' 
 setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   if (empty(x@groups)) {

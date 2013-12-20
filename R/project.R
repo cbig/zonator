@@ -38,11 +38,6 @@
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
-#'  
-#' @examples
-#'   \dontrun{
-#'       
-#'   }
 #'
 create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL) {
  if (!file.exists(root)) {

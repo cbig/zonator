@@ -1,0 +1,33 @@
+\name{sub_curves}
+\alias{sub_curves}
+\title{Get subset of curves/group curves columns.}
+\usage{
+sub_curves(x, stat, name, size = 0.6, lty = 1)
+}
+\arguments{
+  \item{x}{ZCurvesDataFrame or ZGroupCurvesDataFrame
+  object}
+
+  \item{stat}{character string of the statistic used
+  ['min', 'mean', 'max', 'w.mean', 'ext2'].}
+
+  \item{name}{character name of a group/feature.}
+
+  \item{size}{numeric defining line width.}
+
+  \item{lty}{integer defining line type.}
+}
+\value{
+data frame for a single column in curves / group curves
+data.
+}
+\description{
+Function gets a single column (feature/group/stat) from
+curves or group curves. Useful for construction melt-type
+data frames for plotting.
+}
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}
+\keyword{internal}
+
