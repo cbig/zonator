@@ -41,6 +41,8 @@ vignette("zonator-project")
 vignette("zonator-results")
 ```
 
+Content of these vignettes is also avaible in [zonator-wiki](https://github.com/cbig/zonator/wiki).
+
 ## Developers
 
 * Joona Lehtomäki <joona.lehtomaki@gmail.com>
