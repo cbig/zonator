@@ -10,6 +10,8 @@
 \usage{
 featurenames(x)
 
+featurenames(x) <- value
+
 \S4method{featurenames}{ZCurvesDataFrame}(x)
 
 \S4method{featurenames}{Zresults}(x)
@@ -18,18 +20,34 @@ featurenames(x)
 }
 \arguments{
   \item{x}{Z* object.}
+
+  \item{x}{\code{\link{Zvariant-class}} or
+  \code{\link{Zresults-class}} object.}
+
+  \item{value}{character vector of feature names to be
+  assigned. Can be named or not.}
 }
 \value{
 Character vector of spp feature names.
+
+A named character vector containing the feature names. If
+there are no groups, return NA.
 }
 \description{
 Getter function to retrieve names for analysis features
 used a given Zonation variant.
+
+This is a replacement function for variant spp feature
+names.
 }
 \details{
 Argument \code{x} can be an instance of one the following
 Z* classes: \itemize{ \item{\code{Zvariant}}
 \item{\code{Zresults}} }
+}
+\note{
+spp features have by default names that are derived from
+the feature raster file path.
 }
 \examples{
 \dontrun{
@@ -47,9 +65,14 @@ Z* classes: \itemize{ \item{\code{Zvariant}}
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
 \code{\link{Zvariant-class}} \code{\link{Zresults-class}}
 \code{\link{groupnames}} \code{\link{groups}}
+
+\code{\link{Zvariant-class}} \code{\link{Zresults-class}}
+\code{\link{featurenames}}
 }
 
