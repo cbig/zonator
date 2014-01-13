@@ -51,7 +51,7 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0,
 
 #' Feature names of Zonation variant.
 #'
-#' Getter function to retrieve names for analysis features used a given 
+#' Get and set names for analysis features used a given 
 #' Zonation variant.
 #'
 #' Argument \code{x} can be an instance of one the following Z* classes:
@@ -59,6 +59,10 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0,
 #'   \item{\code{Zvariant}}
 #'   \item{\code{Zresults}}
 #' }
+#' 
+#' @note spp features have by default names that are derived from the feature
+#' raster file path.
+#' 
 #' @param x Z* object.
 #'
 #' @return Character vector of spp feature names. 
@@ -91,29 +95,14 @@ setGeneric("featurenames", function(x) {
 
 # featurenames<- ----------------------------------------------------------
 
-#' Assign spp feature names to a \code{Zvariant} or \code{\link{Zresults}}
-#' instance.
-#' 
-#' This is a replacement function for variant spp feature names.
-#' 
-#' @note spp features have by default names that are derived from the feature
-#' raster file path.
 #'
-#' @param x \code{\link{Zvariant-class}} or \code{\link{Zresults-class}} object.
 #' @param value character vector of feature names to be assigned. Can be named 
 #'   or not.
 #'
-#' @return A named character vector containing the feature names. If there are 
-#'         no groups, return NA.
-#' 
-#' @seealso \code{\link{Zvariant-class}} \code{\link{Zresults-class}} 
-#' \code{\link{featurenames}}
 #' 
 #' @export
 #' @docType methods
 #' @rdname featurenames-methods
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
 setGeneric("featurenames<-", function(x, value) {
   standardGeneric("featurenames<-")
