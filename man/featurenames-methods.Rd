@@ -21,24 +21,15 @@ featurenames(x) <- value
 \arguments{
   \item{x}{Z* object.}
 
-  \item{x}{\code{\link{Zvariant-class}} or
-  \code{\link{Zresults-class}} object.}
-
   \item{value}{character vector of feature names to be
   assigned. Can be named or not.}
 }
 \value{
 Character vector of spp feature names.
-
-A named character vector containing the feature names. If
-there are no groups, return NA.
 }
 \description{
-Getter function to retrieve names for analysis features
-used a given Zonation variant.
-
-This is a replacement function for variant spp feature
-names.
+Get and set names for analysis features used a given
+Zonation variant.
 }
 \details{
 Argument \code{x} can be an instance of one the following
@@ -65,14 +56,9 @@ the feature raster file path.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
 \code{\link{Zvariant-class}} \code{\link{Zresults-class}}
 \code{\link{groupnames}} \code{\link{groups}}
-
-\code{\link{Zvariant-class}} \code{\link{Zresults-class}}
-\code{\link{featurenames}}
 }
 
