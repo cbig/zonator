@@ -111,7 +111,7 @@ setGeneric("featurenames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname featurenames<--methods
+#' @rdname featurenames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
