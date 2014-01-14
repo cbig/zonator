@@ -1,4 +1,14 @@
-## CHANGES IN VERSION 0.3.2 (2013-12-20)
+## CHANGES IN VERSION 0.3.4 (2014-01-14)
+
+### NEW FEATURES
+
+* New methods for class `Zproject`:
+  - `variants()`: returns a list containing all the variants within a project
+
+* New methods for class `Zvariant` and `Zresults`:
+  - `outdir()`: returns the path to location of output dirctory
+  
+## CHANGES IN VERSION 0.3.3 (2013-12-20)
 
 Maintance update, R CMD check and TravisCI test passes after few minor fixes.
 
@@ -10,13 +20,13 @@ curves plotting more sensibly.
 
 ### NEW FEATURES
 
-* Generic `groupnames` now returns a character vector instead of a named 
+* Generic `groupnames()` now returns a character vector instead of a named 
 character vector (with names being the original group numbers)
 
-* `plot` now works for `ZCurvesDataFrame` and `ZGroupCurvesDataFrame` objecs.
+* `plot()` now works for `ZCurvesDataFrame` and `ZGroupCurvesDataFrame` objecs.
 
 * New methods for class `Zresults`:
-  - `groupnames`
+  - `groupnames()`
   
 ## NEW DEPENDENCIES
 
@@ -27,11 +37,11 @@ character vector (with names being the original group numbers)
 ### NEW FEATURES
 
 * bat-files are read recursively when creating a project (~~[issue20](https://github.com/cbig/zonator/issues/20)~~)
-* `check_paths` now deals with relative path components 
-* `has_results` now returns a list of logicals instead of a single logical
+* `check_paths()` now deals with relative path components 
+* `has_results()` now returns a list of logicals instead of a single logical
 
 * New methods for class `Zresults`:
-  - `has_results`: returns a list of TRUE/FALSE depending on whether the 
+  - `has_results()`: returns a list of TRUE/FALSE depending on whether the 
   particular results items (curves, grp.curves, rank, wrscr, prop) are available
   or not
 
@@ -45,11 +55,11 @@ character vector (with names being the original group numbers)
 * New classes `Zresults` and `Zcurves`. See docs for methods and structure.
 
 * New methods for class `Zvariant`:
-  - `groupnames<-`: assign human readable group names
-  - `groupnames`: get assigned unique groupnames and codes
-  - `has_results`: returns TRUE/FALSE depending on whether the variant has 
+  - `groupnames()<-`: assign human readable group names
+  - `groupnames()`: get assigned unique groupnames and codes
+  - `has_results()`: returns TRUE/FALSE depending on whether the variant has 
   results or not
-  - `results`: returns a `Zresults` object specific to a `Zvariant` object
+  - `results()`: returns a `Zresults` object specific to a `Zvariant` object
 
 ## CHANGES IN VERSION 0.2.2 (2013-11-28)
 
@@ -59,9 +69,9 @@ be joined and queried.
 ### NEW FEATURES
 
 * New methods for class `Zvariant`:
-  - `featurenames<-`: assign human readable feature names
-  - `featurenames`: get assigned unique featurenames
-  - `sppdata`: return the whole spp data frame of a variant
+  - `featurenames()<-`: assign human readable feature names
+  - `featurenames()`: get assigned unique featurenames
+  - `sppdata()`: return the whole spp data frame of a variant
 
 ## CHANGES IN VERSION 0.2.1 (2013-11-27)
 
@@ -71,12 +81,12 @@ Zonation input file and can be used (eventually) in many operations.
 ### NEW FEATURES
 
 * New methods for class `Zvariant`:
-  - `groups`: returns a numeric vector containing group codes for features
-  - `groupnames<-`: assign human readable group names to groups
-  - `groupnames`: get assigned unique groupnames with associated group codes 
+  - `groups()`: returns a numeric vector containing group codes for features
+  - `groupnames()<-`: assign human readable group names to groups
+  - `groupnames()`: get assigned unique groupnames with associated group codes 
 
 * New utlity functions:
-  - `read_groups`: read in Zonation groups file
+  - `read_groups()`: read in Zonation groups file
 
 ## CHANGES IN VERSION 0.2.0 (2013-11-22)
 
@@ -93,11 +103,11 @@ Zonation tutorial (basic)
 ### NEW FEATURES
 
 * New methods for class `Zpoject`:
-  - `names`: returns a character vector of the names of variants in a project
+  - `names()`: returns a character vector of the names of variants in a project
 
 * New methods for class `Zvariant`:
-  - `has_results`: boolean indicating whether the variant already has associated
+  - `has_results()`: boolean indicating whether the variant already has associated
     results
 
 * New utlity functions:
-  - `read.spp`: read in spp files
+  - `read.spp()`: read in spp files
