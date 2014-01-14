@@ -251,3 +251,12 @@ test_that("featurenanmes are reported right", {
              "Method featurenames doesn't return the right feature names")
 
 })
+
+test_that("Retrieving variant output directory works", {    
+  results.path <- file.path(.options$output.dir, "01_core_area_zonation")
+  test.results <- new("Zresults", root=results.path)
+  
+  expect_identical(outdir(test.results), results.path,
+                   "outdir() does not return the correct path for Zresults")
+  
+})

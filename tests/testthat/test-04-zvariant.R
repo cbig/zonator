@@ -158,3 +158,16 @@ test_that("Assigning and fetching group names and identities works", {
                    paste("Generic method groupnames does not return the same",
                          "values for group names"))
 })
+
+test_that("Retrieving variant output directory works", {    
+  bat.file <- .options$bat.file
+  spp.file <- .options$spp.file
+  test.variant <- new("Zvariant", bat.file=bat.file)
+  
+  correct.output.dir <- system.file("extdata/tutorial/basic/basic_output/01_core_area_zonation",
+                                    package="zonator")
+  
+  expect_identical(outdir(test.variant), correct.output.dir,
+                   "outdir() does not return the correct path for Zvariant")
+  
+})

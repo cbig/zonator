@@ -263,6 +263,7 @@ check_variant <- function(object) {
 #'      dat-file}
 #'    \item{\code{spp.data}:}{Data frame holding the parsed data from Zonation 
 #'      spp-file}
+#'    \item{\code{output.dir}:}{Character string path to the output directory.}
 #'    \item{\code{groups}:}{Data frame holding the parsed data from Zonation 
 #'      groups-file}
 #'    \item{\code{call.params}:}{List of parsed call parameters from the 
@@ -278,6 +279,7 @@ check_variant <- function(object) {
 #' 
 setClass("Zvariant", representation(name = "character", bat.file = "character",
                                     dat.data = "list", spp.data = "data.frame",
+                                    output.dir = "character", 
                                     groups = "data.frame",
                                     call.params = "list", results = "Zresults"),
          validity = check_variant)

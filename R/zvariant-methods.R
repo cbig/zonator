@@ -127,6 +127,13 @@ setMethod("has_results", "Zvariant", function(x) {
   return(has_results(x@results))
 })
 
+#' @rdname outdir-methods
+#' @aliases outdir,Zvariant-method
+#' 
+setMethod("outdir", c("Zvariant"), function(x) {
+  return(x@output.dir)
+})
+
 #' @rdname results-methods
 #' @aliases results,Zvariant-method
 #' 

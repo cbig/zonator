@@ -175,6 +175,10 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
   .Object@spp.data <- spp.data
   
+  # output dir #################################################################
+  
+  .Object@output.dir <- call.params$output.folder
+  
   # groups content #############################################################
   
   # First we need to define whether groups are 1) used, and 2) available. 
