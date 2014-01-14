@@ -24,6 +24,35 @@ test_that("Zproject is created correctly based on existing project", {
   }
 })
 
+context("Zproject methods")
+
+test_that("Retrieving variants works", {    
+  setup.dir <- .options$setup.dir
+  test.project <- create_zproject(setup.dir)
+  
+  bat.file <- .options$bat.file
+  spp.file <- .options$spp.file
+  test.variant <- new("Zvariant", bat.file=bat.file)
+  
+  # Number of variants
+  expect_equivalent(nvariants(test.project), 5,
+                    paste("Number of variants reported incorrectly"))
+  
+  # Single variant retrieval based on index
+  expect_identical(get_variant(test.project, 1),
+                   test.variant,
+                   "Variant isn't returned correctly based on index")
+  
+  # Single variant retrieval based on name
+  expect_identical(get_variant(test.project, "01_core_area_zonation"),
+                   test.variant,
+                   "Variant isn't returned correctly based on name")
+  
+  all.variants <- test.project@variants
+  expect_equivalent(variants(test.project), all.variants,
+                    "All variants are not returned correctly")
+})
+
 # test_that("Zproject is created correctly as a new project", {
 #   temp.dir <- file.path(tempdir(), "test_zproject")
 #   

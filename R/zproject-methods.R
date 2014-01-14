@@ -46,3 +46,10 @@ setMethod("opendir", "Zproject", function(x) {
     system(paste("dolphin", x@root, "&"))
   }
 })
+
+#' @rdname variants-methods
+#' @aliases variants,Zproject-method
+#' 
+setMethod("variants", "Zproject", function(x) {
+  return(x@variants)
+})
