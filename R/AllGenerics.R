@@ -274,6 +274,31 @@ setGeneric("opendir", function(x) {
   standardGeneric("opendir")
 })
 
+
+# outdir ------------------------------------------------------------------
+
+#' Get path to output directory. 
+#' 
+#' Zonation variant has an output directory defined in project bat-file. This
+#' is of course the same path as in the results of the particular variant.
+#' 
+#' @param x \code{\link[zonator]{Zvariant-class}} or 
+#' \code{\link[zonator:Zresults-class]{Zresults}} object.
+#'
+#' @return character string path to output directory location.
+#' 
+#' @seealso \code{\link{Zvariant-class}} \code{\link{Zresults-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname outdir-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("outdir", function(x) {
+  standardGeneric("outdir")
+})
+
 # performance -------------------------------------------------------------
 
 #' Get performance levels.
@@ -361,4 +386,25 @@ setGeneric("results", function(x) {
 #' 
 setGeneric("sppdata", function(x, group.names=FALSE) {
   standardGeneric("sppdata")
+})
+
+# variants ----------------------------------------------------------------
+
+#' Get all variants in a Zonation project
+#'
+#' @param x Zproject object.
+#'
+#' @return A list of Zvariant objects
+#' 
+#' @seealso \code{\link[zonator:Zproject-class]{Zproject-class}} 
+#'   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname variants-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("variants", function(x) {
+  standardGeneric("variants")
 })

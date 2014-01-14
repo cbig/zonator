@@ -120,6 +120,13 @@ setMethod("has_results", "Zresults", function(x) {
   return(res)
 })
 
+#' @rdname outdir-methods
+#' @aliases outdir,Zresults-method
+#' 
+setMethod("outdir", c("Zresults"), function(x) {
+  return(x@root)
+})
+
 #' @rdname performance-methods
 #' @aliases performance,Zresults-method
 #' 
