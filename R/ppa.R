@@ -44,7 +44,7 @@ read_ppa_lsm <- function(x) {
   # Count of species with nothing remaining in the network = 0
   # Total proportion and sum remaining for species
   
-  chunk2.start.token <- "Total proportion and sum remaining for species"
+  chunk2.start.token <- "Total proportion and sum remaining for biodiversity features"
   
   # Header looks like this:
   # Biological data of 3991 units.
@@ -100,13 +100,37 @@ read_ppa_lsm <- function(x) {
     } 
   }
   
+  if (is.null(index1$start)) {
+    stop("PPA start index 1 NULL")
+  }
+  
+  if (is.null(index1$end)) {
+    stop("PPA end index 1 NULL")
+  }
+  
+  if (is.null(index2$start)) {
+    stop("PPA start index 2 NULL")
+  }
+  
+  if (is.null(index2$end)) {
+    stop("PPA end index 2 NULL")
+  }
+  
+  if (is.null(index3$start)) {
+    stop("PPA start index 3 NULL")
+  }
+  
+  if (is.null(index3$end)) {
+    stop("PPA end index 3 NULL")
+  }
+  
   .read.chunk <- function(x, start, end, header=NULL, char.rows=FALSE) {
     
     # Get only the needed rows from the original data x
     if (char.rows) {
-      sub.dat <- t(sapply(x[start:end], .line.as.string, USE.NAMES=F))
+      sub.dat <- t(sapply(x[start:end], line_as_string, USE.NAMES=F))
     } else {
-      sub.dat <- t(sapply(x[start:end], .line.as.numeric, USE.NAMES=F))
+      sub.dat <- t(sapply(x[start:end], line_as_numeric, USE.NAMES=F))
     }
     sub.dat <- as.data.frame(sub.dat)
     if (!is.null(header)) {
