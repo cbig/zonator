@@ -9,8 +9,8 @@ results associated with a single variant (instance of class
 \code{\link[zonator:Zvariant-class]{Zvariant-class}}).
 }
 \note{
-In the current implementation all the results must be
-found. Otherwise none are recorder.
+More information on PPA LSM data items can be found in
+\url{http://cbig.it.helsinki.fi/development/projects/zonation/wiki/LSM_with_pre-defined_units}
 }
 \section{Slots}{
   \describe{ \item{\code{root}:}{Character string path
@@ -25,7 +25,9 @@ found. Otherwise none are recorder.
   \item{\code{wrscr}:}{RasterLayer object of weighted
   range-size corrected richness.}
   \item{\code{prop}:}{RasterLayer object of the
-  proportional loss of distribution.} }
+  proportional loss of distribution.}
+  \item{\code{ppa}:}{Data frame containg PPA LSM data items
+  1 and 3.} }
 }
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>

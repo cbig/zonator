@@ -140,8 +140,8 @@ check_results <- function(object) {
 #' with a single variant (instance of class 
 #' \code{\link[zonator:Zvariant-class]{Zvariant-class}}).
 #'
-#' @note In the current implementation all the results must be found. Otherwise
-#' none are recorder.
+#' @note More information on PPA LSM data items can be found in 
+#' \link[http://cbig.it.helsinki.fi/development/projects/zonation/wiki/LSM_with_pre-defined_units]
 #'
 #'@section Slots: 
 #'  \describe{
@@ -154,6 +154,7 @@ check_results <- function(object) {
 #'    \item{\code{rank}:}{RasterLayer object of rank priority.}
 #'    \item{\code{wrscr}:}{RasterLayer object of weighted range-size corrected richness.}
 #'    \item{\code{prop}:}{RasterLayer object of the proportional loss of distribution.}
+#'    \item{\code{ppa.lsm}:}{Data frame containg PPA LSM data items 1 and 3.}
 #'  }
 #'
 #' @name Zresults
@@ -169,7 +170,8 @@ setClass("Zresults", representation(root = "character",
                                     grp.curves = "data.frame",
                                     rank = "RasterLayer", 
                                     wrscr = "RasterLayer",
-                                    prop = "RasterLayer"),
+                                    prop = "RasterLayer",
+                                    ppa.lsm = "data.frame"),
          validity = check_results)
 
 # Zonation variant ------------------------------------------------------------
