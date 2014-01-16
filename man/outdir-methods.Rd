@@ -1,0 +1,32 @@
+\docType{methods}
+\name{outdir}
+\alias{outdir}
+\alias{outdir,Zresults-method}
+\alias{outdir,Zvariant-method}
+\title{Get path to output directory.}
+\usage{
+outdir(x)
+
+\S4method{outdir}{Zresults}(x)
+
+\S4method{outdir}{Zvariant}(x)
+}
+\arguments{
+  \item{x}{\code{\link[zonator]{Zvariant-class}} or
+  \code{\link[zonator:Zresults-class]{Zresults}} object.}
+}
+\value{
+character string path to output directory location.
+}
+\description{
+Zonation variant has an output directory defined in project
+bat-file. This is of course the same path as in the results
+of the particular variant.
+}
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}
+\seealso{
+\code{\link{Zvariant-class}} \code{\link{Zresults-class}}
+}
+

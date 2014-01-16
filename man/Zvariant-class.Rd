@@ -20,8 +20,9 @@ then the results are also associated with the instance of
   \item{\code{dat.data}:}{List holding the parsed data from
   Zonation dat-file} \item{\code{spp.data}:}{Data frame
   holding the parsed data from Zonation spp-file}
-  \item{\code{groups}:}{Data frame holding the parsed data
-  from Zonation groups-file}
+  \item{\code{output.dir}:}{Character string path to the
+  output directory.} \item{\code{groups}:}{Data frame
+  holding the parsed data from Zonation groups-file}
   \item{\code{call.params}:}{List of parsed call parameters
   from the batch file.} \item{\code{results}:}{List holding
   the results (data frames).} }
