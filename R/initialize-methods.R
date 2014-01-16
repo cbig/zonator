@@ -121,6 +121,19 @@ setMethod("initialize", "Zresults", function(.Object, root) {
     .Object@prop <- raster(prop.raster.file)  
   }
   
+  # PPA (post-processing analysis) results may be present as well
+  # Process LSM results if present
+  # http://cbig.it.helsinki.fi/development/projects/zonation/wiki/LSM_with_pre-defined_units
+  ppa.lsm.file <- get_file(root, ".*nwout\\.1.*")
+  if (!is.na(ppa.lsm.file)) {
+    # read_ppa_lsm return a list. Merge data items 1 and 3, don't use 2
+    ppa.lsm.data <- read_ppa_lsm(ppa.lsm.file)
+    ppa.lsm.data <- merge(ppa.lsm.data[[1]], ppa.lsm.data[[3]], by.x="Unit", 
+                      by.y="Unit_number")
+    # Remove Area_cells column as it's redundant
+    .Object@ppa.lsm <- ppa.lsm.data[, !(names(ppa.lsm.data) %in% c("Area_cells"))]
+  }
+  
   f <- validObject(.Object)
   
   .Object

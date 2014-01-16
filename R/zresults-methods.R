@@ -116,6 +116,7 @@ setMethod("has_results", "Zresults", function(x) {
   res$rank <- hasValues(x@rank)
   res$wrscr <- hasValues(x@wrscr)
   res$prop <- hasValues(x@prop)
+  res$ppa.lsm <- (!length(x@ppa.lsm) == 0)
   
   return(res)
 })
