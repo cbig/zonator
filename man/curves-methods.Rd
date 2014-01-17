@@ -4,7 +4,7 @@
 \alias{curves,ZCurvesDataFrame-method}
 \alias{curves,ZGroupCurvesDataFrame-method}
 \alias{curves,Zresults-method}
-\title{Get curves data of a Z* object.}
+\title{Get curves results data of a Z* object.}
 \usage{
 curves(x, cols = NULL, groups = FALSE, lost.lower = 0, lost.upper = 1)
 
@@ -49,4 +49,5 @@ Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 \code{\link{Zresults-class}} \code{\link{read_curves}}
 \code{\link{read_grp_curves}}
 }
+\keyword{results}
 
