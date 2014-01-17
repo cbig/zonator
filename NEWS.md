@@ -1,3 +1,14 @@
+## CHANGES IN VERSION 0.3.5 (2014-XX-XX)
+
+### NEW FEATURES
+
+* Post-processign (PPA) LSM results are now handled by `Zresults`. Results,
+if present, are read in from the output folder. More specifically:
+  - Class `Zresults` now defines a new slot `ppa.lsm` tha holds the content
+  of PPA LSM results
+
+* All slots of `Zresults` can be accessed using `$`-operator.
+
 ## CHANGES IN VERSION 0.3.4 (2014-01-14)
 
 ### NEW FEATURES
