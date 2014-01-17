@@ -1,6 +1,6 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Create zonator project based on existing data}
+%\VignetteIndexEntry{Working with Zonator results: curves}
 -->
 
 ```{r setup, echo=FALSE}
