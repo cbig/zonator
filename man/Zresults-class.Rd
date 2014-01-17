@@ -8,6 +8,10 @@
 results associated with a single variant (instance of class
 \code{\link[zonator:Zvariant-class]{Zvariant-class}}).
 }
+\details{
+Slots of class \code{Zresults} can be queried using the
+\code{$}-operator.
+}
 \note{
 More information on PPA LSM data items can be found in
 \url{http://cbig.it.helsinki.fi/development/projects/zonation/wiki/LSM_with_pre-defined_units}
@@ -26,8 +30,8 @@ More information on PPA LSM data items can be found in
   range-size corrected richness.}
   \item{\code{prop}:}{RasterLayer object of the
   proportional loss of distribution.}
-  \item{\code{ppa}:}{Data frame containg PPA LSM data items
-  1 and 3.} }
+  \item{\code{ppa.lsm}:}{Data frame containg PPA LSM data
+  items 1 and 3.} }
 }
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
