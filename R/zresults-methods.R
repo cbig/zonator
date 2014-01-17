@@ -128,6 +128,13 @@ setMethod("outdir", c("Zresults"), function(x) {
   return(x@root)
 })
 
+#' @rdname ppa_lsm-methods
+#' @aliases ppa_lsm,Zresults-method
+#' 
+setMethod("ppa_lsm", signature("Zresults"), function(x) {
+  return(x@ppa.lsm)
+})
+
 #' @rdname performance-methods
 #' @aliases performance,Zresults-method
 #' 
@@ -178,17 +185,4 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   row.names(perf.data) <- 1:nrow(perf.data)
   
   return(perf.data)
-})
-
-#' @rdname $-methods
-#' @aliases $,Zresults-method
-#' 
-setMethod("$", c("Zresults"), function(x, name) {
-  # name is mapped to the keys of x@results
-  results <- slotNames(x)
-  if (!name %in% results) {
-    return(NULL)
-  } else {
-    return(slot(x, name))
-  }
 })

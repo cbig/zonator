@@ -13,7 +13,7 @@
 
 # curves ------------------------------------------------------------------
 
-#' Get curves data of a Z* object.
+#' Get curves results data of a Z* object.
 #' 
 #' pr_lost is always included in the returned data, but other columns can be 
 #' specified using \code{cols} argument.
@@ -33,6 +33,8 @@
 #' @return Data frame containing the (selected) curves file data. If column 
 #' names are provided, but none are found, return NA.
 #' 
+#' @keywords results
+#'  
 #' @seealso \code{\link{Zresults-class}} \code{\link{read_curves}} 
 #' \code{\link{read_grp_curves}}
 #' 
@@ -297,6 +299,33 @@ setGeneric("opendir", function(x) {
 #' 
 setGeneric("outdir", function(x) {
   standardGeneric("outdir")
+})
+
+# ppa_lsm  ------------------------------------------------------------------
+
+#' Get ppa.lsm results data of a Z* object.
+#' 
+#' Simple getter-method for ppa.lsm information (if used) contained in Zonation 
+#' results
+#' 
+#' @param x Z* object.
+#' 
+#' @return Data frame containing PPA LSM data items 1 and 3 combined (See
+#' \code{\link{Zresults-class}} for more details).
+#' 
+#' @keywords results
+#' 
+#' @seealso \code{\link{Zresults-class}} \code{\link{read_curves}} 
+#' \code{\link{read_grp_curves}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname ppa_lsm-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("ppa_lsm", function(x) {
+  standardGeneric("ppa_lsm")
 })
 
 # performance -------------------------------------------------------------
