@@ -199,7 +199,7 @@ setGeneric("groupnames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname groupnames<--methods
+#' @rdname groupnames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
