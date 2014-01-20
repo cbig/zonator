@@ -30,7 +30,7 @@ Following color schemes are available:
 Color schemes are stored in env \code{.options}.
 }
 \examples{
-zcolors("spectral")
+zlegend("spectral")
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

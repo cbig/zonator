@@ -203,7 +203,7 @@ setGeneric("groupnames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname groupnames-methods
+#' @rdname groupnames<-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -386,8 +386,8 @@ setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE,
 #' 
 #' @param x \code{\link{Zresults}} or \code{\link{Zvariant}} object.
 #'
-#' @return \code{\link{RasterLayer}} object. If no results are available, give 
-#'   a warning.
+#' @return \code{\link[raster:RasterLayer-class]{RasterLayer}} object. If no 
+#'   results are available, give a warning.
 #' 
 #' @seealso \code{\link{Zresults-class}}
 #' 
@@ -407,11 +407,12 @@ setGeneric("rank_raster", function(x) {
 #' 
 #' Each \code{\link{Zproject}} object has a set of variants and their results
 #' associated with it. This method will get all the available rank rasters
-#' (1 per variant) and create a \code{\link{RasterStack}} object. 
+#' (1 per variant) and create a \code{\link[raster:RasterStack-class]{RasterStack}} 
+#' object. 
 #' 
 #' @param x \code{\link{Zproject}} object.
 #'
-#' @return \code{\link{RasterStack}} object.
+#' @return \code{\link[raster:RasterStack-class]{RasterStack}} object.
 #' 
 #' @seealso \code{\link{rank_raster}}
 #' 
