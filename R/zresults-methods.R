@@ -186,3 +186,14 @@ setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
   
   return(perf.data)
 })
+
+#' @rdname rank_raster-methods
+#' @aliases rank_raster,Zresults-method
+#' 
+setMethod("rank_raster", c("Zresults"), function(x) {
+  if(has_results(x)$rank) {
+    return(x@rank)
+  } else {
+    warning("Rank raster requested but not present in ", outdir(x))
+  }
+})

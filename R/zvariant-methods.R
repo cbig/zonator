@@ -134,6 +134,17 @@ setMethod("outdir", c("Zvariant"), function(x) {
   return(x@output.dir)
 })
 
+#' @rdname rank_raster-methods
+#' @aliases rank_raster,Zvariant-method
+#' 
+setMethod("rank_raster", c("Zvariant"), function(x) {
+  if(has_results(x)$rank) {
+    return(rank_raster(results(x)))
+  } else {
+    warning("Rank raster requested but not present in ", outdir(x))
+  }
+})
+
 #' @rdname results-methods
 #' @aliases results,Zvariant-method
 #' 

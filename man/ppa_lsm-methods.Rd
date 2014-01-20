@@ -13,7 +13,8 @@ ppa_lsm(x)
 }
 \value{
 Data frame containing PPA LSM data items 1 and 3 combined
-(See \code{\link{Zresults-class}} for more details).
+(See \code{\link{Zresults-class}} for more details). If no
+results are available, give a warning.
 }
 \description{
 Simple getter-method for ppa.lsm information (if used)

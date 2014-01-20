@@ -47,6 +47,19 @@ setMethod("opendir", "Zproject", function(x) {
   }
 })
 
+#' @rdname rank_rasters-methods
+#' @aliases rank_rasters,Zproject-method
+#' 
+setMethod("rank_rasters", c("Zproject"), function(x) {
+  rank_rasters_list <- list()
+  for (variant in x@variants) {
+    if(has_results(variant)$rank) {
+      rank_rasters_list[variant@name] <- rank_raster(variant)
+    }
+  }
+  return(raster::stack(rank_rasters_list))
+})
+
 #' @rdname variants-methods
 #' @aliases variants,Zproject-method
 #' 
