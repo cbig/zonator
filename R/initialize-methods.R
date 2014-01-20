@@ -89,6 +89,8 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   if (!is.na(run.info.file)) {
     .Object@run.info <- run.info.file
     .Object@modified <- file.info(run.info.file)$mtime
+  } else {
+    .Object@modified <- Sys.time()
   }
   
   # Curves file is named *.curves.txt. NOTE: if the file does not exist,
