@@ -125,10 +125,8 @@ group codes and character elements the group names to be assigned:
 # By default, there are no group names
 groupnames(variant.caz)
 
-# Contruct a group name mapping using a named character vector
-labels <- c("mammals", "owls")
-names(labels) <- c(1, 2)
-groupnames(variant.caz) <- labels
+# Construct a group name mapping using a named character vector
+groupnames(variant.caz) <- c("1"="mammals", "2"="owls")
 groupnames(variant.caz)
 ```
 
