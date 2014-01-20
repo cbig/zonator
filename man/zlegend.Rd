@@ -1,0 +1,38 @@
+\name{zlegend}
+\alias{zlegend}
+\title{Get various Zonation legends}
+\usage{
+zlegend(x)
+}
+\arguments{
+  \item{x}{String character name for the color scheme.}
+}
+\value{
+A list color scheme.
+}
+\description{
+Zonation result rank rasters can be displayed in various
+color schemes.
+}
+\details{
+Each color scheme is a list with following item:
+
+\describe{ \item{\code{values}:}{Value breaks in the rank
+priority map} \item{\code{labels}:}{Labels to be used in
+the map legend} \item{\code{colors}:}{Colors used for the
+value classes} }
+
+Following color schemes are available:
+
+\enumerate{ \item{"spectral"} }
+}
+\note{
+Color schemes are stored in env \code{.options}.
+}
+\examples{
+zcolors("spectral")
+}
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}
+
