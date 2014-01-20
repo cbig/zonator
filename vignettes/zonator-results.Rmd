@@ -38,8 +38,7 @@ has_results(variant.caz)
 ```
 
 Value `TRUE` indicates that Zonation has already been run and results are 
-available and `FALSE` indicates that results are not available. For the tutorial
-data used here, all the results are available.
+available and `FALSE` indicates that results are not available.
 
 Results of a given variant - if present - can be extracted using `results()`.
 The resulting object will be an instance of `Zresults` class.
@@ -57,15 +56,19 @@ described in more detail below.
 
 ### 2.1 Working with performance data
 
-Raw curves data (with or without groups) can be extracted from results using 
-`curves()`. Optional argument `groups` defines whether feature or group specific
-curves are returned. If you don't need every feature or aggregate statistic,
-you can also get the data for particular features.
+Raw curves data (with or without groups) can be extracted from the variant or 
+results using `curves()`. Optional argument `groups` defines whether feature or 
+group specific curves are returned. If you don't need every feature or aggregate 
+statistic, you can also get the data for particular features.
 
 
 ```{r curves}
 # Get feature-specific curves
 feature.curves.caz <- curves(results.caz)
+head(feature.curves.caz)
+
+# Note! Using curves() variant.caz will work as well
+feature.curves.caz <- curves(variant.caz)
 head(feature.curves.caz)
 
 # Get just 2 species
@@ -240,5 +243,80 @@ ggplot(occr.remaining, aes(x = factor(feature), y = perf.levels,
 
 ---
 
-## 3. 
+## 3. Raster results
 
+### 3.1. Priority rank rasters
+
+One of the main outputs of a Zonation analysis is the priority rank rasters
+which gives each cell in the landscape a value [0, 1] indicating the final 
+priority rank (0 = the lowest, 1 = the highest). Rank raster is part of 
+`Zresults` object just as the performance curves above. Method `rank_raster()`
+can be used to get the rank raster object. The color scheme used is really up 
+to the user, but having a consistent and expressive color scheme for all the
+results helps. `zlegends()` can be used for ready-to-go color schemes that can 
+used when plotting the raster objects.
+
+```{r rank-raster-1, fig.width=10}
+rank.caz <- rank_raster(results.caz)
+# Let's use a spectral color scheme designed for Zonation rank maps
+leg <- zlegend("spectral")
+plot(rank.caz, breaks=leg$values, col=leg$colors)
+```
+
+You can of course get all rank rasters individually from your project's 
+variants, but an alternative approach is to call `rank_rasters()` (note
+the plural in method name!) directly on your project object. This will result
+in a `RasterStack` object containing all the rank rasters as respective layers.
+If you want to plot all rank rasters in your project for comparison, you could 
+do the following:
+
+```{r rank-raster-2, fig.height=20}
+# RasterStack is returned
+all.ranks <- rank_rasters(tutorial.project)
+plot(all.ranks, breaks=leg$values, col=leg$colors, nc=1)
+```
+
+Naturally, all mehtods defined for a [RasterStack](http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/raster/html/stack.html) object are available. For example, checking 
+the distributions of individual stack layers (i.e. rank rasters) and the 
+correlation between the values of layers can be done using `pairs()`. Following
+example examines correlation between variants 1-3.
+
+```{r rank-raster-3, fig.width=10}
+pairs(stack(all.ranks[[1:3]]), method="kendall")
+```
+
+Values are sampled from the whole distribution of values to increase
+execution speed. Note also that we are using `kendall` as method for 
+correlation.
+
+Masking is another usefuls analysis tool. In the following example we are using
+the maskfile `mask_rs.tif` shipping with Zonation basic tutorial in order to
+inspect the distribution of priorities within a subset of the landscape (i.e.
+protected areas, PAs). In the following example, note that method 
+`rank_raster()` has been implemented for class `Zvariant`. In other words, you 
+can call it on both your variant or results object. `plot_hist()` accepts 
+two rasters as arguments: first is the rank raster and the second one is a mask
+raster. Histogram is then plotted based on the values of the rank raster within
+the mask raster.
+
+```{r rank-raster-4, fig.width=10}
+pas.file <- system.file("extdata/tutorial/data", "mask_rs.tif", 
+                        package="zonator")
+pas <- raster(pas.file)
+# Reclass zeros as NA
+pas[pas == 0] <- NA
+# Plot the histogram of rank.caz within mask raster
+plot_hist(x=rank.caz, pas, add.median=TRUE)
+```
+
+[rasterVis](http://oscarperpinan.github.io/rastervis/) is another useful 
+package for plottign raster data. For example, `levelplot()` can be used to 
+plot data and show a marginal plot of of a function across each coordinate
+(here using mean): 
+
+```{r rank-rasterVis-1, fig.width=10, message=FALSE}
+library(rasterVis)
+# Note that breaks in the following are different from the previous maps
+levelplot(rank.caz, FUN.margin=mean, 
+          par.settings=rasterTheme(region=leg$colors))
+```
