@@ -12,13 +12,13 @@ rank_rasters(x)
   \item{x}{\code{\link{Zproject}} object.}
 }
 \value{
-\code{\link{RasterStack}} object.
+\code{\link[raster:RasterStack-class]{RasterStack}} object.
 }
 \description{
 Each \code{\link{Zproject}} object has a set of variants
 and their results associated with it. This method will get
 all the available rank rasters (1 per variant) and create a
-\code{\link{RasterStack}} object.
+\code{\link[raster:RasterStack-class]{RasterStack}} object.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
