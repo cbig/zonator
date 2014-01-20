@@ -11,4 +11,5 @@ before_script:
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
   - ./travis-tool.sh install_deps
+  - ./travis-tool.sh install_r rasterVis
   - ./travis-tool.sh github_package testthat
