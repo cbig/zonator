@@ -311,7 +311,8 @@ setGeneric("outdir", function(x) {
 #' @param x Z* object.
 #' 
 #' @return Data frame containing PPA LSM data items 1 and 3 combined (See
-#' \code{\link{Zresults-class}} for more details).
+#' \code{\link{Zresults-class}} for more details). If no results are available, 
+#'   give a warning.
 #' 
 #' @keywords results
 #' 
@@ -365,6 +366,59 @@ setGeneric("ppa_lsm", function(x) {
 setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE,
                                    melted=FALSE) {
   standardGeneric("performance")
+})
+
+
+# rank_raster -------------------------------------------------------------
+
+#' Get Zonation result rank raster.
+#' 
+#' Getter method for rank priority raster included in Zonation results. Rank
+#' raster is one of the main outputs of Zonation.
+#'  
+#' Since a given \code{Zvariant} object can only have 1 rank priority raster,
+#' this method only calls the \code{rank_raster} method of a \code{Zresults}
+#' object associated with the \code{Zvariant} object. 
+#' 
+#' @param x \code{\link{Zresults}} or \code{\link{Zvariant}} object.
+#'
+#' @return \code{\link{RasterLayer}} object. If no results are available, give 
+#'   a warning.
+#' 
+#' @seealso \code{\link{Zresults-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname rank_raster-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("rank_raster", function(x) {
+  standardGeneric("rank_raster")
+})
+
+# rank_rasters -------------------------------------------------------------
+
+#' Get all Zonation result rank rasters of a project.
+#' 
+#' Each \code{\link{Zproject}} object has a set of variants and their results
+#' associated with it. This method will get all the available rank rasters
+#' (1 per variant) and create a \code{\link{RasterStack}} object. 
+#' 
+#' @param x \code{\link{Zproject}} object.
+#'
+#' @return \code{\link{RasterStack}} object.
+#' 
+#' @seealso \code{\link{rank_raster}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname rank_rasters-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("rank_rasters", function(x) {
+  standardGeneric("rank_rasters")
 })
 
 # results -----------------------------------------------------------------

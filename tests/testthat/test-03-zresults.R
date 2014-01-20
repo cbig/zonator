@@ -33,6 +33,13 @@ test_that("Zresults is created correctly", {
                    "Test results object's group curves data incorrect") 
 })
 
+test_that("Zresults is created correctly when there are no results", {
+
+  no.results.path <- file.path(.options$output.dir, "06_dummy_for testing")
+  test.no.results <- new("Zresults", root=no.results.path)
+  
+})
+
 context("Zresults methods")
 
 test_that("getting curves for individual features works", {
@@ -252,11 +259,27 @@ test_that("featurenanmes are reported right", {
 
 })
 
-test_that("Retrieving variant output directory works", {    
+test_that("Retrieving results output directory works", {    
   results.path <- file.path(.options$output.dir, "01_core_area_zonation")
   test.results <- new("Zresults", root=results.path)
   
   expect_identical(outdir(test.results), results.path,
                    "outdir() does not return the correct path for Zresults")
+  
+})
+
+test_that("Retrieving results rank raster works", {    
+  results.path <- file.path(.options$output.dir, "01_core_area_zonation")
+  correct.rank.raster <- raster(file.path(results.path,
+                                          "01_core_area_zonation.rank.compressed.tif"))
+  test.results <- new("Zresults", root=results.path)
+  
+  expect_identical(rank_raster(test.results), correct.rank.raster,
+                   "Correct rank raster is not returned for Zresults")
+  
+  no.results.path <- file.path(.options$output.dir, "06_dummy_for testing")
+  test.no.results <- new("Zresults", root=no.results.path)
+  
+  expect_warning(rank_raster(test.no.results))
   
 })
