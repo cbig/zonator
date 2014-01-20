@@ -43,8 +43,7 @@ test_that("Zvariant without results is created correctly", {
   # Variant with no results, no results
   no.results.bat.file <- file.path(.options$setup.dir, 
                                    "06_dummy_for_testing.batx")
-  expect_warning(no.results.variant <- new("Zvariant", 
-                                           bat.file=no.results.bat.file))
+  no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
   
   # Groups
   res <-unlist(has_results(no.results.variant))

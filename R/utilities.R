@@ -122,44 +122,6 @@ clean_str <- function(x) {
   return(x)
 }
 
-#' Get various Zonation legends
-#' 
-#' Zonation result rank rasters can be displayed in various color schemes. 
-#'
-#' Each color scheme is a list with following item:
-#' 
-#' \describe{
-#'    \item{\code{values}:}{Value breaks in the rank priority map}
-#'    \item{\code{labels}:}{Labels to be used in the map legend}
-#'    \item{\code{colors}:}{Colors used for the value classes}
-#'  }
-#'  
-#' Following color schemes are available:
-#' 
-#' \enumerate{
-#'    \item{"spectral"}
-#' }
-#'
-#' @param x String character name for the color scheme.
-#'
-#' @return A list color scheme.
-#' 
-#' @note Color schemes are stored in env \code{.options}.
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' @export
-#' @examples
-#' zcolors("spectral")
-#'
-zlegend <- function(x) {
-
-  if (x == "spectral") {
-    return(.options$z_colors_spectral)
-  } else {
-    stop("No legend scheme ", x, " defined")
-  }
-}
-
 line_as_numeric <- function(x) {
   return(as.numeric(line_as_string(x)))
 }
@@ -314,4 +276,42 @@ unique_grp_names <- function(x) {
   group.names <- unique(group.names)
 
   return(group.names)
+}
+
+#' Get various Zonation legends
+#' 
+#' Zonation result rank rasters can be displayed in various color schemes. 
+#'
+#' Each color scheme is a list with following item:
+#' 
+#' \describe{
+#'    \item{\code{values}:}{Value breaks in the rank priority map}
+#'    \item{\code{labels}:}{Labels to be used in the map legend}
+#'    \item{\code{colors}:}{Colors used for the value classes}
+#'  }
+#'  
+#' Following color schemes are available:
+#' 
+#' \enumerate{
+#'    \item{"spectral"}
+#' }
+#'
+#' @param x String character name for the color scheme.
+#'
+#' @return A list color scheme.
+#' 
+#' @note Color schemes are stored in env \code{.options}.
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#' @examples
+#' zlegend("spectral")
+#'
+zlegend <- function(x) {
+  
+  if (x == "spectral") {
+    return(.options$z_colors_spectral)
+  } else {
+    stop("No legend scheme ", x, " defined")
+  }
 }

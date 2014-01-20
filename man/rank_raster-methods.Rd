@@ -16,8 +16,8 @@ rank_raster(x)
   object.}
 }
 \value{
-\code{\link{RasterLayer}} object. If no results are
-available, give a warning.
+\code{\link[raster:RasterLayer-class]{RasterLayer}} object.
+If no results are available, give a warning.
 }
 \description{
 Getter method for rank priority raster included in Zonation
