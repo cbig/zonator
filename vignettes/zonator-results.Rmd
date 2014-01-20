@@ -7,7 +7,7 @@
 options(width=160)
 ```
 
-## Exploring results
+## 1. Introduction to working with Zonation results
 
 First, let's set up the scene.
 
@@ -25,9 +25,8 @@ variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
 featurenames(variant.caz) <- c("Koala", "Masked.owl", "Powerful.owl", 
                              "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
                              "Yellow-bellied.glider")
-labels <- c("mammals", "owls")
-names(labels) <- c(1, 2)
-groupnames(variant.caz) <- labels
+
+groupnames(variant.caz) <- c("1"="mammals", "2"="owls")
 ```
 
 Each variant can either already have results (i.e. Zonation run has completed) 
@@ -42,13 +41,21 @@ Value `TRUE` indicates that Zonation has already been run and results are
 available and `FALSE` indicates that results are not available. For the tutorial
 data used here, all the results are available.
 
-Results of a given variant can be extracted using `results()`.
+Results of a given variant - if present - can be extracted using `results()`.
+The resulting object will be an instance of `Zresults` class.
 
 ```{r get-results}
 results.caz <- results(variant.caz)
 ```
 
-### Working with performance results (curves)
+Object `results.caz` can in turn be queried with various dedicated methods
+described in more detail below.
+
+----
+
+## 2. Performance curves
+
+### 2.1 Working with performance data
 
 Raw curves data (with or without groups) can be extracted from results using 
 `curves()`. Optional argument `groups` defines whether feature or group specific
@@ -129,7 +136,7 @@ lost.levels <- c(0.25, 0.50, 0.75)
 performance(results.caz, lost.levels, melted=TRUE)
 ```
 
-### Plotting performance curves
+### 2.2 Plotting performance curves
 
 To make plotting examples more interesting, let's use also another variant that
 uses Zonation's masking capability.
@@ -213,7 +220,7 @@ plot(feature.grp.curves.mask, invert.x=TRUE, main="All groups", mean=TRUE,
      min=TRUE, max=TRUE)
 ```
 
-### Plotting performance levels
+### 2.3 Plotting performance levels
 
 If you want to summarize how much each feature has retained it's occurrence 
 level in a given stage of the cell removal process, you can easily created 
@@ -231,4 +238,7 @@ ggplot(occr.remaining, aes(x = factor(feature), y = perf.levels,
 
 ```
 
+---
+
+## 3. 
 
