@@ -11,6 +11,14 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' @rdname curves-methods
+#' @aliases curves,Zresults-method
+#' 
+setMethod("curves", c("Zvariant"), function(x, cols=NULL, groups=FALSE,
+                                            lost.lower=0.0, lost.upper=1.0) {
+ return(curves(results(x), cols, groups, lost.lower, lost.upper))
+})
+
 #' @name featurenames<-
 #' @rdname featurenames-methods
 #' @aliases featurenames<-,Zvariant,character-method

@@ -21,6 +21,9 @@
 #' Arguments \code{upper} and \code{lower} can be used to define a specific 
 #' range of pr_lost to be returned.
 #' 
+#' Method implementation in class \code{\link{Zvariant}} is just a thin
+#' wrapper for passing the argumets to variant's code{\link{Zresults}} object.
+#' 
 #' @param x Z* object.
 #' @param lost.upper numeric defining the upper limit of pr_lost to be included
 #' [0.01, 1.0] (default: 1.0)
@@ -35,8 +38,8 @@
 #' 
 #' @keywords results
 #'  
-#' @seealso \code{\link{Zresults-class}} \code{\link{read_curves}} 
-#' \code{\link{read_grp_curves}}
+#' @seealso \code{\link{Zresults-class}} \code{\link{Zvariant-class}}
+#' \code{\link{read_curves}} \code{\link{read_grp_curves}}
 #' 
 #' @export
 #' @docType methods
