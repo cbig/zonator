@@ -1,13 +1,27 @@
-## CHANGES IN VERSION 0.3.5 (2014-XX-XX)
+## CHANGES IN VERSION 0.3.5 (2014-01-20)
 
 ### NEW FEATURES
+
+* Results vignette has bee updated.
 
 * Post-processign (PPA) LSM results are now handled by `Zresults`. Results,
 if present, are read in from the output folder. More specifically:
   - Class `Zresults` now defines a new slot `ppa.lsm` tha holds the content
   of PPA LSM results
 
-* All slots of `Zresults` can be accessed using `$`-operator.
+* `zlegend()` can be used to fetch Zonation rank raster map legend schemes. So
+  far only one scheme ("spectral") is implemented.
+
+* New methods for class `Zproject`:
+  - `rank_rasters()`: returns a `RasterStack` of all priority rank rasters
+  of all variants within a project
+
+* New methods for class `Zvariant`:
+  - Implented `curves()`
+
+* New methods for class `Zvariant` and `Zresults`:
+  - `rank_raster()`: returns `RasterLayer` of priority rank raster of a given
+  variant or its results
 
 ## CHANGES IN VERSION 0.3.4 (2014-01-14)
 
