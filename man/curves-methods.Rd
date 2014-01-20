@@ -35,8 +35,10 @@ curves(x, cols = NULL, groups = FALSE, lost.lower = 0, lost.upper = 1)
   data should be returned.}
 }
 \value{
-Data frame containing the (selected) curves file data. If
-column names are provided, but none are found, return NA.
+\code{\link{ZCurvesDataFrame}} or
+\code{\link{ZGroupCurvesDataFrame}} containing the
+(selected) curves file data. If column names are provided,
+but none are found, return NA.
 }
 \description{
 pr_lost is always included in the returned data, but other
@@ -45,13 +47,17 @@ columns can be specified using \code{cols} argument.
 \details{
 Arguments \code{upper} and \code{lower} can be used to
 define a specific range of pr_lost to be returned.
+
+Method implementation in class \code{\link{Zvariant}} is
+just a thin wrapper for passing the argumets to variant's
+code{\link{Zresults}} object.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link{Zresults-class}} \code{\link{read_curves}}
-\code{\link{read_grp_curves}}
+\code{\link{Zresults-class}} \code{\link{Zvariant-class}}
+\code{\link{read_curves}} \code{\link{read_grp_curves}}
 }
 \keyword{results}
 

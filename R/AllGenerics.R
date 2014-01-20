@@ -33,8 +33,9 @@
 #' @param groups logical indicating whether group curves data should be 
 #' returned.
 #'
-#' @return Data frame containing the (selected) curves file data. If column 
-#' names are provided, but none are found, return NA.
+#' @return \code{\link{ZCurvesDataFrame}} or \code{\link{ZGroupCurvesDataFrame}} 
+#'   containing the (selected) curves file data. If column names are provided, 
+#'   but none are found, return NA.
 #' 
 #' @keywords results
 #'  
