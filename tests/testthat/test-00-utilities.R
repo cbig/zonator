@@ -107,3 +107,15 @@ test_that("path checking works", {
   unlink(path1)
   unlink(path2)
 })
+
+test_that("getting color schemes works", {
+
+  z_colors_spectral <- list(values=c(0.0, 0.2, 0.5, 0.75, 0.9, 0.95, 0.98, 1.0),
+                            labels=c("0.00-0.20", "0.20-0.50", "0.50-0.75",
+                                     "0.75-0.90", "0.90-0.95", "0.95-0.98",
+                                     "0.98-1.00"),
+                            colors=c("#2b83ba", "#80bfab", "#c7e8ad", "#ffffbf",
+                                     "#fdc980", "#f07c4a", "#d7191c"))
+  expect_identical(zlegend("spectral"), z_colors_spectral,
+                   "Spectral color scheme not returned correctly")
+})
