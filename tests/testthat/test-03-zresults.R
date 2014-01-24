@@ -16,8 +16,8 @@ test_that("Zresults is created correctly", {
   
   # Run info
   run.info.file <- file.path(results.path, "01_core_area_zonation.run_info.txt")
-  expect_equal(run.info.file, test.results@run.info,
-               "Test results object's run info file path incorrect")
+  expect_identical(run.info.file, test.results@run.info,
+                   "Test results object's run info file path incorrect")
   
   # Curves
   curves.file <- file.path(results.path, "01_core_area_zonation.curves.txt")
@@ -254,8 +254,8 @@ test_that("featurenanmes are reported right", {
   
   correct.names <- c("f1", "f2", "f3", "f4", "f5", "f6", "f7")
 
-  expect_equal(correct.names, featurenames(test.results),
-             "Method featurenames doesn't return the right feature names")
+  expect_identical(correct.names, featurenames(test.results),
+                   "Method featurenames doesn't return the right feature names")
 
 })
 
