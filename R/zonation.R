@@ -69,20 +69,27 @@ parse_bat <- function(bat.file, exe=NULL) {
   cmd.sequence[5] <- cmd.sequence[5]
   cmd.sequence[6] <- cmd.sequence[6]
 
+  # Which index is the *.exe command at?
+  exe.index <- 2
+  
   if (.Platform$OS.type == "unix") {
     # Don't take the 1st element, "call" is specific only to Windows
     if (cmd.sequence[1] == "call") {
       cmd.sequence <- cmd.sequence[2:length(cmd.sequence)]
+      exe.index <- 1
     }
-    # Which index is the *.exe command at?
-    index <- grep(".(\\.exe)", cmd.sequence)
     # Remove the *.exe or replace it if needed
     if (is.null(exe)) {
-      cmd.sequence[index] <- gsub(".exe", "", cmd.sequence[index])
+      cmd.sequence[exe.index] <- gsub(".exe", "", cmd.sequence[index])
     } else {
-      cmd.sequence[index] <- exe
+      cmd.sequence[exe.index] <- exe
     }
-  } 
+  } else {
+    # Remove the *.exe or replace it if needed
+    if (!is.null(exe)) {
+      cmd.sequence[exe.index] <- exe
+    }
+  }
   return(paste(cmd.sequence, collapse=" "))
 }
 
