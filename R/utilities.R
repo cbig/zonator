@@ -55,7 +55,7 @@ check_names <- function(x) {
 #' @param x Character string path.
 #' @param parent.path Character string root path.
 #' @param require.file Logical indicating if a file is required for return or
-#' if an existing parent folder is enough
+#' if an existing parent folder is enough 
 #'
 #' @return A cleaned character string
 #' 
@@ -63,10 +63,12 @@ check_names <- function(x) {
 #' @export
 #'  
 check_path <- function(x, parent.path=NULL, require.file=FALSE) {
+  #browser()
+  # Expand path
+  x <- path.expand(x)
+  # Replace "\\" with "/"
+  x <- gsub("\\\\", "/", x)
   
-  # Check and replace path separators
-  x <- normalizePath(x, mustWork=FALSE)
-
   # Deal with potentially relative paths in x. Note that if there is no 
   # parent.path relative paths do not make any difference.
   if (grepl("\\.{2}/", x) && !is.null(parent.path)) {
@@ -90,11 +92,12 @@ check_path <- function(x, parent.path=NULL, require.file=FALSE) {
     if (file.exists(path)) {
       return(path)
     } else {
+      #browser()
       # Is the parent path at least valid?
       if (file.exists(parent.path) && !require.file) {
         return(parent.path)
       } else {
-        stop("Path ", x, parent.path, " cannot be resolved.")
+        stop("Path ", file.path(parent.path, x), " cannot be resolved.")
       }
     }
   } else {
