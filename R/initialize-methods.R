@@ -31,7 +31,7 @@ setMethod("initialize", "Zproject", function(.Object, root) {
   }
   
   variants <- list()
-  
+  #browser()
   # List all the bat-files
   bat.files <- list.files(root, ".bat$", full.names=TRUE, recursive=TRUE)
   
