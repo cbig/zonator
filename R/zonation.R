@@ -80,7 +80,7 @@ parse_bat <- function(bat.file, exe=NULL) {
     }
     # Remove the *.exe or replace it if needed
     if (is.null(exe)) {
-      cmd.sequence[exe.index] <- gsub(".exe", "", cmd.sequence[index])
+      cmd.sequence[exe.index] <- gsub(".exe", "", cmd.sequence[exe.index])
     } else {
       cmd.sequence[exe.index] <- exe
     }

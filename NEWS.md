@@ -1,3 +1,8 @@
+## CHANGES IN VERSION 0.3.6 (2014-01-24)
+
+Bug fix release, check_path() did not work on Windows. Fixed now, also fixed
+several tests on Windows.
+
 ## CHANGES IN VERSION 0.3.5 (2014-01-20)
 
 ### NEW FEATURES
