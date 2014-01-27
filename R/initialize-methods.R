@@ -213,5 +213,7 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   output.folder <- .Object@call.params$output.folder
   .Object@results <- new("Zresults", root=.Object@call.params$output.folder)
   
+  featurenames(.Object) <- spp.data$name
+  
   .Object
 })

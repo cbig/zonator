@@ -24,6 +24,7 @@ setMethod("curves", c("Zvariant"), function(x, cols=NULL, groups=FALSE,
 #' @aliases featurenames<-,Zvariant,character-method
 #' 
 setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
+  
   # Check names
   value <- check_names(value)
   # Control for length, no cycling allowed
@@ -32,17 +33,10 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
                 "data length (", nrow(x@spp.data), " should be the same"))
   }
   x@spp.data$name <- value
-  # Also deal with the resuts data if available
-  if (has_results(x)$curves) {
-    results.feat.names <- names(x@results@curves)[8:length(x@results@curves)]
-    if (length(value) != length(results.feat.names)) {
-      stop(paste0("Character vector length (", length(value), " and object results ",
-                  "curves header length (", length(results.feat.names), 
-                  " should be the same"))
-    }
-    new.names <- c(names(x@results@curves)[1:7], value)
-    names(x@results@curves) <- new.names
-  } 
+  # Also deal with the results data if available
+  if (any(dim(x@results@curves) != c(0, 0))) {
+    featurenames(x@results@curves) <- value
+  }
   return(x)
 })
 

@@ -13,7 +13,8 @@
 
 #' A function check feature/group names.
 #' 
-#' Checks a vector of names only contains unique items and that the items are
+#' Checks a vector of names only contains unique items and if they're not,
+#' unique names will be created. Also, the items must be
 #' suitable for columns names. Function is strict so that if the vector is not 
 #' valid or it cannot be coerced to be one an error is induced. 
 #' 
@@ -31,7 +32,8 @@ check_names <- function(x) {
   }
   # Check for only unique items
   if (length(unique(x)) != length(x)) {
-    stop("All items in names vector must be unique")
+    warning("All names are not unique, creating unique names")
+    x <- make.names(x, unique=TRUE)
   }
   # Check for empty names
   if (any(x == "") || any(nchar(x) == 0)) {
