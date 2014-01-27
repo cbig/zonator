@@ -7,9 +7,18 @@ test_that("name checking works", {
                    "Truly valid names not accepted by check_names()")
   
   invalid.names <- c("foo", "foo", "spam", "eggs")
-  # Fail
-  expect_error(check_names(invalid.names),
-               info="check_names() does not throw an error when there are duplicate names")
+  # Give warning
+  expect_warning(check_names(invalid.names),
+                 info="check_names() does not throw a warning when there are duplicate names")
+  
+  valid.names <- c(11, 12, 13, 16)
+  # Pass
+  expect_identical(as.character(valid.names), check_names(valid.names))
+  
+  invalid.names <- c(11, 12, 13, 13, 12)
+  # Give warning
+  expect_warning(check_names(invalid.names),
+                 info="check_names() does not throw a warning when there are duplicate names")
   
   valid.names <- c(11, 12, 13, 16)
   # Pass
@@ -17,17 +26,8 @@ test_that("name checking works", {
   
   invalid.names <- c(11, 12, 13, 13, 12)
   # Fail
-  expect_error(check_names(invalid.names),
-               info="check_names() does not throw an error when there are duplicate names")
-  
-  valid.names <- c(11, 12, 13, 16)
-  # Pass
-  expect_identical(as.character(valid.names), check_names(valid.names))
-  
-  invalid.names <- c(11, 12, 13, 13, 12)
-  # Fail
-  expect_error(check_names(invalid.names),
-               info="check_names() does not throw an error when there are duplicate names")
+  expect_warning(check_names(invalid.names),
+               info="check_names() does not throw a warning when there are duplicate names")
   
   invalid.names <- c("foo", "bar", "", "eggs")
   # Fail

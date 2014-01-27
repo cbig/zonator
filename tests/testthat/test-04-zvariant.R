@@ -77,9 +77,10 @@ test_that("Assigning and fetching feature names works", {
   
   # Check for valid names
   invalid.feature.names <- correct.feature.names
+  copy.results.variant <- results.variant
   # Inroduce a duplicate name
   invalid.feature.names[2] <- "Koala"
-  expect_error(featurenames(results.variant) <- invalid.feature.names)
+  expect_warning(featurenames(copy.results.variant) <- invalid.feature.names)
   
   # Check that the values match, first patch the spp data with the names
   correct.feature.data$name <- correct.feature.names
