@@ -50,6 +50,26 @@ setMethod("featurenames", signature("ZCurvesDataFrame"), function(x) {
   return(names(x)[x@is.feature])
 })
 
+#' @name featurenames<-
+#' @rdname featurenames-methods
+#' @aliases featurenames<-,Zvariant,character-method
+#' 
+setReplaceMethod("featurenames", c("ZCurvesDataFrame", "character"), function(x, value) {
+  # Check names
+  value <- check_names(value)
+  
+  if (any(dim(x) != c(0,0))) {
+    feat.names <- names(x)[8:ncol(x)]
+    if (length(value) != length(feat.names)) {
+      stop(paste0("Character vector length (", length(value), ") and ",
+                  "curves header length (", length(feat.names), 
+                  ") should be the same"))
+    }
+    names(x) <- c(names(x)[1:7], value)
+  } 
+  return(x)
+})
+
 #' Plot Zonation performance curves for individual features.
 #'
 #' Generic plotting function for plotting feature performance curves. The method
