@@ -93,7 +93,6 @@ setMethod("groupnames", "ZGroupCurvesDataFrame", function(x) {
 setMethod("plot", signature(x="ZGroupCurvesDataFrame", y="missing"), 
           function(x, min=FALSE, mean=FALSE, w.mean=FALSE, max=FALSE, ext=FALSE,
                    subs=NULL, ...)  {
-  
   # If no other stat is provided, set mean to TRUE
   if (!any(min, w.mean, max, ext)) {
     mean <- TRUE
