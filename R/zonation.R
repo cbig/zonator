@@ -30,12 +30,14 @@ check_zonation <- function(exe="zig3") {
 
   if (.Platform$OS.type == "unix") {
     z.exe <- exe
+    check <- system(paste("which", z.exe), intern=FALSE, ignore.stdout=TRUE,
+                    ignore.stderr=TRUE)
   } else  {
     z.exe <- paste0(exe, ".exe")
+    suppressWarnings(check <- shell(z.exe, intern=FALSE, ignore.stdout=TRUE,
+                                    ignore.stderr=TRUE))
   }
-  # FIXME: works only on Linux
-  check <- system(paste("which", z.exe), intern=FALSE, ignore.stdout=TRUE,
-                  ignore.stderr=TRUE)
+  
   if (check == 0) {
     return(TRUE)
   } else {
@@ -114,8 +116,7 @@ run_bat <- function(bat.file, exe="zig3") {
     # from.
     current.dir <- getwd()
     setwd(dirname(bat.file))
-    
-    exit.status <- system(parse_bat(bat.file))
+    exit.status <- shell(parse_bat(bat.file, exe))
     
     setwd(current.dir)
     
