@@ -1,7 +1,22 @@
+## CHANGES IN VERSION 0.3.7 (2014-XX-XX)
+
+### BUG FIXES
+
+* Fix bugs in tests
+* `check_zonation()` fixed on Windows (~~[issue26](https://github.com/cbig/zonator/issues/26)~~)
+
+### NEW FEATURES
+
+* New methods for class `ZCurvesDataFrame`:
+  - `featurenames()`
+
 ## CHANGES IN VERSION 0.3.6 (2014-01-24)
 
-Bug fix release, check_path() did not work on Windows. Fixed now, also fixed
-several tests on Windows.
+### BUG FIXES
+
+* Fix initial feature naming (~~[issue24](https://github.com/cbig/zonator/issues/24)~~)
+* `check_path()` works on Windows (~~[issue23](https://github.com/cbig/zonator/issues/23)~~)
+* Fix several tests on Windows 
 
 ## CHANGES IN VERSION 0.3.5 (2014-01-20)
 
