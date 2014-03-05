@@ -146,8 +146,8 @@ setGeneric("get_variant", function(x, index) {
 #'
 #' @param x Zvariant object.
 #'
-#' @return A numeric vector containing the groups. If there are no groups, return
-#'         NA.
+#' @return A numeric vector containing the group ids. If there are no groups, 
+#'         return NA.
 #' 
 #' @seealso \code{\link{Zvariant-class}}
 #' 
@@ -160,6 +160,22 @@ setGeneric("get_variant", function(x, index) {
 setGeneric("groups", function(x) {
   standardGeneric("groups")
 })
+
+# groups<- ----------------------------------------------------------------
+
+#'
+#' @param value numeric vector of group ids. Vector length must match to the
+#'        number of features, no recycling is done.
+#'
+#' 
+#' @export
+#' @docType methods
+#' @rdname groups-methods
+#' 
+setGeneric("groups<-", function(x, value) {
+  standardGeneric("groups<-")
+})
+
 
 # groupnames --------------------------------------------------------------
 

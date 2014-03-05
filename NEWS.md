@@ -1,4 +1,14 @@
-## CHANGES IN VERSION 0.3.7 (2014-XX-XX)
+## CHANGES IN VERSION 0.3.8 (2014-XX-XX)
+
+### BUG FIXES
+
+### NEW FEATURES
+
+* New methods for class `Zvariant`:
+  - Generic replacement method `groups()<-`
+
+
+## CHANGES IN VERSION 0.3.7 (2014-02-05)
 
 ### BUG FIXES
 
