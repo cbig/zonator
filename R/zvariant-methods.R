@@ -62,6 +62,29 @@ setMethod("groups", "Zvariant", function(x) {
   }
 })
 
+#' @name groups<-
+#' @rdname groups-methods
+#' @aliases groups<-,Zvariant,character-method
+#' 
+setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
+  
+  # [fixme] - Should there be a generic nfeatures() method?
+  nfeatures <- length(featurenames(x))
+  nreplacement <- length(value)
+  
+  if (nfeatures > nreplacement) {
+    stop("Too few replacement group IDs (", nreplacement, ") for variant ",
+         "features (", nfeatures, ")")
+  } else if (nfeatures < nreplacement) {
+    stop("Too many replacement group IDs (", nreplacement, ") for variant ",
+         "features (", nfeatures, ")")
+  }
+  
+  x@groups$output.group <- value
+  
+  return(x)
+})
+
 #' @rdname groupnames-methods
 #' @aliases groupnames,Zvariant-method
 #' 

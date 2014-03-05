@@ -112,7 +112,20 @@ test_that("Assigning and fetching group names and identities works", {
   correct.grp.codes <- c(1, 2, 2, 1, 2, 1, 1)
   variant.grp.codes <- groups(results.variant)
   expect_identical(variant.grp.codes, correct.grp.codes, 
-                   paste("Test variant group information wrong"))
+                   paste("Test variant group codes incorrect"))
+  
+  # Assigning groups
+  new.grp.codes <- c(3, 4, 4, 3, 4, 3, 4)
+  groups(results.variant) <- new.grp.codes
+  expect_identical(groups(results.variant), new.grp.codes, 
+                   paste("Test variant newly assigned group codes incorrect"))
+  # Expect error if the assigned vector is wrong length
+  expect_error((groups(results.variant) <- rep(c(1, 2), 2)),
+               info="Trying to assign too few group IDs did not generate an error")
+  expect_error((groups(results.variant) <- rep(c(1, 2), 10)),
+               info="Trying to assign too many group IDs did not generate an error")
+  # Set the correct codes back
+  groups(results.variant) <- correct.grp.codes
   
   # Variant with no groups
   no.grps.bat.file <- file.path(.options$setup.dir, 
