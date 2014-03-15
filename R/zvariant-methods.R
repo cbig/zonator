@@ -155,7 +155,7 @@ setMethod("has_results", "Zvariant", function(x) {
 #' @aliases nfeatures,Zproject-method
 #' 
 setMethod("nfeatures", "Zvariant", function(x) {
-  return(length(x@spp.data))
+  return(nrow(x@spp.data))
 })
 
 #' @rdname outdir-methods
