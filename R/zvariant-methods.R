@@ -46,7 +46,7 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
 setMethod("featurenames", signature("Zvariant"), function(x) {
   
   if (is.na(x@spp.data) || !"name" %in% names(x@spp.data)) {
-    stop("No spp data found or it doesn't have 'name' columnd defined")
+    stop("No spp data found or it doesn't have 'name' column defined")
   }
   return(x@spp.data$name)
 })
@@ -64,20 +64,19 @@ setMethod("groups", "Zvariant", function(x) {
 
 #' @name groups<-
 #' @rdname groups-methods
-#' @aliases groups<-,Zvariant,character-method
+#' @aliases groups<-,Zvariant,numeric-method
 #' 
 setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
   
-  # [fixme] - Should there be a generic nfeatures() method?
-  nfeatures <- length(featurenames(x))
+  nfeats <- nfeatures(x)
   nreplacement <- length(value)
   
-  if (nfeatures > nreplacement) {
+  if (nfeats > nreplacement) {
     stop("Too few replacement group IDs (", nreplacement, ") for variant ",
-         "features (", nfeatures, ")")
-  } else if (nfeatures < nreplacement) {
+         "features (", nfeats, ")")
+  } else if (nfeats < nreplacement) {
     stop("Too many replacement group IDs (", nreplacement, ") for variant ",
-         "features (", nfeatures, ")")
+         "features (", nfeats, ")")
   }
   
   x@groups$output.group <- value
@@ -150,6 +149,13 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
 #' 
 setMethod("has_results", "Zvariant", function(x) {
   return(has_results(x@results))
+})
+
+#' @rdname nfeatures-methods
+#' @aliases nfeatures,Zproject-method
+#' 
+setMethod("nfeatures", "Zvariant", function(x) {
+  return(length(x@spp.data))
 })
 
 #' @rdname outdir-methods
