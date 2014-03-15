@@ -26,9 +26,9 @@ setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
 bat.files <- list.files(setup.dir, "\\.bat$", full.names=TRUE)
 
 # Run all the runs
-for (bat.file in bat.files) {
-  run_bat(bat.file)
-}
+#for (bat.file in bat.files) {
+#  run_bat(bat.file)
+#}
 
 ```
 
@@ -82,8 +82,15 @@ the associated spp file is automatically parsed into it. All the spp data
 sppdata(variant.caz)
 ```
 
+You can check the number of features in spp file by using method `nfeatures()`:
+
+```{r nfeatures}
+nfeatures(variant.caz)
+```
+
 Feature names from the spp file/data can be accessed directly by using method
 `featurenames()`.
+
 
 ```{r sppdata-names-2}
 featurenames(variant.caz)
