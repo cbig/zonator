@@ -30,6 +30,8 @@ Character vector of spp feature names.
 \description{
 Get and set names for analysis features used a given
 Zonation variant.
+
+Assign feature names for a Zonation variant.
 }
 \details{
 Argument \code{x} can be an instance of one the following
