@@ -5,6 +5,7 @@
 \alias{featurenames,Zresults-method}
 \alias{featurenames,Zvariant-method}
 \alias{featurenames<-}
+\alias{featurenames<-,ZCurvesDataFrame,character-method}
 \alias{featurenames<-,Zvariant,character-method}
 \title{Feature names of Zonation variant.}
 \usage{

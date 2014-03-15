@@ -209,7 +209,6 @@ setGeneric("groupnames", function(x) {
 #' group names. If the particular variant doesn't use groups the gives a 
 #' warning.
 #'
-#' @param x \code{\link{Zvariant}} or \code{\link{Zresults}} object
 #' @param value named character vector.
 #'
 #' @return A named character vector containing the group names. If there are no 
@@ -220,7 +219,7 @@ setGeneric("groupnames", function(x) {
 #' 
 #' @export
 #' @docType methods
-#' @rdname groupnames<-methods
+#' @rdname groupnames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 

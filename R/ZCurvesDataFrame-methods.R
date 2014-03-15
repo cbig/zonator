@@ -52,9 +52,10 @@ setMethod("featurenames", signature("ZCurvesDataFrame"), function(x) {
 
 #' @name featurenames<-
 #' @rdname featurenames-methods
-#' @aliases featurenames<-,Zvariant,character-method
+#' @aliases featurenames<-,ZCurvesDataFrame,character-method
 #' 
-setReplaceMethod("featurenames", c("ZCurvesDataFrame", "character"), function(x, value) {
+setReplaceMethod("featurenames", c("ZCurvesDataFrame", "character"), 
+                 function(x, value) {
   # Check names
   value <- check_names(value)
   
