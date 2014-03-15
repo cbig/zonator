@@ -101,11 +101,11 @@ setGeneric("featurenames", function(x) {
 
 # featurenames<- ----------------------------------------------------------
 
+#' Assign feature names for a Zonation variant.
 #'
 #' @param value character vector of feature names to be assigned. Can be named 
 #'   or not.
 #'
-#' 
 #' @export
 #' @docType methods
 #' @rdname featurenames-methods
@@ -163,6 +163,7 @@ setGeneric("groups", function(x) {
 
 # groups<- ----------------------------------------------------------------
 
+#' Assign group codes for a class \code{Zvariant} instance.
 #'
 #' @param value numeric vector of group ids. Vector length must match to the
 #'        number of features, no recycling is done.
@@ -252,6 +253,26 @@ setGeneric("groupnames<-", function(x, value) {
 #' 
 setGeneric("has_results", function(x) {
   standardGeneric("has_results")
+})
+
+# nfeatures ---------------------------------------------------------------
+
+#' Get the number of feature included in a Zonation variant
+#'
+#' @param x Zvariant object.
+#'
+#' @return int number of variants
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#'
+#' @export
+#' @docType methods
+#' @rdname nfeatures-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("nfeatures", function(x) {
+  standardGeneric("nfeatures")
 })
 
 # nvariants ---------------------------------------------------------------

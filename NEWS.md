@@ -6,6 +6,7 @@
 
 * New methods for class `Zvariant`:
   - Generic replacement method `groups()<-`
+  - Method `nfeatures()` returns the number of features in a variant
 
 
 ## CHANGES IN VERSION 0.3.7 (2014-02-05)
