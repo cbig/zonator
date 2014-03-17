@@ -1,8 +1,13 @@
-## CHANGES IN VERSION 0.3.8 (2014-XX-XX)
+## CHANGES IN VERSION 0.3.8 (2014-03-17)
 
 ### BUG FIXES
 
 ### NEW FEATURES
+
+* Creating new Zproject object based on an existing Zonation project involves
+  reading in a lot of files and it can be useful to know the sequence of reading
+  in case something goes wront. `create_zproject()` now accepts a new argument
+  `debug=TRUE` which enables logging of file reading sequence.
 
 * New methods for class `Zvariant`:
   - Generic replacement method `groups()<-`
