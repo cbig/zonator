@@ -7,7 +7,7 @@
 * Creating new Zproject object based on an existing Zonation project involves
   reading in a lot of files and it can be useful to know the sequence of reading
   in case something goes wront. `create_zproject()` now accepts a new argument
-  `debug=TRUE` which enables logging of file reading sequence.
+  `debug=TRUE` which enables logging of file reading sequence. (~~[issue28](https://github.com/cbig/zonator/issues/28)~~)
 
 * New methods for class `Zvariant`:
   - Generic replacement method `groups()<-`

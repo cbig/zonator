@@ -39,6 +39,11 @@ following:
 tutorial.project <- create_zproject(setup.dir)
 ```
 
+**Pro tip!** In case you have a complex Zonation project and want to keep track
+which files are being read in while creating zproject, you can do 
+`create_zproject(setup.dir, debug=TRUE)` in order to enable logging of file
+reading sequence.
+
 zonator also includes a utility function `opendir()` which takes a zproject
 object as an argument and opens the file system folder containing the setup
 files:
