@@ -2,7 +2,8 @@
 \alias{create_zproject}
 \title{Create a Zonation project.}
 \usage{
-create_zproject(root, variants, dat.from = NULL, spp.from = NULL)
+create_zproject(root, variants, dat.from = NULL, spp.from = NULL,
+  debug = FALSE)
 }
 \arguments{
   \item{root}{Character string path pointing either to an
@@ -19,6 +20,9 @@ create_zproject(root, variants, dat.from = NULL, spp.from = NULL)
   \item{spp.from}{Character path to a spp file template. If
   no template is specified, uses the template distributed
   with zonator. Ignored if using an existing project.}
+
+  \item{debug}{logical defining if debugging level for
+  logging should be used.}
 }
 \value{
 A Zproject object.

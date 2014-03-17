@@ -5,7 +5,7 @@
 \alias{initialize,Zvariant-method}
 \title{Create an instance of the Zproject class using new/initialize.}
 \usage{
-\S4method{initialize}{Zproject}(.Object, root)
+\S4method{initialize}{Zproject}(.Object, root, debug = FALSE)
 
 \S4method{initialize}{Zresults}(.Object, root)
 
@@ -14,6 +14,9 @@
 \arguments{
   \item{root}{Character string path to the root of the
   project (must exist).}
+
+  \item{debug}{logical indicating whether debug logging is
+  used}
 
   \item{name}{Character string naming the variant.}
 
