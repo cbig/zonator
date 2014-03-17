@@ -30,6 +30,7 @@
 #' @param spp.from Character path to a spp file template. If no template is
 #'   specified, uses the template distributed with zonator. Ignored if using
 #'   an existing project.
+#' @param debug logical defining if debugging level for logging should be used.
 #'   
 #' @return A Zproject object.
 #' 
@@ -39,8 +40,9 @@
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #'
-create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL) {
- if (!file.exists(root)) {
+create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL,
+                            debug=FALSE) {
+  if (!file.exists(root)) {
     # Create the new location
     dir.create(root)
     
@@ -90,6 +92,6 @@ create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL) {
       cat(paste(c(cmd.sequence, "\n"), collapse=" "), file=bat.to)
     }
   }
-  project <- new("Zproject", root=root)
+  project <- new("Zproject", root=root, debug=debug)
   return(project)
 }
