@@ -20,7 +20,8 @@ Depends:
     raster,
     rgdal,
     reshape2,
-    tools
+    tools,
+    futile.logger
 Suggests:
     testthat,
     knitr
