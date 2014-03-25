@@ -142,16 +142,20 @@ selection_coverage <- function(x, y, thresholds) {
 #' @return A numeric value [0, 1]
 #'
 #' @export
-
+#'
 jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
+  
+  # [fixme] - using cellStats(X, "sum") should be safe as we're dealing with
+  # binary 0/1 rasters. count() would be preferable, but apparently raster
+  # (>= 2.2 at least) doesn't support it anymore.
   
   # Get the values above the threshhold
   x.bin <- x > threshold
   y.bin <- y > threshold
   
   if (warn.uneven) {
-    x.size <- count(x.bin, 1)
-    y.size <- count(y.bin, 1)
+    x.size <- cellStats(x.bin, "sum")
+    y.size <- cellStats(y.bin, "sum")
     # Sort from smaller to larger
     sizes <- sort(c(x.size, y.size))
     if (sizes[2] / sizes[1] > 20) {
@@ -167,7 +171,7 @@ jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
   # Union is all the area covered by the both rasters
   union <- combination >= 1
   
-  return(count(intersection, 1) / count(union, 1))
+  return(cellStats(intersection, "sum") / cellStats(union, "sum"))
 }
 
 #' Calculate Jaccard coefficients bewteen all the RasterLayers within a single
