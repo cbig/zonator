@@ -4,6 +4,9 @@
 
 ### NEW FEATURES
 
+* `cross_jaccard()` now returns a dataframe with correct RasterLayer names
+  colnames and rownames.
+
 * New methods for class `Zproject`:
   - Method `rank_rasters()` accepts a new argument `variants` which can be
   either a character of numeric vector of variant names / IDs defining which
