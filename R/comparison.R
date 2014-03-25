@@ -201,8 +201,9 @@ cross_jaccard <- function(stack, threshold) {
         # compared
         
         if (is.na(jaccards[j, i])) {
-          message(paste("Calculating Jaccard similarity coefficient between",
-                        names(stack[[i]]), "and", names(stack[[j]])))
+          message(paste0("Calculating Jaccard index for [", threshold, ", ",
+                         1.0, "] between ", names(stack[[i]]), " and ", 
+                         names(stack[[j]])))
           jaccards[i, j] <- jaccard(stack[[i]], stack[[j]], threshold)
         } else {
           jaccards[i, j]  <- jaccards[j, i]
