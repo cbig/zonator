@@ -50,9 +50,18 @@ setMethod("opendir", "Zproject", function(x) {
 #' @rdname rank_rasters-methods
 #' @aliases rank_rasters,Zproject-method
 #' 
-setMethod("rank_rasters", c("Zproject"), function(x) {
+setMethod("rank_rasters", c("Zproject"), function(x, variants=NULL) {
+  # Place the rank rasters into a list
   rank_rasters_list <- list()
-  for (variant in x@variants) {
+  
+  # Check if only a subset of variants is needed. If not, get all the variants
+  # based on their ID.
+  if (is.null(variants)) {
+    variants <- 1:nvariants(x)
+  }
+  # Loop over the variant IDs
+  for (variant.id in variants) {
+    variant <- get_variant(x, variant.id)
     if(has_results(variant)$rank) {
       rank_rasters_list[variant@name] <- rank_raster(variant)
     }
