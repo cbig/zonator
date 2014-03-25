@@ -439,18 +439,21 @@ setGeneric("rank_raster", function(x) {
 
 # rank_rasters -------------------------------------------------------------
 
-#' Get all Zonation result rank rasters of a project.
+#' Get Zonation result rank rasters of a project.
 #' 
 #' Each \code{\link{Zproject}} object has a set of variants and their results
-#' associated with it. This method will get all the available rank rasters
+#' associated with it. This method will get the selected available rank rasters
 #' (1 per variant) and create a \code{\link[raster:RasterStack-class]{RasterStack}} 
-#' object. 
+#' object. Argument \code{variants} can be used to the define which variants are
+#' included, the default is to return all.
 #' 
 #' @param x \code{\link{Zproject}} object.
+#' @param variants a numeric (IDs) or character (name) vector defining which 
+#'   variants are included in the returned stack (default: NULL means all).
 #'
 #' @return \code{\link[raster:RasterStack-class]{RasterStack}} object.
 #' 
-#' @seealso \code{\link{rank_raster}}
+#' @seealso \code{\link{rank_raster}} \code{\link{get_variant}}
 #' 
 #' @export
 #' @docType methods
@@ -458,7 +461,7 @@ setGeneric("rank_raster", function(x) {
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("rank_rasters", function(x) {
+setGeneric("rank_rasters", function(x, variants=NULL) {
   standardGeneric("rank_rasters")
 })
 

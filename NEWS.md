@@ -1,3 +1,15 @@
+## CHANGES IN VERSION 0.3.9 (2014-XX-XX)
+
+### BUG FIXES
+
+### NEW FEATURES
+
+* New methods for class `Zproject`:
+  - Method `rank_rasters()` accepts a new argument `variants` which can be
+  either a character of numeric vector of variant names / IDs defining which
+  rank rasters are included in the RasterStack that is returned. Default is 
+  to return all.
+
 ## CHANGES IN VERSION 0.3.8 (2014-03-17)
 
 ### BUG FIXES
