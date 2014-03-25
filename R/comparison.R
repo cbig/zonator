@@ -179,7 +179,7 @@ jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
 #' @param stack RasterStack-object. 
 #' @param threshold Numeric value of threshold.
 #'
-#' @return A matrix with Jaccard coefficients between all the RasterLayers.
+#' @return Dataframe with Jaccard coefficients between all the RasterLayers.
 #'
 #' @export
 #' @seealso \code{\link{jaccard}}
@@ -195,13 +195,19 @@ cross_jaccard <- function(stack, threshold) {
       } else {
         # See the complement, if it's not NA then the pair has already been
         # compared
+        
         if (is.na(jaccards[j, i])) {
-          jaccards[i, j] <- jaccard(stack[[i]], stack[[2]], threshold)
+          message(paste("Calculating Jaccard similarity coefficient between",
+                        names(stack[[i]]), "and", names(stack[[j]])))
+          jaccards[i, j] <- jaccard(stack[[i]], stack[[j]], threshold)
         } else {
           jaccards[i, j]  <- jaccards[j, i]
         }
       }
     }
   }
+  jaccards <- as.data.frame(jaccards)
+  colnames(jaccards) <- names(stack)
+  rownames(jaccards) <- names(stack)
   return(jaccards)
 }
