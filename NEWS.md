@@ -7,6 +7,9 @@
 * `cross_jaccard()` now returns a dataframe with correct RasterLayer names
   colnames and rownames.
   
+* `cross_jaccard()` now accpets a numeric vector of threshold values for
+  comparison.
+  
 * `jaccard()` now has additional parameters for controlling the thresholds for
   rasters `x` and `y` being compared. Arguments `xmin`, `xmax`, `ymin`, and 
   `ymax` can be used to control which ranges of the raster values are compared.
