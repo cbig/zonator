@@ -230,11 +230,15 @@ jaccard <- function(x, y, x.min=0.0, x.max=1.0, y.min=0.0, y.max=1.0,
 #' Calculate Jaccard coefficients bewteen all the RasterLayers within a single
 #' RasterStack. 
 #' 
+#' This method is a utility method that is intented to be used to compare
+#' top-fractions of the landscape. Thus, x.max and y.max for 
+#' \code{\link{jaccard}} are fixed to 1.0.
+#' 
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param stack RasterStack-object. 
-#' @param threshold Numeric value of threshold.
+#' @param threshold Numeric vector values of thresholds.
 #' @param ... additional arguments passed on to \code{\link{jaccard}}.
 #'
 #' @return Dataframe with Jaccard coefficients between all the RasterLayers.
@@ -244,29 +248,35 @@ jaccard <- function(x, y, x.min=0.0, x.max=1.0, y.min=0.0, y.max=1.0,
 
 cross_jaccard <- function(stack, threshold, ...) {
   
-  jaccards <- matrix(nrow=nlayers(stack), ncol=nlayers(stack))
+  all.jaccards <- list()
   
-  for (i in 1:nrow(jaccards)) {
-    for (j in 1:ncol(jaccards)) {
-      if (i == j) {
-        jaccards[i, j] <- 1
-      } else {
-        # See the complement, if it's not NA then the pair has already been
-        # compared
-        
-        if (is.na(jaccards[j, i])) {
-          message(paste0("Calculating Jaccard index for [", threshold, ", ",
-                         1.0, "] between ", names(stack[[i]]), " and ", 
-                         names(stack[[j]])))
-          jaccards[i, j] <- jaccard(stack[[i]], stack[[j]], threshold, ...)
+  for (threshold in thresholds) {
+    jaccards <- matrix(nrow=nlayers(stack), ncol=nlayers(stack))
+    for (i in 1:nrow(jaccards)) {
+      for (j in 1:ncol(jaccards)) {
+        if (i == j) {
+          jaccards[i, j] <- 1
         } else {
-          jaccards[i, j]  <- jaccards[j, i]
+          # See the complement, if it's not NA then the pair has already been
+          # compared
+          
+          if (is.na(jaccards[j, i])) {
+            message(paste0("Calculating Jaccard index for [", threshold, ", ",
+                           1.0, "] between ", names(stack[[i]]), " and ", 
+                           names(stack[[j]])))
+            jaccards[i, j] <- jaccard(stack[[i]], stack[[j]], 
+                                      x.min=threshold, x.max=1.0,
+                                      y.min=threshold, y.max=1.0, ...)
+          } else {
+            jaccards[i, j]  <- jaccards[j, i]
+          }
         }
       }
     }
+    jaccards <- as.data.frame(jaccards)
+    colnames(jaccards) <- names(stack)
+    rownames(jaccards) <- names(stack)
+    all.jaccards[[as.character(threshold)]] <- jaccards
   }
-  jaccards <- as.data.frame(jaccards)
-  colnames(jaccards) <- names(stack)
-  rownames(jaccards) <- names(stack)
-  return(jaccards)
+  return(all.jaccards)
 }
