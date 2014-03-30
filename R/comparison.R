@@ -130,36 +130,89 @@ selection_coverage <- function(x, y, thresholds) {
 #' the sample sets. The Jaccard coefficient can be calculated for a subset of
 #' rasters provided by using the threshold argument.
 #' 
+#' Min and max values must be provided for both RasterLayer objects \code{x}
+#' and \code{y}. Method can be used with RasterLayers of any value range, but 
+#' the defaults [0.0, 1.0] are geared towards comparing Zonation rank priority 
+#' rasters. Limits provided are inclusive.
+#' 
 #' @keywords post-processnig, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param x raster object.
 #' @param y raster object.
-#' @param threshold Numeric value of threshold.
+#' @param x.min Numeric minimum threshold value for \code{x} to be used 
+#'   (default 0.0).
+#' @param x.max Numeric maximum threshold value for \code{x} to be used
+#'   (default 1.0).
+#' @param y.min Numeric minimum threshold value for \code{y} to be used
+#'   (default 0.0).
+#' @param y.max Numeric maximum threshold value for \code{y} to be used
+#'   (default 1.0).
 #' @param warn.uneven Logical indicating whether a warning is raised if the
 #'   compared raster coverages are very (>20x) uneven.
+#' @param limit.tolerance integer values that defines to which precision x and
+#'   y limits are rounded to. This helps e.g. with values that close to 0 but
+#'   not quite 0 (default: 4, i.e. round(x, 4)).
 #'
 #' @return A numeric value [0, 1]
 #'
 #' @export
 #'
-jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
+jaccard <- function(x, y, x.min=0.0, x.max=1.0, y.min=0.0, y.max=1.0, 
+                    warn.uneven=FALSE, limit.tolerance=4) {
+  
+  # Check the input values
+  x.min.value <- round(cellStats(x, stat="min"), limit.tolerance)
+  x.max.value <- round(cellStats(x, stat="max"), limit.tolerance)
+  y.min.value <- round(cellStats(y, stat="min"), limit.tolerance)
+  y.max.value <- round(cellStats(y, stat="max"), limit.tolerance)
+  
+  if (x.min < x.min.value) {
+    stop(paste0("Minimum threshold value for x ("), x.min, ") smaller than
+          the computed minimum value in x (", x.min.value, ")")
+  }
+  if (x.max > x.max.value) {
+    stop(paste0("Maximum threshold value for x ("), x.max, ") smaller than
+          the computed maximum value in x (", x.max.value, ")")
+  }
+  if (x.min >= x.max) {
+    stop(paste0("Minimum threshold value for x ("), x.min, ") smaller than
+           maximum threshold value for x (", x.max, ")")
+  }
+  if (y.min < y.min.value) {
+    stop(paste0("Minimum threshold value for y ("), y.min, ") smaller than
+          the computed minimum value in y (", y.min.value, ")")
+  }
+  if (y.max > y.max.value) {
+    stop(paste0("Maximum threshold value for y ("), y.max, ") smaller than
+          the computed maximum value in y (", y.max.value, ")")
+  }
+  if (y.min >= y.max) {
+    stop(paste0("Minimum threshold value for y ("), y.min, ") smaller than
+           maximum threshold value for y (", y.max, ")")
+  }
+  
+  # Comparisons using just the defaults is probably not feasible
+  if (x.min == 0.0 & x.max == 1.0 & y.min == 0.0 & y.max == 1.0) {
+    warning("Using all the defaults for x and y ranges")
+  }
   
   # [fixme] - using cellStats(X, "sum") should be safe as we're dealing with
   # binary 0/1 rasters. count() would be preferable, but apparently raster
   # (>= 2.2 at least) doesn't support it anymore.
   
-  # Get the values above the threshhold
-  x.bin <- x > threshold
-  y.bin <- y > threshold
-  
+  # Get the values according to the limits provided
+  x.bin <- (x >= x.min & x <=x.max)
+  y.bin <- (y >= y.min & y <=y.max)
+
   if (warn.uneven) {
     x.size <- cellStats(x.bin, "sum")
     y.size <- cellStats(y.bin, "sum")
     # Sort from smaller to larger
     sizes <- sort(c(x.size, y.size))
     if (sizes[2] / sizes[1] > 20) {
-      warning("The extents of raster values above the threshhold differ more than 20-fold: Jaccard coefficient may not be informative.")
+      warning("The extents of raster values above the threshhold differ more", 
+              "than 20-fold: Jaccard coefficient may not be informative.")
     }
   }
   
@@ -182,13 +235,14 @@ jaccard <- function(x, y, threshold, warn.uneven=FALSE) {
 #'
 #' @param stack RasterStack-object. 
 #' @param threshold Numeric value of threshold.
+#' @param ... additional arguments passed on to \code{\link{jaccard}}.
 #'
 #' @return Dataframe with Jaccard coefficients between all the RasterLayers.
 #'
 #' @export
 #' @seealso \code{\link{jaccard}}
 
-cross_jaccard <- function(stack, threshold) {
+cross_jaccard <- function(stack, threshold, ...) {
   
   jaccards <- matrix(nrow=nlayers(stack), ncol=nlayers(stack))
   
@@ -204,7 +258,7 @@ cross_jaccard <- function(stack, threshold) {
           message(paste0("Calculating Jaccard index for [", threshold, ", ",
                          1.0, "] between ", names(stack[[i]]), " and ", 
                          names(stack[[j]])))
-          jaccards[i, j] <- jaccard(stack[[i]], stack[[j]], threshold)
+          jaccards[i, j] <- jaccard(stack[[i]], stack[[j]], threshold, ...)
         } else {
           jaccards[i, j]  <- jaccards[j, i]
         }
