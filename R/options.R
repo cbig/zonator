@@ -69,6 +69,18 @@ assign("dat.file", file.path(.options$setup.dir,
 assign("spp.file", file.path(.options$setup.dir, 
                              "01_core_area_zonation/01_core_area_zonation.spp"),
        envir=.options)
+
+# Antoher file for a connectivity variant
+assign("bat.file.ds", file.path(.options$setup.dir, 
+                                "04_distribution_smoothing.bat"), 
+       envir=.options)
+assign("dat.file.ds", file.path(.options$setup.dir, 
+                             "04_distribution_smoothing/04_distribution_smoothing.dat"),
+       envir=.options)
+assign("spp.file.ds", file.path(.options$setup.dir, 
+                                "04_distribution_smoothing/04_distribution_smoothing.spp"),
+       envir=.options)
+
 assign("species.files", paste0(.options$data.dir, "/species", 1:7, ".tif"),
        envir=.options)
 assign("groups.file", file.path(.options$setup.dir, "groups.txt"), 
