@@ -153,48 +153,55 @@ selection_coverage <- function(x, y, thresholds) {
 #' @param limit.tolerance integer values that defines to which precision x and
 #'   y limits are rounded to. This helps e.g. with values that close to 0 but
 #'   not quite 0 (default: 4, i.e. round(x, 4)).
+#' @param disable.checks logical indicating if the input limit values are
+#'   checked against the actual raster values in \code{x} and \code{y}.
 #'
 #' @return A numeric value [0, 1]
 #'
 #' @export
 #'
 jaccard <- function(x, y, x.min=0.0, x.max=1.0, y.min=0.0, y.max=1.0, 
-                    warn.uneven=FALSE, limit.tolerance=4) {
+                    warn.uneven=FALSE, limit.tolerance=4, 
+                    disable.checks=FALSE) {
   
-  # Check the input values
-  x.min.value <- round(cellStats(x, stat="min"), limit.tolerance)
-  x.max.value <- round(cellStats(x, stat="max"), limit.tolerance)
-  y.min.value <- round(cellStats(y, stat="min"), limit.tolerance)
-  y.max.value <- round(cellStats(y, stat="max"), limit.tolerance)
-  
-  if (x.min < x.min.value) {
-    stop(paste0("Minimum threshold value for x ("), x.min, ") smaller than
-          the computed minimum value in x (", x.min.value, ")")
-  }
-  if (x.max > x.max.value) {
-    stop(paste0("Maximum threshold value for x ("), x.max, ") smaller than
-          the computed maximum value in x (", x.max.value, ")")
-  }
-  if (x.min >= x.max) {
-    stop(paste0("Minimum threshold value for x ("), x.min, ") smaller than
-           maximum threshold value for x (", x.max, ")")
-  }
-  if (y.min < y.min.value) {
-    stop(paste0("Minimum threshold value for y ("), y.min, ") smaller than
-          the computed minimum value in y (", y.min.value, ")")
-  }
-  if (y.max > y.max.value) {
-    stop(paste0("Maximum threshold value for y ("), y.max, ") smaller than
-          the computed maximum value in y (", y.max.value, ")")
-  }
-  if (y.min >= y.max) {
-    stop(paste0("Minimum threshold value for y ("), y.min, ") smaller than
-           maximum threshold value for y (", y.max, ")")
-  }
-  
-  # Comparisons using just the defaults is probably not feasible
-  if (x.min == 0.0 & x.max == 1.0 & y.min == 0.0 & y.max == 1.0) {
-    warning("Using all the defaults for x and y ranges")
+  if (!disable.checks) {
+    # Check the input values
+    x.min.value <- round(cellStats(x, stat="min"), limit.tolerance)
+    x.max.value <- round(cellStats(x, stat="max"), limit.tolerance)
+    y.min.value <- round(cellStats(y, stat="min"), limit.tolerance)
+    y.max.value <- round(cellStats(y, stat="max"), limit.tolerance)
+    
+    if (x.min < x.min.value) {
+      stop(paste0("Minimum threshold value for x ("), x.min, ") smaller than
+            the computed minimum value in x (", x.min.value, ")")
+    }
+    if (x.max > x.max.value) {
+      stop(paste0("Maximum threshold value for x ("), x.max, ") smaller than
+            the computed maximum value in x (", x.max.value, ")")
+    }
+    if (x.min >= x.max) {
+      stop(paste0("Minimum threshold value for x ("), x.min, ") smaller than
+             maximum threshold value for x (", x.max, ")")
+    }
+    if (y.min < y.min.value) {
+      stop(paste0("Minimum threshold value for y ("), y.min, ") smaller than
+            the computed minimum value in y (", y.min.value, ")")
+    }
+    if (y.max > y.max.value) {
+      stop(paste0("Maximum threshold value for y ("), y.max, ") smaller than
+            the computed maximum value in y (", y.max.value, ")")
+    }
+    if (y.min >= y.max) {
+      stop(paste0("Minimum threshold value for y ("), y.min, ") smaller than
+             maximum threshold value for y (", y.max, ")")
+    }
+    
+    # Comparisons using just the defaults is probably not feasible
+    if (x.min == 0.0 & x.max == 1.0 & y.min == 0.0 & y.max == 1.0) {
+      warning("Using all the defaults for x and y ranges")
+    }
+  } else {
+    message("Input limit checks disabled")
   }
   
   # [fixme] - using cellStats(X, "sum") should be safe as we're dealing with
@@ -246,7 +253,7 @@ jaccard <- function(x, y, x.min=0.0, x.max=1.0, y.min=0.0, y.max=1.0,
 #' @export
 #' @seealso \code{\link{jaccard}}
 
-cross_jaccard <- function(stack, threshold, ...) {
+cross_jaccard <- function(stack, thresholds, ...) {
   
   all.jaccards <- list()
   
