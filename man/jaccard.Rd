@@ -2,18 +2,34 @@
 \alias{jaccard}
 \title{Calculate the Jaccard coefficient.}
 \usage{
-jaccard(x, y, threshold, warn.uneven = FALSE)
+jaccard(x, y, x.min = 0, x.max = 1, y.min = 0, y.max = 1,
+  warn.uneven = FALSE, limit.tolerance = 4)
 }
 \arguments{
   \item{x}{raster object.}
 
   \item{y}{raster object.}
 
-  \item{threshold}{Numeric value of threshold.}
+  \item{x.min}{Numeric minimum threshold value for \code{x}
+  to be used (default 0.0).}
+
+  \item{x.max}{Numeric maximum threshold value for \code{x}
+  to be used (default 1.0).}
+
+  \item{y.min}{Numeric minimum threshold value for \code{y}
+  to be used (default 0.0).}
+
+  \item{y.max}{Numeric maximum threshold value for \code{y}
+  to be used (default 1.0).}
 
   \item{warn.uneven}{Logical indicating whether a warning
   is raised if the compared raster coverages are very
   (>20x) uneven.}
+
+  \item{limit.tolerance}{integer values that defines to
+  which precision x and y limits are rounded to. This helps
+  e.g. with values that close to 0 but not quite 0
+  (default: 4, i.e. round(x, 4)).}
 }
 \value{
 A numeric value [0, 1]
@@ -24,6 +40,13 @@ sets, and is defined as the size of the intersection
 divided by the size of the union of the sample sets. The
 Jaccard coefficient can be calculated for a subset of
 rasters provided by using the threshold argument.
+}
+\details{
+Min and max values must be provided for both RasterLayer
+objects \code{x} and \code{y}. Method can be used with
+RasterLayers of any value range, but the defaults [0.0,
+1.0] are geared towards comparing Zonation rank priority
+rasters. Limits provided are inclusive.
 }
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>

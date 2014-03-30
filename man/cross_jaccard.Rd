@@ -3,15 +3,18 @@
 \title{Calculate Jaccard coefficients bewteen all the RasterLayers within a single
 RasterStack.}
 \usage{
-cross_jaccard(stack, threshold)
+cross_jaccard(stack, threshold, ...)
 }
 \arguments{
   \item{stack}{RasterStack-object.}
 
   \item{threshold}{Numeric value of threshold.}
+
+  \item{...}{additional arguments passed on to
+  \code{\link{jaccard}}.}
 }
 \value{
-A matrix with Jaccard coefficients between all the
+Dataframe with Jaccard coefficients between all the
 RasterLayers.
 }
 \description{

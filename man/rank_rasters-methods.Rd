@@ -31,6 +31,6 @@ variants are included, the default is to return all.
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link{rank_raster}} \code{\link{getvariant}}
+\code{\link{rank_raster}} \code{\link{get_variant}}
 }
 
