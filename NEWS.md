@@ -6,6 +6,10 @@
 
 * `cross_jaccard()` now returns a dataframe with correct RasterLayer names
   colnames and rownames.
+  
+* `jaccard()` now has additional parameters for controlling the thresholds for
+  rasters `x` and `y` being compared. Arguments `xmin`, `xmax`, `ymin`, and 
+  `ymax` can be used to control which ranges of the raster values are compared.
 
 * New methods for class `Zproject`:
   - Method `rank_rasters()` accepts a new argument `variants` which can be
