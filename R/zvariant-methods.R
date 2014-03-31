@@ -85,8 +85,12 @@ setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
   if (!all(x@groups$output.group == value)) {
     x@groups$output.group <- value
     
-    x@results@grp.curves <- regroup_curves(x, value)
-    
+    x@results@grp.curves <- regroup_curves(curves(x), weights(x), value)
+    # Change group names back to generic "group1", "group2" etc.
+    group.ids <- unique(value)
+    group.names <- paste0("group", group.ids)
+    names(group.names) <- group.ids
+    groupnames(x) <- group.names
   }
   
   return(x)
