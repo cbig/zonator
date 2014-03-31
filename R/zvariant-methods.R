@@ -215,3 +215,10 @@ setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
   }
   return(spp.data)
 })
+
+#' @rdname weights-methods
+#' @aliases weights,Zvariant-method
+#' 
+setMethod("weights", c("Zvariant"), function(x) {
+  return(x@spp.data$weight)
+})
