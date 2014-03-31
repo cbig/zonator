@@ -134,6 +134,7 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   inds <- sapply(group.codes, function(y) {which(keys == y)})
   # Index the value vector
   x@groups$name <- value[inds]
+
   if (has_results(x)$grp.curves) {
     results.grp.names <- names(x@results@grp.curves)[3:length(x@results@grp.curves)]
     
@@ -148,7 +149,7 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
     for (i in 1:ngroups) {
       group.id <- names(value[i])
       group.name  <- value[[i]]
-      results.grp.names <- gsub(paste0("g", group.id), group.name, 
+      results.grp.names <- gsub(paste0("group", group.id), group.name, 
                                 results.grp.names)
     }
     new.grp.names <- c(names(x@results@grp.curves)[1:2], results.grp.names)
