@@ -100,7 +100,7 @@ read_grp_curves <- function(infile) {
   # Repeating parts of the group curves header
   rep.header <- c("min", "mean", "max", "w.mean", "ext2")
   times <- (ncol(grp.curves) - length(header)) / length(rep.header)
-  rep.header <- paste(rep(rep.header, times), paste0("g", 
+  rep.header <- paste(rep(rep.header, times), paste0("group", 
                                                      rep(1:times, 
                                                          each=length(rep.header))), 
                       sep=".")

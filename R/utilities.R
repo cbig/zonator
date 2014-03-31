@@ -243,8 +243,8 @@ regroup_curves  <- function(x, weights, group.ids) {
   ids <- unique(group.ids)
   groups.list <- list()
   for (id in ids) {
-    group.names <- paste0(c("min.g", "mean.g", "max.g", "w.mean.g", "ext2.g"),
-                          id)
+    group.names <- paste0(c("min.group", "mean.group", "max.group", 
+                            "w.mean.group", "ext2.group"), id)
     group.data <- features[, which(group.ids == id)]
     group.weights <- weights[which(group.ids == id)]
     # Calculate row-wise stats, but only if there are more than 1 feature in 

@@ -142,8 +142,8 @@ test_that("getting curves for groups works", {
   # Test with col names
   expect_identical(correct.selected.grp.curves, 
                    curves(test.results, groups=TRUE,
-                          cols=c("cost", "mean.g1",  "min.g2",
-                                 "max.g2", "w.mean.g2")),
+                          cols=c("cost", "mean.group1",  "min.group2",
+                                 "max.group2", "w.mean.group2")),
                    "Method curves doesn't return right groups data with col names") 
   
   # Test with col indexes
@@ -152,13 +152,13 @@ test_that("getting curves for groups works", {
                    "Method curves doesn't return right groups data with col indexes")
   
   # Test for faulty col names
-  expect_warning(curves(test.results, groups=TRUE, cols=c("cost", "mean.g1",  
-                                                          "min.g2", "max.g2", 
-                                                          "w.mean.g2", "XXX")))
+  expect_warning(curves(test.results, groups=TRUE, cols=c("cost", "mean.group1",  
+                                                          "min.group2", "max.group2", 
+                                                          "w.mean.group2", "XXX")))
   suppressWarnings(expect_identical(correct.selected.grp.curves, 
                                     curves(test.results, groups=TRUE,
-                                           cols=c("cost", "mean.g1",  "min.g2",
-                                                  "max.g2", "w.mean.g2", "XXX")),
+                                           cols=c("cost", "mean.group1",  "min.group2",
+                                                  "max.group2", "w.mean.group2", "XXX")),
                                     "Method curves doesn't return right groups data with col names"))
   # Test for faulty indexes
   expect_warning(curves(test.results, groups=TRUE, cols=c(2, 4, 8, 10, 11, 200)))
@@ -234,15 +234,16 @@ test_that("performance levels are reported right for groups", {
                    "Method performance doesn't return group levels right")
   
   # Get levels for a specific feature/features
-  levels.grp1 <- data.frame(pr_lost=levels.all$pr_lost, mean.g1=levels.all$mean.g1)
+  levels.grp1 <- data.frame(pr_lost=levels.all$pr_lost, 
+                            mean.g1=levels.all$mean.group1)
   expect_equivalent(levels.grp1, performance(test.results, pr.lost=breaks,
-                                             features="g1", groups=TRUE),
+                                             features="group1", groups=TRUE),
                    "Method performance doesn't return level for 1 group right")
   levels.grps1.2 <- data.frame(pr_lost=levels.all$pr_lost, 
-                               mean.g1=levels.all$mean.g1,
-                               mean.g2=levels.all$mean.g2)
+                               mean.g1=levels.all$mean.group1,
+                               mean.g2=levels.all$mean.group2)
   expect_equivalent(levels.grps1.2, performance(test.results, pr.lost=breaks,
-                                               features=c("g1", "g2"), 
+                                               features=c("group1", "group2"), 
                                                groups=TRUE),
                    "Method performance doesn't return levels for several groups right")
 })
