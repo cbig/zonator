@@ -245,7 +245,7 @@ jaccard <- function(x, y, x.min=0.0, x.max=1.0, y.min=0.0, y.max=1.0,
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param stack RasterStack-object. 
-#' @param threshold Numeric vector values of thresholds.
+#' @param thresholds Numeric vector values of thresholds.
 #' @param ... additional arguments passed on to \code{\link{jaccard}}.
 #'
 #' @return Dataframe with Jaccard coefficients between all the RasterLayers.
