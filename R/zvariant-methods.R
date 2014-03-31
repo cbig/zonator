@@ -129,9 +129,9 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
     ngroups <- length(results.grp.names) / 5
     
     if (length(value) != ngroups) {
-      stop(paste0("Character vector length (", length(value), " and object results ",
-                  "group curves header length (", ngroups, 
-                  " should be the same"))
+      stop(paste0("Character vector length (", length(value), ") and object ",
+                  "results group curves header length (", ngroups, 
+                  ") should be the same"))
     }
     for (i in 1:ngroups) {
       group.id <- names(value[i])
