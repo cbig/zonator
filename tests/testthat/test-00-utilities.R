@@ -122,3 +122,65 @@ test_that("getting color schemes works", {
   expect_identical(zlegend("spectral"), z_colors_spectral,
                    "Spectral color scheme not returned correctly")
 })
+
+test_that("Calculating group curves stats works", {
+  
+  # Get test data from the tutorial
+  group.ids <- read_groups(.options$groups.file)[,1]
+  weights <- read_spp(.options$results.spp.file)[,1]
+  curves.data <- read_curves(.options$results.curves)
+  grp.curves.data <- read_grp_curves(.options$results.grp.curves)
+  
+  # First test that regroup_curves() produces the same results as in the 
+  # original group curves file. ext2 must be removed as it can't be calculated
+  # by regroup_curves().
+  grp.curves.data <- grp.curves.data[,-grep("ext2", names(grp.curves.data))]
+  # Having a wrong number of group.ids should produce an error
+  too.many.group.ids <- rep(group.ids, 2)
+  expect_error(new.grp.curves.data <- regroup_curves(curves.data,
+                                                     weights,
+                                                     too.many.group.ids),
+               info="Providing too many group.ids to regroup_curves() should cause an error")
+  # Having a wrong number of weights should produce an error
+  too.many.weights <- rep(weights, 2)
+  expect_error(new.grp.curves.data <- regroup_curves(curves.data,
+                                                     too.many.weights,
+                                                     group.ids),
+               info="Providing too many weights to regroup_curves() should cause an error")
+  
+  # Calculate the new groups
+  new.grp.curves.data <- regroup_curves(curves.data, weights, group.ids)
+  new.grp.curves.data <- new.grp.curves.data[,-grep("ext2", names(new.grp.curves.data))]
+  
+  # MIN
+  dif <- data.frame("old.min.g1"=grp.curves.data$min.g1, 
+                    "new.min.g1"=new.grp.curves.data$min.g1)
+  dif$diff.min.g1 <- dif$old.min.g1 - dif$new.min.g1
+  deviation.min.g1 <- curves.data[which(dif$diff.min.g1 > 0), 
+                                  c(1, (which(group.ids == 1)+7))]
+  deviation.min.g1$old.min.g1 <- grp.curves.data[which(dif$diff.min.g1 > 0),]$min.g1
+  deviation.min.g1$new.min.g1 <- new.grp.curves.data[which(dif$diff.min.g1 > 0),]$min.g1
+  deviation.min.g1$diff.min.g1 <- dif[which(dif$diff.min.g1 > 0),]$diff.min.g1
+  plot(curves.data$pr_lost, dif$diff.min.g1)
+  
+  dif$old.min.g2 <- grp.curves.data$min.g2
+  dif$new.min.g2 <- grp.curves.data$min.g2
+  dif$diff.min.g2 <- dif$old.min.g2 - dif$new.min.g2
+  # DOES NOT HAPPEN IN GROUP 2  
+  
+  #MEAN
+  dif$old.mean.g1 <- grp.curves.data$mean.g1
+  dif$new.mean.g1 <- new.grp.curves.data$mean.g1
+  dif$diff.mean.g1 <- dif$old.mean.g1 - dif$new.mean.g1
+  plot(curves.data$pr_lost, dif$diff.mean.g1)
+  
+  deviation.mean.g1 <- curves.data[which(dif$diff.mean.g1 > 0), 
+                                  c(1, (which(group.ids == 1)+7))]
+  deviation.mean.g1$old.mean.g1 <- grp.curves.data[which(dif$diff.mean.g1 > 0),]$mean.g1
+  deviation.mean.g1$new.mean.g1 <- new.grp.curves.data[which(dif$diff.mean.g1 > 0),]$mean.g1
+  deviation.mean.g1$diff.mean.g1 <- dif[which(dif$diff.mean.g1 > 0),]$diff.mean.g1
+  
+  expect_identical(grp.curves.data, new.grp.curves.data,
+                   "regroup_curves not returning correct curves data")
+  
+})
