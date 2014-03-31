@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.travis.yml
+.watsonrc
+stash/
+NEWS.md
+NEWS.html
+README.html
