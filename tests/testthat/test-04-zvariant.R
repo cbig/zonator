@@ -166,6 +166,16 @@ test_that("Assigning and fetching group names and identities works", {
   expect_true(all(extended.feature.data == sppdata(results.variant, group.names=TRUE)),
               paste("Method sppdata doesn't return what it's supposed to"))
   
+  # Test changing group codes with different levels of groups
+  new.grp.codes <- c(1, 3, 3, 1, 2, 1, 1)
+  groups(results.variant) <- new.grp.codes
+  # Now create new group names 
+  expanded.grp.names <- c("mammals", "big.owls", "small.owls")
+  names(expanded.grp.names) <- c(1, 2, 3)
+  groupnames(results.variant) <- expanded.grp.names
+  # Set the correct codes back
+  groups(results.variant) <- correct.grp.codes
+  
   # Test assigning wrong group codes
   incorrect.grp.names <- c("foo", "bar")
   names(incorrect.grp.names) <- c(4, 5)
