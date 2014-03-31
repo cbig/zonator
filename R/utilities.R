@@ -184,6 +184,86 @@ map_indexes <- function(x, y) {
   return(as.numeric(inds))
 }
 
+#' Re-calculate group curves data.
+#' 
+#' When results grouping is changed group-specific curves data has to be 
+#' re-calculated. Normally group curves file is produced by Zonation based on 
+#' the groupings provided by the user. Same information can almost completely
+#' (except for ext-values) be calculated afterwards from the feature-specific
+#' curves files.
+#' 
+#' This function calculates the following stats for \code{\link{Zvariant}} 
+#' object based on a vector of new group IDs:
+#' 
+#' \describe{
+#'    \item{\code{min}:}{Minimum value of representation on each iteration among 
+#'      features within a group.}
+#'    \item{\code{mean}:}{Mean value of representation on each iteration among 
+#'      features within a group.}
+#'    \item{\code{max}:}{Maximum value of representation on each iteration among 
+#'      features within a group.}
+#'    \item{\code{w.mean}:}{Weighted (based on feature weight) mean value of 
+#'      representation on each iteration among features within a group.}
+#'  }
+#'  
+#' @note Current implementation does not calculate values for \code{ext2} 
+#'   (extinction risk). Column \code{ext2} is retained in the returned data 
+#'   frame for compatibility, but column will be populated with NAs.
+#'
+#' @param x Data frame of feature specific representation levels.
+#' @param weights numeric vector for feature specific weights
+#' @param group.ids numeric vector of new group codes. Number of groups must 
+#'   match with columns in \code{x}.
+#'
+#' @return Data frame with new group statistics.
+#'
+#' @keywords zonation, results
+#' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
+#'
+#' @export
+#'
+regroup_curves  <- function(x, weights, group.ids) {
+  
+  # Assume standard Zonation feature-specific curves file structure, which 
+  # means that feature data starts from column 8.
+  features <- x[, 8:ncol(x)]
+  # There should be as many weights as is the length of the provided group.ids
+  if (length(weights) != length(group.ids)) {
+    stop(paste0("Number of weights (", length(weights), ") and group ids (",
+                length(group.ids), ") differs"))
+  }
+  # There should be as many features as is the length of the provided group.ids
+  if (ncol(features) != length(group.ids)) {
+    stop(paste0("Number of features (", ncol(features), ") and group ids (",
+                length(group.ids), ") differs"))
+  }
+  # Get the unique group ids and loop over all ids. Naming convention for the 
+  # group stats is:
+  # "min.g1" "mean.g1" "max.g1" "w.mean.g1" "ext2.g1"
+  ids <- unique(group.ids)
+  groups.list <- list()
+  for (id in ids) {
+    group.names <- paste0(c("min.g", "mean.g", "max.g", "w.mean.g", "ext2.g"),
+                          id)
+    group.data <- features[, which(group.ids == id)]
+    group.weights <- weights[which(group.ids == id)]
+    # Calculate row-wise stats
+    group.df <- data.frame("mim"=apply(group.data, 1, min),
+                           "mean"=apply(group.data, 1, mean),
+                           "max"=apply(group.data, 1, max),
+                           "w.mean"=apply(group.data, 1, 
+                                          weighted.mean, w=group.weights))
+    group.df$ext2 <- NA
+    names(group.df) <- group.names
+    groups.list[[as.character(id)]] <- group.df
+  }
+  # pr_lost and cost should be identical for curves and group curves
+  regrouped.x <- cbind(x[, c(1, 2)], do.call("cbind", groups.list))
+  # Previous will prefix column names with "id." prefix, get rid of it
+  colnames(regrouped.x) <- gsub("^[0-9]+\\.", "", colnames(regrouped.x))
+  return(regrouped.x)
+}
+
 #' Requires a given package and if not present installs and loads it.
 #' 
 #' @param package Character name of a package.
