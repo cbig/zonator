@@ -19,6 +19,10 @@
   either a character of numeric vector of variant names / IDs defining which
   rank rasters are included in the RasterStack that is returned. Default is 
   to return all.
+  
+* New methods for class `Zvariant`:
+  - Methods `weights()` returns a numeric vector of weights assigned to a 
+  variant.
 
 ## CHANGES IN VERSION 0.3.8 (2014-03-17)
 
