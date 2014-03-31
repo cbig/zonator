@@ -68,6 +68,8 @@ setMethod("groups", "Zvariant", function(x) {
 #' 
 setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
   
+  # Check that the number of provided group codes matches with the number of
+  # features
   nfeats <- nfeatures(x)
   nreplacement <- length(value)
   
@@ -79,7 +81,13 @@ setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
          "features (", nfeats, ")")
   }
   
-  x@groups$output.group <- value
+  # If nothing changes, do nothing
+  if (!all(x@groups$output.group == value)) {
+    x@groups$output.group <- value
+    
+    x@results@grp.curves <- regroup_curves(x, value)
+    
+  }
   
   return(x)
 })
@@ -111,7 +119,7 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   }
   # Actual coded values are vector names. Assume numeric and try to coerce.
   keys <- as.numeric(names(value))
-  group.codes <- x@groups$output.group
+  group.codes <- groups(x)
   # Check that the keys actually are found in codes
   if (!all(keys %in% unique(group.codes))) {
     stop(paste("Key(s)", paste(keys[!keys %in% unique(group.codes)], collapse=", "), 
