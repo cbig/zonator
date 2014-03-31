@@ -1,10 +1,12 @@
-## CHANGES IN VERSION 0.3.9 (2014-XX-XX)
+## CHANGES IN VERSION 0.3.9 (2014-03-31)
 
 ### BUG FIXES
 
 * Assigning group names now works correctly with generic default values and
   whenever groups (ids) are changed. (~~[issue29](https://github.com/cbig/zonator/issues/29)~~)
   
+* Generic group naming now works, i.e. if group ids are changed group names
+  get a generic value "group1", "group2" etc. (~~[issue22](https://github.com/cbig/zonator/issues/22)~~)
 
 ### NEW FEATURES
 
