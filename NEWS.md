@@ -2,7 +2,17 @@
 
 ### BUG FIXES
 
+* Assigning group names now works correctly with generic default values and
+  whenever groups (ids) are changed. (~~[issue29](https://github.com/cbig/zonator/issues/29)~~)
+  
+*
+
 ### NEW FEATURES
+
+* Assigning group ids with `groups()<-` now recalculates group specific 
+  stats (min, mean, max, weighted mean) for defined groups. In other words,
+  it is now possible to define groups other than those defined in Zonation
+  groups file and have the group curves data calculated for the new groups.
 
 * `cross_jaccard()` now returns a dataframe with correct RasterLayer names
   colnames and rownames.
