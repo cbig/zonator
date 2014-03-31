@@ -68,7 +68,20 @@ test_that("Getting the number of features works", {
   expect_equal(7, nfeatures(results.variant),
                "Test variant number of features not correct")
 })
+
+test_that("Getting weights works", {
+  # Use variant 4 (distribution smoothing) because it has weights
+  bat.file <- .options$bat.file.ds
+  spp.file <- .options$spp.file.ds
+  results.variant <- new("Zvariant", bat.file=bat.file)
   
+  correct.feature.data <- read_spp(spp.file)
+  correct.weights <- correct.feature.data$weight
+  expect_identical(correct.weights, weights(results.variant),
+                   "Test variant weights not what they're supposed to")
+  
+})
+
 test_that("Assigning and fetching feature names works", {
   bat.file <- .options$bat.file
   spp.file <- .options$spp.file
