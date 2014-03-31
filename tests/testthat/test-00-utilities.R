@@ -152,35 +152,8 @@ test_that("Calculating group curves stats works", {
   new.grp.curves.data <- regroup_curves(curves.data, weights, group.ids)
   new.grp.curves.data <- new.grp.curves.data[,-grep("ext2", names(new.grp.curves.data))]
   
-  # MIN
-  dif <- data.frame("old.min.g1"=grp.curves.data$min.g1, 
-                    "new.min.g1"=new.grp.curves.data$min.g1)
-  dif$diff.min.g1 <- dif$old.min.g1 - dif$new.min.g1
-  deviation.min.g1 <- curves.data[which(dif$diff.min.g1 > 0), 
-                                  c(1, (which(group.ids == 1)+7))]
-  deviation.min.g1$old.min.g1 <- grp.curves.data[which(dif$diff.min.g1 > 0),]$min.g1
-  deviation.min.g1$new.min.g1 <- new.grp.curves.data[which(dif$diff.min.g1 > 0),]$min.g1
-  deviation.min.g1$diff.min.g1 <- dif[which(dif$diff.min.g1 > 0),]$diff.min.g1
-  plot(curves.data$pr_lost, dif$diff.min.g1)
-  
-  dif$old.min.g2 <- grp.curves.data$min.g2
-  dif$new.min.g2 <- grp.curves.data$min.g2
-  dif$diff.min.g2 <- dif$old.min.g2 - dif$new.min.g2
-  # DOES NOT HAPPEN IN GROUP 2  
-  
-  #MEAN
-  dif$old.mean.g1 <- grp.curves.data$mean.g1
-  dif$new.mean.g1 <- new.grp.curves.data$mean.g1
-  dif$diff.mean.g1 <- dif$old.mean.g1 - dif$new.mean.g1
-  plot(curves.data$pr_lost, dif$diff.mean.g1)
-  
-  deviation.mean.g1 <- curves.data[which(dif$diff.mean.g1 > 0), 
-                                  c(1, (which(group.ids == 1)+7))]
-  deviation.mean.g1$old.mean.g1 <- grp.curves.data[which(dif$diff.mean.g1 > 0),]$mean.g1
-  deviation.mean.g1$new.mean.g1 <- new.grp.curves.data[which(dif$diff.mean.g1 > 0),]$mean.g1
-  deviation.mean.g1$diff.mean.g1 <- dif[which(dif$diff.mean.g1 > 0),]$diff.mean.g1
-  
-  expect_identical(round(grp.curves.data$min.g1, 3), round(new.grp.curves.data$min.g1, 3),
-               "regroup_curves not returning correct curves data")
-  
+  expect_equal(grp.curves.data$min.g1, new.grp.curves.data$min.g1,
+               "regroup_curves not returning correct min values for group 1")
+  expect_equal(grp.curves.data$min.g2, new.grp.curves.data$min.g2,
+               "regroup_curves not returning correct min values for group 2")
 })

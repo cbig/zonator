@@ -186,6 +186,11 @@ test_that("Assigning and fetching group names and identities works", {
   expanded.grp.names <- c("mammals", "big.owls", "small.owls")
   names(expanded.grp.names) <- c(1, 2, 3)
   groupnames(results.variant) <- expanded.grp.names
+  # Names should be reflected in results group curve headers as well
+  expect_identical(sort(as.vector(expanded.grp.names)), 
+                   sort(groupnames(results.variant)),
+                   paste("Test variant object's results does not return",
+                         "the correct group names"))
   # Set the correct codes back
   groups(results.variant) <- correct.grp.codes
   
@@ -194,14 +199,9 @@ test_that("Assigning and fetching group names and identities works", {
   names(incorrect.grp.names) <- c(4, 5)
   expect_error(groupnames(results.variant) <- incorrect.grp.names)
   
-  # Names should be reflected in results group curve headers as well
-  variant.results <- results(results.variant)
-  expect_identical(as.vector(correct.grp.names), groupnames(variant.results),
-                   paste("Test variant object's results does not return",
-                         "the correct group names"))
-  
   # Test that method implementations for Zvariant and Zresults return the same
   # group names
+  variant.results <- results(results.variant)
   expect_identical(groupnames(results.variant), groupnames(variant.results),
                    paste("Generic method groupnames does not return the same",
                          "values for group names"))
