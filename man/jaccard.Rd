@@ -3,7 +3,7 @@
 \title{Calculate the Jaccard coefficient.}
 \usage{
 jaccard(x, y, x.min = 0, x.max = 1, y.min = 0, y.max = 1,
-  warn.uneven = FALSE, limit.tolerance = 4)
+  warn.uneven = FALSE, limit.tolerance = 4, disable.checks = FALSE)
 }
 \arguments{
   \item{x}{raster object.}
@@ -30,6 +30,10 @@ jaccard(x, y, x.min = 0, x.max = 1, y.min = 0, y.max = 1,
   which precision x and y limits are rounded to. This helps
   e.g. with values that close to 0 but not quite 0
   (default: 4, i.e. round(x, 4)).}
+
+  \item{disable.checks}{logical indicating if the input
+  limit values are checked against the actual raster values
+  in \code{x} and \code{y}.}
 }
 \value{
 A numeric value [0, 1]

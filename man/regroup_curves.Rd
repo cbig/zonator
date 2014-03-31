@@ -1,0 +1,54 @@
+\name{regroup_curves}
+\alias{regroup_curves}
+\title{Re-calculate group curves data.}
+\usage{
+regroup_curves(x, weights, group.ids)
+}
+\arguments{
+  \item{x}{Data frame of feature specific representation
+  levels.}
+
+  \item{weights}{numeric vector for feature specific
+  weights}
+
+  \item{group.ids}{numeric vector of new group codes.
+  Number of groups must match with columns in \code{x}.}
+}
+\value{
+Data frame with new group statistics.
+}
+\description{
+When results grouping is changed group-specific curves data
+has to be re-calculated. Normally group curves file is
+produced by Zonation based on the groupings provided by the
+user. Same information can almost completely (except for
+ext-values) be calculated afterwards from the
+feature-specific curves files.
+}
+\details{
+This function calculates the following stats for
+\code{\link{Zvariant}} object based on a vector of new
+group IDs:
+
+\describe{ \item{\code{min}:}{Minimum value of
+representation on each iteration among features within a
+group.} \item{\code{mean}:}{Mean value of representation on
+each iteration among features within a group.}
+\item{\code{max}:}{Maximum value of representation on each
+iteration among features within a group.}
+\item{\code{w.mean}:}{Weighted (based on feature weight)
+mean value of representation on each iteration among
+features within a group.} }
+}
+\note{
+Current implementation does not calculate values for
+\code{ext2} (extinction risk). Column \code{ext2} is
+retained in the returned data frame for compatibility, but
+column will be populated with NAs.
+}
+\author{
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
+\keyword{results}
+\keyword{zonation,}
+
