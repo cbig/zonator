@@ -85,3 +85,15 @@ assign("species.files", paste0(.options$data.dir, "/species", 1:7, ".tif"),
        envir=.options)
 assign("groups.file", file.path(.options$setup.dir, "groups.txt"), 
        envir=.options)
+
+# Tutorial results files, use 02_additive_benefit_function variant so that 
+# weights are used
+assign("results.spp.file", file.path(.options$setup.dir, 
+                                     "02_additive_benefit_function/02_additive_benefit_function.spp"),
+       envir=.options)
+assign("results.curves", file.path(.options$output.dir, 
+                                "02_additive_benefit_function/output_02_additive_benefit_function.curves.txt"),
+       envir=.options)
+assign("results.grp.curves", file.path(.options$output.dir, 
+                                   "02_additive_benefit_function/output_02_additive_benefit_function.grp_curves.txt"),
+       envir=.options)
