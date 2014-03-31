@@ -5,7 +5,6 @@
 * Assigning group names now works correctly with generic default values and
   whenever groups (ids) are changed. (~~[issue29](https://github.com/cbig/zonator/issues/29)~~)
   
-*
 
 ### NEW FEATURES
 
