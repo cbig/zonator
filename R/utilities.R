@@ -247,12 +247,20 @@ regroup_curves  <- function(x, weights, group.ids) {
                           id)
     group.data <- features[, which(group.ids == id)]
     group.weights <- weights[which(group.ids == id)]
-    # Calculate row-wise stats
-    group.df <- data.frame("mim"=apply(group.data, 1, min),
-                           "mean"=apply(group.data, 1, mean),
-                           "max"=apply(group.data, 1, max),
-                           "w.mean"=apply(group.data, 1, 
-                                          weighted.mean, w=group.weights))
+    # Calculate row-wise stats, but only if there are more than 1 feature in 
+    # the group
+    if (is.data.frame(group.data)) {
+      group.df <- data.frame("min"=apply(group.data, 1, min),
+                             "mean"=apply(group.data, 1, mean),
+                             "max"=apply(group.data, 1, max),
+                             "w.mean"=apply(group.data, 1, 
+                                            weighted.mean, w=group.weights))
+    } else if (is.vector(group.data)) {
+      group.df <- data.frame("min"=group.data,
+                             "mean"=group.data,
+                             "max"=group.data,
+                             "w.mean"=group.data)
+    }
     group.df$ext2 <- NA
     names(group.df) <- group.names
     groups.list[[as.character(id)]] <- group.df
