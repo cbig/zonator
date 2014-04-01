@@ -65,8 +65,8 @@ test_that("Getting the number of features works", {
   spp.file <- .options$spp.file
   results.variant <- new("Zvariant", bat.file=bat.file)
 
-  #expect_equal(7, nfeatures(results.variant),
-  #             "Test variant number of features not correct")
+  expect_equal(7, nfeatures(results.variant),
+               "Test variant number of features not correct")
 })
 
 test_that("Getting weights works", {
