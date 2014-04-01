@@ -155,7 +155,7 @@ test_that("Assigning and fetching group names and identities works", {
   no.grps.results.variant <- new("Zvariant", bat.file=no.grps.bat.file)
   
   
-  # The group names haven't been set, so there should be none
+  # Variant doesn't have groups, so there should be no group names either
   expect_true(is.na(groupnames(no.grps.results.variant)),
               "Test variant group names not NA although they haven't been set")
   

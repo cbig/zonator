@@ -229,6 +229,11 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
                                   require.file=TRUE)
         flog.debug(paste("Reading in groups file", groups.file))
         .Object@groups <- read_groups(groups.file)
+        # Initialize generic group names "group1", "group2" etc
+        group.ids <- unique(.Object@groups$output.group)
+        group.names <- paste0("group", group.ids)
+        names(group.names) <- group.ids
+        groupnames(.Object) <- group.names
       }
     }
   }
