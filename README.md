@@ -15,9 +15,9 @@ of stability at least before 0.5 release.**
 Functions and classes found in `zonator` can be useful for following stages
 of running a Zonation analysis.
 
-1. Setting up a Zonation project and pre-processing files.
+1. Setting up a Zonation project and pre-processing files ([examples](http://cbig.github.io/zonator/vignettes/zonator-project.html)).
 1. Running Zonation.
-1. Post-processing (task such as results analysis and comparison, plotting etc).
+1. Post-processing, results analysis and comparison, and plotting ([examples](http://cbig.github.io/zonator/vignettes/zonator-results.html)).
 
 ## Installation
 
@@ -40,8 +40,6 @@ Some examples are provided by the package vignettes. You can view these after in
 vignette("zonator-project")
 vignette("zonator-results")
 ```
-
-Content of these vignettes is also avaible in [zonator-wiki](https://github.com/cbig/zonator/wiki).
 
 ## Developers
 
