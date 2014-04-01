@@ -190,7 +190,8 @@ plot(feature.curves.caz, invert.x=TRUE, main="Just few features",
      subs=c('Yellow-bellied.glider', 'Sooty.owl'), mean=TRUE)
 ```
 
-Group-specific curves can be plotted in similar fashion.
+Group-specific curves can be plotted in similar fashion. Note that plotting 
+group curves also respect the group names you may have set.
 
 ```{r curves-plotting-4, fig.width=10}
 plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups")
