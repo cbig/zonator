@@ -5,6 +5,10 @@
 * Generic group names assigned at initiation. If Zvariant object has groups 
   enabled, assign generic group names "group1", "group2" to groups 
   automatically.
+  
+* Generic group ID larger than 10 would not get mapped right because of a sloppy
+  gsub-replacement. Regex fixed and `groupnames()<-` should work correctly when
+  one has more than 10 groups.
 
 ### NEW FEATURES
 
