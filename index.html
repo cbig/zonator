@@ -1,17 +1,102 @@
----
-layout: default
----
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Zonator by cbig</title>
 
-<article class="container">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Zonator</h1>
+        <p class="header">Utility tools for for anybody interested in using a familiar tool (R) in setting up Zonation runs and managing Zonation results.</p>
 
-{% for post in site.posts %}
-  {% unless post.draft %}
-    <section class="index">
-        <div>
-            <h2 class="title"><a href="{{ post.url }}" rel="prefetch">{{ post.title }}</a></h2>
-            <p>{{ post.excerpt }}</p>
-        </div>
-    </section>
-    {% endunless %}
-    {% endfor %}
-</article>
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/cbig/zonator/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/cbig/zonator/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/cbig/zonator">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/cbig">cbig</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="zonator" class="anchor" href="#zonator"><span class="octicon octicon-link"></span></a>zonator</h1>
+
+<p><code>zonator</code> is a utility R package for dealing with various tasks related to
+<a href="http://www.helsinki.fi/bioscience/consplan/software/Zonation/index.html">Zonation</a> 
+conservation prioritization software. The package started out as a collection
+of helper scripts which have now been packages for anybody interested in using
+a familiar tool (R) in setting up Zonation runs and managing Zonation results.</p>
+
+<p><strong>NOTE that the scripts are strictly alpha quality. Do not expect any sort 
+of stability at least before 0.5 release.</strong></p>
+
+<p>Functions and classes found in <code>zonator</code> can be useful for following stages
+of running a Zonation analysis.</p>
+
+<ol>
+<li>Setting up a Zonation project and pre-processing files.</li>
+<li>Running Zonation.</li>
+<li>Post-processing (task such as results analysis and comparison, plotting etc).</li>
+</ol><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ol>
+<li>Make sure you have package <code>devtools</code> installed and loaded in R:<br>
+</li>
+</ol><pre><code># Open R prompt or RStudio and type the following on the command line
+install.packages("devtools")
+</code></pre>
+
+<ol>
+<li>Then install <code>zonator</code> directly from GitHub by running the following line in R:<br>
+</li>
+</ol><pre><code>install_github("zonator", "cbig")
+</code></pre>
+
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>Some examples are provided by the package vignettes. You can view these after installing the package by:</p>
+
+<pre><code>vignette("zonator-project")
+vignette("zonator-results")
+</code></pre>
+
+<h2>
+<a name="developers" class="anchor" href="#developers"><span class="octicon octicon-link"></span></a>Developers</h2>
+
+<ul>
+<li>Joona Lehtomäki <a href="mailto:joona.lehtomaki@gmail.com">joona.lehtomaki@gmail.com</a>
+</li>
+</ul>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-39378170-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
