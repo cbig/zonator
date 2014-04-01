@@ -76,7 +76,7 @@ duo.curves.caz <- curves(results.caz, cols=c("Koala", "Tiger.quoll"))
 head(duo.curves.caz)
 ```
 
-Columns are exaclty the same as in Zonation curves output file. Note also that 
+Columns are exactly the same as in Zonation curves output file. Note also that 
 the actual feature columns are named according to feature names in the 
 `Zvariant` object these results were derived from. Thus whatever names you 
 assigned to features prior to extracting the results will be also seen here.
@@ -112,7 +112,7 @@ tail(duo.curves.caz.range)
 
 Sometimes you might also be interested in performance values of features at 
 specific levels of landscape protection. For example, how much of the original
-occurence levels are remaining when 25%, 50%, and 75% of landscape is lost.
+occurrence levels are remaining when 25%, 50%, and 75% of landscape is lost.
 Method `performance()` can give you exactly this information.
 
 ```{r perfomance}
@@ -166,10 +166,10 @@ plot(feature.curves.caz)
 ```
 
 Plotting-methods for `ZCurvesDataFrame` and `ZGroupCurvesDataFrame` classes 
-include a couple of convience arguments as well. By defaul, the scale on x-axis
+include a couple of convenience arguments as well. By default, the scale on x-axis
 ranges from 0 to 1 and has a label "Prop. of landscape lost". The other way of 
 presenting the x-axis is to have it range from 1 to 0 and label it "Proportion
-of landscape under conservation". This behavior can be controlle by using the
+of landscape under conservation". This behavior can be controlled by using the
 argument `invert.x` for `plot-method`. The title of the plot can be set using
 `main`-argument.
 
@@ -211,7 +211,7 @@ plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups", monochrome=TRUE)
 ```
 
 Group plotting also has a set of statistics which can be plotted, but the 
-behaviour is slightly different to that of features. What is plotted by default 
+behavior is slightly different to that of features. What is plotted by default 
 are group-specific mean values. Other statistics are `min`, `max`, and `w.mean`
 which correspond to "Minimum proportion remaining for a feature within group",
 "Maxmimum proportion remaining for a feature within group", and 
@@ -228,7 +228,7 @@ plot(feature.grp.curves.mask, invert.x=TRUE, main="All groups", mean=TRUE,
 If you want to summarize how much each feature has retained it's occurrence 
 level in a given stage of the cell removal process, you can easily created 
 bar plots out of selected performance levels. For example, if you'd like to 
-know how much of the original occurrenve level each of species in our tutorial 
+know how much of the original occurrence level each of species in our tutorial 
 data has left when 10% percent of the landscape is under conservation, you 
 could do the following:
 
@@ -276,7 +276,7 @@ all.ranks <- rank_rasters(tutorial.project)
 plot(all.ranks, breaks=leg$values, col=leg$colors, nc=1)
 ```
 
-Naturally, all mehtods defined for a [RasterStack](http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/raster/html/stack.html) object are available. For example, checking 
+Naturally, all methods defined for a [RasterStack](http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/raster/html/stack.html) object are available. For example, checking 
 the distributions of individual stack layers (i.e. rank rasters) and the 
 correlation between the values of layers can be done using `pairs()`. Following
 example examines correlation between variants 1-3.
@@ -289,8 +289,8 @@ Values are sampled from the whole distribution of values to increase
 execution speed. Note also that we are using `kendall` as method for 
 correlation.
 
-Masking is another usefuls analysis tool. In the following example we are using
-the maskfile `mask_rs.tif` shipping with Zonation basic tutorial in order to
+Masking is another useful analysis tool. In the following example we are using
+the mask file `mask_rs.tif` shipping with Zonation basic tutorial in order to
 inspect the distribution of priorities within a subset of the landscape (i.e.
 protected areas, PAs). In the following example, note that method 
 `rank_raster()` has been implemented for class `Zvariant`. In other words, you 
@@ -303,14 +303,14 @@ the mask raster.
 pas.file <- system.file("extdata/tutorial/data", "mask_rs.tif", 
                         package="zonator")
 pas <- raster(pas.file)
-# Reclass zeros as NA
+# Re-class zeros as NA
 pas[pas == 0] <- NA
 # Plot the histogram of rank.caz within mask raster
 plot_hist(x=rank.caz, pas, add.median=TRUE)
 ```
 
 [rasterVis](http://oscarperpinan.github.io/rastervis/) is another useful 
-package for plottign raster data. For example, `levelplot()` can be used to 
+package for plotting raster data. For example, `levelplot()` can be used to 
 plot data and show a marginal plot of of a function across each coordinate
 (here using mean): 
 
