@@ -15,14 +15,14 @@
 
 # Graphics options --------------------------------------------------------
 
-curve.theme <- theme(plot.title=element_text(face="bold", size=20),
-                     axis.title.x=element_text(size=20),
-                     axis.title.y=element_text(size=20),
-                     axis.text.x=element_text(size=18),
-                     axis.text.y=element_text(size=18),
+curve.theme <- theme(plot.title=element_text(face="bold", size=16),
+                     axis.title.x=element_text(size=16),
+                     axis.title.y=element_text(size=16),
+                     axis.text.x=element_text(size=14),
+                     axis.text.y=element_text(size=14),
                      axis.ticks = element_line(size = 1),
-                     legend.text=element_text(size=14),
-                     legend.title=element_text(size=16),
+                     legend.text=element_text(size=12),
+                     legend.title=element_text(size=14),
                      panel.background = element_rect(fill='white', colour='black'),
                      panel.grid.major.x = element_blank(), 
                      panel.grid.minor.x = element_blank(),
