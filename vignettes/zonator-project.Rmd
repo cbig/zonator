@@ -7,7 +7,7 @@
 options(width=120)
 ```
 
-## Create zonator project based on existing data
+## 1. Create zonator project based on existing data
 
 The following examples will use 
 [the basic Zonation tutorial data](https://github.com/cbig/zonation-tutorial/tree/master/basic)
@@ -52,7 +52,7 @@ files:
 opendir(tutorial.project)
 ```
 
-## Working with variants
+## 2. Working with variants
 
 Individual variants (i.e. runs) can be extracted form the project using an 
 index number. `nvariants()` will tell how many variants are included in the 
@@ -76,9 +76,9 @@ variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
 Each variant object is an instance of class `Zvariant` and have a suite of 
 useful methods for dealing with data parsed from various Zonation input files.
 
-### spp data
+### 2.1 spp data
 
-Zonation spp-file is one the mandatory input files that always needs to be in
+Zonation spp-file is one of the mandatory input files that always needs to be in
 place and thus all variants have one. When a new `Zvariant` instance is created
 the associated spp file is automatically parsed into it. All the spp data 
 (with group code column if available) can be retrieved using `sppdata()`:
@@ -93,16 +93,17 @@ You can check the number of features in spp file by using method `nfeatures()`:
 nfeatures(variant.caz)
 ```
 
+`Zvariant` objects have a couple of other convenience functions 
+
 Feature names from the spp file/data can be accessed directly by using method
 `featurenames()`.
-
 
 ```{r sppdata-names-2}
 featurenames(variant.caz)
 ```
 
 The generated names are not necessarily very informative and can be changed to
-new values. Rememeber that the names need to be valid data frame column names
+new values. Remember that the names need to be valid data frame column names
 (zontor will try to fix these even if you don't).
 
 ```{r sppdata-names-1}
@@ -114,11 +115,11 @@ featurenames(variant.caz)
 sppdata(variant.caz)
 ```
 
-### Groups
+### 2.2 Groups
 
-Notice that data frames returned by `sppdata()` in previous examples alreadt had
+Notice that data frames returned by `sppdata()` in previous examples already had
 a column called "group". This is because all tutorial variants have groups 
-enabled by deafault. If a variant doesn't use groups, then this column will be
+enabled by default. If a variant doesn't use groups, then this column will be
 missing.
 
 Group identities in Zonation input file are coded with integer values. Method
@@ -129,7 +130,7 @@ groups(variant.caz)
 ```
 
 Groups can also have more informative names attached to them by using method
-`groupnames()`. The format for setting (mapping) group names is stricts and 
+`groupnames()`. The format for setting (mapping) group names is strict and 
 involves a named character vector in which (column) names correspond to integer
 group codes and character elements the group names to be assigned:
 
