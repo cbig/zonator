@@ -8,3 +8,4 @@ stash/*
 NEWS.html
 vignettes/figure
 zonator_pres*
+*.sublime*
