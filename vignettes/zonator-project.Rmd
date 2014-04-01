@@ -93,7 +93,14 @@ You can check the number of features in spp file by using method `nfeatures()`:
 nfeatures(variant.caz)
 ```
 
-`Zvariant` objects have a couple of other convenience functions 
+`Zvariant` objects have a couple of other convenience functions for quickly 
+accessing columns in the spp file. For example, `weights()` can be used to 
+extract the weight column in spp file:
+
+```{r sppdata-weights}
+# Note that all biodiversity features (species) have an equal weight of 1
+weights(variant.caz)
+```
 
 Feature names from the spp file/data can be accessed directly by using method
 `featurenames()`.
@@ -130,14 +137,20 @@ groups(variant.caz)
 ```
 
 Groups can also have more informative names attached to them by using method
-`groupnames()`. The format for setting (mapping) group names is strict and 
-involves a named character vector in which (column) names correspond to integer
-group codes and character elements the group names to be assigned:
+`groupnames()`. Even if you haven't names the groups used (Zonation does not
+have a concept of named groups), generic group names "group1", "group2" etc. 
+will automatically be created for `Zvariant` objects with groups enabled.
 
-```{r group-names}
-# By default, there are no group names
+```{r group-names-1}
+# By default, generic group names are used
 groupnames(variant.caz)
+```
 
+The format for setting (mapping) group names is strict and involves a named 
+character vector in which (column) names correspond to integer group codes and 
+character elements the group names to be assigned:
+
+```{r group-names-2}
 # Construct a group name mapping using a named character vector
 groupnames(variant.caz) <- c("1"="mammals", "2"="owls")
 groupnames(variant.caz)
@@ -145,9 +158,52 @@ groupnames(variant.caz)
 
 Now group 1 is labeled "mammals" and group 2 is labeled "owls". Note that 
 `sppdata()` has an optional argument `group.names` that can be set to `TRUE`
-if group names are preferable to group codes (names have to be set first,
-though).
+if group names are preferable to group codes.
 
 ```{r sppdata-group-names}
+sppdata(variant.caz, group.names=TRUE)
+```
+
+In addition to changing the group names, you can change the groups themselves 
+as well. In the previous examples we had two groups named "mammals" (group code
+ = 1) and "owls" (group code = 2). Belonging to either one of these groups is 
+ controlled by the group ID code (an integer number) that can be accessed by
+ `groups()`. As was shown above, doing `groups(variant.caz)` will yield a result
+ of ``r groups(variant.caz)``.
+ 
+Method `groups()` can be used to set the group ID codes and thus the grouping. 
+Let's say you want to split owls into two sub-groups called "big.owls" (group
+code = 2) containing the Sooty owl and the Masked Owl and "small.owls" (group 
+code = 3) containing the Powerful owl. Take again a look at the spp data:
+
+```{r changing-groups-1}
+sppdata(variant.caz)
+```
+
+What needs to be done is to change the group ID for the Powerful owl so that 
+the group ID vector changes from ``r groups(variant.caz)`` to 
+`1, 2, 3, 1, 2, 1, 1`. So do the following:
+
+```{r changing-groups-2}
+groups(variant.caz) <- c(1, 2, 3, 1, 2, 1, 1)
+# Check the group ID codes
+groups(variant.caz)
+```
+
+Note that after you change the group ID codes all the group names you may have
+assigned get lost and are again replaced by generic "group1", "group2" etc. You
+will have to manually set the group names again:
+
+```{r changing-groups-3}
+# Using generic group names after the group IDs have been changed
+groupnames(variant.caz)
+# Construct a new group names mapping
+groupnames(variant.caz) <- c("1"="mammals", "2"="big.owls", "3"="small.owls")
+groupnames(variant.caz)
+```
+
+or check the whole spp data with group names:
+
+```{r changing-groups-4}
 sppdata(variant.caz, group.names=TRUE)
 ```
