@@ -1,3 +1,13 @@
+## CHANGES IN VERSION 0.3.10 (2014-XX-X)
+
+### BUG FIXES
+
+* Generic group names assigned at initiation. If Zvariant object has groups 
+  enabled, assign generic group names "group1", "group2" to groups 
+  automatically.
+
+### NEW FEATURES
+
 ## CHANGES IN VERSION 0.3.9 (2014-03-31)
 
 ### BUG FIXES
