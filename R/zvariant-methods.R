@@ -149,7 +149,7 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
     for (i in 1:ngroups) {
       group.id <- names(value[i])
       group.name  <- value[[i]]
-      results.grp.names <- gsub(paste0("group", group.id), group.name, 
+      results.grp.names <- gsub(paste0("group", group.id, "$"), group.name, 
                                 results.grp.names)
     }
     new.grp.names <- c(names(x@results@grp.curves)[1:2], results.grp.names)
