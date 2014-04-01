@@ -9,9 +9,6 @@ conservation prioritization software. The package started out as a collection
 of helper scripts which have now been packages for anybody interested in using
 a familiar tool (R) in setting up Zonation runs and managing Zonation results.
 
-**NOTE that the scripts are strictly alpha quality. Do not expect any sort 
-of stability at least before 0.5 release.**
-
 Functions and classes found in `zonator` can be useful for following stages
 of running a Zonation analysis.
 
