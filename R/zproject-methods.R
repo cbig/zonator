@@ -15,6 +15,16 @@
 #' @aliases get_variant,Zproject-method
 #' 
 setMethod("get_variant", c("Zproject", "ANY"), function(x, index) {
+  # Check the index
+  if (is.numeric(index)) {
+    if (!index %in% 1:nvariants(x)) {
+      stop(paste("Numeric index", index, "not valid"))
+    }
+  } else if (is.character(index)) {
+    if (!index %in% names(x@variants)) {
+      stop(paste("Character index", index, "not valid"))
+    }
+  }
   return(x@variants[[index]])
 })
 
