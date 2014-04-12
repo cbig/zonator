@@ -9,6 +9,12 @@
 * Generic group ID larger than 10 would not get mapped right because of a sloppy
   gsub-replacement. Regex fixed and `groupnames()<-` should work correctly when
   one has more than 10 groups.
+  
+* `get_variant()` for `Zproject` objects now checks the input index properly
+(~~[issue34](https://github.com/cbig/zonator/issues/34)~~)
+
+* Trying to get rank rasters from a set of variants with no rank rasters 
+available caused and error, now produces warnings and returns a NA.
 
 ### NEW FEATURES
 

@@ -71,12 +71,20 @@ setMethod("rank_rasters", c("Zproject"), function(x, variants=NULL) {
   }
   # Loop over the variant IDs
   for (variant.id in variants) {
+    
     variant <- get_variant(x, variant.id)
     if(has_results(variant)$rank) {
       rank_rasters_list[variant@name] <- rank_raster(variant)
+    } else {
+      warning("Variant with ID ", variant.id, " does not have a rank raster")
     }
   }
-  return(raster::stack(rank_rasters_list))
+  if (length(rank_rasters_list) == 0) {
+    warning("None of the variants have rank rasters")
+    return(NA)
+  } else {
+    return(raster::stack(rank_rasters_list))
+  }
 })
 
 #' @rdname variants-methods
