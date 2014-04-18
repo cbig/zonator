@@ -11,6 +11,38 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' Calculate alpha value for distribution smoothing.
+#' 
+#' alpha-value of biodiversity feature-specific scale of landscape use. The
+#' value indicates the range of connectivity of biodiversity features. For 
+#' example, it may refer to how a species uses the surrounding landscape. This 
+#' value can be calculated based on, for example, the dispersal capability or 
+#' the home range sizes of the species.
+#'
+#' @param landscape.use Use of landscape (in relation to connectivity) in given
+#'   map units. Note that if the units used here differ from the real map units
+#'   of the biodiversity feature the ratio between two must be set using 
+#'   \code{ratio} argument. 
+#' @param ratio Defines the ratio between units used in \code{landscape.use} and
+#'   the actual map units in the biodiversity feature. E.g. if the map unit of
+#'   a feature is m and use of landscape is defined as 1.5 km, then ratio should
+#'   be set to 1000.
+#' 
+#' @return numerical alpha.
+#' 
+#' @seealso Zonation manual.
+#' 
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+#' @examples
+#'   ds_alpha(1.5, 1000)
+#' 
+ds_alpha <- function(landscape.use, ratio) {
+   return(2 / (landscape.use * ratio))
+}
+
 #' Check if Zonation is installed.
 #'
 #' @param exe Character string for overriding the default Zonation executable
@@ -127,65 +159,3 @@ run_bat <- function(bat.file, exe="zig3") {
     }
   }
 }
-
-# # Function for calculation the distribution smoothing related alpha value
-# calculate.alpha <- function(cell.size, landscape.use, input.cell.size) {
-#   return((2 * cell.size) / (landscape.use * input.cell.size))
-# }
-# 
-# # Load the biodiversity features
-# load.bdf <- function(data.folder, wildcard) {
-#   bdf.files <- list.files(file.path(data.folder), wildcard)
-# }
-# 
-# root.folder <- file.path(getwd(), "z")
-# dat.file <- paste("\"", file.path(root.folder, "1_60_caz_ds.dat"), "\"", sep="")
-# spp.file <- paste("\"", file.path(root.folder, "1_60_caz_ds.spp"), "\"", sep="")
-# bat.file <- file.path(root.folder, "tee_1_60_caz_ds.bat")
-# out.file <- paste("\"", file.path(root.folder, "output/result_1_60_ds_caz.txt"), "\"", sep="")
-# 
-# # Change this for Z exe location
-# exe.file <- paste("\"", "C:/Program Files/zonation 3.1.1/bin/zig3.exe", "\"", 
-#                   sep="")
-# 
-NULL
-# wildcard <- "*.img$"
-# 
-# BDFs <- load.bdf(data.folder, wildcard)
-# 
-# splist <- c()
-# 
-# # First with DS
-# for (i in 1:length(BDFs)) {
-#   spp <- file.path(data.folder, BDFs[i])
-#   splist <- c(splist, paste("1.0", alpha, 1, 1, 1.0, spp, sep=" ")) 
-# }
-# 
-# # Then with just the local quality
-# for (i in 1:length(BDFs)) {
-#   spp <- file.path(data.folder, BDFs[i])
-#   splist <- c(splist, paste("1.0", 1, 1, 1, 1.0, spp, sep=" ")) 
-# }
-# 
-# # Save the data in text file format
-# write.table(splist, file=file.path(root.folder, "1_60_caz_ds.spp"), quote = F, 
-#             row.names= F, col.names = F) 
-# 
-# # Generate the bat file and run it
-# cmd <- c()
-# 
-# if (.Platform$OS.type == "unix") {
-#   cmd <- "#!/bin/bash"
-#   exe.file <- paste("\"", file.path(root.folder, "zig3"), "\"", sep="")
-#   cmd <- c(cmd, paste(exe.file, "-r", dat.file, spp.file, 
-#                       out.file, 0.0, 1, 1, 1))
-#   write.table(cmd, file= bat.file, quote = F, row.names= F, col.names = F)
-#   system(paste("chmod +x", bat.file))
-#   system(bat.file)
-# } else {
-#   #exe.file <- paste("\"", file.path(root.folder, "zig3.exe"), "\"", sep="")
-#   cmd <- paste("call", exe.file, "-r", dat.file, spp.file, out.file, 0.0, 1, 1, 
-#                1)
-#   write.table(cmd, file= bat.file, quote = F, row.names= F, col.names = F)
-#   shell(paste("\"", bat.file, "\"", sep=""))
-# }

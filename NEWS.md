@@ -14,9 +14,12 @@
 (~~[issue34](https://github.com/cbig/zonator/issues/34)~~)
 
 * Trying to get rank rasters from a set of variants with no rank rasters 
-available caused and error, now produces warnings and returns a NA.
+available caused and error, now produces warnings and returns a NA. 
 
 ### NEW FEATURES
+
+* New function `ds_alpha()` that can be used to calculate alpha value for 
+  distribution smoothing.
 
 ## CHANGES IN VERSION 0.3.9 (2014-03-31)
 
