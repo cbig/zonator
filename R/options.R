@@ -11,24 +11,31 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+library(ggplot2)
+
 .options <- new.env()
+
+assign("debug", FALSE, envir=.options)
 
 # Graphics options --------------------------------------------------------
 
-curve.theme <- theme(plot.title=element_text(face="bold", size=16),
-                     axis.title.x=element_text(size=16),
-                     axis.title.y=element_text(size=16),
-                     axis.text.x=element_text(size=14),
-                     axis.text.y=element_text(size=14),
-                     axis.ticks = element_line(size = 1),
-                     legend.text=element_text(size=12),
-                     legend.title=element_text(size=14),
-                     panel.background = element_rect(fill='white', colour='black'),
-                     panel.grid.major.x = element_blank(), 
-                     panel.grid.minor.x = element_blank(),
-                     panel.grid.major.y = element_line(size = 0.5, colour='lightgrey'),
-                     panel.grid.minor.y = element_blank(),
-                     legend.background = element_rect(fill='white', colour='white'))
+curve.theme <- ggplot2::theme(plot.title=element_text(face="bold", size=16),
+                              axis.title.x=element_text(size=16),
+                              axis.title.y=element_text(size=16),
+                              axis.text.x=element_text(size=14),
+                              axis.text.y=element_text(size=14),
+                              axis.ticks = element_line(size = 1),
+                              legend.text=element_text(size=12),
+                              legend.title=element_text(size=14),
+                              panel.background = element_rect(fill='white', 
+                                                              colour='black'),
+                              panel.grid.major.x = element_blank(), 
+                              panel.grid.minor.x = element_blank(),
+                              panel.grid.major.y = element_line(size = 0.5, 
+                                                                colour='lightgrey'),
+                              panel.grid.minor.y = element_blank(),
+                              legend.background = element_rect(fill='white', 
+                                                               colour='white'))
 assign("curve.theme", curve.theme, envir=.options)
 
 assign("curve.x.title", "\nProp. of landscape lost", envir=.options)
