@@ -520,6 +520,26 @@ setGeneric("sppdata", function(x, group.names=FALSE) {
   standardGeneric("sppdata")
 })
 
+# sppweights --------------------------------------------------------------
+
+#' Get biodiversity feature weights of a Zonation variant
+#'
+#' @param x Zvariatn object.
+#'
+#' @return A numeric vector of weights
+#' 
+#' @seealso \code{\link[zonator:Zvariant-class]{Zvariant-class}}
+#' 
+#' @export
+#' @docType methods
+#' @rdname sppweights-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("sppweights", function(x) {
+  standardGeneric("sppweights")
+})
+
 # variants ----------------------------------------------------------------
 
 #' Get all variants in a Zonation project
@@ -539,24 +559,4 @@ setGeneric("sppdata", function(x, group.names=FALSE) {
 #' 
 setGeneric("variants", function(x) {
   standardGeneric("variants")
-})
-
-# weights ----------------------------------------------------------------
-
-#' Get weights of a Zonation variant
-#'
-#' @param x Zvariatn object.
-#'
-#' @return A numeric vector of weights
-#' 
-#' @seealso \code{\link[zonator:Zvariant-class]{Zvariant-class}}
-#' 
-#' @export
-#' @docType methods
-#' @rdname weights-methods
-#' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("weights", function(x) {
-  standardGeneric("weights")
 })
