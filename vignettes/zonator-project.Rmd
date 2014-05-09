@@ -94,12 +94,12 @@ nfeatures(variant.caz)
 ```
 
 `Zvariant` objects have a couple of other convenience functions for quickly 
-accessing columns in the spp file. For example, `weights()` can be used to 
+accessing columns in the spp file. For example, `sppweights()` can be used to 
 extract the weight column in spp file:
 
 ```{r sppdata-weights}
 # Note that all biodiversity features (species) have an equal weight of 1
-weights(variant.caz)
+sppweights(variant.caz)
 ```
 
 Feature names from the spp file/data can be accessed directly by using method
