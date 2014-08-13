@@ -17,7 +17,8 @@ Depends:
     ggplot2
 Suggests:
     testthat,
-    knitr
+    knitr,
+    rasterVis
 Imports:
     methods,
     plyr,
