@@ -2,9 +2,9 @@ Package: zonator
 Type: Package
 Title: Utilities for Zonation spatial conservation prioritization software
 Version: 0.3.10
-Date: 2013-02-03
+Date: 2014-08-12
 Author: Joona Lehtomaki
-License: BSD-2
+License: FreeBSD
 Encodcing: UTF-8
 Maintainer: Joona Lehtomaki <joona.lehtomaki@gmail.com>
 Description: zonator is a utility R package for dealing with various tasks
@@ -14,17 +14,16 @@ Description: zonator is a utility R package for dealing with various tasks
     runs and managing Zonation results.
 Depends:
     R (>= 2.15.2),
-    methods
+    ggplot2
 Suggests:
     testthat,
     knitr
 Imports:
-    ggplot2,
+    methods,
     plyr,
     RColorBrewer,
+    RCurl,
     raster,
-    rgdal,
     reshape2,
-    tools
 BugReports: https://github.com/jlehtoma/zonator/issues
 VignetteBuilder: knitr
