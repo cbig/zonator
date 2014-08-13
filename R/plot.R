@@ -29,6 +29,7 @@
 #' 
 #' @seealso \code{\link{geom_bar}}.
 #' 
+#' @import ggplot2
 #' @export
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -58,8 +59,8 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
     
   raster.values <- values(raster.obj)
   temp.df <- data.frame(data=raster.values)
-  m <- ggplot(temp.df, aes(x = data)) + geom_histogram(colour = "white", 
-                                                       binwidth=binwidth) + 
+  m <- ggplot(temp.df, aes(x = data)) + 
+    geom_histogram(colour = "white", binwidth=binwidth) + 
     scale_x_continuous(breaks=seq(0, 1, 0.25)) + 
     xlab("Priority rank") + ylab("Count") + ggtitle(title) + theme_bw()
   
@@ -100,6 +101,8 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' (default: FALSE).
 #' 
 #' @return ggplot2 object
+#' 
+#' @import ggplot2
 #' 
 #' @keywords internal
 #' 
@@ -142,7 +145,8 @@ plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE,
   if (monochrome) {
     cols <- grey.colors(n=length(unique(iact.names)))
   } else {
-    cols <- suppressWarnings(brewer.pal(length(unique(iact.names)), "Set1"))
+    cols <- suppressWarnings(RColorBrewer::brewer.pal(length(unique(iact.names)), 
+                                                      "Set1"))
   }
   
   colour.values <- sapply(iact.names, function(x) {
