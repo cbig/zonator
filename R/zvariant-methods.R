@@ -19,9 +19,19 @@ setMethod("curves", c("Zvariant"), function(x, cols=NULL, groups=FALSE,
  return(curves(results(x), cols, groups, lost.lower, lost.upper))
 })
 
+#' @rdname featurenames-methods
+#' @aliases featurenames,Zvariant-method
+#' 
+setMethod("featurenames", signature("Zvariant"), function(x) {
+  
+  if (is.na(x@spp.data) || !"name" %in% names(x@spp.data)) {
+    stop("No spp data found or it doesn't have 'name' column defined")
+  }
+  return(x@spp.data$name)
+})
+
 #' @name featurenames<-
 #' @rdname featurenames-methods
-#' @aliases featurenames<-,Zvariant,character-method
 #' 
 setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
   
@@ -38,17 +48,6 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
     featurenames(x@results@curves) <- value
   }
   return(x)
-})
-
-#' @rdname featurenames-methods
-#' @aliases featurenames,Zvariant-method
-#' 
-setMethod("featurenames", signature("Zvariant"), function(x) {
-  
-  if (is.na(x@spp.data) || !"name" %in% names(x@spp.data)) {
-    stop("No spp data found or it doesn't have 'name' column defined")
-  }
-  return(x@spp.data$name)
 })
 
 #' @rdname groups-methods
@@ -85,7 +84,7 @@ setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
   if (!all(x@groups$output.group == value)) {
     x@groups$output.group <- value
     
-    x@results@grp.curves <- regroup_curves(curves(x), weights(x), value)
+    x@results@grp.curves <- regroup_curves(curves(x), sppweights(x), value)
     # Change group names back to generic "group1", "group2" etc.
     group.ids <- unique(value)
     group.names <- paste0("group", group.ids)
@@ -97,7 +96,7 @@ setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
 })
 
 #' @rdname groupnames-methods
-#' @aliases groupnames,Zvariant-method
+#' @export
 #' 
 setMethod("groupnames", "Zvariant", function(x) {
   
@@ -115,7 +114,7 @@ setMethod("groupnames", "Zvariant", function(x) {
 
 #' @name groupnames<-
 #' @rdname groupnames-methods
-#' @aliases groupnames<-,Zvariant,character-method
+#' @importFrom plyr empty
 #' 
 setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   if (empty(x@groups)) {
@@ -205,6 +204,7 @@ setMethod("results", c("Zvariant"), function(x) {
 
 #' @rdname sppdata-methods
 #' @aliases sppdata,Zvariant-method
+#' @importFrom plyr empty
 #' 
 setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
   spp.data <- x@spp.data

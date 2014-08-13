@@ -77,7 +77,7 @@ test_that("Getting weights works", {
   
   correct.feature.data <- read_spp(spp.file)
   correct.weights <- correct.feature.data$weight
-  expect_identical(correct.weights, weights(results.variant),
+  expect_identical(correct.weights, sppweights(results.variant),
                    "Test variant weights not what they're supposed to")
   
 })
