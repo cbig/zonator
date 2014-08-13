@@ -6,7 +6,6 @@
 \alias{groupnames,Zresults-method}
 \alias{groupnames,Zvariant-method}
 \alias{groupnames<-}
-\alias{groupnames<-,Zvariant,character-method}
 \title{Get group names for a class \code{Zvariant} instance.}
 \usage{
 groupnames(x)
@@ -27,9 +26,6 @@ groupnames(x) <- value
 \value{
 A character vector containing the group names. If there are no
         groups, return NA.
-
-A named character vector containing the group names. If there are no
-        groups, return NA.
 }
 \description{
 Get group names for a class \code{Zvariant} instance.
@@ -40,8 +36,6 @@ group names. If the particular variant doesn't use groups the gives a
 warning.
 }
 \author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
