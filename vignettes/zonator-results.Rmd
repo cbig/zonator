@@ -234,6 +234,7 @@ data has left when 10% percent of the landscape is under conservation, you
 could do the following:
 
 ```{r perfomance-hist, fig.width=10}
+library(ggplot2)
 # NOTE: we're using melted=TRUE here
 occr.remaining <- performance(results.caz, c(0.9, 0.95, 0.98), melted=TRUE)
 ggplot(occr.remaining, aes(x = factor(feature), y = perf.levels,
@@ -258,6 +259,7 @@ results helps. `zlegends()` can be used for ready-to-go color schemes that can
 used when plotting the raster objects.
 
 ```{r rank-raster-1, fig.width=10}
+library(raster)
 rank.caz <- rank_raster(results.caz)
 # Let's use a spectral color scheme designed for Zonation rank maps
 leg <- zlegend("spectral")
