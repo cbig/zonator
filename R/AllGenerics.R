@@ -43,7 +43,6 @@
 #' \code{\link{read_curves}} \code{\link{read_grp_curves}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname curves-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -77,7 +76,6 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0,
 #'          \code{\link{groupnames}} \code{\link{groups}} 
 #' 
 #' @export
-#' @docType methods
 #' @rdname featurenames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -107,7 +105,6 @@ setGeneric("featurenames", function(x) {
 #'   or not.
 #'
 #' @export
-#' @docType methods
 #' @rdname featurenames-methods
 #' 
 setGeneric("featurenames<-", function(x, value) {
@@ -127,7 +124,6 @@ setGeneric("featurenames<-", function(x, value) {
 #'   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname get_variant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -152,7 +148,6 @@ setGeneric("get_variant", function(x, index) {
 #' @seealso \code{\link{Zvariant-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname groups-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -170,7 +165,6 @@ setGeneric("groups", function(x) {
 #'
 #' 
 #' @export
-#' @docType methods
 #' @rdname groups-methods
 #' 
 setGeneric("groups<-", function(x, value) {
@@ -218,7 +212,6 @@ setGeneric("groupnames", function(x) {
 #'          \code{\link{Zresults}} \code{\link{groups}} 
 #' 
 #' @export
-#' @docType methods
 #' @rdname groupnames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -245,7 +238,6 @@ setGeneric("groupnames<-", function(x, value) {
 #' @seealso \code{\link{Zvariant-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname has_results-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -265,7 +257,6 @@ setGeneric("has_results", function(x) {
 #' @seealso \code{\link{Zvariant-class}}
 #'
 #' @export
-#' @docType methods
 #' @rdname nfeatures-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -285,7 +276,6 @@ setGeneric("nfeatures", function(x) {
 #' @seealso \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
 #'
 #' @export
-#' @docType methods
 #' @rdname nvariants-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -307,7 +297,6 @@ setGeneric("nvariants", function(x) {
 #' @seealso \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
 #'
 #' @export
-#' @docType methods
 #' @rdname opendir-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -332,7 +321,6 @@ setGeneric("opendir", function(x) {
 #' @seealso \code{\link{Zvariant-class}} \code{\link{Zresults-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname outdir-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -360,7 +348,6 @@ setGeneric("outdir", function(x) {
 #' \code{\link{read_grp_curves}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname ppa_lsm-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -398,7 +385,6 @@ setGeneric("ppa_lsm", function(x) {
 #' \code{\link{read_grp_curves}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname performance-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -428,7 +414,6 @@ setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE,
 #' @seealso \code{\link{Zresults-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname rank_raster-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -461,7 +446,6 @@ setGeneric("rank_raster", function(x) {
 #' @seealso \code{\link{rank_raster}} \code{\link{get_variant}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname rank_rasters-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -487,7 +471,6 @@ setGeneric("rank_rasters", function(x, variants=NULL) {
 #' @seealso \code{\link{Zresults-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname results-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -511,7 +494,6 @@ setGeneric("results", function(x) {
 #' @seealso \code{\link{Zvariant-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname sppdata-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -531,7 +513,6 @@ setGeneric("sppdata", function(x, group.names=FALSE) {
 #' @seealso \code{\link[zonator:Zvariant-class]{Zvariant-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname sppweights-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -552,7 +533,6 @@ setGeneric("sppweights", function(x) {
 #'   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
 #' 
 #' @export
-#' @docType methods
 #' @rdname variants-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
