@@ -1,6 +1,8 @@
-## CHANGES IN VERSION 0.3.10 (2014-XX-X)
+## CHANGES IN VERSION 0.3.10 (2014-08-12)
 
 ### BUG FIXES
+
+* Fix imports in roxygen2 docs
 
 * Generic group names assigned at initiation. If Zvariant object has groups 
   enabled, assign generic group names "group1", "group2" to groups 
@@ -20,6 +22,10 @@ available caused and error, now produces warnings and returns a NA.
 
 * New function `ds_alpha()` that can be used to calculate alpha value for 
   distribution smoothing.
+  
+### API CHANGES
+
+* Rename `weights` to `sppweights` so that it doesn't overwrite base generic.
 
 ## CHANGES IN VERSION 0.3.9 (2014-03-31)
 
