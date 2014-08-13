@@ -116,8 +116,9 @@ setMethod("plot", signature(x="ZCurvesDataFrame", y="missing"),
   
   # Melt will give a warning here:
   # Setting class(x) to NULL;   result will no longer be an S4 objec
-  suppressWarnings(x.melt <- melt(data = curves.data, id.vars=c("pr_lost"), 
-                                  measure.vars=2:ncol(curves.data)))
+  suppressWarnings(x.melt <- reshape2::melt(data = curves.data, 
+                                            id.vars=c("pr_lost"), 
+                                            measure.vars=2:ncol(curves.data)))
   x.melt$stat <- "feature"
   
   # Get possible extra stats fields
