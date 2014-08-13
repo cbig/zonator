@@ -1,0 +1,111 @@
+Zonation 3.1.11
+============================================
+The Zonation software is distributed in the  hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+============================================
+
+**************************************************
+*** For conditions of use of this software see ***
+*** the disclaimer in the about-box.           ***
+**************************************************
+
+Reading settings file.
+
+
+Starting Zonation run on 'LH2-BIOTI25.site' at 5:49:32 PM (2014/8/13) 
+Locale is: en_US.UTF-8
+Loading list of biodiversity features from file: 01/01.spp
+Row count in features/species file: 7
+../data/species1.tif:  555 rows and 649 columns read in total
+Nodata element count =  249913, and sum of elements = 35280.8
+Matrix x dimension: 649
+Matrix y dimension: 555
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
+
+****** REMOVAL RULE: Original basic core-area Zonation *******
+
+
+****** NOT using distribution smoothing or matrix connectivity *******
+
+****** NOT using Info-gap distribution discounting uncertainty analysis ****************
+
+****** Loading feature (e.g., species) data layers ****************
+../data/species1.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35280.8
+* Completed load of biodiversity feature (e.g. species) file #1, ../data/species1.tif
+
+../data/species2.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 29142.7
+* Completed load of biodiversity feature (e.g. species) file #2, ../data/species2.tif
+
+../data/species3.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35307.7
+* Completed load of biodiversity feature (e.g. species) file #3, ../data/species3.tif
+
+../data/species4.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35116.9
+* Completed load of biodiversity feature (e.g. species) file #4, ../data/species4.tif
+
+../data/species5.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 22852.8
+* Completed load of biodiversity feature (e.g. species) file #5, ../data/species5.tif
+
+../data/species6.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 36691.1
+* Completed load of biodiversity feature (e.g. species) file #6, ../data/species6.tif
+
+../data/species7.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 34740.3
+* Completed load of biodiversity feature (e.g. species) file #7, ../data/species7.tif
+
+Freeing smoothing... Done.
+Note: using edge removal.
+Cells with data = 110282 locations with missing values = 249913
+Loaded data and initialized in 0 seconds.
+
+------------------ RANKING STARTS HERE -----------------------
+Initially removed cells count = 0
+***** Note: No initial removal was used.     *****
+
+Biodiversity features performance levels check
+Feature 1, proportion remaining = 1
+Feature 2, proportion remaining = 1
+Feature 3, proportion remaining = 1
+Feature 4, proportion remaining = 1
+Feature 5, proportion remaining = 1
+Feature 6, proportion remaining = 1
+Feature 7, proportion remaining = 1
+
+removed 4411, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9763345
+removed 8822, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9496853
+removed 13233, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9196619
+removed 17644, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8878453
+removed 22055, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8545238
+removed 26466, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8203757
+removed 30877, smallest remaining proportion over all biodiversity features (e.g. species) = 0.7854329
+removed 35288, smallest remaining proportion over all biodiversity features (e.g. species) = 0.750459
+removed 39699, smallest remaining proportion over all biodiversity features (e.g. species) = 0.7152534
+removed 44110, smallest remaining proportion over all biodiversity features (e.g. species) = 0.6753275
+removed 48521, smallest remaining proportion over all biodiversity features (e.g. species) = 0.6371714
+removed 52932, smallest remaining proportion over all biodiversity features (e.g. species) = 0.5966668
+removed 57343, smallest remaining proportion over all biodiversity features (e.g. species) = 0.5551898
+removed 61754, smallest remaining proportion over all biodiversity features (e.g. species) = 0.512946
+removed 66165, smallest remaining proportion over all biodiversity features (e.g. species) = 0.4701824
+removed 70576, smallest remaining proportion over all biodiversity features (e.g. species) = 0.4260809
+removed 74987, smallest remaining proportion over all biodiversity features (e.g. species) = 0.3806313
+removed 79398, smallest remaining proportion over all biodiversity features (e.g. species) = 0.3348742
+removed 83809, smallest remaining proportion over all biodiversity features (e.g. species) = 0.2883526
+removed 88220, smallest remaining proportion over all biodiversity features (e.g. species) = 0.2414173
+removed 92631, smallest remaining proportion over all biodiversity features (e.g. species) = 0.1952328
+removed 97042, smallest remaining proportion over all biodiversity features (e.g. species) = 0.1468532
+removed 101453, smallest remaining proportion over all biodiversity features (e.g. species) = 0.0992758
+removed 105864, smallest remaining proportion over all biodiversity features (e.g. species) = 0.05082412
+removed 110275, smallest remaining proportion over all biodiversity features (e.g. species) = 0.0001267614
+Total count of cells removed = 110282
+
+Done in 3 seconds.
+saving output/01/01.png
+saving output/01/01.rank.compressed.tif
+saving output/01/01.prop.compressed.tif
+saving output/01/01.wrscr.compressed.tif
+No automated post-processing file specified
+DONE: Freeing memory next.
+Finished at 5:49:35 PM (2014/8/13) 
+Elapsed time : 2916 ms
+ZIG3: DONE!

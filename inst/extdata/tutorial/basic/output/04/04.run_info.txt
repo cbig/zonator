@@ -1,0 +1,125 @@
+Zonation 3.1.11
+============================================
+The Zonation software is distributed in the  hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+============================================
+
+**************************************************
+*** For conditions of use of this software see ***
+*** the disclaimer in the about-box.           ***
+**************************************************
+
+Reading settings file.
+
+
+Starting Zonation run on 'LH2-BIOTI25.site' at 5:50:01 PM (2014/8/13) 
+Locale is: en_US.UTF-8
+Loading list of biodiversity features from file: 04/04.spp
+Row count in features/species file: 7
+../data/species1.tif:  555 rows and 649 columns read in total
+Nodata element count =  249913, and sum of elements = 35280.8
+Matrix x dimension: 649
+Matrix y dimension: 555
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
+
+****** REMOVAL RULE: Original basic core-area Zonation *******
+
+
+Doing connectivity smoothings:
+Using 1 thread(s) for preprocessing.
+****** NOT using Info-gap distribution discounting uncertainty analysis ****************
+
+****** Loading feature (e.g., species) data layers ****************
+../data/species1.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35280.8
+
+DS connectivity calculations - Kernel calculated; alpha= 2
+* Completed load of biodiversity feature (e.g. species) file #1, ../data/species1.tif
+
+../data/species2.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 29142.7
+
+DS connectivity calculations - Kernel calculated; alpha= 1
+* Completed load of biodiversity feature (e.g. species) file #2, ../data/species2.tif
+
+../data/species3.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35307.7
+
+DS connectivity calculations - Kernel calculated; alpha= 0.5
+* Completed load of biodiversity feature (e.g. species) file #3, ../data/species3.tif
+
+../data/species4.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35116.9
+
+DS connectivity calculations - Kernel calculated; alpha= 1.5
+* Completed load of biodiversity feature (e.g. species) file #4, ../data/species4.tif
+
+../data/species5.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 22852.8
+
+DS connectivity calculations - Kernel calculated; alpha= 1
+* Completed load of biodiversity feature (e.g. species) file #5, ../data/species5.tif
+
+../data/species6.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 36691.1
+
+DS connectivity calculations - Kernel calculated; alpha= 3
+* Completed load of biodiversity feature (e.g. species) file #6, ../data/species6.tif
+
+../data/species7.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 34740.3
+
+DS connectivity calculations - Kernel calculated; alpha= 2
+* Completed load of biodiversity feature (e.g. species) file #7, ../data/species7.tif
+
+Freeing smoothing... Done.
+Note: using edge removal.
+Cells with data = 110282 locations with missing values = 249913
+Loaded data and initialized in 2 seconds.
+
+------------------ RANKING STARTS HERE -----------------------
+Initially removed cells count = 0
+***** Note: No initial removal was used.     *****
+
+Biodiversity features performance levels check
+Feature 1, proportion remaining = 1.000002
+Feature 2, proportion remaining = 0.9999927
+Feature 3, proportion remaining = 1.000006
+Feature 4, proportion remaining = 1.000003
+Feature 5, proportion remaining = 1.000002
+Feature 6, proportion remaining = 1.000005
+Feature 7, proportion remaining = 1.000004
+
+removed 4411, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9733656
+removed 8822, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9469839
+removed 13233, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9174768
+removed 17644, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8846032
+removed 22055, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8509378
+removed 26466, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8125164
+removed 30877, smallest remaining proportion over all biodiversity features (e.g. species) = 0.7722189
+removed 35288, smallest remaining proportion over all biodiversity features (e.g. species) = 0.733141
+removed 39699, smallest remaining proportion over all biodiversity features (e.g. species) = 0.6951373
+removed 44110, smallest remaining proportion over all biodiversity features (e.g. species) = 0.6580027
+removed 48521, smallest remaining proportion over all biodiversity features (e.g. species) = 0.6219227
+removed 52932, smallest remaining proportion over all biodiversity features (e.g. species) = 0.5858995
+removed 57343, smallest remaining proportion over all biodiversity features (e.g. species) = 0.5491088
+removed 61754, smallest remaining proportion over all biodiversity features (e.g. species) = 0.5105678
+removed 66165, smallest remaining proportion over all biodiversity features (e.g. species) = 0.4703384
+removed 70576, smallest remaining proportion over all biodiversity features (e.g. species) = 0.4290969
+removed 74987, smallest remaining proportion over all biodiversity features (e.g. species) = 0.3838336
+removed 79398, smallest remaining proportion over all biodiversity features (e.g. species) = 0.3389461
+removed 83809, smallest remaining proportion over all biodiversity features (e.g. species) = 0.2942552
+removed 88220, smallest remaining proportion over all biodiversity features (e.g. species) = 0.2489917
+removed 92631, smallest remaining proportion over all biodiversity features (e.g. species) = 0.1986527
+removed 97042, smallest remaining proportion over all biodiversity features (e.g. species) = 0.1481721
+removed 101453, smallest remaining proportion over all biodiversity features (e.g. species) = 0.09620851
+removed 105864, smallest remaining proportion over all biodiversity features (e.g. species) = 0.04409747
+removed 110275, smallest remaining proportion over all biodiversity features (e.g. species) = 8.505168e-05
+Total count of cells removed = 110282
+
+Done in 3 seconds.
+saving output/04/04.png
+saving output/04/04.rank.compressed.tif
+saving output/04/04.prop.compressed.tif
+saving output/04/04.wrscr.compressed.tif
+No automated post-processing file specified
+DONE: Freeing memory next.
+Finished at 5:50:06 PM (2014/8/13) 
+Elapsed time : 5213 ms
+ZIG3: DONE!

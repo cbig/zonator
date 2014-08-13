@@ -1,0 +1,145 @@
+Zonation 3.1.11
+============================================
+The Zonation software is distributed in the  hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+============================================
+
+**************************************************
+*** For conditions of use of this software see ***
+*** the disclaimer in the about-box.           ***
+**************************************************
+
+Reading settings file.
+
+*************** USING MASK LAYER **************
+  Mask file = ../data/mask_rs.tif
+
+Starting Zonation run on 'LH2-BIOTI25.site' at 5:50:12 PM (2014/8/13) 
+Locale is: en_US.UTF-8
+Loading list of biodiversity features from file: 05/05.spp
+Row count in features/species file: 7
+../data/species1.tif:  555 rows and 649 columns read in total
+Nodata element count =  249913, and sum of elements = 35280.8
+Matrix x dimension: 649
+Matrix y dimension: 555
+../data/mask_rs.tif:  555 rows and 649 columns read in total
+Nodata element count =  249913, and sum of elements = 10251
+Mask map loaded.
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
+
+****** REMOVAL RULE: Original basic core-area Zonation *******
+
+
+Doing connectivity smoothings:
+Using 1 thread(s) for preprocessing.
+****** NOT using Info-gap distribution discounting uncertainty analysis ****************
+
+****** Loading feature (e.g., species) data layers ****************
+../data/species1.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35280.8
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 spw= 1
+../data/species1.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.15805
+
+DS connectivity calculations - Kernel calculated; alpha= 1
+* Completed load of biodiversity feature (e.g. species) file #1, ../data/species1.tif
+
+../data/species2.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 29142.7
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 spw= 1
+../data/species2.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.089914
+
+DS connectivity calculations - Kernel calculated; alpha= 0.5
+* Completed load of biodiversity feature (e.g. species) file #2, ../data/species2.tif
+
+../data/species3.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35307.7
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 spw= 1
+../data/species3.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.0978106
+
+DS connectivity calculations - Kernel calculated; alpha= 0.25
+* Completed load of biodiversity feature (e.g. species) file #3, ../data/species3.tif
+
+../data/species4.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 35116.9
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 spw= 1
+../data/species4.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.153682
+
+DS connectivity calculations - Kernel calculated; alpha= 0.75
+* Completed load of biodiversity feature (e.g. species) file #4, ../data/species4.tif
+
+../data/species5.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 22852.8
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 spw= 1
+../data/species5.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.160491
+
+DS connectivity calculations - Kernel calculated; alpha= 0.5
+* Completed load of biodiversity feature (e.g. species) file #5, ../data/species5.tif
+
+../data/species6.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 36691.1
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 spw= 1
+../data/species6.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.199893
+
+DS connectivity calculations - Kernel calculated; alpha= 1.5
+* Completed load of biodiversity feature (e.g. species) file #6, ../data/species6.tif
+
+../data/species7.tif:  555 rows and 649 columns read in total; sum of non-missing data elements = 34740.3
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 spw= 1
+../data/species7.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.140321
+
+DS connectivity calculations - Kernel calculated; alpha= 1
+* Completed load of biodiversity feature (e.g. species) file #7, ../data/species7.tif
+
+Freeing smoothing... Done.
+Note: using edge removal.
+Cells with data = 110282 locations with missing values = 249913
+Loaded data and initialized in 2 seconds.
+
+------------------ RANKING STARTS HERE -----------------------
+Initially removed cells count = 0
+***** Note: No initial removal was used.     *****
+
+Biodiversity features performance levels check
+Feature 1, proportion remaining = 1.000068
+Feature 2, proportion remaining = 1.00003
+Feature 3, proportion remaining = 1.000007
+Feature 4, proportion remaining = 1.000013
+Feature 5, proportion remaining = 1.000011
+Feature 6, proportion remaining = 1.00009
+Feature 7, proportion remaining = 1.000038
+
+MASK MAP USE CONFIRMED
+removed 4411, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9965286
+removed 8822, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9865345
+removed 13233, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9735317
+removed 17644, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9615113
+removed 22055, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9470052
+removed 26466, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9305865
+removed 30877, smallest remaining proportion over all biodiversity features (e.g. species) = 0.9037874
+removed 35288, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8759812
+removed 39699, smallest remaining proportion over all biodiversity features (e.g. species) = 0.8447504
+removed 44110, smallest remaining proportion over all biodiversity features (e.g. species) = 0.7955918
+removed 48521, smallest remaining proportion over all biodiversity features (e.g. species) = 0.7485543
+removed 52932, smallest remaining proportion over all biodiversity features (e.g. species) = 0.7007354
+removed 57343, smallest remaining proportion over all biodiversity features (e.g. species) = 0.6540078
+removed 61754, smallest remaining proportion over all biodiversity features (e.g. species) = 0.6060392
+removed 66165, smallest remaining proportion over all biodiversity features (e.g. species) = 0.5570898
+removed 70576, smallest remaining proportion over all biodiversity features (e.g. species) = 0.5060492
+removed 74987, smallest remaining proportion over all biodiversity features (e.g. species) = 0.4361658
+removed 79398, smallest remaining proportion over all biodiversity features (e.g. species) = 0.3667456
+removed 83809, smallest remaining proportion over all biodiversity features (e.g. species) = 0.2959965
+removed 88220, smallest remaining proportion over all biodiversity features (e.g. species) = 0.2258774
+removed 92631, smallest remaining proportion over all biodiversity features (e.g. species) = 0.148593
+removed 97042, smallest remaining proportion over all biodiversity features (e.g. species) = 0.06683362
+removed 101453, smallest remaining proportion over all biodiversity features (e.g. species) = 0.004309265
+removed 105864, smallest remaining proportion over all biodiversity features (e.g. species) = 0.004105051
+removed 110275, smallest remaining proportion over all biodiversity features (e.g. species) = 2.913091e-05
+Total count of cells removed = 110282
+
+Done in 2 seconds.
+saving output/05/05.png
+saving output/05/05.rank.compressed.tif
+saving output/05/05.prop.compressed.tif
+saving output/05/05.wrscr.compressed.tif
+No automated post-processing file specified
+DONE: Freeing memory next.
+Finished at 5:50:17 PM (2014/8/13) 
+Elapsed time : 4808 ms
+ZIG3: DONE!
