@@ -9,17 +9,17 @@ test_that("Parsing a bat file works", {
   
   if (.Platform$OS.type == "unix") {
     correct.sequence <- c("zig3", "-r", 
-                          "01_core_area_zonation/01_core_area_zonation.dat", 
-                          "01_core_area_zonation/01_core_area_zonation.spp", 
-                          "basic_output/01_core_area_zonation/01_core_area_zonation.txt", 
+                          "01/01.dat", 
+                          "01/01.spp", 
+                          "output/01/01.txt", 
                           "0.0", "0", "1.0", "0", 
                           "--grid-output-formats=compressed-tif",
                           "--image-output-formats=png")
   } else {
     correct.sequence <- c("call", "zig3.exe", "-r", 
-                          "01_core_area_zonation/01_core_area_zonation.dat", 
-                          "01_core_area_zonation/01_core_area_zonation.spp", 
-                          "basic_output/01_core_area_zonation/01_core_area_zonation.txt", 
+                          "01/01.dat", 
+                          "01/01.spp", 
+                          "output/01/01.txt", 
                           "0.0", "0", "1.0", "0", 
                           "--grid-output-formats=compressed-tif", 
                           "--image-output-formats=png")
@@ -97,8 +97,7 @@ test_that("Parsing a populated spp file works", {
   
   # Test with a populated spp file (i.e. has rows)
   
-  spp.file <- system.file("extdata/tutorial/basic/01_core_area_zonation", 
-                          "01_core_area_zonation.spp",
+  spp.file <- system.file("extdata/tutorial/basic/01", "01.spp",
                           package="zonator")
   
   # Construct a spp data frame corresponding to 01_core_area_zonation.spp

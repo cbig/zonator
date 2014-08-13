@@ -64,28 +64,24 @@ assign("tutorial.dir", system.file("extdata", "tutorial", package="zonator"),
        envir=.options)
 assign("setup.dir", file.path(.options$tutorial.dir, "basic"), envir=.options)
 assign("data.dir", file.path(.options$tutorial.dir, "data"), envir=.options)
-assign("output.dir", file.path(.options$setup.dir, "basic_output"), 
+assign("output.dir", file.path(.options$setup.dir, "output"), 
        envir=.options)
 
 # Tutorial run and configuration files
 assign("bat.file", file.path(.options$setup.dir, "01_core_area_zonation.bat"), 
        envir=.options)
-assign("dat.file", file.path(.options$setup.dir, 
-                             "01_core_area_zonation/01_core_area_zonation.dat"),
+assign("dat.file", file.path(.options$setup.dir, "01/01.dat"),
        envir=.options)
-assign("spp.file", file.path(.options$setup.dir, 
-                             "01_core_area_zonation/01_core_area_zonation.spp"),
+assign("spp.file", file.path(.options$setup.dir, "01/01.spp"),
        envir=.options)
 
 # Antoher file for a connectivity variant
 assign("bat.file.ds", file.path(.options$setup.dir, 
                                 "04_distribution_smoothing.bat"), 
        envir=.options)
-assign("dat.file.ds", file.path(.options$setup.dir, 
-                             "04_distribution_smoothing/04_distribution_smoothing.dat"),
+assign("dat.file.ds", file.path(.options$setup.dir, "04/04.dat"),
        envir=.options)
-assign("spp.file.ds", file.path(.options$setup.dir, 
-                                "04_distribution_smoothing/04_distribution_smoothing.spp"),
+assign("spp.file.ds", file.path(.options$setup.dir, "04/04.spp"),
        envir=.options)
 
 assign("species.files", paste0(.options$data.dir, "/species", 1:7, ".tif"),
@@ -95,12 +91,10 @@ assign("groups.file", file.path(.options$setup.dir, "groups.txt"),
 
 # Tutorial results files, use 02_additive_benefit_function variant so that 
 # weights are used
-assign("results.spp.file", file.path(.options$setup.dir, 
-                                     "02_additive_benefit_function/02_additive_benefit_function.spp"),
+assign("results.spp.file", file.path(.options$setup.dir, "02/02.spp"),
        envir=.options)
-assign("results.curves", file.path(.options$output.dir, 
-                                "02_additive_benefit_function/output_02_additive_benefit_function.curves.txt"),
+assign("results.curves", file.path(.options$output.dir, "02/02.curves.txt"),
        envir=.options)
 assign("results.grp.curves", file.path(.options$output.dir, 
-                                   "02_additive_benefit_function/output_02_additive_benefit_function.grp_curves.txt"),
+                                       "02/02.grp_curves.txt"),
        envir=.options)
