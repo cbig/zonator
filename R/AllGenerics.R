@@ -185,7 +185,6 @@ setGeneric("groups<-", function(x, value) {
 #'          \code{\link{groups}} 
 #' 
 #' @export
-#' @docType methods
 #' @rdname groupnames-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -205,18 +204,13 @@ setGeneric("groupnames", function(x) {
 #'
 #' @param value named character vector.
 #'
-#' @return A named character vector containing the group names. If there are no 
-#'         groups, return NA.
-#' 
 #' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}} 
 #'          \code{\link{Zresults}} \code{\link{groups}} 
 #' 
 #' @export
 #' @rdname groupnames-methods
 #' 
-#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
-#' 
-setGeneric("groupnames<-", function(x, value) {
+setGeneric("groupnames<-", function(x, value) {  
   standardGeneric("groupnames<-")
 })
 
