@@ -97,6 +97,7 @@ setReplaceMethod("featurenames", c("ZCurvesDataFrame", "character"),
 #' 
 #' @seealso \code{\link{read_curves}} and \code{\link{plot_curves}}.
 #' 
+#' @import reshape2
 #' @export
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
