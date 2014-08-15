@@ -20,7 +20,6 @@ setMethod("curves", c("Zvariant"), function(x, cols=NULL, groups=FALSE,
 })
 
 #' @rdname featurenames-methods
-#' @aliases featurenames,Zvariant-method
 #' 
 setMethod("featurenames", signature("Zvariant"), function(x) {
   
@@ -32,6 +31,7 @@ setMethod("featurenames", signature("Zvariant"), function(x) {
 
 #' @name featurenames<-
 #' @rdname featurenames-methods
+#' @aliases featurenames<-,Zvariant,character-method
 #' 
 setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) {
   
@@ -51,7 +51,6 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
 })
 
 #' @rdname groups-methods
-#' @aliases groups,Zvariant-method
 #' 
 setMethod("groups", "Zvariant", function(x) {
   if (any(dim(x@groups) != c(0, 0))) {
@@ -114,6 +113,7 @@ setMethod("groupnames", "Zvariant", function(x) {
 
 #' @name groupnames<-
 #' @rdname groupnames-methods
+#' @aliases groupnames<-,Zvariant,character-method
 #' 
 setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   if (plyr::empty(x@groups)) {
@@ -170,14 +170,12 @@ setMethod("nfeatures", "Zvariant", function(x) {
 })
 
 #' @rdname outdir-methods
-#' @aliases outdir,Zvariant-method
 #' 
 setMethod("outdir", c("Zvariant"), function(x) {
   return(x@output.dir)
 })
 
 #' @rdname rank_raster-methods
-#' @aliases rank_raster,Zvariant-method
 #' 
 setMethod("rank_raster", c("Zvariant"), function(x) {
   if(has_results(x)$rank) {
@@ -188,7 +186,6 @@ setMethod("rank_raster", c("Zvariant"), function(x) {
 })
 
 #' @rdname results-methods
-#' @aliases results,Zvariant-method
 #' 
 setMethod("results", c("Zvariant"), function(x) {
   res <-  unlist(has_results(x))
@@ -202,7 +199,6 @@ setMethod("results", c("Zvariant"), function(x) {
 })
 
 #' @rdname sppdata-methods
-#' @aliases sppdata,Zvariant-method
 #' 
 setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
   spp.data <- x@spp.data
@@ -220,7 +216,6 @@ setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
 })
 
 #' @rdname sppweights-methods
-#' @aliases sppweights,Zvariant-method
 #' 
 setMethod("sppweights", c("Zvariant"), function(x) {
   return(x@spp.data$weight)
