@@ -14,13 +14,13 @@ Description: zonator is a utility R package for dealing with various tasks
     runs and managing Zonation results.
 Depends:
     R (>= 2.15.2),
-    ggplot2
+    ggplot2,
+    methods
 Suggests:
     testthat,
     knitr,
     rasterVis
 Imports:
-    methods,
     plyr,
     RColorBrewer,
     RCurl,
