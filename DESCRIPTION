@@ -17,14 +17,15 @@ Depends:
     ggplot2,
     methods
 Suggests:
-    testthat,
     knitr,
-    rasterVis
+    rasterVis,
+    testthat
 Imports:
     plyr,
     RColorBrewer,
     RCurl,
     raster,
     reshape2,
+    rgdal
 BugReports: https://github.com/jlehtoma/zonator/issues
 VignetteBuilder: knitr
