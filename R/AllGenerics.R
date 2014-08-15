@@ -106,7 +106,6 @@ setGeneric("featurenames", function(x) {
 #'
 #' @export
 #' @rdname featurenames-methods
-#' @aliases featurenames<-,Zvariant,character-method
 #' 
 setGeneric("featurenames<-", function(x, value) {
   standardGeneric("featurenames<-")
@@ -210,7 +209,6 @@ setGeneric("groupnames", function(x) {
 #' 
 #' @export
 #' @rdname groupnames-methods
-#' @aliases groupnames<-,Zvariant,character-method
 #' 
 setGeneric("groupnames<-", function(x, value) {  
   standardGeneric("groupnames<-")
