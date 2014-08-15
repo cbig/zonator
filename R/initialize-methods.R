@@ -60,6 +60,7 @@ setMethod("initialize", "Zproject", function(.Object, root, debug=FALSE) {
 #' @keywords internal
 #'
 #' @import raster
+#' @import rgdal
 #'
 #' @rdname initialize-methods
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
