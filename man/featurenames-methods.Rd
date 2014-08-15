@@ -7,6 +7,7 @@
 \alias{featurenames,Zvariant-method}
 \alias{featurenames<-}
 \alias{featurenames<-,ZCurvesDataFrame,character-method}
+\alias{featurenames<-,Zvariant,character-method}
 \title{Feature names of Zonation variant.}
 \usage{
 featurenames(x)
@@ -49,7 +50,7 @@ raster file path.
 \dontrun{
  setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
  tutorial.project <- create_zproject(setup.dir)
- variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+ variant.caz <- get_variant(tutorial.project, "01")
 
  # Feature names for a Zvariant object
  featurenames(variant.caz)
