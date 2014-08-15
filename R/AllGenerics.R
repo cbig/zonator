@@ -83,7 +83,7 @@ setGeneric("curves", function(x, cols=NULL, groups=FALSE, lost.lower=0.0,
 #' @examples \dontrun{
 #'  setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
 #'  tutorial.project <- create_zproject(setup.dir)
-#'  variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+#'  variant.caz <- get_variant(tutorial.project, "01")
 #' 
 #'  # Feature names for a Zvariant object
 #'  featurenames(variant.caz)
@@ -100,12 +100,13 @@ setGeneric("featurenames", function(x) {
 # featurenames<- ----------------------------------------------------------
 
 #' Assign feature names for a Zonation variant.
-#'
+#' 
 #' @param value character vector of feature names to be assigned. Can be named 
 #'   or not.
 #'
 #' @export
 #' @rdname featurenames-methods
+#' @aliases featurenames<-,Zvariant,character-method
 #' 
 setGeneric("featurenames<-", function(x, value) {
   standardGeneric("featurenames<-")
@@ -209,6 +210,7 @@ setGeneric("groupnames", function(x) {
 #' 
 #' @export
 #' @rdname groupnames-methods
+#' @aliases groupnames<-,Zvariant,character-method
 #' 
 setGeneric("groupnames<-", function(x, value) {  
   standardGeneric("groupnames<-")
