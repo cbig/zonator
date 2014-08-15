@@ -6,6 +6,7 @@
 \alias{groupnames,Zresults-method}
 \alias{groupnames,Zvariant-method}
 \alias{groupnames<-}
+\alias{groupnames<-,Zvariant,character-method}
 \title{Get group names for a class \code{Zvariant} instance.}
 \usage{
 groupnames(x)
