@@ -122,7 +122,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   grp.curve.file <- get_file(root, "\\.grp_curves\\.txt")
   if (!is.na(grp.curve.file)) {
     if (.options$debug) {
-      message("Reading in groups curve file", grp.curve.file)
+      message("Reading in groups curve file ", grp.curve.file)
     }
     .Object@grp.curves <- read_grp_curves(grp.curve.file)
   }
@@ -131,7 +131,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   rank.raster.file <- get_file(root, "\\.rank\\.")
   if (!is.na(rank.raster.file)) {
     if (.options$debug) {
-      message("Reading in rank raster file", rank.raster.file)
+      message("Reading in rank raster file ", rank.raster.file)
     }
     .Object@rank <- raster::raster(rank.raster.file)  
   }
@@ -139,7 +139,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   wrscr.raster.file <- get_file(root, "\\.wrscr\\.")
   if (!is.na(wrscr.raster.file)) {
     if (.options$debug) {
-      message("Reading in wrscr raster file", wrscr.raster.file)
+      message("Reading in wrscr raster file ", wrscr.raster.file)
     }
     .Object@wrscr <- raster(wrscr.raster.file)  
   }
@@ -147,7 +147,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   prop.raster.file <- get_file(root, "\\.prop\\.")
   if (!is.na(prop.raster.file)) {
     if (.options$debug) {
-      message("Reading in prop raster file", prop.raster.file)
+      message("Reading in prop raster file ", prop.raster.file)
     }
     .Object@prop <- raster(prop.raster.file)  
   }
@@ -158,7 +158,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   ppa.lsm.file <- get_file(root, ".*nwout\\.1.*")
   if (!is.na(ppa.lsm.file)) {
     if (.options$debug) {
-      message("Reading in ppa lsm file", ppa.lsm.file)
+      message("Reading in ppa lsm file ", ppa.lsm.file)
     }
     # read_ppa_lsm return a list. Merge data items 1 and 3, don't use 2
     ppa.lsm.data <- read_ppa_lsm(ppa.lsm.file)
@@ -204,7 +204,7 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   .Object@bat.file <- bat.file
   # Read the content of the bat file
   if (.options$debug) {
-    message("Reading in bat file", bat.file)
+    message("Reading in bat file ", bat.file)
   }
   call.params <- read_bat(bat.file)
   .Object@call.params <- call.params
@@ -216,13 +216,13 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
   # dat-file content ###########################################################
   if (.options$debug) {
-    message("Reading in dat file", call.params$dat.file)
+    message("Reading in dat file ", call.params$dat.file)
   }
   .Object@dat.data <- read_ini(call.params$dat.file)
   
   # spp-file content ###########################################################
   if (.options$debug) {
-    message("Reading in spp file", call.params$spp.file)
+    message("Reading in spp file ", call.params$spp.file)
   }
   spp.data <- read_spp(call.params$spp.file)
 
@@ -245,7 +245,7 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
         groups.file <- check_path(settings$groups_file, dirname(bat.file),
                                   require.file=TRUE)
         if (.options$debug) {
-          message("Reading in groups file", groups.file)
+          message("Reading in groups file ", groups.file)
         }
         .Object@groups <- read_groups(groups.file)
         # Initialize generic group names "group1", "group2" etc
