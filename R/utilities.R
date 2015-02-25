@@ -32,7 +32,7 @@ check_names <- function(x) {
   }
   # Check for only unique items
   if (length(unique(x)) != length(x)) {
-    warning("All names are not unique, creating unique names")
+    warning("All feature/group names are not unique, creating unique names")
     x <- make.names(x, unique=TRUE)
   }
   # Check for empty names
