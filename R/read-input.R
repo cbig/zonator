@@ -113,9 +113,20 @@ read_groups <- function(infile) {
 #'
 read_ini <- function(infile) {
     
+    if (!file.exists(infile)){
+      stop("dat-file ", infile, " not found!")
+    }
+  
     connection <- file(infile)
     lines  <- readLines(connection)
     close(connection)
+    
+    # Try to infer if the file really is an ini file, do this by looking for 
+    # section headers
+    if (!any(grepl("\\[.+\\]", lines))) {
+      stop(paste("dat-file", infile, "doesn't seem to have any section headers.",
+                 "Check that it is a proper ini-file."))
+    }
     
     # Change section headers
     lines <- chartr("[]", "==", lines)
