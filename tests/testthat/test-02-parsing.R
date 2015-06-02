@@ -40,6 +40,39 @@ test_that("Parsing a bat file works", {
   
 })
 
+test_that("Parsing an ini file (dat) works", {
+  
+  dat.file <- system.file("extdata/tutorial/basic/01", "01.dat",
+                          package="zonator")
+  
+  faulty.dat.file <- file.path(dirname(dat.file), "wrong.bat")
+  
+  # Test that error is reported if a dat file can't be found
+  suppressWarnings(expect_error(read_ini(faulty.dat.file), 
+                                "(dat-file).+(not found!)",
+                                info = "Error raised should name the dat file"))
+  
+  # Test that error is reported if the file doesn't seem to be a dat-file
+  bat.file <- system.file("extdata/tutorial/basic", "01_core_area_zonation.bat",
+                          package="zonator")
+  suppressWarnings(expect_error(read_ini(bat.file), 
+                                "(dat-file).+(doesn't seem to have any section headers.).+",
+                                info = "Error raised should name the dat file"))
+
+  correct.data <- list()
+  correct.data[["Settings"]] <- list()
+  correct.data[["Settings"]][["removal_rule"]] <- "1"
+  correct.data[["Settings"]][["warp_factor"]] <- "100"
+  correct.data[["Settings"]][["edge_removal"]] <- "1"
+  correct.data[["Settings"]][["annotate_name"]] <- "0"
+  correct.data[["Settings"]][["use_groups"]] <- "1"
+  correct.data[["Settings"]][["groups_file"]] <- "groups.txt"
+  
+  expect_equal(read_ini(dat.file), correct.data,
+               info = "Data parsed from dat file is not correct")
+  
+})
+
 test_that("Parsing a valid groups file works", {
   
   groups.file <- system.file("extdata/tutorial/basic", "groups.txt",
