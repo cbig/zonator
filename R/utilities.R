@@ -404,6 +404,8 @@ zlegend <- function(x) {
   
   if (x == "spectral") {
     return(.options$z_colors_spectral)
+  } else if (x == "BrBG") {
+    return(.options$z_colors_BrBG)
   } else {
     stop("No legend scheme ", x, " defined")
   }
