@@ -197,10 +197,11 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   if (is.null(name)) {
     # If no name is provided, use the name of the bat-file (without the 
     # extension)
-    .Object@name <- strsplit(basename(bat.file), "\\.", )[[1]][1]
+    .Object@name <- strsplit(basename(bat.file), "\\.")[[1]][1]
   } else {
     .Object@name <- name
   }
+
   .Object@bat.file <- bat.file
   # Read the content of the bat file
   if (.options$debug) {
