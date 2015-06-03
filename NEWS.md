@@ -3,7 +3,7 @@
 ### NEW FEATURES
 
 * New tests and checks for `read_ini()`.
-* New color scheme `z_colors_BrBG ` added. This a slight variation from 
+* New color scheme `BrBG ` added. This a slight variation from 
 ColorBrewer's 7-level BrBG scheme with the lowest value replaced with grey.
 
 ## CHANGES IN VERSION 0.3.10 (2014-08-12)
