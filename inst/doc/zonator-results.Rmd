@@ -1,0 +1,325 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Working with Zonator results: curves}
+-->
+
+```{r setup, echo=FALSE}
+options(width=160)
+```
+
+## 1. Introduction to working with Zonation results
+
+First, let's set up the scene.
+
+```{r setup-objects, message=FALSE}
+library(zonator)
+
+# Start by creating a project using the tutorial data
+setup.dir <- system.file("extdata/tutorial/basic", package="zonator") 
+tutorial.project <- create_zproject(setup.dir)
+
+# Get a specific variant
+variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+
+# Let's also rename the features and groups while we're at it
+featurenames(variant.caz) <- c("Koala", "Masked.owl", "Powerful.owl", 
+                             "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
+                             "Yellow-bellied.glider")
+
+groupnames(variant.caz) <- c("1"="mammals", "2"="owls")
+```
+
+Each variant can either already have results (i.e. Zonation run has completed) 
+or then not. Which results exactly are available can be determined by using 
+method `has_results()`.
+
+```{r has-results, message=FALSE} 
+has_results(variant.caz)
+```
+
+Value `TRUE` indicates that Zonation has already been run and results are 
+available and `FALSE` indicates that results are not available.
+
+Results of a given variant - if present - can be extracted using `results()`.
+The resulting object will be an instance of `Zresults` class.
+
+```{r get-results}
+results.caz <- results(variant.caz)
+```
+
+Object `results.caz` can in turn be queried with various dedicated methods
+described in more detail below.
+
+----
+
+## 2. Performance curves
+
+### 2.1 Working with performance data
+
+Raw curves data (with or without groups) can be extracted from the variant or 
+results using `curves()`. Optional argument `groups` defines whether feature or 
+group specific curves are returned. If you don't need every feature or aggregate 
+statistic, you can also get the data for particular features.
+
+
+```{r curves}
+# Get feature-specific curves
+feature.curves.caz <- curves(results.caz)
+head(feature.curves.caz)
+
+# Note! Using curves() variant.caz will work as well
+feature.curves.caz <- curves(variant.caz)
+head(feature.curves.caz)
+
+# Get just 2 species
+duo.curves.caz <- curves(results.caz, cols=c("Koala", "Tiger.quoll"))
+head(duo.curves.caz)
+```
+
+Columns are exactly the same as in Zonation curves output file. Note also that 
+the actual feature columns are named according to feature names in the 
+`Zvariant` object these results were derived from. Thus whatever names you 
+assigned to features prior to extracting the results will be also seen here.
+
+Let's see  what the group curves data looks like as a whole or for individual 
+groups:
+
+```{r grp-curves}
+# Get group-specific curves
+feature.grp.curves.caz <- curves(results.caz, groups=TRUE)
+head(feature.grp.curves.caz)
+
+# Get all the aggregate stats for owls
+owls.grp.curves.caz <- curves(results.caz, groups=TRUE, 
+                              cols=c("min.owls", "mean.owls", "max.owls",
+                                     "w.mean.owls", "ext2.owls"))
+head(owls.grp.curves.caz)
+```
+
+Often a particular range of cell removal process is more interesting than the 
+whole range. `curves()` has arguments `lost.lower` and `lost.upper` to define 
+a specific range:
+
+```{r curves-range}
+
+# Get performance values for 2 species for a range between 60% and 75% of 
+# landscape lost 
+duo.curves.caz.range <- curves(results.caz, cols=c("Koala", "Tiger.quoll"),
+                               lost.lower=0.6, lost.upper=0.75)
+head(duo.curves.caz.range)
+tail(duo.curves.caz.range)
+```
+
+Sometimes you might also be interested in performance values of features at 
+specific levels of landscape protection. For example, how much of the original
+occurrence levels are remaining when 25%, 50%, and 75% of landscape is lost.
+Method `performance()` can give you exactly this information.
+
+```{r perfomance}
+# Define the levels of landscape lost
+lost.levels <- c(0.25, 0.50, 0.75)
+# Notice that performance operates with Zresults-object
+performance(results.caz, lost.levels)
+
+# Same can be done for groups
+performance(results.caz, lost.levels, groups=TRUE)
+```
+
+**Pro tip!** If you're a heavy user of Hadley Wickham's excellent 
+[ggplot2](http://ggplot2.org/) package you might a lot of time 
+[reshaping](http://www.statmethods.net/management/reshape.html) your data. 
+Method `performance()` also has an optional argument `melted` which if set TRUE 
+will make the method return performance data in a melted format and thus readily 
+suitable for ggplot2-plotting (see below for a plotting example).
+
+```{r perfomance-melted}
+# Define the levels of landscape lost
+lost.levels <- c(0.25, 0.50, 0.75)
+# Notice that performance operates with Zresults-object
+performance(results.caz, lost.levels, melted=TRUE)
+```
+
+### 2.2 Plotting performance curves
+
+To make plotting examples more interesting, let's use also another variant that
+uses Zonation's masking capability.
+
+```{r mask-variant}
+variant.mask <- get_variant(tutorial.project, "05_hierarchical_removal_mask")
+
+featurenames(variant.mask) <- c("Koala", "Masked.owl", "Powerful.owl", 
+                             "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
+                             "Yellow-bellied.glider")
+labels <- c("mammals", "owls")
+names(labels) <- c(1, 2)
+groupnames(variant.mask) <- labels
+
+results.mask <- results(variant.mask)
+feature.curves.mask <- curves(results.mask)
+feature.grp.curves.mask <- curves(results.mask, groups=TRUE)
+```
+
+Performance data (curves) can also be easily plotted, feature- or group-wise:
+
+```{r curves-plotting-1, fig.width=10}
+plot(feature.curves.caz)
+```
+
+Plotting-methods for `ZCurvesDataFrame` and `ZGroupCurvesDataFrame` classes 
+include a couple of convenience arguments as well. By default, the scale on x-axis
+ranges from 0 to 1 and has a label "Prop. of landscape lost". The other way of 
+presenting the x-axis is to have it range from 1 to 0 and label it "Proportion
+of landscape under conservation". This behavior can be controlled by using the
+argument `invert.x` for `plot-method`. The title of the plot can be set using
+`main`-argument.
+
+```{r curves-plotting-2, fig.width=10}
+plot(feature.curves.caz, invert.x=TRUE, main="All features")
+```
+
+Argument `subs` can have a character vector of feature names to be plotted, i.e.
+a subset of all features. Different overall statistics can also be plotted. 
+Statistics supported are: `mean`, `min`, and `w.mean` for feature-specific 
+curves. Each of these is a logical argument that can be set to `TRUE`/`FALSE`.
+They correspond to "Average proportion remaining over all features", 
+"Minimum proportion remaining over all features", and
+"Weighted average proportion remaining over all features" respectively. 
+
+```{r curves-plotting-3, fig.width=10}
+plot(feature.curves.caz, invert.x=TRUE, main="Just few features", 
+     subs=c('Yellow-bellied.glider', 'Sooty.owl'), mean=TRUE)
+```
+
+Group-specific curves can be plotted in similar fashion. Note that plotting 
+group curves also respect the group names you may have set.
+
+```{r curves-plotting-4, fig.width=10}
+plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups")
+```
+
+Subsetting works the same as with individual features.
+
+```{r curves-plotting-5, fig.width=10}
+plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups", subs=c('owls'))
+```
+
+Both feature- and group-specific curve plotting methods also have an argument
+called `monochrome`. Setting this argument to `TRUE` will use only monochrome
+colours which may be useful e.g. for publication figures.
+
+```{r curves-plotting-6, fig.width=10}
+plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups", monochrome=TRUE)
+```
+
+Group plotting also has a set of statistics which can be plotted, but the 
+behavior is slightly different to that of features. What is plotted by default 
+are group-specific mean values. Other statistics are `min`, `max`, and `w.mean`
+which correspond to "Minimum proportion remaining for a feature within group",
+"Maxmimum proportion remaining for a feature within group", and 
+"Weighted average proportion remaining for group". Note that `mean` will always
+be `TRUE` unless it's explicitly set to `FALSE`.
+
+```{r curves-plotting-7, fig.width=10}
+plot(feature.grp.curves.mask, invert.x=TRUE, main="All groups", mean=TRUE, 
+     min=TRUE, max=TRUE)
+```
+
+### 2.3 Plotting performance levels
+
+If you want to summarize how much each feature has retained it's occurrence 
+level in a given stage of the cell removal process, you can easily created 
+bar plots out of selected performance levels. For example, if you'd like to 
+know how much of the original occurrence level each of species in our tutorial 
+data has left when 10% percent of the landscape is under conservation, you 
+could do the following:
+
+```{r perfomance-hist, fig.width=10}
+library(ggplot2)
+# NOTE: we're using melted=TRUE here
+occr.remaining <- performance(results.caz, c(0.9, 0.95, 0.98), melted=TRUE)
+ggplot(occr.remaining, aes(x = factor(feature), y = perf.levels,
+                           fill=factor(pr.lost))) + 
+  geom_bar(position="dodge", stat = "identity")
+
+```
+
+---
+
+## 3. Raster results
+
+### 3.1. Priority rank rasters
+
+One of the main outputs of a Zonation analysis is the priority rank rasters
+which gives each cell in the landscape a value [0, 1] indicating the final 
+priority rank (0 = the lowest, 1 = the highest). Rank raster is part of 
+`Zresults` object just as the performance curves above. Method `rank_raster()`
+can be used to get the rank raster object. The color scheme used is really up 
+to the user, but having a consistent and expressive color scheme for all the
+results helps. `zlegends()` can be used for ready-to-go color schemes that can 
+used when plotting the raster objects.
+
+```{r rank-raster-1, fig.width=10}
+library(raster)
+rank.caz <- rank_raster(results.caz)
+# Let's use a spectral color scheme designed for Zonation rank maps
+leg <- zlegend("spectral")
+plot(rank.caz, breaks=leg$values, col=leg$colors)
+```
+
+You can of course get all rank rasters individually from your project's 
+variants, but an alternative approach is to call `rank_rasters()` (note
+the plural in method name!) directly on your project object. This will result
+in a `RasterStack` object containing all the rank rasters as respective layers.
+If you want to plot all rank rasters in your project for comparison, you could 
+do the following:
+
+```{r rank-raster-2, fig.height=20}
+# RasterStack is returned
+all.ranks <- rank_rasters(tutorial.project)
+plot(all.ranks, breaks=leg$values, col=leg$colors, nc=1)
+```
+
+Naturally, all methods defined for a [RasterStack](http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/raster/html/stack.html) object are available. For example, checking 
+the distributions of individual stack layers (i.e. rank rasters) and the 
+correlation between the values of layers can be done using `pairs()`. Following
+example examines correlation between variants 1-3.
+
+```{r rank-raster-3, fig.width=10}
+pairs(stack(all.ranks[[1:3]]), method="kendall")
+```
+
+Values are sampled from the whole distribution of values to increase
+execution speed. Note also that we are using `kendall` as method for 
+correlation.
+
+Masking is another useful analysis tool. In the following example we are using
+the mask file `mask_rs.tif` shipping with Zonation basic tutorial in order to
+inspect the distribution of priorities within a subset of the landscape (i.e.
+protected areas, PAs). In the following example, note that method 
+`rank_raster()` has been implemented for class `Zvariant`. In other words, you 
+can call it on both your variant or results object. `plot_hist()` accepts 
+two rasters as arguments: first is the rank raster and the second one is a mask
+raster. Histogram is then plotted based on the values of the rank raster within
+the mask raster.
+
+```{r rank-raster-4, fig.width=10}
+pas.file <- system.file("extdata/tutorial/data", "mask_rs.tif", 
+                        package="zonator")
+pas <- raster(pas.file)
+# Re-class zeros as NA
+pas[pas == 0] <- NA
+# Plot the histogram of rank.caz within mask raster
+plot_hist(x=rank.caz, pas, add.median=TRUE)
+```
+
+[rasterVis](http://oscarperpinan.github.io/rastervis/) is another useful 
+package for plotting raster data. For example, `levelplot()` can be used to 
+plot data and show a marginal plot of of a function across each coordinate
+(here using mean): 
+
+```{r rank-rasterVis-1, fig.width=10, message=FALSE}
+library(rasterVis)
+# Note that breaks in the following are different from the previous maps
+levelplot(rank.caz, FUN.margin=mean, 
+          par.settings=rasterTheme(region=leg$colors))
+```
