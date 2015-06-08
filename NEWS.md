@@ -1,4 +1,6 @@
-## CHANGES IN VERSION 0.3.11 (2015-XX-XX)
+## CHANGES IN VERSION 0.3.11 (2015-05-08)
+
+* Update package vignettes.
 
 ### NEW FEATURES
 
