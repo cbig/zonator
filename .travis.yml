@@ -1,7 +1,6 @@
 language: r
 apt_packages:
   - gdal-bin
-  - libgdal-dev 
   - libgdal1-dev 
   - netcdf-bin 
   - libproj-dev 
