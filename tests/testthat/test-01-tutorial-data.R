@@ -8,7 +8,7 @@ test_that("Zonation tutorial data is available", {
   expect_true(file.exists(.options$data.dir),
               "Input data directory not found in the tutorial folder.")
   expect_true(file.exists(.options$output.dir),
-              "Output directory not found in the tutorial folder.")
+              "Output dircetory not found in the tutorial folder.")
   expect_true(file.exists(.options$bat.file), 
               "Tutorial batch file not found in the tutorial folder.")
   expect_true(file.exists(.options$dat.file), 

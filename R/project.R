@@ -27,26 +27,29 @@
 #' @param dat.from Character path to a dat file template. If no template is
 #'   specified, uses the template distributed with zonator. Ignored if using
 #'   an existing project.
-#' @param spp.from Character path to a spp file template. If no template is
-#'   specified, uses the template distributed with zonator. Ignored if using
-#'   an existing project.
+#' @param spp.from Character path to a spp file template or a directory 
+#'   containing input rasters. If neither is specified, uses the template 
+#'   distributed with zonator. Ignored if using an existing project.
 #' @param debug logical defining if debugging level for logging should be used.
+#' @param ... additional arguments passed to \code{\link{create_spp}}.
 #'   
 #' @return A Zproject object.
 #' 
-#' @seealso \code{\link[zonator:Zproject-class]{Zproject-class}} 
-#'   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
+#' @seealso \code{\link[zonator:Zproject-class]{Zproject-class}}, 
+#'   \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
+#'   \code{\link[zonator:create_spp]{create_spp}}
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #'
 create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL,
-                            debug=FALSE) {
+                            debug=FALSE, ...) {
   if (!file.exists(root)) {
     # Create the new location
     dir.create(root)
     
     # Create an empty README file for the project
+    if (debug) message("Creating an empty README file")
     file.create(file.path(root, "README.md"))
     
     # Create the variant subfolders with content
@@ -57,23 +60,29 @@ create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL,
       # If no templates are provided, use the ones shipped with zonator. Change
       # the filenames to match the variant.
       if (is.null(dat.from)) {
-        dat.from <- system.file("extdata", "template.dat", 
-                                package="zonator")
+        dat.from <- system.file("extdata", "template.dat", package="zonator")
       }
       dat.to <- file.path(variant.dir, paste0(variant, ".dat"))
       
       if (is.null(spp.from)) {
-        spp.from <- system.file("extdata", "template.spp", 
-                                package="zonator")     
+        spp.from <- system.file("extdata", "template.spp", package="zonator")     
       }
       spp.to <- file.path(variant.dir, paste0(variant, ".spp"))
       
       # Copy the templates to the new variant folder
       file.copy(from=dat.from, to=dat.to, overwrite=TRUE)
-      file.copy(from=spp.from, to=spp.to, overwrite=TRUE)
+      
+      if (dir.exists(spp.from)) {
+        if (debug) message("Creating a spp file from directory ", spp.from)
+        
+        create_spp(filename = spp.to, spp_file_dir = spp.from, ...)
+      } else {
+        file.copy(from=spp.from, to=spp.to, overwrite=TRUE)
+      }
+      
       # Create to output folder
-      output.dir <- file.path(variant.dir, "output") 
-      dir.create(output.dir)
+      output.dir <- file.path(root, "output", variant) 
+      dir.create(output.dir, recursive = TRUE)
       # Create a bat file, first read the template content
       bat.from <- system.file("extdata", "template.bat", package="zonator")
       cmd.sequence <- scan(file=bat.from, "character", sep=" ", quiet=TRUE)

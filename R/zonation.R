@@ -11,6 +11,34 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+#' Generate spp_file based on a directory of input rasters.
+#' 
+create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
+                       bqp=1, bqp_p=1, cellrem=0.25, spp_file_dir, 
+                       spp_file_pattern = "[.+\\.[(tif)|(img)]",
+                       override_path = NULL) {
+  
+  # List rasters in the target directory
+  target_rasters <- list.files(path = spp_file_dir, pattern = spp_file_pattern,
+                               full.name = TRUE)
+  
+  # Construct the spp file content
+  spp_content <- data.frame(weight = weight, alpha = alpha, bqp = bqp,
+                            bqp_p = bqp_p, cellrem = cellrem, 
+                            sppfiles = target_rasters)
+  
+  # Override the target raster paths if needed
+  if (!is.null(override_path)) {
+    spp_content$sppfiles <- file.path(override_path, basename(target_rasters))
+  }
+  
+  write.table(spp_content, file = filename, row.names = FALSE, quote = FALSE,
+              col.names = FALSE)
+    
+  return(invisible(TRUE))
+  
+}
+  
 #' Calculate alpha value for distribution smoothing.
 #' 
 #' alpha-value of biodiversity feature-specific scale of landscape use. The

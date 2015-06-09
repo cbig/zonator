@@ -5,7 +5,7 @@
 \title{Create a Zonation project.}
 \usage{
 create_zproject(root, variants, dat.from = NULL, spp.from = NULL,
-  debug = FALSE)
+  debug = FALSE, ...)
 }
 \arguments{
 \item{root}{Character string path pointing either to an existing directory
@@ -18,11 +18,13 @@ an existing project.}
 specified, uses the template distributed with zonator. Ignored if using
 an existing project.}
 
-\item{spp.from}{Character path to a spp file template. If no template is
-specified, uses the template distributed with zonator. Ignored if using
-an existing project.}
+\item{spp.from}{Character path to a spp file template or a directory
+containing input rasters. If neither is specified, uses the template
+distributed with zonator. Ignored if using an existing project.}
 
 \item{debug}{logical defining if debugging level for logging should be used.}
+
+\item{...}{additional arguments passed to \code{\link{create_spp}}.}
 }
 \value{
 A Zproject object.
@@ -40,7 +42,8 @@ does not exist as an argument.
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link[zonator:Zproject-class]{Zproject-class}}
-  and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
+\code{\link[zonator:Zproject-class]{Zproject-class}},
+  \code{\link[zonator:Zvariant-class]{Zvariant-class}} and
+  \code{\link[zonator:create_spp]{create_spp}}
 }
 

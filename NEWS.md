@@ -3,6 +3,10 @@
 ### NEW FEATURES
 
 * New color scheme `RdYlBu` added. This ColorBrewer's 7-level RdYlBu palette.
+* New function `create_spp()` can be used to create spp files based on a 
+  directory of input raster files.
+* `create_zproject()` now works by giving it a directory containing input 
+  rasters based on which the spp files are created. 
 
 
 ## CHANGES IN VERSION 0.3.11 (2015-05-08)
