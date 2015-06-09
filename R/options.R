@@ -66,6 +66,15 @@ z_colors_BrBG <- list(values=c(0.0, 0.2, 0.5, 0.75, 0.9, 0.95, 0.98, 1.0),
 
 assign("z_colors_BrBG", z_colors_BrBG, env=.options)
 
+z_colors_RdYlBu <- list(values=c(0.0, 0.2, 0.5, 0.75, 0.9, 0.95, 0.98, 1.0),
+                        labels=c("0.00-0.20", "0.20-0.50", "0.50-0.75",
+                                 "0.75-0.90", "0.90-0.95", "0.95-0.98",
+                                 "0.98-1.00"),
+                        colors=c("#4575B4", "#91BFDB", "#E0F3F8", "#FFFFBF", 
+                                 "#FEE090", "#FC8D59", "#D73027"))
+
+assign("z_colors_RdYlBu", z_colors_RdYlBu, env=.options)
+
 # Zonation tutorial data paths ----------------------------------------------
 
 # Tutorial directories
