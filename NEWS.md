@@ -1,3 +1,10 @@
+## CHANGES IN VERSION 0.3.12 (2015-XX-XX)
+
+### NEW FEATURES
+
+* New color scheme `RdYlBu` added. This ColorBrewer's 7-level RdYlBu palette.
+
+
 ## CHANGES IN VERSION 0.3.11 (2015-05-08)
 
 * Update package vignettes.
