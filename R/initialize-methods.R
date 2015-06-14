@@ -128,7 +128,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   }
     
   # Rank raster file is named *.rank.*
-  rank.raster.file <- get_file(root, "\\.rank\\.")
+  rank.raster.file <- get_file(root, "\\.rank\\..+[(img)|(tif)|(asc)]$")
   if (!is.na(rank.raster.file)) {
     if (.options$debug) {
       message("Reading in rank raster file ", rank.raster.file)
