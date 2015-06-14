@@ -1,4 +1,11 @@
-## CHANGES IN VERSION 0.3.12 (2015-05-09)
+## CHANGES IN VERSION 0.3.13 (2015-XX-XX)
+
+### BUG FIXES
+
++ Result raster pattern matching got confused e.g. by auxiliary files created
+by QGIS. Regexp used to match result raster files (img/tif/asc) now better.
+
+## CHANGES IN VERSION 0.3.12 (2015-06-09)
 
 ### NEW FEATURES
 
@@ -9,7 +16,7 @@
   rasters based on which the spp files are created. 
 
 
-## CHANGES IN VERSION 0.3.11 (2015-05-08)
+## CHANGES IN VERSION 0.3.11 (2015-06-08)
 
 * Update package vignettes.
 
