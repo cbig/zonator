@@ -1,4 +1,11 @@
-## CHANGES IN VERSION 0.3.13 (2015-XX-XX)
+## CHANGES IN VERSION 0.3.14 (2015-XX-XX)
+
+### NEW FEATURES
+
++ `plot_curves()` accepts new argument `fix.y` which can be used to fix the 
+y-axis to [0, 1]. Useful e.g. plotting runs with condition layers.
+
+## CHANGES IN VERSION 0.3.13 (2015-06-14)
 
 ### BUG FIXES
 
