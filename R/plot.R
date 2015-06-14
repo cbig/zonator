@@ -93,6 +93,8 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' @param invert.x logical indicating if the X-axis is printed from 
 #'   1 ("feature remaining", \code{FALSE}) or 0 
 #'   ("landscape under protection", \code{TRUE}). 
+#' @param fix.x logical indicating if y-axis should be fixed to [0, 1] (TRUE) or
+#'   not (FALSE).
 #' @param main character string title for the plot (deafault: 'Performance 
 #' curves').
 #' @param legend.title character string title for legend (default: 'Performance)
@@ -109,7 +111,7 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
 
-plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE, 
+plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE, fix.y=FALSE,
                         main='Performance curves', legend.title='Performance',
                         groups=FALSE) {
   
@@ -189,6 +191,10 @@ plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE,
   
   p <- p  + ggtitle(main)
   p <- p + .options$curve.theme
+  
+  if (fix.y) {
+    p <- p + ylim(0, 1)
+  }
   
   return(p)
 }
