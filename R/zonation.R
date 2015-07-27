@@ -12,6 +12,24 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 #' Generate spp_file based on a directory of input rasters.
+#'
+#' @param filename character string defining the name of the spp file created. 
+#' @param weight numeric template value for weights.
+#' @param alpha numeric template value for alpha values.
+#' @param bqp numeric template value for bqp values.
+#' @param bqp_p numeric template value for bqp_p values.
+#' @param cellrem numeric template value for cellrem values.
+#' @param spp_file_dir character path to target dir.
+#' @param spp_file_pattern pattern used to match raster files.
+#' @param override_path character path used to override the dirpath in input
+#'   raster file paths.
+#' 
+#' @return invisible(TRUE), functrion is used for side effects.
+#' 
+#' 
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
 create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
                        bqp=1, bqp_p=1, cellrem=0.25, spp_file_dir, 
@@ -20,7 +38,7 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
   
   # List rasters in the target directory
   target_rasters <- list.files(path = spp_file_dir, pattern = spp_file_pattern,
-                               full.name = TRUE)
+                               full.names = TRUE)
   
   # Construct the spp file content
   spp_content <- data.frame(weight = weight, alpha = alpha, bqp = bqp,
