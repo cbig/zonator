@@ -109,8 +109,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
                                                         perl = T))[[1]]
       .Object@modified <- as.POSIXct(date_string)
       if (.options$debug) {
-        message("Found run info file modified on: ", 
-                mod_time)
+        message("Found run info file modified on: ", .Object@modified)
       }
     }
     
