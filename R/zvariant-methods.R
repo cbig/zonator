@@ -163,7 +163,7 @@ setMethod("has_results", "Zvariant", function(x) {
 })
 
 #' @rdname nfeatures-methods
-#' @aliases nfeatures,Zproject-method
+#' @aliases nfeatures,Zvariant-method
 #' 
 setMethod("nfeatures", "Zvariant", function(x) {
   return(nrow(x@spp.data))
@@ -175,10 +175,26 @@ setMethod("outdir", c("Zvariant"), function(x) {
   return(x@output.dir)
 })
 
+#' Print Zvariant information.
+#'
+#' Generic printing function
+#'
+#' @param x \code{ZVariant} object.
+#'
+#' @rdname print-methods
+#'
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setMethod('print' , c("Zvariant"), function(x) {
+  .printZvariant(x)
+})	
+
 #' @rdname rank_raster-methods
 #' 
 setMethod("rank_raster", c("Zvariant"), function(x) {
-  if(has_results(x)$rank) {
+  if (has_results(x)$rank) {
     return(rank_raster(results(x)))
   } else {
     warning("Rank raster requested but not present in ", outdir(x))
@@ -196,6 +212,22 @@ setMethod("results", c("Zvariant"), function(x) {
     warning("Variant doesn't have results")
     return(NA)
   }
+})
+
+#' Print Zvariant information.
+#'
+#' Generic printing function
+#'
+#' @param object \code{ZVariant} object.
+#'
+#' @rdname show-methods
+#'
+#' @export
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setMethod('show' , c("Zvariant"), function(object) {
+  .printZvariant(object)
 })
 
 #' @rdname sppdata-methods
@@ -220,3 +252,33 @@ setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
 setMethod("sppweights", c("Zvariant"), function(x) {
   return(x@spp.data$weight)
 })
+
+.printZvariant <- function(x, ...) {
+  
+  cat('name       :', x@name, '\n')
+  cat('bat-file   :', x@bat.file, '\n')
+  # Show max first 5 biodiversity feature names
+  spp_names <- featurenames(x)
+  if (length(spp_names) > 5) {
+    spp_names <- paste(c(spp_names[1:5], "..."), collapse = ", ")
+  } else {
+    spp_names <- paste(c(spp_names), collapse = ", ")
+  }
+  cat('features   :', nrow(x@spp.data), paste0("[", spp_names, "]"), '\n')
+  # Show max first 5 group names
+  grp_names <- groupnames(x)
+  if (length(grp_names) > 5) {
+    grp_names <- paste(c(grp_names[1:5], "..."), collapse = ", ")
+  } else {
+    grp_names <- paste(c(grp_names), collapse = ", ")
+  }
+  cat('groups     :', length(unique(groupnames(x))), 
+      paste0("[", grp_names, "]"), '\n')
+  if (any(unlist(has_results(x)))) {
+    res_string <- paste0("yes (created: ", as.character(x@results@modified), 
+                         ")") 
+  } else {
+    res_string <- "no"
+  }
+  cat("has results:", res_string, '\n')
+}

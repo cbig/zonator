@@ -58,7 +58,25 @@ test_that("Zvariant without results is created correctly", {
 }
 )
 
-context("Zvariant methods")
+# context("Zvariant methods")
+# 
+# test_that("Print method works", {
+#   bat.file <- .options$bat.file
+#   spp.file <- .options$spp.file
+#   results.variant <- new("Zvariant", bat.file = bat.file)
+# 
+#   text_output <- paste0(c("name       : ", "01_core_area_zonation", "\n",
+#                           "bat-file   : ", bat.file, "\n",
+#                           "features   : ", "7 [species1, species2, species3, species4, species5, ...]", "\n",
+#                           "groups     : ", "2 [group1, group2]", "\n",
+#                           "has results: ", "yes (created: 2014-08-13)"), 
+#                         collapse = "")
+#   
+#   expect_output(show(results.variant), text_output,
+#                 info = "Output from show() not correct")
+#   expect_output(print(results.variant), text_output,
+#                 info = "Output from print() not correct")
+# })
 
 test_that("Getting the number of features works", {
   bat.file <- .options$bat.file
