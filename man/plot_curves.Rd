@@ -4,7 +4,7 @@
 \alias{plot_curves}
 \title{Create ggplot2 object for performance curves.}
 \usage{
-plot_curves(dat, monochrome = FALSE, invert.x = FALSE,
+plot_curves(dat, monochrome = FALSE, invert.x = FALSE, fix.y = FALSE,
   main = "Performance curves", legend.title = "Performance",
   groups = FALSE)
 }
@@ -26,6 +26,9 @@ curves').}
 (default: FALSE).}
 
 \item{x}{data frame of curves of groups curves data.}
+
+\item{fix.x}{logical indicating if y-axis should be fixed to [0, 1] (TRUE) or
+not (FALSE).}
 }
 \value{
 ggplot2 object
