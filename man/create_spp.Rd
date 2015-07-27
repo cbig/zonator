@@ -8,7 +8,33 @@ create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
   bqp_p = 1, cellrem = 0.25, spp_file_dir,
   spp_file_pattern = "[.+\\\\.[(tif)|(img)]", override_path = NULL)
 }
+\arguments{
+\item{filename}{character string defining the name of the spp file created.}
+
+\item{weight}{numeric template value for weights.}
+
+\item{alpha}{numeric template value for alpha values.}
+
+\item{bqp}{numeric template value for bqp values.}
+
+\item{bqp_p}{numeric template value for bqp_p values.}
+
+\item{cellrem}{numeric template value for cellrem values.}
+
+\item{spp_file_dir}{character path to target dir.}
+
+\item{spp_file_pattern}{pattern used to match raster files.}
+
+\item{override_path}{character path used to override the dirpath in input
+  raster file paths.}
+}
+\value{
+invisible(TRUE), functrion is used for side effects.
+}
 \description{
 Generate spp_file based on a directory of input rasters.
+}
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 
