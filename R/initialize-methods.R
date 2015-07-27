@@ -91,15 +91,30 @@ setMethod("initialize", "Zresults", function(.Object, root) {
     }
   }
   
-  # Extract the 'last modified' information from run info file
+  # Extract the 'last modified' information from run info file. Note that
+  # file.info$mtime won't work on Linux, hence parse the data from Zonation
+  # run info.
   run.info.file <- get_file(root, "\\.run_info\\.txt")
   if (!is.na(run.info.file)) {
+    
     .Object@run.info <- run.info.file
-    .Object@modified <- file.info(run.info.file)$mtime
-    if (.options$debug) {
-      message("Found run info file modified on: ", 
-              file.info(run.info.file)$mtime)
+    content <- readLines(run.info.file)
+    
+    # We're counting on hard coded values here
+    match_content <- content[grepl("^Finished at", content)]
+    if (length(match_content) == 1) {
+      # Oh brother...
+      date_string <- regmatches(match_content, gregexpr("(?<=\\().*?(?=\\))", 
+                                                        match_content, 
+                                                        perl = T))[[1]]
+      .Object@modified <- as.POSIXct(date_string)
+      if (.options$debug) {
+        message("Found run info file modified on: ", 
+                mod_time)
+      }
     }
+    
+    
   } else {
     .Object@modified <- Sys.time()
     if (.options$debug) {
