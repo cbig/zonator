@@ -1,9 +1,13 @@
-## CHANGES IN VERSION 0.3.14 (2015-XX-XX)
+## CHANGES IN VERSION 0.3.14 (2015-07-27)
 
 ### NEW FEATURES
 
 + `plot_curves()` accepts new argument `fix.y` which can be used to fix the 
 y-axis to [0, 1]. Useful e.g. plotting runs with condition layers.
++ `modified` slot of a `zresults` object is now parsed from the run info file.
+Not ideal, but couldn't figure out a way how to do this reliably on Linux.
++ `print()` and `show()` methods are now implemented for objects of class
+`Zvariant`. Makes printing basic data a bit easier.
 
 ## CHANGES IN VERSION 0.3.13 (2015-06-14)
 
