@@ -39,6 +39,8 @@ setMethod("nvariants", "Zproject", function(x) {
 #' 
 #' Get the names of all the variants within a given \code{\link{Zproject}}.
 #' 
+#' @param x \code{Zproject} object.
+#' 
 #' @rdname names-methods
 #' @aliases names,Zproject-method
 #' 
