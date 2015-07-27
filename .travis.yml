@@ -1,4 +1,5 @@
 language: r
+sudo: false
 apt_packages:
   - gdal-bin
   - libgdal-dev 
