@@ -7,6 +7,9 @@
 \usage{
 \S4method{names}{Zproject}(x)
 }
+\arguments{
+\item{x}{\code{Zproject} object.}
+}
 \description{
 Get the names of all the variants within a given \code{\link{Zproject}}.
 }

@@ -3,7 +3,6 @@
 \docType{methods}
 \name{nfeatures}
 \alias{nfeatures}
-\alias{nfeatures,Zproject-method}
 \alias{nfeatures,Zvariant-method}
 \title{Get the number of feature included in a Zonation variant}
 \usage{
