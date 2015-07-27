@@ -1,11 +1,6 @@
 language: r
-sudo: false
-apt_packages:
-  - gdal-bin
-  - libgdal-dev 
-  - netcdf-bin 
-  - libproj-dev 
-  - libgdal1h
+sudo: required
 r_binary_packages:
   - rasterVis
+  - rgdal
   - testthat
