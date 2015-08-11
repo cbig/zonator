@@ -36,6 +36,8 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
                        spp_file_pattern = "[.+\\.[(tif)|(img)]",
                        override_path = NULL) {
   
+  
+  
   # List rasters in the target directory
   target_rasters <- list.files(path = spp_file_dir, pattern = spp_file_pattern,
                                full.names = TRUE)

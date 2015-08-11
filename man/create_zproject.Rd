@@ -4,8 +4,8 @@
 \alias{create_zproject}
 \title{Create a Zonation project.}
 \usage{
-create_zproject(root, variants, dat.from = NULL, spp.from = NULL,
-  debug = FALSE, ...)
+create_zproject(root, variants = NULL, dat_template_file = NULL,
+  spp_template_file = NULL, spp_template_dir = NULL, debug = FALSE, ...)
 }
 \arguments{
 \item{root}{Character string path pointing either to an existing directory
@@ -14,13 +14,19 @@ create_zproject(root, variants, dat.from = NULL, spp.from = NULL,
 \item{variants}{Character vector of names for new variants. Ignored if using
 an existing project.}
 
-\item{dat.from}{Character path to a dat file template. If no template is
-specified, uses the template distributed with zonator. Ignored if using
-an existing project.}
+\item{dat_template_file}{Character path to a dat file template. If no
+template is specified, uses the template distributed with zonator. Ignored
+if using an existing project.}
 
-\item{spp.from}{Character path to a spp file template or a directory
-containing input rasters. If neither is specified, uses the template
+\item{spp_template_file}{Character path to a spp file template. If this or
+\code{spp_template_dir} are not specified, uses the template
 distributed with zonator. Ignored if using an existing project.}
+
+\item{spp_template_dir}{Character path to directory containing biodiversity
+feature rasters. If this or \code{spp_template_file} are not specified,
+uses the template distributed with zonator. If both are defined, then
+\code{spp_template_dir} overrides. Ignored if using an existing
+project.}
 
 \item{debug}{logical defining if debugging level for logging should be used.}
 
