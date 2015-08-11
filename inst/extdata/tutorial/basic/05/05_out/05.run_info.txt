@@ -1,0 +1,218 @@
+Zonation 4.0.0b31_compact, build: Aug  7 2014 14:15:04
+==========================================================================
+The Zonation software is distributed in the  hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+==========================================================================
+ For more information and conditions of use of this software, see the
+ disclaimer in Help->About Zonation, in the graphical user interface
+
+Starting Zonation run on 'CBIG-arnold' at 1:58:24 PM (2015/8/11) 
+Locale is: en_US.UTF-8
+Zonation core process parameters: 
+   run mode: normal run (-r)
+   settings file: 05/05.dat
+   biodiversity features list file: 05/05.spp
+   output file(s): 05/05_out/05
+   info-gap alpha: 0.5
+   use_smoothing: 1
+   smoothing_alpha_multiplier: 1
+   autoclose (deprecated): 0
+
+Reading settings file: 05/05.dat
+   Option not overriden in command line, removal rule: 1
+   Option not overriden in command line, warp factor: 100
+
+Output settings:
+   Output weighted range size corrected richness map: yes
+   Output proportional loss rank map: no
+
+********** Arbitrary kernels not enabled ********
+
+*************** NOT USING ANALYSIS AREA MASK **************
+
+*************** USING (HIERARCHICAL) REMOVAL MASK LAYER **************
+  Mask file: ../data/mask_rs.tif
+
+Loading list of biodiversity features from file: 05/05.spp
+Row count in the features/species list file: 7
+../data/species1.tif: 555 rows, 649 columns read. Nodata cells =  249913, sum of elements = 35280.8
+
+Matrix columns/x dimension: 649, rows/y dimension: 555
+../data/mask_rs.tif: 555 rows, 649 columns read. Nodata cells =  249913, sum of elements = 10251
+Mask map loaded.
+*******************************************************
+Loading feature grouping information from groups.txt
+Groups information loaded.
+
+****** REMOVAL RULE: core-area Zonation (CAZ) *******
+
+****** NOT using Info-gap distribution discounting uncertainty analysis ****************
+
+
+*** Not using "drop 0 occurrence features", all features will be processed even if they do not occur anywhere in the analysis area.
+===============
+Note: using the following features which require additional memory for smoothing kernels: distribution smoothing 
+Approximately 27.5 MBs of additional memory are required. Trying to allocate...
+Doing connectivity smoothings: initializing
+Using 1 thread(s) for preprocessing.
+Memory allocated successfully!
+===============
+
+======------ Allocating memory for input layers... ------======
+Using compact structure (lookup version),  sizeof(Occur_Container): 18, sizeof(allocated occurrence): 6
+Counting effective occurrencies
+Time: 1439290704 = 1:58:24 PM (2015/8/11) 
+Feature file #1: ../data/species1.tif; non-missing cells: 110282
+Feature file #2: ../data/species2.tif; non-missing cells: 110282
+Feature file #3: ../data/species3.tif; non-missing cells: 110282
+Feature file #4: ../data/species4.tif; non-missing cells: 110282
+Feature file #5: ../data/species5.tif; non-missing cells: 110282
+Feature file #6: ../data/species6.tif; non-missing cells: 110282
+Feature file #7: ../data/species7.tif; non-missing cells: 110282
+Total # of feature layers: 7
+Total # of cells in every layer: 360195
+Effective # of cells (cells with any occurrence, globally): 110282
+Total # of occurrencies: 771974, counted across 7 layers; average across layers: 110282
+Percentage of globally effective occurrencies = 100 % (relative to total effective cells) = 30.6173 % (relative to total cells)
+Memory required for biodiversity features: 9.058 MB, of which base memory: 4.641 MB, and occurrencies require: 4.417 MB
+Time now: 1439290705 = 1:58:25 PM (2015/8/11) 
+Finished preload/counting effective occurrencies. Elapsed: 1 seconds.
+======------ Allocating memory for input layers: finished successfully ------======
+
+******=====----- Loading feature (e.g., species) data layers -----=====**********
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 feature weight = 1
+../data/species1.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.15805
+* Loaded biodiversity feature file #1, ../data/species1.tif, non-missing cells:110282, their sum: 35280.8
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 feature weight = 1
+../data/species2.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.089914
+* Loaded biodiversity feature file #2, ../data/species2.tif, non-missing cells:110282, their sum: 29142.7
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 feature weight = 1
+../data/species3.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.0978106
+* Loaded biodiversity feature file #3, ../data/species3.tif, non-missing cells:110282, their sum: 35307.7
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 feature weight = 1
+../data/species4.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.153682
+* Loaded biodiversity feature file #4, ../data/species4.tif, non-missing cells:110282, their sum: 35116.9
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 feature weight = 1
+../data/species5.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.160491
+* Loaded biodiversity feature file #5, ../data/species5.tif, non-missing cells:110282, their sum: 22852.8
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 feature weight = 1
+../data/species6.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.199893
+* Loaded biodiversity feature file #6, ../data/species6.tif, non-missing cells:110282, their sum: 36691.1
+Used Info-gap robustness(alpha>0)/discounting; alpha=0.5 feature weight = 1
+../data/species7.tif: fraction of original occurrences remaining after info-gap robustness, DISTRIBUTION DISCOUNTING = 0.140321
+* Loaded biodiversity feature file #7, ../data/species7.tif, non-missing cells:110282, their sum: 34740.3
+Calculating centers of the distributions of 7 features...
+
+******=====----- Distribution smoothing is on. Transforming input layers... -----=====******
+* Applying distribution smoothing on feature #1, ../data/species1.tif
+DS connectivity calculations - Kernel calculated; alpha= 1
+* Applying distribution smoothing on feature #2, ../data/species2.tif
+DS connectivity calculations - Kernel calculated; alpha= 0.5
+* Applying distribution smoothing on feature #3, ../data/species3.tif
+DS connectivity calculations - Kernel calculated; alpha= 0.25
+* Applying distribution smoothing on feature #4, ../data/species4.tif
+DS connectivity calculations - Kernel calculated; alpha= 0.75
+* Applying distribution smoothing on feature #5, ../data/species5.tif
+DS connectivity calculations - Kernel calculated; alpha= 0.5
+* Applying distribution smoothing on feature #6, ../data/species6.tif
+DS connectivity calculations - Kernel calculated; alpha= 1.5
+* Applying distribution smoothing on feature #7, ../data/species7.tif
+DS connectivity calculations - Kernel calculated; alpha= 1
+Freeing structures required for distribution smoothing... 
+ ...Done.
+******=====----- Finished distribution smoothing transformations in 2 seconds. -----=====******
+
+
+******=====----- Finished loading and transformation of feature data layers -----=====*********
+
+Calculating richness across biodiversity features...
+Done in 0 seconds. Time now: 1:58:27 PM (2015/8/11) 
+Saving raster map of weighted range size corrected richness
+Saving raster: 05/05_out/05.wrscr.compressed.tif (GTiff format)
+
+******=====----- Preparing to start the ranking process... -----=====**********
+Note: using edge removal.
+Note: adding to edge list cells on the borders between different removal mask levels.
+
+Loaded data and initialized in 3 seconds. Current time: 1:58:27 PM (2015/8/11) 
+Cells with data = 110282; locations with missing values = 249913
+
+---------------------======********** RANKING STARTS HERE ***********======-----------------------
+Initially removed cells count = 0
+Note: No initial removal was used.
+
+Biodiversity features performance levels check. Proportions remaining:
+---------
+Feature 1: 1.000068
+Feature 2: 1.00003
+Feature 3: 1.000007
+Feature 4: 1.000013
+Feature 5: 1.000011
+Feature 6: 1.00009
+Feature 7: 1.000038
+---------
+Minimum proportion remaining: 1.000007, average: 1.000037, weighted average: 1.000033, maximum: 1.00009
+
+Confirmed use of (hierarchical) removal mask. Initial smallest removal level: 0
+
+The following lines provide information on how the ranking is done by iterative removal of cells, with 6 columns per line:
+Cells removed, proportion of landscape remaining, cost of remaining landscape, edge list length, smallest remaining proportion in all biodiversity features (e.g. species), time elapsed (s)
+----------------------------------------------------------------------------------------------------------------------------
+             0            100%%              0          33204        1.00001            0
+          4411        96.0003%%         105872          31958       0.996528            0
+          8822        92.0006%%         101461          30241       0.986535            0
+         13233        88.0009%%          97050          28570       0.973532            0
+         17644        84.0012%%          92639          27542       0.961511            1
+         22055        80.0014%%          88228          26568       0.947005            1
+         26466        76.0017%%          83817          25441       0.930644            1
+         30877         72.002%%          79406          24187       0.903787            1
+         35288        68.0023%%          74995          22784       0.875981            2
+         39699        64.0026%%          70584          21313        0.84475            2
+         44110        60.0029%%          66173          20019       0.795592            2
+         48521        56.0032%%          61762          18809       0.748554            3
+         52932        52.0035%%          57351          17761       0.700994            3
+         57343        48.0038%%          52940          16611       0.654008            3
+         61754        44.0041%%          48529          15439       0.606039            4
+         66165        40.0044%%          44118          14160        0.55709            4
+         70576        36.0046%%          39707          12745       0.506049            4
+         74987        32.0049%%          35296          11222       0.436166            4
+         79398        28.0052%%          30885           9884       0.366746            5
+         83809        24.0055%%          26474           8526       0.295996            5
+         88220        20.0058%%          22063           7225       0.225877            5
+         92631        16.0061%%          17652           5765       0.148593            5
+         97042        12.0064%%          13241           4308      0.0668336            5
+        101453        8.00667%%           8830           3232     0.00430926            5
+        105864        4.00696%%           4419           1987     0.00410505            6
+        110275     0.00725389%%              8              8    2.91309e-05            6
+        110282              0%%              0              0              0            6
+----------------------------------------------------------------------------------------------------------------------------
+Total count of cells removed = 110282
+
+Done in 6 seconds.
+Found 0 ties.
+
+Biodiversity features performance levels check. Proportions remaining:
+---------
+Feature 1:    0
+Feature 2:    0
+Feature 3:    0
+Feature 4:    0
+Feature 5:    0
+Feature 6:    0
+Feature 7:    0
+---------
+Minimum proportion remaining:    0, average:    0, weighted average:    0, maximum:    0
+
+============================================================
+* Writing final output files...
+Writing file of feature information: 05/05_out/05.features_info.txt
+Writing file of performance (representation, coverage, etc.) curves: 05/05_out/05.curves.txt
+Saving rank image: 05/05_out/05.png (PNG format)
+Saving raster: 05/05_out/05.rank.compressed.tif (GTiff format)
+Writing group curves file: 05/05_out/05.grp_curves.txt
+No automated post-processing file specified
+============================================================
+Finished spatial prioritization process. Freeing data structures in memory...
+Finished at 1:58:33 PM (2015/8/11) 
+Elapsed time: 8859 ms == 0.00246 hours == 0.000103 days
