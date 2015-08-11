@@ -4,18 +4,25 @@
 -->
 
 ```{r setup, echo=FALSE}
-options(width=120)
+options(width = 120)
 ```
-
-## 1. Create zonator project based on existing data
-
 The following examples will use 
 [the basic Zonation tutorial data](https://github.com/cbig/zonation-tutorial/tree/master/basic)
-that is distributed with zonator package. This includes also the results of the
-tutorial runs so there is no need to run the variants in order to inspect the
-results. In case you *do* want to rerun the variants and you have Zonation
-installed in your system do so by running the following code. Otherwise just
-skip this code section.
+that is distributed with zonator package. 
+
+## 1. Create a new zonator project
+
+`zonator` packages provides a particular function `create_zproject()` that can
+be used to create all the necessary files and folders for a new Zonation 
+project. Alternatively, all the information contained within an existing 
+Zonation project can be parsed into R data structures.  
+
+## 2. Create zonator project based on existing data
+
+The tutorial data also include results of the tutorial runs so there is no need 
+to run the variants in order to inspect the results. In case you *do* want to 
+rerun the variants and you have Zonation installed in your system do so by 
+running the following code. Otherwise just skip this code section.
 
 ```{r run-variant-1, eval=(1:6), message=FALSE}
 library(zonator)
