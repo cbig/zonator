@@ -1,6 +1,35 @@
 ## ----setup, echo=FALSE------------------------------------------------------------------------------------------------
 options(width = 120)
 
+## ----create-new-init, message=FALSE,warning=FALSE---------------------------------------------------------------------
+library(zonator)
+
+# Create a (temporary) path to a new project. Basename component of this path
+# will also be the name of the project.
+project_path <- file.path(tempdir(), "test_project")
+
+# Define the names of the variants within the project
+variant_names <- c("01_variant", "02_variant", "03_variant")
+
+## ----create-new-01, message=FALSE,warning=FALSE,eval=FALSE------------------------------------------------------------
+#  # Create a new project from scratch. Note that since we do not provide any
+#  # template file paths (for the .spp and .dat files), the templates shipped
+#  # with the tutorial data will be used.
+#  new_project <- create_zproject(root = project_path, variants = variant_names)
+
+## ----create-new-02, message=FALSE,warning=FALSE,eval=FALSE------------------------------------------------------------
+#  # Directory containing the input raster files
+#  input_raster_dir <- system.file("extdata/tutorial/data", package="zonator")
+#  new_project <- create_zproject(root = project_path, variants = variant_names,
+#                                 spp_template_dir = input_raster_dir,
+#                                 spp_file_pattern = "^species[0-9].tif$")
+
+## ----create-new-03, message=FALSE,warning=FALSE,eval=FALSE------------------------------------------------------------
+#  new_project <- create_zproject(root = project_path, variants = variant_names,
+#                                 spp_template_dir = input_raster_dir,
+#                                 spp_file_pattern = "^species[0-9].tif$",
+#                                 weight = c(1, 1, 1, 2, 3, 2, 1))
+
 ## ----run-variant-1, eval=(1:6), message=FALSE-------------------------------------------------------------------------
 library(zonator)
 

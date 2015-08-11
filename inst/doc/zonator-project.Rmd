@@ -1,5 +1,5 @@
 ---
-title: "Sample Document"
+title: "Working with Zonation projects"
 output:
   html_document:
     toc: true
@@ -7,7 +7,7 @@ output:
 ---
 <!--
 %\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Create zonator project based on existing data}
+%\VignetteIndexEntry{Working with Zonation projects}
 -->
 
 ```{r setup, echo=FALSE}
@@ -58,9 +58,63 @@ see documentation and the packages vignettes for more detailed description.
 
 ## 2. Create a new zonator project
 
-As stated above, `zonator` packages provides a particular function 
-`create_zproject()` that can be used to create all the necessary files and 
-folders for a new Zonation project.  
+As mentioned above, `zonator` packages provides function `create_zproject()` 
+that can be used to create all the necessary files and folders for a new 
+Zonation project. Let's take a closer look:
+
+```{r create-new-init, message=FALSE,warning=FALSE}
+library(zonator)
+
+# Create a (temporary) path to a new project. Basename component of this path
+# will also be the name of the project.
+project_path <- file.path(tempdir(), "test_project")
+
+# Define the names of the variants within the project
+variant_names <- c("01_variant", "02_variant", "03_variant")
+```
+
+```{r create-new-01, message=FALSE,warning=FALSE,eval=FALSE}
+# Create a new project from scratch. Note that since we do not provide any 
+# template file paths (for the .spp and .dat files), the templates shipped
+# with the tutorial data will be used.
+new_project <- create_zproject(root = project_path, variants = variant_names)
+```
+
+If you ran these examples on your own computer, you can now open path defined in 
+`project_path` in your file browser to see what was created. Another useful 
+option for `create_zproject()` is that it can scan the content of a given 
+directory for raster (input biodiversity feature) files and construct a 
+spp-file based on the file listing. Let's create a new project from scratch 
+using input raster files shipped with the Zonation tutorial as a basis for the 
+spp file. Since the input folder contains more rasters than just biodiversity 
+files, we'll be using a file name filter. Note that we are still usingthe 
+template .dat-file.
+
+```{r create-new-02, message=FALSE,warning=FALSE,eval=FALSE}
+# Directory containing the input raster files
+input_raster_dir <- system.file("extdata/tutorial/data", package="zonator")
+new_project <- create_zproject(root = project_path, variants = variant_names,
+                               spp_template_dir = input_raster_dir,
+                               spp_file_pattern = "^species[0-9].tif$")
+```
+
+**NOTE!** For the time being, you will have to manually delete the project on
+file system if you want to recreate it. Current behavior is such, that creating
+the project files will be followed by loading those same files (see below).
+
+You can gove extra arguments to `create_zproject()` that will be passed on to
+creating the spp file. E.g. if you would want the set different weights to 
+your biodiversity features, you could do the following:
+
+```{r create-new-03, message=FALSE,warning=FALSE,eval=FALSE}
+new_project <- create_zproject(root = project_path, variants = variant_names,
+                               spp_template_dir = input_raster_dir,
+                               spp_file_pattern = "^species[0-9].tif$",
+                               weight = c(1, 1, 1, 2, 3, 2, 1))
+```
+
+Be careful with setting the weights (or other spp-file parameters such as the
+alpha value), because no checking is being done!
 
 ## 3. Create zonator project based on existing data
 
