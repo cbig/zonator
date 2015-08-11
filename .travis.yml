@@ -4,3 +4,4 @@ r_binary_packages:
   - rasterVis
   - rgdal
   - testthat
+  - rmarkdown
