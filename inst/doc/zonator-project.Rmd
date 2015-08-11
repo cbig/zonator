@@ -1,20 +1,74 @@
+---
+title: "Sample Document"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
 <!--
 %\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{Create zonator project based on existing data}
 -->
 
 ```{r setup, echo=FALSE}
-options(width=120)
+options(width = 120)
 ```
 
-## 1. Create zonator project based on existing data
+## 1. Zonation projects and zonator classes
 
 The following examples will use 
-[the basic Zonation tutorial data](https://github.com/cbig/zonation-tutorial/tree/master/basic)
-that is distributed with zonator package. This includes also the results of the
-tutorial runs so there is no need to run the variants in order to inspect the
-results. In case you *do* want to rerun the variants and you have Zonation
-installed in your system do so by running the following code. Otherwise just
+[the basic Zonation tutorial data](https://github.com/cbig/zonator/tree/master/inst/extdata/tutorial/basic)
+that is distributed with `zonator` package. The input and output files in the 
+tutorial package are arranged in a layout that has a specific logic behind it.
+In Zonation jargon, everything within the root folder `basic` is consider to 
+belong to the same **project** (see figure below). A project constitutes of one
+or several **variants**. Each variant is an individual Zonation run with 
+specific input biodidiversity features (defined in `01.spp`) and input 
+parameters (defined in `01.dat`). All the configuration files needed for a run
+are specified in a Windows batch file (`01_core_area_zonation.bat`). For
+convience and clarity, input files required are placed in a subfolder named
+after the variant. After the variant is run (in Zonation), the outputs of the
+variant are placed in another subfolder (e.g. `01/01_out/`).   
+
+![Folder structure](img/folder_structure.png)
+
+All in all, the tutorial data has one project which has five variants (not all
+are shown in the figure above for brevity). Note that 
+these specification are just a useful convention and are not at all
+required by Zonation (or zonator)! Note also that these specification are 
+related to Zonation itself. Conceptually, `zonator` uses the same terminology
+and the S4 classes in `zonator` follow the same logic. `zonator` provides a 
+single function `create_zproject()` that can be used to either
+
+1. Create a new Zonation project, or
+1. Create zonator project based on existing data
+
+In both cases, `zonator` works by parsing real input files on your file system 
+(needed by Zonation) into R data structures. Formally, `create_zproject()` 
+creates a new instance (object) of class `Zproject` with has specific 
+attributes representing the Zonation project on the file system. Each variant
+(see above) is parsed into an instance of class `Zvariant`. If a variant
+already has results produced by Zonation, then these are parsed and mapped into
+an instance of class `Zresults`.
+
+![Class structure](img/class_structure.png)
+
+Each class has specific methods that can be used to get and set attributes,
+see documentation and the packages vignettes for more detailed description.
+
+## 2. Create a new zonator project
+
+As stated above, `zonator` packages provides a particular function 
+`create_zproject()` that can be used to create all the necessary files and 
+folders for a new Zonation project.  
+
+## 3. Create zonator project based on existing data
+
+Alternatively, all the information contained within an existing Zonation project 
+can be parsed into R data structures. The tutorial data include results of the 
+tutorial runs so there is no need  to run the variants in order to inspect the 
+results. In case you *do* want to rerun the variants and you have Zonation 
+installed in your system do so by running the following code. Otherwise just 
 skip this code section.
 
 ```{r run-variant-1, eval=(1:6), message=FALSE}
