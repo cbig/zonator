@@ -72,7 +72,7 @@ create_zproject <- function(root, variants, dat.from=NULL, spp.from=NULL,
       # Copy the templates to the new variant folder
       file.copy(from=dat.from, to=dat.to, overwrite=TRUE)
       
-      if (dir.exists(spp.from)) {
+      if (file.exists(spp.from)) {
         if (debug) message("Creating a spp file from directory ", spp.from)
         
         create_spp(filename = spp.to, spp_file_dir = spp.from, ...)
