@@ -93,7 +93,7 @@ assign("dat.file", file.path(.options$setup.dir, "01/01.dat"),
 assign("spp.file", file.path(.options$setup.dir, "01/01.spp"),
        envir=.options)
 
-# Antoher file for a connectivity variant
+# Another file for a connectivity variant
 assign("bat.file.ds", file.path(.options$setup.dir, 
                                 "04_distribution_smoothing.bat"), 
        envir=.options)
@@ -110,9 +110,9 @@ assign("groups.file", file.path(.options$setup.dir, "groups.txt"),
 # Tutorial results files, use 02_additive_benefit_function variant so that 
 # weights are used
 assign("results.spp.file", file.path(.options$setup.dir, "02/02.spp"),
-       envir=.options)
-assign("results.curves", file.path(.options$output.dir, "02/02.curves.txt"),
-       envir=.options)
-assign("results.grp.curves", file.path(.options$output.dir, 
-                                       "02/02.grp_curves.txt"),
-       envir=.options)
+       envir = .options)
+assign("results.curves", file.path(.options$setup.dir, 
+                                   "02/02_out/02.curves.txt"), envir = .options)
+assign("results.grp.curves", file.path(.options$setup.dir, 
+                                       "02/02_out/02.grp_curves.txt"), 
+       envir = .options)

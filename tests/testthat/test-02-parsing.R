@@ -8,34 +8,34 @@ test_that("Parsing a bat file works", {
   faulty.bat.file <- file.path(dirname(bat.file), "wrong.bat")
   
   if (.Platform$OS.type == "unix") {
-    correct.sequence <- c("zig3", "-r", 
+    correct.sequence <- c("zig4", "-r", 
                           "01/01.dat", 
                           "01/01.spp", 
-                          "output/01/01.txt", 
+                          "01/01_out/01.txt", 
                           "0.0", "0", "1.0", "0", 
                           "--grid-output-formats=compressed-tif",
                           "--image-output-formats=png")
   } else {
-    correct.sequence <- c("call", "zig3.exe", "-r", 
+    correct.sequence <- c("call", "zig4.exe", "-r", 
                           "01/01.dat", 
                           "01/01.spp", 
-                          "output/01/01.txt", 
+                          "01/01_out/01.txt", 
                           "0.0", "0", "1.0", "0", 
                           "--grid-output-formats=compressed-tif", 
                           "--image-output-formats=png")
   }
   # Test the default command sequence
-  expect_identical(parse_bat(bat.file), paste(correct.sequence, collapse=" "))
+  expect_identical(parse_bat(bat.file), paste(correct.sequence, collapse = " "))
   
   # Change to a different executable version and test again
   if (.Platform$OS.type == "unix") {
     correct.sequence[1] <- "zig4"
-    expect_identical(parse_bat(bat.file, exe="zig4"), 
-                 paste(correct.sequence, collapse=" "))
+    expect_identical(parse_bat(bat.file, exe = "zig4"), 
+                 paste(correct.sequence, collapse = " "))
   } else {
     correct.sequence[2] <- "zig4.exe"
-    expect_identical(parse_bat(bat.file, exe="zig4.exe"), 
-                     paste(correct.sequence, collapse=" "))
+    expect_identical(parse_bat(bat.file, exe = "zig4.exe"), 
+                     paste(correct.sequence, collapse = " "))
   }
   
 })
@@ -66,7 +66,7 @@ test_that("Parsing an ini file (dat) works", {
   correct.data[["Settings"]][["edge_removal"]] <- "1"
   correct.data[["Settings"]][["annotate_name"]] <- "0"
   correct.data[["Settings"]][["use_groups"]] <- "1"
-  correct.data[["Settings"]][["groups_file"]] <- "groups.txt"
+  correct.data[["Settings"]][["groups_file"]] <- "01/01_groups.txt"
   
   expect_equal(read_ini(dat.file), correct.data,
                info = "Data parsed from dat file is not correct")

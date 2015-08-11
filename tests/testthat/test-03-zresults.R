@@ -2,8 +2,8 @@ context("Zresults creation")
 
 test_that("Zresults is created correctly", {
   # We need a valid path to existing results
-  results.path <- file.path(.options$output.dir, "01")
-  invalid.results.path <- file.path(.options$output.dir, "xxx")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
+  invalid.results.path <- file.path(.options$setup.dir, "xxx")
   
   # Create a new Zresults object
   test.results <- new("Zresults", root=results.path)
@@ -44,7 +44,7 @@ context("Zresults methods")
 
 test_that("getting curves for individual features works", {
 
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   test.results <- new("Zresults", root=results.path)
   
   curves.file <- file.path(results.path, "01.curves.txt")
@@ -122,7 +122,7 @@ test_that("getting curves for individual features works", {
 
 test_that("getting curves for groups works", {
   
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   test.results <- new("Zresults", root=results.path)
   
   grp.curves.file <- file.path(results.path, "01.grp_curves.txt")
@@ -170,7 +170,7 @@ test_that("getting curves for groups works", {
 
 test_that("performance levels are reported right for individual features", {
   
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   test.results <- new("Zresults", root=results.path)
   
   curves.file <- file.path(results.path, "01.curves.txt")
@@ -212,7 +212,7 @@ test_that("performance levels are reported right for individual features", {
 
 test_that("performance levels are reported right for groups", {
   
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   test.results <- new("Zresults", root=results.path)
   
   curves.file <- file.path(results.path, "01.grp_curves.txt")
@@ -249,7 +249,7 @@ test_that("performance levels are reported right for groups", {
 
 test_that("featurenanmes are reported right", {
   
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   test.results <- new("Zresults", root=results.path)
   
   correct.names <- c("f1", "f2", "f3", "f4", "f5", "f6", "f7")
@@ -260,7 +260,7 @@ test_that("featurenanmes are reported right", {
 })
 
 test_that("Retrieving results output directory works", {    
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   test.results <- new("Zresults", root=results.path)
   
   expect_identical(outdir(test.results), results.path,
@@ -269,7 +269,7 @@ test_that("Retrieving results output directory works", {
 })
 
 test_that("Retrieving results rank raster works", {    
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   correct.rank.raster <- raster(file.path(results.path,
                                           "01.rank.compressed.tif"))
   test.results <- new("Zresults", root=results.path)
@@ -277,7 +277,7 @@ test_that("Retrieving results rank raster works", {
   expect_identical(rank_raster(test.results), correct.rank.raster,
                    "Correct rank raster is not returned for Zresults")
   
-  no.results.path <- file.path(.options$output.dir, "06")
+  no.results.path <- file.path(.options$setup.dir, "06/06_out")
   test.no.results <- new("Zresults", root=no.results.path)
   
   expect_warning(rank_raster(test.no.results))

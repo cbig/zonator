@@ -230,7 +230,7 @@ test_that("Retrieving variant output directory works", {
   spp.file <- .options$spp.file
   test.variant <- new("Zvariant", bat.file=bat.file)
   
-  correct.output.dir <- system.file("extdata/tutorial/basic/output/01",
+  correct.output.dir <- system.file("extdata/tutorial/basic/01/01_out",
                                     package="zonator")
   
   expect_identical(outdir(test.variant), correct.output.dir,
@@ -239,7 +239,7 @@ test_that("Retrieving variant output directory works", {
 })
 
 test_that("Retrieving variant rank raster works", {    
-  results.path <- file.path(.options$output.dir, "01")
+  results.path <- file.path(.options$setup.dir, "01/01_out")
   correct.rank.raster <- raster(file.path(results.path,
                                           "01.rank.compressed.tif"))
   
