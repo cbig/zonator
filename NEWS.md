@@ -1,3 +1,19 @@
+## CHANGES IN VERSION 0.3.15 (2015-XX-XX)
+
+### NEW FEATURES
+
++ `create_zproject()` functionality has been split into two. `create_zproject()`
+now handles the creation of a completely new Zonation project (also on the file
+system) whereas `load_zproject()` can be used to load existing Zonation 
+projects. This change creates a cleaner and more intuitice API.
++ Vignetter have been much improved. There is now a conceptual intro to 
+Zonatio project-variant-results typology as well as how this typology
+maps into `zonator` classes.
+
+### BUG FIXES
+
++ `dir.exists()` replaced with `file.exists()` in spp-creation.
+
 ## CHANGES IN VERSION 0.3.14 (2015-07-27)
 
 ### NEW FEATURES
