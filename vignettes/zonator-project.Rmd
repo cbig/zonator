@@ -38,13 +38,13 @@ these specification are just a useful convention and are not at all
 required by Zonation (or zonator)! Note also that these specification are 
 related to Zonation itself. Conceptually, `zonator` uses the same terminology
 and the S4 classes in `zonator` follow the same logic. `zonator` provides a 
-single function `create_zproject()` that can be used to either
+two functions `create_zproject()` and `load_zproject()` that can be used to:
 
-1. Create a new Zonation project, or
-1. Create zonator project based on existing data
+1. Create a new Zonation project on the file system (`create_zproject()`)
+1. Create zonator project based on existing Zonation project (`load_zproject()`)
 
-In both cases, `zonator` works by parsing real input files on your file system 
-(needed by Zonation) into R data structures. Formally, `create_zproject()` 
+`load_zproject()` works by parsing real input files on your file system 
+(needed by Zonation) into R data structures. Formally, `load_zproject()` 
 creates a new instance (object) of class `Zproject` with has specific 
 attributes representing the Zonation project on the file system. Each variant
 (see above) is parsed into an instance of class `Zvariant`. If a variant
@@ -56,9 +56,9 @@ an instance of class `Zresults`.
 Each class has specific methods that can be used to get and set attributes,
 see documentation and the packages vignettes for more detailed description.
 
-## 2. Create a new zonator project
+## 2. Create a new Zonation project
 
-As mentioned above, `zonator` packages provides function `create_zproject()` 
+As mentioned above, `zonator` packages provides function `load_zproject()` 
 that can be used to create all the necessary files and folders for a new 
 Zonation project. Let's take a closer look:
 
@@ -67,7 +67,7 @@ library(zonator)
 
 # Create a (temporary) path to a new project. Basename component of this path
 # will also be the name of the project.
-project_path <- file.path(tempdir(), "test_project")
+project_path <- file.path(tempdir())
 
 # Define the names of the variants within the project
 variant_names <- c("01_variant", "02_variant", "03_variant")
@@ -77,7 +77,8 @@ variant_names <- c("01_variant", "02_variant", "03_variant")
 # Create a new project from scratch. Note that since we do not provide any 
 # template file paths (for the .spp and .dat files), the templates shipped
 # with the tutorial data will be used.
-new_project <- create_zproject(root = project_path, variants = variant_names)
+create_zproject(name = "test_project", dir = project_path, 
+                variants = variant_names)
 ```
 
 If you ran these examples on your own computer, you can now open path defined in 
@@ -93,24 +94,22 @@ template .dat-file.
 ```{r create-new-02, message=FALSE,warning=FALSE,eval=FALSE}
 # Directory containing the input raster files
 input_raster_dir <- system.file("extdata/tutorial/data", package="zonator")
-new_project <- create_zproject(root = project_path, variants = variant_names,
+new_project <- create_zproject(name = "test_project", dir = project_path, 
+                               variants = variant_names,
                                spp_template_dir = input_raster_dir,
                                spp_file_pattern = "^species[0-9].tif$")
 ```
 
-**NOTE!** For the time being, you will have to manually delete the project on
-file system if you want to recreate it. Current behavior is such, that creating
-the project files will be followed by loading those same files (see below).
-
-You can gove extra arguments to `create_zproject()` that will be passed on to
+You can give extra arguments to `create_zproject()` that will be passed on to
 creating the spp file. E.g. if you would want the set different weights to 
 your biodiversity features, you could do the following:
 
 ```{r create-new-03, message=FALSE,warning=FALSE,eval=FALSE}
-new_project <- create_zproject(root = project_path, variants = variant_names,
+new_project <- create_zproject(name = "test_project", dir = project_path, 
+                               variants = variant_names,
                                spp_template_dir = input_raster_dir,
                                spp_file_pattern = "^species[0-9].tif$",
-                               weight = c(1, 1, 1, 2, 3, 2, 1))
+                               weight = c(1, 1, 1, 2, 3, 2, 1)
 ```
 
 Be careful with setting the weights (or other spp-file parameters such as the
@@ -128,10 +127,10 @@ skip this code section.
 ```{r run-variant-1, eval=(1:6), message=FALSE}
 library(zonator)
 
-setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
+setup.dir <- system.file("extdata/tutorial/basic", package = "zonator")
 
 # Get all the bat-files
-bat.files <- list.files(setup.dir, "\\.bat$", full.names=TRUE)
+bat.files <- list.files(setup.dir, "\\.bat$", full.names = TRUE)
 
 # Run all the runs
 #for (bat.file in bat.files) {
@@ -140,16 +139,16 @@ bat.files <- list.files(setup.dir, "\\.bat$", full.names=TRUE)
 
 ```
 
-You can create a new zonator project based on existing results by doing the 
-following:
+You can create a new zonator project based on existing data by using 
+`load_zproject()`:
 
 ```{r creat-zproject, message=FALSE}
-tutorial.project <- create_zproject(setup.dir)
+tutorial.project <- load_zproject(setup.dir)
 ```
 
 **Pro tip!** In case you have a complex Zonation project and want to keep track
 which files are being read in while creating zproject, you can do 
-`create_zproject(setup.dir, debug=TRUE)` in order to enable logging of file
+`load_zproject(setup.dir, debug=TRUE)` in order to enable logging of file
 reading sequence.
 
 zonator also includes a utility function `opendir()` which takes a zproject

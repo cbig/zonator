@@ -16,7 +16,7 @@ library(zonator)
 
 # Start by creating a project using the tutorial data
 setup.dir <- system.file("extdata/tutorial/basic", package="zonator") 
-tutorial.project <- create_zproject(setup.dir)
+tutorial.project <- load_zproject(setup.dir)
 
 # Get a specific variant
 variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
