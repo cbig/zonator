@@ -26,7 +26,7 @@ install.packages("devtools")
 
 2. Then install `zonator` directly from GitHub by running the following line in R:  
 ```
-install_github("zonator", "cbig")
+install_github("cbig/zonator")
 ```  
 
 ## Examples
