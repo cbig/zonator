@@ -1,12 +1,13 @@
-## CHANGES IN VERSION 0.3.15 (2015-XX-XX)
+## CHANGES IN VERSION 0.4.0 (2015-08-17)
 
 ### NEW FEATURES
 
 + `create_zproject()` functionality has been split into two. `create_zproject()`
 now handles the creation of a completely new Zonation project (also on the file
 system) whereas `load_zproject()` can be used to load existing Zonation 
-projects. This change creates a cleaner and more intuitice API.
-+ Vignetter have been much improved. There is now a conceptual intro to 
+projects. This change creates a cleaner and more intuitice API. **NOTE** The 
+API for `create_zproject()` has changed, so check your code.
++ Vignettes have been much improved. There is now a conceptual intro to 
 Zonatio project-variant-results typology as well as how this typology
 maps into `zonator` classes.
 
