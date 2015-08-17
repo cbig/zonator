@@ -2,14 +2,17 @@
 % Please edit documentation in R/project.R
 \name{create_zproject}
 \alias{create_zproject}
-\title{Create a Zonation project.}
+\title{Create a new Zonation project on file system.}
 \usage{
-create_zproject(root, variants = NULL, dat_template_file = NULL,
-  spp_template_file = NULL, spp_template_dir = NULL, debug = FALSE, ...)
+create_zproject(name, dir, variants, dat_template_file = NULL,
+  spp_template_file = NULL, spp_template_dir = NULL, overwrite = FALSE,
+  debug = FALSE, ...)
 }
 \arguments{
-\item{root}{Character string path pointing either to an existing directory
-(with potentially bat-files in it) or to a new directory to be created.}
+\item{name}{Character string name for the project. A new directory named
+by \code{name} will be creaated in a location specified by \code{dir}.}
+
+\item{dir}{Character string path pointing to a location to be created.}
 
 \item{variants}{Character vector of names for new variants. Ignored if using
 an existing project.}
@@ -28,28 +31,32 @@ uses the template distributed with zonator. If both are defined, then
 \code{spp_template_dir} overrides. Ignored if using an existing
 project.}
 
-\item{debug}{logical defining if debugging level for logging should be used.}
+\item{overwrite}{logical should existing project be overwritten (default:
+FALSE).}
+
+\item{debug}{logical defining if debugging level for logging should be used
+(default: FALSE).}
 
 \item{...}{additional arguments passed to \code{\link{create_spp}}.}
 }
 \value{
-A Zproject object.
+Invisible(NULL) .
 }
 \description{
-Project can be created based on a set of existing bat-files by pointing the
-root of he project to an existing directory containing the bat-files. In this
-case each bat-file is converted into a Zvariant-object.
+Based on a set of input arguments, creates a new Zonation project on the
+file system following a particular folder and file layout.
 }
-\details{
-Alternatively an empty project can be created by supplying a root path that
-does not exist as an argument.
+\note{
+This function is used only for the intended side-effect of creating a
+  new Zonation project. To load the project as an instance of
+  \code{\link[zonator:Zproject-class]{Zproject-class}}, see
+  \code{\link[zonator:load_zproject]{load_zproject}}.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link[zonator:Zproject-class]{Zproject-class}},
-  \code{\link[zonator:Zvariant-class]{Zvariant-class}} and
-  \code{\link[zonator:create_spp]{create_spp}}
+\code{\link[zonator:load_zproject]{load_zproject}} and
+  \code{\link[zonator:create_spp]{create_spp}}.
 }
 
