@@ -41,3 +41,4 @@ vignette("zonator-results")
 ## Developers
 
 * Joona Lehtomäki <joona.lehtomaki@gmail.com>
+* Aija Kukkala <aija.kukkala@helsinki.fi>
