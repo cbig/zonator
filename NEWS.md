@@ -1,3 +1,13 @@
+## CHANGES IN VERSION 0.4.2 (2015-12-15)
+
+### NEW FEATURES
+
++ `read_ini()` renamed to `read_dat()`.
+
+### BUG FIXES
+
+
+
 ## CHANGES IN VERSION 0.4.1 (2015-12-15)
 
 ### BUG FIXES
