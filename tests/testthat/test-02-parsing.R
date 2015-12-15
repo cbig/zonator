@@ -48,14 +48,14 @@ test_that("Parsing an ini file (dat) works", {
   faulty.dat.file <- file.path(dirname(dat.file), "wrong.bat")
   
   # Test that error is reported if a dat file can't be found
-  suppressWarnings(expect_error(read_ini(faulty.dat.file), 
+  suppressWarnings(expect_error(read_dat(faulty.dat.file), 
                                 "(dat-file).+(not found!)",
                                 info = "Error raised should name the dat file"))
   
   # Test that error is reported if the file doesn't seem to be a dat-file
   bat.file <- system.file("extdata/tutorial/basic", "01_core_area_zonation.bat",
                           package="zonator")
-  suppressWarnings(expect_error(read_ini(bat.file), 
+  suppressWarnings(expect_error(read_dat(bat.file), 
                                 "(dat-file).+(doesn't seem to have any section headers.).+",
                                 info = "Error raised should name the dat file"))
 
@@ -68,7 +68,7 @@ test_that("Parsing an ini file (dat) works", {
   correct.data[["Settings"]][["use_groups"]] <- "1"
   correct.data[["Settings"]][["groups_file"]] <- "01/01_groups.txt"
   
-  expect_equal(read_ini(dat.file), correct.data,
+  expect_equal(read_dat(dat.file), correct.data,
                info = "Data parsed from dat file is not correct")
   
 })

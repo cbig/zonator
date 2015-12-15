@@ -101,7 +101,7 @@ read_groups <- function(infile) {
   return(groups.data)
 }
 
-#' Read a Windows-style ini-file that is for configuration information.
+#' Read a dat file (Windows-style ini-file) for configuration information.
 #'
 #' @param infile Character string input file path.
 #'
@@ -111,7 +111,7 @@ read_groups <- function(infile) {
 #' @export
 #' @note Adapted from http://bit.ly/11e4Jh0
 #'
-read_ini <- function(infile) {
+read_dat <- function(infile) {
     
     if (!file.exists(infile)){
       stop("dat-file ", infile, " not found!")

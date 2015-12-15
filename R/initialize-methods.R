@@ -233,7 +233,7 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   if (.options$debug) {
     message("Reading in dat file ", call.params$dat.file)
   }
-  .Object@dat.data <- read_ini(call.params$dat.file)
+  .Object@dat.data <- read_dat(call.params$dat.file)
   
   # spp-file content ###########################################################
   if (.options$debug) {
