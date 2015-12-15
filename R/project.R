@@ -148,7 +148,7 @@ create_zproject <- function(name, dir, variants, dat_template_file = NULL,
     # Write bat-file
     bat_to <- file.path(project_dir, paste0("do_", variant, ".bat"))
     if (debug) message("Writing bat file ", bat_to)
-    cat(paste(paste(cmd_sequence, collapse = " "), "\n"), file = bat_to)
+    cat(paste0(paste(cmd_sequence), "\n"), file = bat_to)
   }
   
   return(invisible(NULL))

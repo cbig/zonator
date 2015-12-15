@@ -1,3 +1,9 @@
+## CHANGES IN VERSION 0.4.1 (2015-12-15)
+
+### BUG FIXES
+
++ Fix [issue #43](https://github.com/cbig/zonator/issues/43).
+
 ## CHANGES IN VERSION 0.4.0 (2015-08-17)
 
 ### NEW FEATURES
