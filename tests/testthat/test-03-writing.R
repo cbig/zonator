@@ -11,7 +11,7 @@ test_that("Writing a dat file works", {
   org_dat_data$Settings$removal_rule <- 2
   # Write file, expect message informing about the write operation
   dat_file_path <- tempfile(fileext = ".dat")
-  #expect_message(write_dat(x = org_dat_data, file = dat_file_path),
-  #               paste("Wrote dat-file", dat_file_path),
-  #               info = "Correct message not emitted from writing a dat file.")
+  expect_message(write_dat(x = org_dat_data, file = dat_file_path),
+                 paste("Wrote dat-file", dat_file_path),
+                 info = "Correct message not emitted from writing a dat file.")
 })
