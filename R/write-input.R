@@ -13,18 +13,57 @@
 
 #' Write a Zonation run configuration (dat) file.
 #' 
-#' Checks a vector of names only contains unique items and if they're not,
-#' unique names will be created. Also, the items must be
-#' suitable for columns names. Function is strict so that if the vector is not 
-#' valid or it cannot be coerced to be one an error is induced. 
+#' The function takes a nested list of values and writes it to a dat file (a 
+#' Windows style .ini-file).
 #' 
-#' @param x Charcter or numeric vector.
+#' @note Only 1 level of nestedness is accepted.
+#' 
+#' @param x List containing the data to be written.
+#' @param filename String file path.
+#' @param overwrite Logical indicating whether the file should be overwritten.
 #'
-#' @return Valid vector of the original size.
+#' @return Invisible null.
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
+#' @examples 
+#' dat <- list("Settings" = list("removal_rule" = 1, use_groups = 1))
+#' write_dat(dat, "settings.dat")
 #'  
-write_dat <- function(x) {
+write_dat <- function(x, filename, overwrite = FALSE) {
 
+  if (!is.list(x)) {
+    stop("Data provided must be a list, not ", class(x))
   }
+  # Only one level of nested lists allowed
+  for (i in x) { 
+    for (j in i) {
+      if (is.list(j)) {
+        stop("Only one level of nested lists allowed.")
+      }
+    }
+  }
+  
+  if (file.exists(filename)) {
+    if (overwrite) {
+      unlink(filename)
+    } else {
+      stop("File exists, but overwrite is off.")
+    }
+  }
+  
+  for (section_name in names(x)) {
+    write(paste0("[", section_name, "]"), file = filename, append = TRUE)
+    section_data <- x[[section_name]]
+    for (parameter in names(section_data)) {
+      write(paste0(parameter, " = ", section_data[[parameter]]), 
+            file = filename, append = TRUE)
+    }
+    # If there are more than one section, append with an empty line
+    if (length(names(x)) != 1) {
+      write("", file = filename, append = TRUE)
+    }
+  }
+  message(paste("Wrote dat-file", filename))
+  return(invisible(NULL))  
+}
