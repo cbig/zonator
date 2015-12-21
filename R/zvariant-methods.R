@@ -79,11 +79,25 @@ setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
          "features (", nfeats, ")")
   }
   
-  # If nothing changes, do nothing
-  if (!all(x@groups$output.group == value)) {
-    x@groups$output.group <- value
-    
-    x@results@grp.curves <- regroup_curves(curves(x), sppweights(x), value)
+  # If nothing has been assigned, assign values. If nothing changes, do nothing.
+  if (is.null(x@groups$output.group) | !all(x@groups$output.group == value)) {
+    # In case no groups dataframe has been populated, do that
+    if (nrow(x@groups) == 0L) {
+      # FIXME: not a good idea to define names(x@groups) in several places...
+      x@groups <- data.frame(output.group = value, 
+                             condition.group = -1,
+                             retention.group = -1,
+                             retention.mode = 1, 
+                             local.edge.correct.group = -1,
+                             name = "")
+    } else {
+      x@groups$output.group <- value
+    }
+    # Update results curves data if it exists
+    #browser()
+    if (has_results(x)[["curves"]]) {
+      x@results@grp.curves <- regroup_curves(curves(x), sppweights(x), value)
+    }
     # Change group names back to generic "group1", "group2" etc.
     group.ids <- unique(value)
     group.names <- paste0("group", group.ids)

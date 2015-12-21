@@ -43,10 +43,11 @@ test_that("Zvariant without results is created correctly", {
   # Variant with no results, no results
   no.results.bat.file <- file.path(.options$setup.dir, 
                                    "06_dummy_for_testing.batx")
-  no.results.variant <- new("Zvariant", bat.file=no.results.bat.file)
+  suppressWarnings(no.results.variant <- new("Zvariant", 
+                                             bat.file = no.results.bat.file))
   
   # Groups
-  res <-unlist(has_results(no.results.variant))
+  res <- unlist(has_results(no.results.variant))
   expect_false(all(res),
                "Test variant should not have results")
   expect_true(is.na(groups(no.results.variant)),
@@ -170,12 +171,16 @@ test_that("Assigning and fetching group names and identities works", {
   # Variant with no groups
   no.grps.bat.file <- file.path(.options$setup.dir, 
                                 "03_boundary_length_penalty.bat")
-  no.grps.results.variant <- new("Zvariant", bat.file=no.grps.bat.file)
-  
+  no.grps.results.variant <- new("Zvariant", bat.file = no.grps.bat.file)
   
   # Variant doesn't have groups, so there should be no group names either
   expect_true(is.na(groupnames(no.grps.results.variant)),
               "Test variant group names not NA although they haven't been set")
+  
+  # Test that setting groups when there were initially none works
+  groups(no.grps.results.variant) <- correct.grp.codes
+  expect_identical(groups(no.grps.results.variant), correct.grp.codes, 
+                   paste("Test variant group codes incorrect"))
   
   # Test assigning correct group names and codes
   correct.grp.names <- c("mammals", "owls")

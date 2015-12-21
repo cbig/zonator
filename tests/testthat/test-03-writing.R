@@ -35,5 +35,4 @@ test_that("Writing a dat file works", {
   # Overwriting should fail if not defined explicitly
   expect_error(write_dat(x = org_dat_data, filename = dat_file_path),
                info = "No error emitted when overwriting implicitly.")
-  
 })

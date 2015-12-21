@@ -1,4 +1,4 @@
-## CHANGES IN VERSION 0.4.2 (2015-12-15)
+## CHANGES IN VERSION 0.4.2 (2015-XX-XX)
 
 ### NEW FEATURES
 
@@ -6,7 +6,13 @@
 
 ### BUG FIXES
 
++ Assigning groups to a `Zvariant` object when no groups were used initially
+failed before (see [issue #45](https://github.com/cbig/zonator/issues/45).), 
+fixed now.
 
+### OTHER
+
++ `create_zproject()` no longer uses "do_" prefix when generating bat files.
 
 ## CHANGES IN VERSION 0.4.1 (2015-12-15)
 
