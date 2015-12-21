@@ -36,7 +36,7 @@ test_that("Zresults is created correctly", {
 test_that("Zresults is created correctly when there are no results", {
 
   no.results.path <- file.path(.options$output.dir, "06")
-  test.no.results <- new("Zresults", root=no.results.path)
+  suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
   
 })
 
@@ -278,7 +278,7 @@ test_that("Retrieving results rank raster works", {
                    "Correct rank raster is not returned for Zresults")
   
   no.results.path <- file.path(.options$setup.dir, "06/06_out")
-  test.no.results <- new("Zresults", root=no.results.path)
+  suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
   
   expect_warning(rank_raster(test.no.results))
   
