@@ -175,18 +175,28 @@ test_that("leaf_tags() works", {
   list_data[["Info-gap settings"]][["use info-gap weights"]] <- "1"
   list_data[["Info-gap settings"]][["Info-gap weights file"]] <- ""
   
-  correct_tags <- c("Settings.removal rule", "Settings.warp factor", 
-                    "Settings.edge removal", "Settings.annotate name", 
-                    "Settings.use groups", "Settings.groups file",
-                    "Info-gap settings.Info-gap proportional", 
-                    "Info-gap settings.use info-gap weights",
-                    "Info-gap settings.Info-gap weights file")
+  correct_section_tags <- c("Settings.removal rule", "Settings.warp factor", 
+                         "Settings.edge removal", "Settings.annotate name", 
+                         "Settings.use groups", "Settings.groups file",
+                         "Info-gap settings.Info-gap proportional", 
+                         "Info-gap settings.use info-gap weights",
+                         "Info-gap settings.Info-gap weights file")
   
   expect_error(leaf_tags("foo"), 
                regexp = "Function only accepts lists",
                info = "Using something else than list should cause error.")
-  expect_equal(names(leaf_tags(list_data)), correct_tags,
+  expect_equal(names(leaf_tags(list_data)), correct_section_tags,
                info = "Correct tags not found")
   expect_equal(leaf_tags(list_data)[["Settings.removal rule"]], "1",
                info = "Incorrect tag/value pair received.")
+  
+  # Test without section prefixes
+  correct_tags <- c("removal rule", "warp factor", "edge removal", 
+                    "annotate name", "use groups", "groups file",
+                    "Info-gap proportional", "use info-gap weights",
+                    "Info-gap weights file")
+  expect_equal(names(leaf_tags(list_data, omit_sections = TRUE)), 
+               correct_tags,
+               info = "Correct tags not found")
+  
 })

@@ -131,6 +131,8 @@ clean_str <- function(x) {
 #' list is tag = value; find all the tags in a list.
 #'
 #' @param x List.
+#' @param omit_sections Logical indicating if sections should be omitted from
+#'   vector names.
 #'
 #' @return Characted vector of tags.
 #' 
@@ -140,12 +142,18 @@ clean_str <- function(x) {
 #' l <- list("a" = 1, "b" = list("c" = 3, "d" = 4), "e" = 5)
 #' leaf_tags(l)
 #'
-leaf_tags <- function(x){
+leaf_tags <- function(x, omit_sections = FALSE) {
   if (!is.list(x)) {
     stop("Function only accepts lists")
   }
   # Get the tag names, these will include nested tags separated by "."
   tags <- rapply(x, function(x) x[1])
+  
+  if (omit_sections) {
+    names(tags) <- as.vector(sapply(names(tags), 
+                                    function(x) tail(unlist(strsplit(x, "\\.")), 
+                                                     n = 1)))
+  }
   return(tags)
 }
 

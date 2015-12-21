@@ -5,10 +5,13 @@
 \title{Find all the leaf tags in a potentially nested list. The generic form of a 
 list is tag = value; find all the tags in a list.}
 \usage{
-leaf_tags(x)
+leaf_tags(x, omit_sections = FALSE)
 }
 \arguments{
 \item{x}{List.}
+
+\item{omit_sections}{Logical indicating if sections should be omitted from
+vector names.}
 }
 \value{
 Characted vector of tags.
