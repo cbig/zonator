@@ -159,3 +159,34 @@ test_that("Calculating group curves stats works", {
   #                 round(new.grp.curves.data$min.group2, 5),
   #                 "regroup_curves not returning correct min values for group 2")
 })
+
+test_that("leaf_tags() works", {
+
+  list_data <- list()
+  list_data[["Settings"]] <- list()
+  list_data[["Settings"]][["removal rule"]] <- "1"
+  list_data[["Settings"]][["warp factor"]] <- "100"
+  list_data[["Settings"]][["edge removal"]] <- "1"
+  list_data[["Settings"]][["annotate name"]] <- "0"
+  list_data[["Settings"]][["use groups"]] <- "1"
+  list_data[["Settings"]][["groups file"]] <- "01/01_groups.txt"
+  list_data[["Info-gap settings"]] <- list()
+  list_data[["Info-gap settings"]][["Info-gap proportional"]] <- "0"
+  list_data[["Info-gap settings"]][["use info-gap weights"]] <- "1"
+  list_data[["Info-gap settings"]][["Info-gap weights file"]] <- ""
+  
+  correct_tags <- c("Settings.removal rule", "Settings.warp factor", 
+                    "Settings.edge removal", "Settings.annotate name", 
+                    "Settings.use groups", "Settings.groups file",
+                    "Info-gap settings.Info-gap proportional", 
+                    "Info-gap settings.use info-gap weights",
+                    "Info-gap settings.Info-gap weights file")
+  
+  expect_error(leaf_tags("foo"), 
+               regexp = "Function only accepts lists",
+               info = "Using something else than list should cause error.")
+  expect_equal(names(leaf_tags(list_data)), correct_tags,
+               info = "Correct tags not found")
+  expect_equal(leaf_tags(list_data)[["Settings.removal rule"]], "1",
+               info = "Incorrect tag/value pair received.")
+})

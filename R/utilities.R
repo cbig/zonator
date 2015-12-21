@@ -127,6 +127,28 @@ clean_str <- function(x) {
   return(x)
 }
 
+#' Find all the leaf tags in a potentially nested list. The generic form of a 
+#' list is tag = value; find all the tags in a list.
+#'
+#' @param x List.
+#'
+#' @return Characted vector of tags.
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#' @examples
+#' l <- list("a" = 1, "b" = list("c" = 3, "d" = 4), "e" = 5)
+#' leaf_tags(l)
+#'
+leaf_tags <- function(x){
+  if (!is.list(x)) {
+    stop("Function only accepts lists")
+  }
+  # Get the tag names, these will include nested tags separated by "."
+  tags <- rapply(x, function(x) x[1])
+  return(tags)
+}
+
 line_as_numeric <- function(x) {
   return(as.numeric(line_as_string(x)))
 }
