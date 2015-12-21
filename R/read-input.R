@@ -132,32 +132,35 @@ read_dat <- function(infile) {
     lines <- chartr("[]", "==", lines)
     # Backward slash will cause problems as well
     lines <- chartr("\\", "/", lines)
-    # If relative paths are used, replace ".." with the absolute path
-    #lines <- gsub("\\.\\.", dirname(infile), lines)
     
     connection <- textConnection(lines)
-    d <- read.table(connection, as.is = TRUE, sep = "=", fill = TRUE)
+    dat_data <- read.table(connection, as.is = TRUE, sep = "=", fill = TRUE)
     close(connection)
     
     # Parameter names can't have whitespaces or dashes, replace with underscores
-    d$V1 <- clean_str(d$V1)
-    d$V1 <- chartr(" ", "_", d$V1)
-    d$V1 <- chartr("-", "_", d$V1)
+    dat_data$V1 <- clean_str(dat_data$V1)
+    #dat_data$V1 <- chartr(" ", "_", dat_data$V1)
+    #dat_data$V1 <- chartr("-", "_", dat_data$V1)
     
-    d$V2 <- clean_str(d$V2)
-    d$V2 <- chartr(" ", "_", d$V2)
-    d$V2 <- chartr("-", "_", d$V2)
+    dat_data$V2 <- clean_str(dat_data$V2)
+    #dat_data$V2 <- chartr(" ", "_", dat_data$V2)
+    #dat_data$V2 <- chartr("-", "_", dat_data$V2)
     
     # Location of section breaks
-    L <- d$V1 == ""                    
-    d <- subset(transform(d, V3 = V2[which(L)[cumsum(L)]])[1:3], V1 != "")
+    section_breaks <- dat_data$V1 == ""                    
+    dat_data <- subset(transform(dat_data, 
+                                 V3 = V2[which(section_breaks)[cumsum(section_breaks)]])[1:3], 
+                       V1 != "")
     
-    ToParse  <- paste("INI.list$", d$V3, "$",  d$V1, " <- '", d$V2, "'", sep="")
+    # NOTE: since whitespaces etc. are allowed, attribute accessor must be 
+    # quoted with backticks.
+    to_parse  <- paste("dat_list$`", dat_data$V3, "`$`",  dat_data$V1, "` <- '", 
+                       dat_data$V2, "'", sep = "")
     
-    INI.list <- list()
-    eval(parse(text=ToParse))
+    dat_list <- list()
+    eval(parse(text = to_parse))
     
-    return(INI.list) 
+    return(dat_list) 
 }
 
 #' Read Zonation variant specific spp-file.

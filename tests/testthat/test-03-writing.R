@@ -7,7 +7,7 @@ test_that("Writing a dat file works", {
   org_dat_data <- read_dat(dat_file)
   
   # Change removal rule to 2 (ABF)
-  org_dat_data$Settings$removal_rule <- 2
+  org_dat_data$Settings$`removal rule` <- "2"
   
   # Don't expect anything else but a list
   expect_error(write_dat(x = "foo", filename = dat_file_path),

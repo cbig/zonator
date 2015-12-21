@@ -61,12 +61,12 @@ test_that("Parsing an ini file (dat) works", {
 
   correct.data <- list()
   correct.data[["Settings"]] <- list()
-  correct.data[["Settings"]][["removal_rule"]] <- "1"
-  correct.data[["Settings"]][["warp_factor"]] <- "100"
-  correct.data[["Settings"]][["edge_removal"]] <- "1"
-  correct.data[["Settings"]][["annotate_name"]] <- "0"
-  correct.data[["Settings"]][["use_groups"]] <- "1"
-  correct.data[["Settings"]][["groups_file"]] <- "01/01_groups.txt"
+  correct.data[["Settings"]][["removal rule"]] <- "1"
+  correct.data[["Settings"]][["warp factor"]] <- "100"
+  correct.data[["Settings"]][["edge removal"]] <- "1"
+  correct.data[["Settings"]][["annotate name"]] <- "0"
+  correct.data[["Settings"]][["use groups"]] <- "1"
+  correct.data[["Settings"]][["groups file"]] <- "01/01_groups.txt"
   
   expect_equal(read_dat(dat.file), correct.data,
                info = "Data parsed from dat file is not correct")

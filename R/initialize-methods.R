@@ -254,11 +254,11 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
   # First we need to define whether groups are 1) used, and 2) available. 
   settings <- .Object@dat.data$Settings
-  if ("use_groups" %in% names(settings)) {
-    if (settings$use_groups == 1) {
-      if ("groups_file" %in% names(settings)) {
-        groups.file <- check_path(settings$groups_file, dirname(bat.file),
-                                  require.file=TRUE)
+  if ("use groups" %in% names(settings)) {
+    if (settings$`use groups` == 1) {
+      if ("groups file" %in% names(settings)) {
+        groups.file <- check_path(settings$`groups file`, dirname(bat.file),
+                                  require.file = TRUE)
         if (.options$debug) {
           message("Reading in groups file ", groups.file)
         }

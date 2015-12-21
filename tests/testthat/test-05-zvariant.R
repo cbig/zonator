@@ -141,7 +141,7 @@ test_that("Assigning and fetching feature names works", {
 test_that("Assigning and fetching group names and identities works", {
   bat.file <- .options$bat.file
   spp.file <- .options$spp.file
-  results.variant <- new("Zvariant", bat.file=bat.file)
+  results.variant <- new("Zvariant", bat.file = bat.file)
 
   correct.feature.data <- read_spp(spp.file)
   correct.feature.data$name <- basename(tools::file_path_sans_ext(correct.feature.data$filepath))
