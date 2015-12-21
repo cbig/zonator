@@ -1,3 +1,9 @@
+## CHANGES IN VERSION 0.4.2 (2015-XX-XX)
+
+### OTHER
+
++ `create_zproject()` no longer uses "do_" prefix when generating bat files.
+
 ## CHANGES IN VERSION 0.4.1 (2015-12-15)
 
 ### BUG FIXES
