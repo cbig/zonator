@@ -13,6 +13,9 @@ fixed now.
 ### OTHER
 
 + `create_zproject()` no longer uses "do_" prefix when generating bat files.
++ Run parameters from dat-files are now parsed as-is. Previously parameter
+names were cleaned up (e.g. " " and "-" removed), but this made writing dat
+files with correct parameter names really hard. 
 
 ## CHANGES IN VERSION 0.4.1 (2015-12-15)
 
