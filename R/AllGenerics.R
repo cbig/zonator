@@ -111,6 +111,33 @@ setGeneric("featurenames<-", function(x, value) {
   standardGeneric("featurenames<-")
 })
 
+
+# get_dat_param -----------------------------------------------------------
+
+#' Get a specified run setting parameter value
+#' 
+#' Essentially these are parameter values corresponding to Zonation dat-files.
+#' This function is used to get values of given parameter. In the current 
+#' implementation, sections have no meaning. 
+#'
+#' @param x Zvariant object.
+#' @param parameter Character string name of the parameter.
+#'
+#' @return Character string value of the parameter. If requested parameter is 
+#'   a valid Zonation parameter but not used currently, returns NA.
+#' 
+#' @seealso \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
+#' \code{\link{set_dat_parameter}}. 
+#' 
+#' @export
+#' @rdname get_dat_param-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("get_dat_param", function(x, parameter) {
+  standardGeneric("get_dat_param")
+})
+
 # get_variant -------------------------------------------------------------
 
 #' Get a specified variant in a Zonation project
@@ -299,7 +326,6 @@ setGeneric("opendir", function(x) {
   standardGeneric("opendir")
 })
 
-
 # outdir ------------------------------------------------------------------
 
 #' Get path to output directory. 
@@ -387,7 +413,6 @@ setGeneric("performance", function(x, pr.lost, features="all", groups=FALSE,
                                    melted=FALSE) {
   standardGeneric("performance")
 })
-
 
 # rank_raster -------------------------------------------------------------
 

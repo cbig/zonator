@@ -59,7 +59,7 @@ test_that("Zvariant without results is created correctly", {
 }
 )
 
-# context("Zvariant methods")
+context("Zvariant methods")
 # 
 # test_that("Print method works", {
 #   bat.file <- .options$bat.file
@@ -262,3 +262,43 @@ test_that("Retrieving variant rank raster works", {
   expect_warning(rank_raster(no.results.variant))
   
 })
+
+test_that("Getting and setting dat data works", {    
+  bat_file <- .options$bat.file
+  spp_file <- .options$spp.file
+  test_variant <- new("Zvariant", bat.file = bat_file)
+  
+  # Get individual dat parameter values in different sections
+  expect_equal(get_dat_param(test_variant, "removal rule"), "1",
+               info = "Dat-file parameter value not fetched correctly.")
+  expect_equal(get_dat_param(test_variant, "warp factor"), "100",
+               info = "Dat-file parameter value not fetched correctly.")
+  # Non-existing, but valid parameter value should cause a warning
+  expect_warning(get_dat_param(test_variant, "ADMU layer file"),
+                 info = "Not set, but valid parameter value should cause a warning.")
+  suppressWarnings(expect_equal(get_dat_param(test_variant, "ADMU layer file"), 
+                                NA,
+                   info = "Valid but not set parameter should return NA."))
+  expect_error(get_dat_param(test_variant, "foo bar"),
+               "Requested parameter not valid Zonation parameter.",
+               info = "Invalid parameter value should cause an error.")
+  
+  # Set individual dat parameter values in different sections
+  set_dat_param(test_variant, parameter = "removal rule", value = "2")
+  expect_equal(get_dat_param(test_variant, "removal rule"), "2",
+               info = "Dat-file parameter value not set correctly.")
+  # Also test integer value
+  set_dat_param(test_variant, parameter = "removal rule", value = 2)
+  expect_equal(get_dat_param(test_variant, "removal rule"), "2",
+               info = "Dat-file parameter value not set correctly.")
+  # Non-existing, but valid parameter value should be ok
+  condition_file <- "01/01_condition.txt"
+  set_dat_param(test_variant, "condition file", condition_file)
+  expect_equal(get_dat_param(test_variant, "condition file"), condition_file,
+               info = "Not-set dat-file parameter value not set correctly.")
+  # Setting invalid parameter should cause an error
+  expect_error(set_dat_param(test_variant, "foo bar", "spam eggs"),
+               info = "Setting invalid parameter value should cause an error.")
+  
+})
+  

@@ -50,6 +50,32 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
   return(x)
 })
 
+#' @rdname get_dat_param-methods
+#' 
+setMethod("get_dat_param", signature("Zvariant"), function(x, parameter) {
+  # Only canocical parameters are accepted
+  all_parameters_file <- system.file("extdata/template.dat", 
+                                     package = "zonator")
+  accepted_parameters <- leaf_tags(read_dat(all_parameters_file), 
+                                   omit_sections = TRUE)
+  
+  if (!parameter %in% names(accepted_parameters)) {
+    stop("Requested parameter not valid Zonation parameter.")
+  }
+  
+  # Check the current parameters. If requested parameter is valid Zonation
+  # parameter but not currently set, return NA.
+  current_params <- leaf_tags(x@dat.data, omit_sections = TRUE)
+  
+  if (!parameter %in% names(current_params)) {
+    warning("Requested parameter valid Zonation parameter, but not set.")
+    return(NA)
+  }
+  
+  # Return the correct parameter value
+  return(as.vector(current_params[parameter]))
+})
+
 #' @rdname groups-methods
 #' 
 setMethod("groups", "Zvariant", function(x) {
