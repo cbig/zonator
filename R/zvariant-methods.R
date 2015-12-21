@@ -93,8 +93,11 @@ setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
     } else {
       x@groups$output.group <- value
     }
-    
-    x@results@grp.curves <- regroup_curves(curves(x), sppweights(x), value)
+    # Update results curves data if it exists
+    #browser()
+    if (has_results(x)[["curves"]]) {
+      x@results@grp.curves <- regroup_curves(curves(x), sppweights(x), value)
+    }
     # Change group names back to generic "group1", "group2" etc.
     group.ids <- unique(value)
     group.names <- paste0("group", group.ids)
