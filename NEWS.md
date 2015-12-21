@@ -2,7 +2,10 @@
 
 ### NEW FEATURES
 
-+ `read_ini()` renamed to `read_dat()`.
++ `leaf_tags()` is a new utility function that can get leaf (outermost) tags
+and their values in a nested list (used for dat-parsing).
++ `get_dat_param()` can be used to get values of a (valid) Zonation run 
+configuration parameter (i.e. the content of a dat-file). 
 
 ### BUG FIXES
 
@@ -12,6 +15,7 @@ fixed now.
 
 ### OTHER
 
++ `read_ini()` renamed to `read_dat()`.
 + `create_zproject()` no longer uses "do_" prefix when generating bat files.
 + Run parameters from dat-files are now parsed as-is. Previously parameter
 names were cleaned up (e.g. " " and "-" removed), but this made writing dat
