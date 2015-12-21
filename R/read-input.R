@@ -113,7 +113,7 @@ read_groups <- function(infile) {
 #'
 read_dat <- function(infile) {
     
-    if (!file.exists(infile)){
+    if (!file.exists(infile)) {
       stop("dat-file ", infile, " not found!")
     }
   
