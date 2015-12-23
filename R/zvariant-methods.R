@@ -336,4 +336,16 @@ setMethod("sppweights", c("Zvariant"), function(x) {
     res_string <- "no"
   }
   cat("has results:", res_string, '\n')
+  # Run configuration parameters
+  parameter_string <- c("parameters :")
+  for (section in names(x@dat.data)) {
+    parameter_string <- c(parameter_string, 
+                          paste0(" [", section, "]"))
+    for (parameter in names(x@dat.data[[section]])) {
+      parameter_string <- c(parameter_string, 
+                            paste0("  ", parameter, ": ", 
+                                   x@dat.data[[section]][[parameter]]))  
+    }
+  }
+  cat(paste0(parameter_string, collapse = "\n"))
 }

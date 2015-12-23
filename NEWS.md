@@ -11,9 +11,9 @@ object.
 configuration parameter (i.e. the content of a dat-file) for a `Zvariant`
 object.
 + `zparameters()` is used to fetch all accepted Zonation run configuration 
-paramteres (i.e. parameters in the dat file). Can return just the parameter 
+parameters (i.e. parameters in the dat file). Can return just the parameter 
 names or a list of `[[parameter_name]][[section]]`".
-
++ `show()` for `Zvariant` now prints run configuration parameters as well.
 
 ### BUG FIXES
 
