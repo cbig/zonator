@@ -54,12 +54,7 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
 #' 
 setMethod("get_dat_param", signature("Zvariant"), function(x, parameter) {
   # Only canocical parameters are accepted
-  all_parameters_file <- system.file("extdata/template.dat", 
-                                     package = "zonator")
-  accepted_parameters <- leaf_tags(read_dat(all_parameters_file), 
-                                   omit_sections = TRUE)
-  
-  if (!parameter %in% names(accepted_parameters)) {
+  if (!parameter %in% zparameters(just_names = TRUE)) {
     stop("Requested parameter not valid Zonation parameter.")
   }
   
@@ -252,6 +247,26 @@ setMethod("results", c("Zvariant"), function(x) {
     warning("Variant doesn't have results")
     return(NA)
   }
+})
+
+#' @rdname set_dat_param-methods
+#' 
+setMethod("set_dat_param", signature("Zvariant"), function(x, parameter, value) {
+  # Only canocical parameters are accepted
+  if (!parameter %in% zparameters(just_names = TRUE)) {
+    stop("Parameter not a valid Zonation parameter name.")
+  }
+  # Zonation dat-file (and thus x@dat.data) can only have 2 levels in the 
+  # nested list: section and parameter. Hence we can safely loop through the 
+  # list.
+  for (section_name in names(x@dat.data)) {
+    for (parameter_name in names(x@dat.data[[section_name]])) {
+      # Use zparameters() to match the section
+      x@dat.data[[zparameters()[[parameter]]]][[parameter]] <- value
+    }
+  }
+  
+  return(x)
 })
 
 #' Print Zvariant information.

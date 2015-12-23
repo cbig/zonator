@@ -284,16 +284,18 @@ test_that("Getting and setting dat data works", {
                info = "Invalid parameter value should cause an error.")
   
   # Set individual dat parameter values in different sections
-  set_dat_param(test_variant, parameter = "removal rule", value = "2")
+  test_variant <- set_dat_param(test_variant, parameter = "removal rule", 
+                                value = "2")
   expect_equal(get_dat_param(test_variant, "removal rule"), "2",
                info = "Dat-file parameter value not set correctly.")
   # Also test integer value
-  set_dat_param(test_variant, parameter = "removal rule", value = 2)
+  test_variant <- set_dat_param(test_variant, parameter = "removal rule", 
+                                value = 2)
   expect_equal(get_dat_param(test_variant, "removal rule"), "2",
                info = "Dat-file parameter value not set correctly.")
   # Non-existing, but valid parameter value should be ok
   condition_file <- "01/01_condition.txt"
-  set_dat_param(test_variant, "condition file", condition_file)
+  test_variant <- set_dat_param(test_variant, "condition file", condition_file)
   expect_equal(get_dat_param(test_variant, "condition file"), condition_file,
                info = "Not-set dat-file parameter value not set correctly.")
   # Setting invalid parameter should cause an error

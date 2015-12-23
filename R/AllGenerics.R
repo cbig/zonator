@@ -498,6 +498,34 @@ setGeneric("results", function(x) {
   standardGeneric("results")
 })
 
+# set_dat_param -----------------------------------------------------------
+
+#' Set a specified run setting parameter value
+#' 
+#' Essentially these are parameter values corresponding to Zonation dat-files.
+#' This function is used to set values of given parameter. In the current 
+#' implementation, sections have no meaning.
+#' 
+#' @note Method does not check for the sanity of the values provided.
+#'
+#' @param x Zvariant object.
+#' @param parameter Character string name of the parameter.
+#' @param value Character string or numeric value of the parameter.
+#'
+#' @return x Zvariant object.
+#' 
+#' @seealso \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
+#' \code{\link{get_dat_parameter}}. 
+#' 
+#' @export
+#' @rdname set_dat_param-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("set_dat_param", function(x, parameter, value) {
+  standardGeneric("set_dat_param")
+})
+
 # sppdata -----------------------------------------------------------------
 
 #' Simple getter mehtod for spp data in a class \code{Zvariant}object.
