@@ -127,10 +127,48 @@ clean_str <- function(x) {
   return(x)
 }
 
+#' Get all Zonation run configuration parameters.
+#' 
+#' This set of parameters is all that is accepted by Zonation.
+#' 
+#' @note Parameters are hard-coded to this package and know nothing
+#'   of potential future developments with Zonation.
+#'
+#' @param just_names Logical indicating if only the parameter names should be
+#'   returned.
+#'
+#' @return Characted vector of paramter names or a list of (parameter = section)
+#'   structure.
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#'
+zparameters <- function(just_names = FALSE) {
+  # Only canocical parameters are accepted
+  all_parameters_file <- system.file("extdata/template.dat", 
+                                     package = "zonator")
+  if (just_names) {
+    accepted_parameters <- leaf_tags(read_dat(all_parameters_file), 
+                                     omit_sections = TRUE)
+    accepted_parameters <- names(accepted_parameters)
+  } else {
+    accepted_parameters <- leaf_tags(read_dat(all_parameters_file), 
+                                     omit_sections = FALSE)
+    # Split the section.param_name Strings into tuples of (section, param_name)
+    accepted_parameters <- strsplit(names(accepted_parameters), "\\.")
+    param_list <- list()
+    for (item in accepted_parameters) {
+      param_list[[item[2]]] <- item[1]
+    }
+    accepted_parameters <- param_list
+  }
+  return(accepted_parameters)
+}
+
 #' Find all the leaf tags in a potentially nested list. The generic form of a 
 #' list is tag = value; find all the tags in a list.
 #'
-#' @param x List.
+#' @param x List to be searched.
 #' @param omit_sections Logical indicating if sections should be omitted from
 #'   vector names.
 #'

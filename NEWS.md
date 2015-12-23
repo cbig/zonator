@@ -5,7 +5,11 @@
 + `leaf_tags()` is a new utility function that can get leaf (outermost) tags
 and their values in a nested list (used for dat-parsing).
 + `get_dat_param()` can be used to get values of a (valid) Zonation run 
-configuration parameter (i.e. the content of a dat-file). 
+configuration parameter (i.e. the content of a dat-file) from a `Zvariant`
+object.
++ `zparameters()` is used to fetch all accepted Zonation run configuration 
+paramteres (i.e. parameters in the dat file). Can return just the parameter 
+names or a list of `[[parameter_name]][[section]]`".
 
 ### BUG FIXES
 

@@ -8,7 +8,7 @@ list is tag = value; find all the tags in a list.}
 leaf_tags(x, omit_sections = FALSE)
 }
 \arguments{
-\item{x}{List.}
+\item{x}{List to be searched.}
 
 \item{omit_sections}{Logical indicating if sections should be omitted from
 vector names.}
