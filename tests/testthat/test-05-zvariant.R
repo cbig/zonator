@@ -303,4 +303,21 @@ test_that("Getting and setting dat data works", {
                info = "Setting invalid parameter value should cause an error.")
   
 })
+
+test_that("Saving Zvariant works", {    
+  bat_file <- .options$bat.file
+  spp_file <- .options$spp.file
+  test_variant <- new("Zvariant", bat.file = bat_file)
+  
+  # FIRST: change the run configuration parameter values
+  
+  # Set individual dat parameter values in different sections
+  test_variant <- set_dat_param(test_variant, parameter = "removal rule", 
+                                value = "2")
+  
+  # SECOND: change the content of the spp file
+  spp_data <- sppdata(test_variant)
+  spp_data <- rbind(spp_data, spp_data)
+  sppdata(test_variant) <- spp_data
+})
   
