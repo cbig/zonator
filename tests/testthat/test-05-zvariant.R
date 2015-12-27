@@ -3,7 +3,7 @@ context("Zvariant creation")
 test_that("Zvariant with results is created correctly", {
   bat.file <- .options$bat.file
   spp.file <- .options$spp.file
-  results.variant <- new("Zvariant", bat.file=bat.file)
+  results.variant <- new("Zvariant", bat.file = bat.file)
   
   # Name
   expected.name <- gsub(".bat", "", basename(bat.file))
@@ -82,17 +82,17 @@ context("Zvariant methods")
 test_that("Getting the number of features works", {
   bat.file <- .options$bat.file
   spp.file <- .options$spp.file
-  results.variant <- new("Zvariant", bat.file=bat.file)
+  results.variant <- new("Zvariant", bat.file = bat.file)
 
   expect_that(nfeatures(results.variant), equals(7),
-              info="Test variant number of features not correct")
+              info = "Test variant number of features not correct")
 })
 
 test_that("Getting weights works", {
   # Use variant 4 (distribution smoothing) because it has weights
   bat.file <- .options$bat.file.ds
   spp.file <- .options$spp.file.ds
-  results.variant <- new("Zvariant", bat.file=bat.file)
+  results.variant <- new("Zvariant", bat.file = bat.file)
   
   correct.feature.data <- read_spp(spp.file)
   correct.weights <- correct.feature.data$weight
@@ -104,7 +104,7 @@ test_that("Getting weights works", {
 test_that("Assigning and fetching feature names works", {
   bat.file <- .options$bat.file
   spp.file <- .options$spp.file
-  results.variant <- new("Zvariant", bat.file=bat.file)
+  results.variant <- new("Zvariant", bat.file = bat.file)
   
   correct.feature.data <- read_spp(spp.file)
   
@@ -162,9 +162,9 @@ test_that("Assigning and fetching group names and identities works", {
                    paste("Test variant newly assigned group codes incorrect"))
   # Expect error if the assigned vector is wrong length
   expect_error((groups(results.variant) <- rep(c(1, 2), 2)),
-               info="Trying to assign too few group IDs did not generate an error")
+               info = "Trying to assign too few group IDs did not generate an error")
   expect_error((groups(results.variant) <- rep(c(1, 2), 10)),
-               info="Trying to assign too many group IDs did not generate an error")
+               info = "Trying to assign too many group IDs did not generate an error")
   # Set the correct codes back
   groups(results.variant) <- correct.grp.codes
   
@@ -199,7 +199,8 @@ test_that("Assigning and fetching group names and identities works", {
   extended.feature.data <- cbind(correct.feature.data, results.variant@groups$name)
   names(extended.feature.data) <- c(names(correct.feature.data), "group.name")
   
-  expect_true(all(extended.feature.data == sppdata(results.variant, group.names=TRUE)),
+  expect_true(all(extended.feature.data == sppdata(results.variant, 
+                                                   group.names = TRUE)),
               paste("Method sppdata doesn't return what it's supposed to"))
   
   # Test changing group codes with different levels of groups
@@ -233,10 +234,10 @@ test_that("Assigning and fetching group names and identities works", {
 test_that("Retrieving variant output directory works", {    
   bat.file <- .options$bat.file
   spp.file <- .options$spp.file
-  test.variant <- new("Zvariant", bat.file=bat.file)
+  test.variant <- new("Zvariant", bat.file = bat.file)
   
   correct.output.dir <- system.file("extdata/tutorial/basic/01/01_out",
-                                    package="zonator")
+                                    package = "zonator")
   
   expect_identical(outdir(test.variant), correct.output.dir,
                    "outdir() does not return the correct path for Zvariant")
@@ -249,7 +250,7 @@ test_that("Retrieving variant rank raster works", {
                                           "01.rank.compressed.tif"))
   
   bat.file <- .options$bat.file
-  test.variant <- new("Zvariant", bat.file=bat.file)
+  test.variant <- new("Zvariant", bat.file = bat.file)
   
   expect_identical(rank_raster(test.variant), correct.rank.raster,
                    "Correct rank raster is not returned for Zvariant")
@@ -258,7 +259,7 @@ test_that("Retrieving variant rank raster works", {
   no.results.bat.file <- file.path(.options$setup.dir, 
                                    "06_dummy_for_testing.batx")
   suppressWarnings(no.results.variant <- new("Zvariant", 
-                                           bat.file=no.results.bat.file))
+                                           bat.file = no.results.bat.file))
   expect_warning(rank_raster(no.results.variant))
   
 })
