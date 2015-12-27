@@ -93,6 +93,15 @@ assign("dat.file", file.path(.options$setup.dir, "01/01.dat"),
 assign("spp.file", file.path(.options$setup.dir, "01/01.spp"),
        envir=.options)
 
+# Another file for variant without groups
+assign("bat.file.no.grps", 
+       file.path(.options$setup.dir, "03_boundary_length_penalty.bat"), 
+       envir = .options)
+assign("dat.file.no.grps", file.path(.options$setup.dir, "03/03.dat"),
+       envir = .options)
+assign("spp.file.no.grps", file.path(.options$setup.dir, "03/03.spp"),
+       envir = .options)
+
 # Another file for a connectivity variant
 assign("bat.file.ds", file.path(.options$setup.dir, 
                                 "04_distribution_smoothing.bat"), 
