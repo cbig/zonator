@@ -116,6 +116,15 @@ assign("species.files", paste0(.options$data.dir, "/species", 1:7, ".tif"),
 assign("groups.file", file.path(.options$setup.dir, "groups.txt"), 
        envir=.options)
 
+# Another file for variant without results
+assign("bat.file.no.results", 
+       file.path(.options$setup.dir, "06_dummy_for_testing.batx"), 
+       envir = .options)
+assign("dat.file.no.results", file.path(.options$setup.dir, "06/06.dat"),
+       envir = .options)
+assign("spp.file.no.results", file.path(.options$setup.dir, "06/06.spp"),
+       envir = .options)
+
 # Tutorial results files, use 02_additive_benefit_function variant so that 
 # weights are used
 assign("results.spp.file", file.path(.options$setup.dir, "02/02.spp"),
