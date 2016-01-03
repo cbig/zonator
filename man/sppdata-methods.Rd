@@ -4,23 +4,40 @@
 \name{sppdata}
 \alias{sppdata}
 \alias{sppdata,Zvariant-method}
+\alias{sppdata<-}
+\alias{sppdata<-,Zvariant,data.frame-method}
 \title{Simple getter mehtod for spp data in a class \code{Zvariant}object.}
 \usage{
 sppdata(x, group.names = FALSE)
 
+sppdata(x) <- value
+
 \S4method{sppdata}{Zvariant}(x, group.names = FALSE)
+
+\S4method{sppdata}{Zvariant,data.frame}(x) <- value
 }
 \arguments{
 \item{x}{Zvariant object.}
 
 \item{group.names}{boolean indicating whether group codes (FALSE) or names
 (TRUE) are used to indicate group. (default: FALSE)}
+
+\item{value}{data frame that must match the number and names of columns in 
+sppdata (see \link{\code{sppdata}}).}
 }
 \value{
 Data frame (object's spp.data)
 }
 \description{
 Method will also return group column with spp data if it exists.
+
+Data can be assigned independent of whether groups are used or not. Since 
+groups information is stored separately in \code{groups} slot, groups 
+information must also be updated independently.
+}
+\note{
+Everytime spp data is set, groups information is deleted as there
+is now straightforward way of preserving and/or imputing group information.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

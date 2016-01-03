@@ -268,35 +268,30 @@ test_that("Getting and setting spp data works", {
   # assigning groups is not handled by sppdata().
   incorrect_spp_data <- data.frame(colA = 1:10, colB = 11:20)
   expect_error(sppdata(results_variant) <- incorrect_spp_data,
-               "Incorrect number of columns in assigning spp data",
+               "Incorrect number of columns in assigning spp data.",
                info = "Assigning wrong number of columns should cause an error.")
   # Assigning spp data with incorrect column names should fail.
   incorrect_spp_data <- spp_data
   names(incorrect_spp_data) <- paste0("foo", 1:ncol(spp_data))
   expect_error(sppdata(results_variant) <- incorrect_spp_data,
-               "Incorrect column names in assigning spp data",
+               paste0("Incorrect column names in assigning spp data. Permitted names are: ",
+                      paste(names(results_variant@spp.data), collapse = ", ")),
                info = "Assigning wrong column names should cause an error.")
   
-  # Duplicate the spp data stack
+  # Duplicate the spp data stack, including groups
   spp_data <- rbind(spp_data, spp_data)
   # Assign the new spp data (this should work)
   sppdata(results_variant) <- spp_data
-  # NOTE that sppdata()<- should assign the group numbers correctly if the 
-  # feature name is already in the spp data and groups are used.
-  spp_data_groups <- spp_data
-  spp_data_groups$groups <- groups
-  expect_equal(sppdata(results_variant), spp_data_groups,
+  # However, the group information should have been defaulted
+  nrows <- nrow(spp_data)
+  default_group_data <-  data.frame(output.group = rep(1, nrows),
+                                    condition.group = rep(-1, nrows),
+                                    retention.group = rep(-1, nrows),
+                                    retention.mode = rep(1, nrows),
+                                    local.edge.correct.group = rep(-1, nrows),
+                                    name = rep("group1", nrows))
+  expect_equal(results_variant@groups, default_group_data,
                info = "Assinging spp data does not work correctly.")
-  # However, feature names not already in the spp data should be assigned into
-  # a new group if groups are present 
-  new_spp <- data.frame(weight = 1, alpha = 1.0, bqp = 1.0, bqp_p = 1, 
-                        cellrem = 1, filepath = "../data/species8.tif",
-                        name = "species8")
-  spp_data <- rbind(spp_data, new_spp)
-  spp_data_groups <- spp_data
-  spp_data_groups$groups <- c(rep(groups, 2), 3)
-  expect_equal(sppdata(results_variant), spp_data_groups,
-               info = "Assinging spp data with new group does not work correctly.")
   
   # has_results() should now warn about changed data if results are present.
   expect_warning(has_results(results_variant),

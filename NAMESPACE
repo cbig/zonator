@@ -3,6 +3,7 @@
 export("featurenames<-")
 export("groupnames<-")
 export("groups<-")
+export("sppdata<-")
 export(check_names)
 export(check_path)
 export(check_zonation)

@@ -302,6 +302,34 @@ setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
   return(spp.data)
 })
 
+#' @name sppdata<-
+#' @rdname sppdata-methods
+#' @aliases sppdata<-,Zvariant,data.frame-method
+#' 
+setReplaceMethod("sppdata", c("Zvariant", "data.frame"), function(x, value) {
+  # Check the number and names of columns
+  if (ncol(value) != 7) {
+    stop("Incorrect number of columns in assigning spp data.")
+  }
+  if (!any(names(value) %in% names(x@spp.data))) {
+    stop("Incorrect column names in assigning spp data. Permitted names are: ",
+         paste(names(x@spp.data), collapse = ", "))
+  }
+  x@spp.data <- value
+  # If groups are used, default the groups information
+  if (nrow(x@groups) > 0) {
+    nrows <- nrow(x@spp.data)
+    x@groups <- data.frame(output.group = rep(1, nrows),
+                           condition.group = rep(-1, nrows),
+                           retention.group = rep(-1, nrows),
+                           retention.mode = rep(1, nrows),
+                           local.edge.correct.group = rep(-1, nrows),
+                           name = rep("group1", nrows))
+  }
+  
+  return(x)
+})
+
 #' @rdname sppweights-methods
 #' 
 setMethod("sppweights", c("Zvariant"), function(x) {
