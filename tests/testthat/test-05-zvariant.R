@@ -40,7 +40,7 @@ test_that("Zvariant with results is created correctly", {
 
 test_that("Zvariant without results is created correctly", {
   
-  # Variant with no results, no results
+  # Variant with no groups, no results
   no.results.bat.file <- file.path(.options$setup.dir, 
                                    "06_dummy_for_testing.batx")
   suppressWarnings(no.results.variant <- new("Zvariant", 
@@ -189,8 +189,7 @@ test_that("Assigning and fetching group names and identities works", {
   expect_identical(as.vector(correct.grp.names), groupnames(results.variant),
                    "Test variant group names not what they're supposed to")
   
-  # Test the sppdata method. NOTE that sppdata will cbind group code 
-  # column to the end! 
+  # NOTE that sppdata will cbind group code column to the end! 
   extended.feature.data <- cbind(correct.feature.data, correct.grp.codes)
   names(extended.feature.data) <- c(names(correct.feature.data), "group")
   expect_true(all(extended.feature.data == sppdata(results.variant)),
@@ -229,6 +228,81 @@ test_that("Assigning and fetching group names and identities works", {
   expect_identical(groupnames(results.variant), groupnames(variant.results),
                    paste("Generic method groupnames does not return the same",
                          "values for group names"))
+})
+
+test_that("Getting and setting spp data works", {
+  bat_file_nogrps <- .options$bat.file.no.grps
+  spp_file_nogrps <- .options$spp.file.no.grps
+  results_variant_nogrps <- new("Zvariant", bat.file = bat_file_nogrps)
+  
+  bat_file <- .options$bat.file
+  spp_file <- .options$spp.file
+  results_variant <- new("Zvariant", bat.file = bat_file)
+  
+  # Test with a variant with no results
+  bat_file_noresults <- .options$bat.file.no.results
+  spp_file_noresults <- .options$spp.file.no.restults
+  suppressWarnings(results_variant_noresults <- new("Zvariant", 
+                                                    bat.file = bat_file_noresults))
+  
+  # NO GROUPS
+  
+  # Read the spp file directly for comparison
+  spp_data <- read.table(spp_file_nogrps, as.is = TRUE)
+  names(spp_data) <- c("weight", "alpha", "bqp", "bqp_p", "cellrem", "filepath")
+  # Create featurename column
+  spp_data$name <- gsub("\\.tif$", "", basename(spp_data$filepath))
+  expect_equal(sppdata(results_variant_nogrps), spp_data,
+               info = "Spp data without groups not returned correctly")
+  
+  # GROUPS
+  
+  # Create groups column
+  spp_data_groups <- spp_data
+  groups <- c(1, 2, 2, 1, 2, 1, 1)
+  spp_data_groups$group <- groups
+  expect_equal(sppdata(results_variant), spp_data_groups,
+               info = "Spp data with groups not returned correctly")
+  
+  # Assigning spp data with incorrect number of columns should fail. NOTE that
+  # assigning groups is not handled by sppdata().
+  incorrect_spp_data <- data.frame(colA = 1:10, colB = 11:20)
+  expect_error(sppdata(results_variant) <- incorrect_spp_data,
+               "Incorrect number of columns in assigning spp data",
+               info = "Assigning wrong number of columns should cause an error.")
+  # Assigning spp data with incorrect column names should fail.
+  incorrect_spp_data <- spp_data
+  names(incorrect_spp_data) <- paste0("foo", 1:ncol(spp_data))
+  expect_error(sppdata(results_variant) <- incorrect_spp_data,
+               "Incorrect column names in assigning spp data",
+               info = "Assigning wrong column names should cause an error.")
+  
+  # Duplicate the spp data stack
+  spp_data <- rbind(spp_data, spp_data)
+  # Assign the new spp data (this should work)
+  sppdata(results_variant) <- spp_data
+  # NOTE that sppdata()<- should assign the group numbers correctly if the 
+  # feature name is already in the spp data and groups are used.
+  spp_data_groups <- spp_data
+  spp_data_groups$groups <- groups
+  expect_equal(sppdata(results_variant), spp_data_groups,
+               info = "Assinging spp data does not work correctly.")
+  # However, feature names not already in the spp data should be assigned into
+  # a new group if groups are present 
+  new_spp <- data.frame(weight = 1, alpha = 1.0, bqp = 1.0, bqp_p = 1, 
+                        cellrem = 1, filepath = "../data/species8.tif",
+                        name = "species8")
+  spp_data <- rbind(spp_data, new_spp)
+  spp_data_groups <- spp_data
+  spp_data_groups$groups <- c(rep(groups, 2), 3)
+  expect_equal(sppdata(results_variant), spp_data_groups,
+               info = "Assinging spp data with new group does not work correctly.")
+  
+  # has_results() should now warn about changed data if results are present.
+  expect_warning(has_results(results_variant),
+                 info = "Changing variant data when results present should cause a warning")
+  
+  
 })
 
 test_that("Retrieving variant output directory works", {    

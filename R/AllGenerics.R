@@ -549,6 +549,28 @@ setGeneric("sppdata", function(x, group.names=FALSE) {
   standardGeneric("sppdata")
 })
 
+# sppdata<- ---------------------------------------------------------------
+
+#' Assign spp data a class \code{Zvariant} instance. 
+#' 
+#' Data can be assigned independent of whether groups are used or not. Since 
+#' groups information is stored separately in \code{groups} slot, groups 
+#' inforamation must also be updated independently. If the data frame replacing
+#' spp data has same features than previously, the group information for these
+#' is retained (if groups are present). New features are all placed into a 
+#' new group with value \code{N + 1} where \code{N} is the numeric maximum 
+#' value of current groups.  
+#'
+#' @param value data frame that must match the number and names of columns in 
+#' sppdata (see \link{\code{sppdata}}). 
+#'
+#' @export
+#' @rdname sppdata-methods
+#' 
+setGeneric("sppdata<-", function(x, value) {
+  standardGeneric("sppdata<-")
+})
+
 # sppweights --------------------------------------------------------------
 
 #' Get biodiversity feature weights of a Zonation variant
