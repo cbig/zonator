@@ -265,7 +265,7 @@ setMethod("set_dat_param", signature("Zvariant"), function(x, parameter, value) 
       x@dat.data[[zparameters()[[parameter]]]][[parameter]] <- value
     }
   }
-  
+  x@results_dirty <- TRUE
   return(x)
 })
 
@@ -319,8 +319,7 @@ setReplaceMethod("sppdata", c("Zvariant", "data.frame"), function(x, value) {
   # spp data changed, results are no longer in sync if present
   if (any(unlist(has_results(x)))) {
     x@results_dirty <- TRUE
-    warning("sppdata has changed, results may not be in sync with the current state of the Zvariant object.",
-            .call = FALSE)
+    warning("sppdata has changed, results may not be in sync with the current state of the Zvariant object.")
   }
   
   # If groups are used, default the groups information

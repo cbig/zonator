@@ -358,6 +358,9 @@ test_that("Getting and setting dat data works", {
                                 value = "2")
   expect_equal(get_dat_param(test_variant, "removal rule"), "2",
                info = "Dat-file parameter value not set correctly.")
+  # If results are present, object result state should be dirty.
+  expect_equal(test_variant@results_dirty, TRUE,
+               info = "Changing dat parameters should make object dirty.")
   # Also test integer value
   test_variant <- set_dat_param(test_variant, parameter = "removal rule", 
                                 value = 2)
