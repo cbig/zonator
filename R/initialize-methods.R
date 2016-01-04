@@ -274,10 +274,13 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
   # results ####################################################################
   
-  output.folder <- .Object@call.params$output.folder
-  .Object@results <- new("Zresults", root=.Object@call.params$output.folder)
+  .Object@results <- new("Zresults", root = .Object@call.params$output.folder)
   
   featurenames(.Object) <- spp.data$name
   
-  .Object
+  # Use an internal variable to track whether results are procuded by the 
+  # current spp data and settings.
+  .Object@results_dirty <- FALSE
+  
+  return(.Object)
 })

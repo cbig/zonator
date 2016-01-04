@@ -293,9 +293,9 @@ test_that("Getting and setting spp data works", {
   expect_equal(results_variant@groups, default_group_data,
                info = "Assinging spp data does not work correctly.")
   
-  # has_results() should now warn about changed data if results are present.
-  expect_warning(has_results(results_variant),
-                 info = "Changing variant data when results present should cause a warning")
+  # Slot results_dirty should be TRUE.
+  expect_equal(results_variant@results_dirty, TRUE,
+                 info = "Changing variant data when results present should make object dirty.")
   
   
 })

@@ -316,6 +316,13 @@ setReplaceMethod("sppdata", c("Zvariant", "data.frame"), function(x, value) {
          paste(names(x@spp.data), collapse = ", "))
   }
   x@spp.data <- value
+  # spp data changed, results are no longer in sync if present
+  if (any(unlist(has_results(x)))) {
+    x@results_dirty <- TRUE
+    warning("sppdata has changed, results may not be in sync with the current state of the Zvariant object.",
+            .call = FALSE)
+  }
+  
   # If groups are used, default the groups information
   if (nrow(x@groups) > 0) {
     nrows <- nrow(x@spp.data)

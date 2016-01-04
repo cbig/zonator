@@ -273,6 +273,10 @@ check_variant <- function(object) {
 #'    \item{\code{call.params}:}{List of parsed call parameters from the 
 #'      batch file.}
 #'    \item{\code{results}:}{List holding the results (data frames).}
+#'    \item{\code{results_dirty}:}{Logical indicating if the current object
+#'      data (dat.data and spp.data) has been changed when results are present.
+#'      If \code{TRUE}, data has changed and results may have been produced 
+#'      using different data.}
 #'  }
 #'
 #' @name Zvariant
@@ -285,5 +289,6 @@ setClass("Zvariant", representation(name = "character", bat.file = "character",
                                     dat.data = "list", spp.data = "data.frame",
                                     output.dir = "character", 
                                     groups = "data.frame",
-                                    call.params = "list", results = "Zresults"),
+                                    call.params = "list", results = "Zresults",
+                                    results_dirty = "logical"),
          validity = check_variant)
