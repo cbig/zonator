@@ -416,4 +416,20 @@ test_that("Saving Zvariant works", {
   expect_identical(test_variant, new_variant,
                    info = "New and old variant objects should be identical.")
 })
-  save_zvariant
+
+context("Zvariant special cases")
+
+test_that("Zvariant with condition layers is created correctly", {
+  bat_file <- .options$bat.file.cond
+  spp_file <- .options$spp.file.cond
+  test_variant <- new("Zvariant", bat.file = bat_file)
+  
+  correct_condition_layers <- data.frame(group = c(1, 2),
+                                         raster = c("../data/condition1.tif",
+                                                    "../data/condition2.tif"))
+  expect_equal(test_variant@condition.layers, correct_condition_layers,
+               info = "Condition layers not assigned correctly.")
+  
+})
+
+  

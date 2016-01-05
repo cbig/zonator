@@ -273,6 +273,23 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
     groupnames(.Object) <- group.names
   }
   
+  # Condition layers
+  
+  # Again, check that condition(s) are 1) used and 2) available.
+  use_condition_layer <- get_dat_param(.Object, "use condition layer", 
+                                       warn_missing = FALSE) 
+  if (!is.na(use_condition_layer) & use_condition_layer == 1) {
+    condition_file <- get_dat_param(.Object, "condition file", 
+                                    warn_missing = FALSE) 
+    condition_file <- check_path(condition_file, dirname(bat.file), 
+                                 require.file = TRUE)
+    if (.options$debug) {
+      message("Reading in condition file ", condition_file)
+    }
+    .Object@condition.layers <- read.table(condition_file, 
+                                          col.names = c("group", "raster"))
+  }
+  
   # results
   .Object@results <- new("Zresults", root = .Object@call.params$output.folder)
   
