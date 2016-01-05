@@ -22,9 +22,7 @@ test_that("Writing a dat file works", {
   
   # Write file, expect message informing about the write operation
   dat_file_path <- tempfile(fileext = ".dat")
-  expect_message(write_dat(x = org_dat_data, filename = dat_file_path),
-                 paste("Wrote dat-file", dat_file_path),
-                 info = "Correct message not emitted from writing a dat file.")
+  write_dat(x = org_dat_data, filename = dat_file_path)
   
   # Read in the file again
   new_dat_data <- read_dat(dat_file_path)
