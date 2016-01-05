@@ -512,7 +512,7 @@ setGeneric("results", function(x) {
 #'   is created.
 #' @param overwrite Logical indicating whether files should overwritten if 
 #'   they exist.
-#' @param debug Logical setting whether extra debugging information should be
+#' @param debug_msg Logical setting whether extra debugging information should be
 #'   printed.
 #'
 #' @return Invisible NULL. This method is used only for it's side effects.
@@ -524,7 +524,8 @@ setGeneric("results", function(x) {
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("save_zvariant", function(x, dir="", overwrite=FALSE, debug=FALSE) {
+setGeneric("save_zvariant", function(x, dir="", overwrite=FALSE, 
+                                     debug_msg=FALSE) {
   standardGeneric("save_zvariant")
 })
 
