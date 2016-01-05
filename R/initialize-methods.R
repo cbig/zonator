@@ -257,23 +257,20 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   # groups content
   
   # First we need to define whether groups are 1) used, and 2) available. 
-  settings <- .Object@dat.data$Settings
-  if ("use groups" %in% names(settings)) {
-    if (settings$`use groups` == 1) {
-      if ("groups file" %in% names(settings)) {
-        groups.file <- check_path(settings$`groups file`, dirname(bat.file),
-                                  require.file = TRUE)
-        if (.options$debug) {
-          message("Reading in groups file ", groups.file)
-        }
-        .Object@groups <- read_groups(groups.file)
-        # Initialize generic group names "group1", "group2" etc
-        group.ids <- unique(.Object@groups$output.group)
-        group.names <- paste0("group", group.ids)
-        names(group.names) <- group.ids
-        groupnames(.Object) <- group.names
-      }
+  use_groups <- get_dat_param(.Object, "use groups", warn_missing = FALSE) 
+  if (!is.na(use_groups) & use_groups == 1) {
+    groups_file <- get_dat_param(.Object, "groups file", warn_missing = FALSE) 
+    groups_file <- check_path(groups_file, dirname(bat.file), 
+                              require.file = TRUE)
+    if (.options$debug) {
+      message("Reading in groups file ", groups_file)
     }
+    .Object@groups <- read_groups(groups_file)
+    # Initialize generic group names "group1", "group2" etc
+    group.ids <- unique(.Object@groups$output.group)
+    group.names <- paste0("group", group.ids)
+    names(group.names) <- group.ids
+    groupnames(.Object) <- group.names
   }
   
   # results
