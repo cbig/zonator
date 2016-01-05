@@ -1,0 +1,211 @@
+Zonation 4.0.0b31_compact, build: Aug  7 2014 14:15:04
+==========================================================================
+The Zonation software is distributed in the  hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+==========================================================================
+ For more information and conditions of use of this software, see the
+ disclaimer in Help->About Zonation, in the graphical user interface
+
+Starting Zonation run on 'CBIG-arnold' at 7:35:42 PM (2016/1/5) 
+Locale is: C
+Zonation core process parameters: 
+   run mode: normal run (-r)
+   settings file: 07/07.dat
+   biodiversity features list file: 07/07.spp
+   output file(s): 07/07_out/01
+   info-gap alpha: 0
+   use_smoothing: 0
+   smoothing_alpha_multiplier: 1
+   autoclose (deprecated): 0
+
+Reading settings file: 07/07.dat
+   Option not overriden in command line, removal rule: 1
+   Option not overriden in command line, warp factor: 100
+
+Output settings:
+   Output weighted range size corrected richness map: yes
+   Output proportional loss rank map: no
+
+********** Arbitrary kernels not enabled ********
+
+*************** NOT USING ANALYSIS AREA MASK **************
+
+
+******* Condition layers used. Will load the list of condition layers from file: cond_list.txt
+
+Loading list of biodiversity features from file: 07/07.spp
+Row count in the features/species list file: 7
+../data/species1.tif: 555 rows, 649 columns read. Nodata cells =  249913, sum of elements = 35280.8
+
+Matrix columns/x dimension: 649, rows/y dimension: 555
+*******************************************************
+Loading feature grouping information from 07/07_groups.txt
+Groups information loaded.
+
+****** REMOVAL RULE: core-area Zonation (CAZ) *******
+
+****** NOT using Info-gap distribution discounting uncertainty analysis ****************
+
+
+*** Not using "drop 0 occurrence features", all features will be processed even if they do not occur anywhere in the analysis area.
+
+****** NOT using distribution smoothing, interactions or matrix connectivity *******
+
+======------ Allocating memory for input layers... ------======
+Using compact structure (lookup version),  sizeof(Occur_Container): 18, sizeof(allocated occurrence): 6
+Counting effective occurrencies
+Time: 1452015342 = 7:35:42 PM (2016/1/5) 
+Feature file #1: ../data/species1.tif; non-missing cells: 110282
+Feature file #2: ../data/species2.tif; non-missing cells: 110282
+Feature file #3: ../data/species3.tif; non-missing cells: 110282
+Feature file #4: ../data/species4.tif; non-missing cells: 110282
+Feature file #5: ../data/species5.tif; non-missing cells: 110282
+Feature file #6: ../data/species6.tif; non-missing cells: 110282
+Feature file #7: ../data/species7.tif; non-missing cells: 110282
+Total # of feature layers: 7
+Total # of cells in every layer: 360195
+Effective # of cells (cells with any occurrence, globally): 110282
+Total # of occurrencies: 771974, counted across 7 layers; average across layers: 110282
+Percentage of globally effective occurrencies = 100 % (relative to total effective cells) = 30.6173 % (relative to total cells)
+Memory required for biodiversity features: 9.058 MB, of which base memory: 4.641 MB, and occurrencies require: 4.417 MB
+Time now: 1452015342 = 7:35:42 PM (2016/1/5) 
+Finished preload/counting effective occurrencies. Elapsed: 0 seconds.
+======------ Allocating memory for input layers: finished successfully ------======
+
+******=====----- Loading feature (e.g., species) data layers -----=====**********
+* Loaded biodiversity feature file #1, ../data/species1.tif, non-missing cells:110282, their sum: 35280.8
+* Loaded biodiversity feature file #2, ../data/species2.tif, non-missing cells:110282, their sum: 29142.7
+* Loaded biodiversity feature file #3, ../data/species3.tif, non-missing cells:110282, their sum: 35307.7
+* Loaded biodiversity feature file #4, ../data/species4.tif, non-missing cells:110282, their sum: 35116.9
+* Loaded biodiversity feature file #5, ../data/species5.tif, non-missing cells:110282, their sum: 22852.8
+* Loaded biodiversity feature file #6, ../data/species6.tif, non-missing cells:110282, their sum: 36691.1
+* Loaded biodiversity feature file #7, ../data/species7.tif, non-missing cells:110282, their sum: 34740.3
+Calculating centers of the distributions of 7 features...
+
+******=====----- 'use condition' is on. Transforming input layers... -----=====******
+
+Loading condition file list from file cond_list.txt
+
+ * Applying condition layer number 1:
+../data/condition1.tif: 555 rows, 649 columns read. Nodata cells =  249913, sum of elements = 18239.1
+Condition layer loaded without errors, count of effective elements (with values in [0,1]) = 110282 , missing (<0) elements count = 249913
+ --- Report on loss of biodiversity feature proportions (by condition transformation) ---
+Feature#  proportion_lost
+1	0.69557
+4	0.74548
+6	0.83035
+7	0.85003
+-----------------------
+The condition transformation with condition layer number 1 was applied to 4 biodiversity features.
+ * Applied condition layer number 1
+
+ * Applying condition layer number 2:
+../data/condition2.tif: 555 rows, 649 columns read. Nodata cells =  249913, sum of elements = 13032.3
+Condition layer loaded without errors, count of effective elements (with values in [0,1]) = 110282 , missing (<0) elements count = 249913
+ --- Report on loss of biodiversity feature proportions (by condition transformation) ---
+Feature#  proportion_lost
+2	0.78747
+3	0.82820
+5	0.89164
+-----------------------
+The condition transformation with condition layer number 2 was applied to 3 biodiversity features.
+ * Applied condition layer number 2
+
+Read condition layers list file, number of condition layers: 2
+
+Applied condition layers through the landscape.
+Consequently, initial remaining fractions do not necessarily start from 1.
+******=====----- Finished condition transformations in 0 seconds. -----=====******
+
+
+******=====----- Finished loading and transformation of feature data layers -----=====*********
+
+Calculating richness across biodiversity features...
+Done in 0 seconds. Time now: 7:35:42 PM (2016/1/5) 
+Saving raster map of weighted range size corrected richness
+Saving raster: 07/07_out/01.wrscr.compressed.tif (GTiff format)
+
+******=====----- Preparing to start the ranking process... -----=====**********
+Note: using edge removal.
+
+Loaded data and initialized in 0 seconds. Current time: 7:35:42 PM (2016/1/5) 
+Cells with data = 110282; locations with missing values = 249913
+
+---------------------======********** RANKING STARTS HERE ***********======-----------------------
+Initially removed cells count = 0
+Note: No initial removal was used.
+
+Biodiversity features performance levels check. Proportions remaining:
+---------
+Feature 1: 0.3044356
+Feature 2: 0.2125261
+Feature 3: 0.1717985
+Feature 4: 0.2545176
+Feature 5: 0.1083636
+Feature 6: 0.1696459
+Feature 7: 0.149965
+---------
+Minimum proportion remaining: 0.1083636, average: 0.1958932, weighted average: 0.1958932, maximum: 0.3044356
+
+
+The following lines provide information on how the ranking is done by iterative removal of cells, with 6 columns per line:
+Cells removed, proportion of landscape remaining, cost of remaining landscape, edge list length, smallest remaining proportion in all biodiversity features (e.g. species), time elapsed (s)
+----------------------------------------------------------------------------------------------------------------------------
+             0            100%%              0          32738       0.108364            0
+          4411        96.0003%%         105872          32394       0.107901            0
+          8822        92.0006%%         101461          31693       0.107264            0
+         13233        88.0009%%          97050          30468       0.106449            0
+         17644        84.0012%%          92639          30254       0.105616            0
+         22055        80.0014%%          88228          29598       0.104393            1
+         26466        76.0017%%          83817          28870       0.103051            1
+         30877         72.002%%          79406          28099       0.101536            1
+         35288        68.0023%%          74995          27443      0.0997416            1
+         39699        64.0026%%          70584          26852      0.0975247            2
+         44110        60.0029%%          66173          25849      0.0948717            2
+         48521        56.0032%%          61762          24822      0.0918104            2
+         52932        52.0035%%          57351          24027      0.0887918            2
+         57343        48.0038%%          52940          23246      0.0852146            3
+         61754        44.0041%%          48529          22128      0.0809722            3
+         66165        40.0044%%          44118          20604      0.0766001            3
+         70576        36.0046%%          39707          19039      0.0718165            3
+         74987        32.0049%%          35296          17105      0.0662696            4
+         79398        28.0052%%          30885          15582      0.0605496            4
+         83809        24.0055%%          26474          13831      0.0539579            4
+         88220        20.0058%%          22063          11991      0.0476303            4
+         92631        16.0061%%          17652           9858       0.040708            5
+         97042        12.0064%%          13241           8234      0.0338359            5
+        101453        8.00667%%           8830           6030      0.0251812            5
+        105864        4.00696%%           4419           3175      0.0133862            5
+        110275     0.00725389%%              8              8    2.98184e-05            5
+        110282              0%%              0              0              0            5
+----------------------------------------------------------------------------------------------------------------------------
+Total count of cells removed = 110282
+
+Done in 5 seconds.
+Found 0 ties.
+
+Biodiversity features performance levels check. Proportions remaining:
+---------
+Feature 1:    0
+Feature 2:    0
+Feature 3:    0
+Feature 4:    0
+Feature 5:    0
+Feature 6:    0
+Feature 7:    0
+---------
+Minimum proportion remaining:    0, average:    0, weighted average:    0, maximum:    0
+
+============================================================
+* Writing final output files...
+Writing file of feature information: 07/07_out/01.features_info.txt
+Writing file of performance (representation, coverage, etc.) curves: 07/07_out/01.curves.txt
+Saving rank image: 07/07_out/01.png (PNG format)
+Saving raster: 07/07_out/01.rank.compressed.tif (GTiff format)
+Writing group curves file: 07/07_out/01.grp_curves.txt
+No automated post-processing file specified
+============================================================
+Finished spatial prioritization process. Freeing data structures in memory...
+Finished at 7:35:48 PM (2016/1/5) 
+Elapsed time: 6034 ms == 0.00168 hours == 6.98e-05 days
