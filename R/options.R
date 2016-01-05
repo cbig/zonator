@@ -85,6 +85,15 @@ assign("data.dir", file.path(.options$tutorial.dir, "data"), envir=.options)
 assign("output.dir", file.path(.options$setup.dir, "output"), 
        envir=.options)
 
+assign("species.rasters", paste0(.options$data.dir, "/species", 1:7, ".tif"),
+       envir = .options)
+assign("groups.file", file.path(.options$setup.dir, "groups.txt"), 
+       envir = .options)
+assign("condition.file", file.path(.options$setup.dir, "cond_list.txt"), 
+       envir = .options)
+assign("condition.rasters", paste0(.options$data.dir, "/condition", 1:2, ".tif"),
+       envir = .options)
+
 # Tutorial run and configuration files
 assign("bat.file", file.path(.options$setup.dir, "01_core_area_zonation.bat"), 
        envir=.options)
@@ -111,15 +120,6 @@ assign("dat.file.ds", file.path(.options$setup.dir, "04/04.dat"),
 assign("spp.file.ds", file.path(.options$setup.dir, "04/04.spp"),
        envir=.options)
 
-assign("species.rasters", paste0(.options$data.dir, "/species", 1:7, ".tif"),
-       envir = .options)
-assign("groups.file", file.path(.options$setup.dir, "groups.txt"), 
-       envir = .options)
-assign("condition.file", file.path(.options$setup.dir, "cond_list.txt"), 
-       envir = .options)
-assign("condition.rasters", paste0(.options$data.dir, "/condition", 1:2, ".tif"),
-       envir = .options)
-
 # Another file for variant without results
 assign("bat.file.no.results", 
        file.path(.options$setup.dir, "06_dummy_for_testing.batx"), 
@@ -137,4 +137,13 @@ assign("results.curves", file.path(.options$setup.dir,
                                    "02/02_out/02.curves.txt"), envir = .options)
 assign("results.grp.curves", file.path(.options$setup.dir, 
                                        "02/02_out/02.grp_curves.txt"), 
+       envir = .options)
+
+# Variant with condition layers
+assign("bat.file.cond", 
+       file.path(.options$setup.dir, "07_condition_layer.bat"), 
+       envir = .options)
+assign("dat.file.cond", file.path(.options$setup.dir, "07/07.dat"),
+       envir = .options)
+assign("spp.file.cond", file.path(.options$setup.dir, "07/07.spp"),
        envir = .options)
