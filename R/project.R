@@ -105,7 +105,7 @@ create_zproject <- function(name, dir, variants, dat_template_file = NULL,
                        " to variant directory ", variant_dir)
     file.copy(from = dat_template_file, to = dat_to, overwrite = TRUE)
     
-    # Work out the deatails depending if using a template file or a 
+    # Work out the details depending if using a template file or a 
     # directory of input rasters.
     if (!is.null(spp_template_dir)) {
       if (file.exists(spp_template_dir)) {
