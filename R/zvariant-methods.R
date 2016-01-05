@@ -11,6 +11,8 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# curves ------------------------------------------------------------------
+
 #' @rdname curves-methods
 #' @aliases curves,Zresults-method
 #' 
@@ -18,6 +20,8 @@ setMethod("curves", c("Zvariant"), function(x, cols=NULL, groups=FALSE,
                                             lost.lower=0.0, lost.upper=1.0) {
  return(curves(results(x), cols, groups, lost.lower, lost.upper))
 })
+
+# featurenames ------------------------------------------------------------
 
 #' @rdname featurenames-methods
 #' 
@@ -28,6 +32,8 @@ setMethod("featurenames", signature("Zvariant"), function(x) {
   }
   return(x@spp.data$name)
 })
+
+# featurenames<- ----------------------------------------------------------
 
 #' @name featurenames<-
 #' @rdname featurenames-methods
@@ -50,6 +56,8 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
   return(x)
 })
 
+# get_dat_param -----------------------------------------------------------
+
 #' @rdname get_dat_param-methods
 #' 
 setMethod("get_dat_param", signature("Zvariant"), function(x, parameter) {
@@ -71,6 +79,8 @@ setMethod("get_dat_param", signature("Zvariant"), function(x, parameter) {
   return(as.vector(current_params[parameter]))
 })
 
+# groups ------------------------------------------------------------------
+
 #' @rdname groups-methods
 #' 
 setMethod("groups", "Zvariant", function(x) {
@@ -80,6 +90,8 @@ setMethod("groups", "Zvariant", function(x) {
     return(NA)
   }
 })
+
+# groups<- ----------------------------------------------------------------
 
 #' @name groups<-
 #' @rdname groups-methods
@@ -129,6 +141,8 @@ setReplaceMethod("groups", c("Zvariant", "numeric"), function(x, value) {
   return(x)
 })
 
+# groupnames --------------------------------------------------------------
+
 #' @rdname groupnames-methods
 #' @export
 #' 
@@ -145,6 +159,8 @@ setMethod("groupnames", "Zvariant", function(x) {
   groups.names <- sapply(groups.codes, function(y) {groups.data[which(groups.data$output.group == y),]$name[1]})
   return(groups.names)
 })
+
+# groupnames<- ------------------------------------------------------------
 
 #' @name groupnames<-
 #' @rdname groupnames-methods
@@ -191,6 +207,8 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   return(x)
 })
 
+# has_results -------------------------------------------------------------
+
 #' @rdname has_results-methods
 #' 
 setMethod("has_results", "Zvariant", function(x) {
@@ -204,11 +222,15 @@ setMethod("nfeatures", "Zvariant", function(x) {
   return(nrow(x@spp.data))
 })
 
+# outdir ------------------------------------------------------------------
+
 #' @rdname outdir-methods
 #' 
 setMethod("outdir", c("Zvariant"), function(x) {
   return(x@output.dir)
 })
+
+# print -------------------------------------------------------------------
 
 #' Print Zvariant information.
 #'
@@ -226,6 +248,8 @@ setMethod('print' , c("Zvariant"), function(x) {
   .printZvariant(x)
 })	
 
+# rank_raster -------------------------------------------------------------
+
 #' @rdname rank_raster-methods
 #' 
 setMethod("rank_raster", c("Zvariant"), function(x) {
@@ -235,6 +259,8 @@ setMethod("rank_raster", c("Zvariant"), function(x) {
     warning("Rank raster requested but not present in ", outdir(x))
   }
 })
+
+# results -----------------------------------------------------------------
 
 #' @rdname results-methods
 #' 
@@ -248,6 +274,8 @@ setMethod("results", c("Zvariant"), function(x) {
     return(NA)
   }
 })
+
+# set_dat_param -----------------------------------------------------------
 
 #' @rdname set_dat_param-methods
 #' 
@@ -269,6 +297,8 @@ setMethod("set_dat_param", signature("Zvariant"), function(x, parameter, value) 
   return(x)
 })
 
+# show --------------------------------------------------------------------
+
 #' Print Zvariant information.
 #'
 #' Generic printing function
@@ -284,6 +314,8 @@ setMethod("set_dat_param", signature("Zvariant"), function(x, parameter, value) 
 setMethod('show' , c("Zvariant"), function(object) {
   .printZvariant(object)
 })
+
+# sppdata -----------------------------------------------------------------
 
 #' @rdname sppdata-methods
 #' 
@@ -301,6 +333,8 @@ setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
   }
   return(spp.data)
 })
+
+# sppdata<- ---------------------------------------------------------------
 
 #' @name sppdata<-
 #' @rdname sppdata-methods
@@ -336,11 +370,15 @@ setReplaceMethod("sppdata", c("Zvariant", "data.frame"), function(x, value) {
   return(x)
 })
 
+# sppweights --------------------------------------------------------------
+
 #' @rdname sppweights-methods
 #' 
 setMethod("sppweights", c("Zvariant"), function(x) {
   return(x@spp.data$weight)
 })
+
+# .printZvariant ----------------------------------------------------------
 
 .printZvariant <- function(x, ...) {
   
