@@ -14,7 +14,7 @@ test_that("Zonation tutorial data is available", {
   expect_true(file.exists(.options$spp.file), 
               "Tutorial spp file not found in the tutorial input folder.")
   
-  for (species in .options$species.files) {
+  for (species in .options$species.rasters) {
     expect_true(file.exists(species), 
                 paste("Tutorial species raster", species, 
                       "not found in the tutorial input folder."))
@@ -22,5 +22,13 @@ test_that("Zonation tutorial data is available", {
   
   expect_true(file.exists(.options$groups.file), 
               "Tutorial groups file not found in the tutorial input folder.")
+  expect_true(file.exists(.options$condition.file), 
+              "Tutorial condition file not found in the tutorial input folder.")
+  
+  for (raster in .options$condition.rasters) {
+    expect_true(file.exists(raster), 
+                paste("Tutorial condition raster", raster, 
+                      "not found in the tutorial input folder."))
+  }
   
 })

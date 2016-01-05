@@ -111,10 +111,14 @@ assign("dat.file.ds", file.path(.options$setup.dir, "04/04.dat"),
 assign("spp.file.ds", file.path(.options$setup.dir, "04/04.spp"),
        envir=.options)
 
-assign("species.files", paste0(.options$data.dir, "/species", 1:7, ".tif"),
-       envir=.options)
+assign("species.rasters", paste0(.options$data.dir, "/species", 1:7, ".tif"),
+       envir = .options)
 assign("groups.file", file.path(.options$setup.dir, "groups.txt"), 
-       envir=.options)
+       envir = .options)
+assign("condition.file", file.path(.options$setup.dir, "cond_list.txt"), 
+       envir = .options)
+assign("condition.rasters", paste0(.options$data.dir, "/condition", 1:2, ".tif"),
+       envir = .options)
 
 # Another file for variant without results
 assign("bat.file.no.results", 
