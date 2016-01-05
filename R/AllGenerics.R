@@ -122,6 +122,8 @@ setGeneric("featurenames<-", function(x, value) {
 #'
 #' @param x Zvariant object.
 #' @param parameter Character string name of the parameter.
+#' @param warn_missing Logical indicating a warning should be raised of the
+#'   parameter is not used.
 #'
 #' @return Character string value of the parameter. If requested parameter is 
 #'   a valid Zonation parameter but not used currently, returns NA.
@@ -134,7 +136,7 @@ setGeneric("featurenames<-", function(x, value) {
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
-setGeneric("get_dat_param", function(x, parameter) {
+setGeneric("get_dat_param", function(x, parameter, warn_missing=TRUE) {
   standardGeneric("get_dat_param")
 })
 
@@ -496,6 +498,34 @@ setGeneric("rank_rasters", function(x, variants=NULL) {
 #' 
 setGeneric("results", function(x) {
   standardGeneric("results")
+})
+
+# save_zvariant ----------------------------------------------------------
+
+#' Saves the current state of an instance of \code{\link{Zvariant-class}} on
+#' the file system. \code{Zvariant} object tracks the location of relevant
+#' files, but the root path can be changed. If it is not changed, then the 
+#' current files can be overwritten.
+#' 
+#' @param x Zvariant object.
+#' @param dir Character string path to the root directory where the variant
+#'   is created.
+#' @param overwrite Logical indicating whether files should overwritten if 
+#'   they exist.
+#' @param debug Logical setting whether extra debugging information should be
+#'   printed.
+#'
+#' @return Invisible NULL. This method is used only for it's side effects.
+#' 
+#' @seealso \code{\link{Zvariant-class}}
+#' 
+#' @export
+#' @rdname save_variant-methods
+#' 
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' 
+setGeneric("save_zvariant", function(x, dir="", overwrite=FALSE, debug=FALSE) {
+  standardGeneric("save_zvariant")
 })
 
 # set_dat_param -----------------------------------------------------------

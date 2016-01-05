@@ -30,6 +30,10 @@ associated with the instance of \code{Zvariant-class}.
    \item{\code{call.params}:}{List of parsed call parameters from the 
      batch file.}
    \item{\code{results}:}{List holding the results (data frames).}
+   \item{\code{results_dirty}:}{Logical indicating if the current object
+     data (dat.data and spp.data) has been changed when results are present.
+     If \code{TRUE}, data has changed and results may have been produced 
+     using different data.}
  }
 }
 \author{

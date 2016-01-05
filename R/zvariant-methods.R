@@ -278,6 +278,186 @@ setMethod("results", c("Zvariant"), function(x) {
   }
 })
 
+# save_zvariant -----------------------------------------------------------
+
+#' @rdname save_zvariant-methods
+#' 
+setMethod("save_zvariant", signature("Zvariant", "ANY", "ANY", "ANY"), 
+          function(x, dir="", overwrite=FALSE, debug=FALSE) {
+  
+  # Only use x@bat.file; x@name is derived from that and there's no 
+  # syncing/checking between the two.
+  parent_dir <- dirname(x@bat.file)
+  variant_name <- gsub("\\.bat", "", basename(x@bat.file))
+  variant_dir <- file.path(parent_dir, variant_name)
+  if (dir == "") {
+    # Check for overwriting. NOTE: there could more optional files that are 
+    # overwritten (e.g. groups), but checking the mandatory files should be
+    # enough.
+    bat_file <- x@bat.file
+    spp_file <- x@call.params$spp.file
+    dat_file <- x@call.params$dat.file
+    if (overwrite) {
+      # Delete old files
+    } else {
+      if (any(file.exists(c(bat_file, spp_file, dat_file)))) {
+        stop("Cannot save: at least some of the variant files exist and overwrite is off.")
+      }
+    }
+  } else {
+    if (dir.exists(dir)) {
+      bat_file <- file.path(dir, basename(x@bat.file))
+    } else {
+      stop("dir doesn't exist.")
+    }
+  }
+  
+  # Write files
+  if (debug) message("Creating a variant directory ", variant_dir)
+  dir.create(variant_dir)
+  
+  # If no templates are provided, use the ones shipped with zonator. Change
+  # the filenames to match the variant.
+  if (is.null(dat_template_file)) {
+    dat_template_file <- system.file("extdata", "template.dat", 
+                                     package = "zonator")
+  }
+  dat_to <- file.path(variant_dir, paste0(variant, ".dat"))
+  
+  # If no templates are provided, use the ones shipped with zonator. Change
+  # the filenames to match the variant.
+  if (is.null(spp_template_file) & is.null(spp_template_dir)) {
+    spp_template_file <- system.file("extdata", "template.spp", 
+                                     package = "zonator")     
+  }
+  
+  # Define the target variant spp file path
+  spp_to <- file.path(variant_dir, paste0(variant, ".spp"))
+  
+  # Copy the templates to the new variant folder
+  if (debug) message("Copying template dat-file ", dat_template_file, 
+                     " to variant directory ", variant_dir)
+  file.copy(from = dat_template_file, to = dat_to, overwrite = TRUE)
+  
+  # Work out the details depending if using a template file or a 
+  # directory of input rasters.
+  if (!is.null(spp_template_dir)) {
+    if (file.exists(spp_template_dir)) {
+      if (debug) {
+        message("Creating a spp file from rasters in directory ", 
+                spp_template_dir)
+      }
+      create_spp(filename = spp_to, spp_file_dir = spp_template_dir, ...)
+    }
+  } else if (!is.null(spp_template_file)) {
+    if (file.exists(spp_template_file)) {
+      if (debug) {
+        message("Copying template spp-file  ", spp_template_file, 
+                " to variant directory ", variant_dir)
+      }
+      file.copy(from = spp_template_file, to = spp_to, overwrite = TRUE)
+    } else {
+      stop("Input template spp-file ", spp_template_file, " not found!")
+    }
+  }
+  
+  # Create to output folder
+  output_dir <- file.path(variant_dir, paste0(variant, "_out"))
+  if (debug) message("Creating an output directory ", output_dir)
+  dir.create(output_dir, recursive = TRUE)
+  # Create a bat file, first read the template content
+  bat_from <- system.file("extdata", "template.bat", package = "zonator")
+  cmd_sequence <- scan(file = bat_from, "character", sep = " ", 
+                       quiet = TRUE)
+  # Replace tokens with actual (relative) paths
+  dat_relative <- gsub(paste0(project_dir, .Platform$file.sep), "", dat_to)
+  spp_relative <- gsub(paste0(project_dir, .Platform$file.sep), "", spp_to)
+  output_dir_relative <- gsub(paste0(project_dir, .Platform$file.sep), "", 
+                              output_dir)
+  cmd_sequence <- gsub("INPUT_DAT", dat_relative, cmd_sequence)
+  cmd_sequence <- gsub("INPUT_SPP", spp_relative, cmd_sequence)
+  cmd_sequence <- gsub("OUTPUT", file.path(output_dir_relative, 
+                                           paste0(variant, ".txt")),
+                       cmd_sequence)
+  # Write bat-file
+  bat_to <- file.path(project_dir, paste0(variant, ".bat"))
+  if (debug) message("Writing bat file ", bat_to)
+  cat(paste0(paste(cmd_sequence, collapse = " "), "\n"), file = bat_to)
+  variant_dir <- file.path(project_dir, variant)
+  if (debug) message("Creating a variant directory ", variant_dir)
+  dir.create(variant_dir)
+  
+  # If no templates are provided, use the ones shipped with zonator. Change
+  # the filenames to match the variant.
+  if (is.null(dat_template_file)) {
+    dat_template_file <- system.file("extdata", "template.dat", 
+                                     package = "zonator")
+  }
+  dat_to <- file.path(variant_dir, paste0(variant, ".dat"))
+  
+  # If no templates are provided, use the ones shipped with zonator. Change
+  # the filenames to match the variant.
+  if (is.null(spp_template_file) & is.null(spp_template_dir)) {
+    spp_template_file <- system.file("extdata", "template.spp", 
+                                     package = "zonator")     
+  }
+  
+  # Define the target variant spp file path
+  spp_to <- file.path(variant_dir, paste0(variant, ".spp"))
+  
+  # Copy the templates to the new variant folder
+  if (debug) message("Copying template dat-file ", dat_template_file, 
+                     " to variant directory ", variant_dir)
+  file.copy(from = dat_template_file, to = dat_to, overwrite = TRUE)
+  
+  # Work out the details depending if using a template file or a 
+  # directory of input rasters.
+  if (!is.null(spp_template_dir)) {
+    if (file.exists(spp_template_dir)) {
+      if (debug) {
+        message("Creating a spp file from rasters in directory ", 
+                spp_template_dir)
+      }
+      create_spp(filename = spp_to, spp_file_dir = spp_template_dir, ...)
+    }
+  } else if (!is.null(spp_template_file)) {
+    if (file.exists(spp_template_file)) {
+      if (debug) {
+        message("Copying template spp-file  ", spp_template_file, 
+                " to variant directory ", variant_dir)
+      }
+      file.copy(from = spp_template_file, to = spp_to, overwrite = TRUE)
+    } else {
+      stop("Input template spp-file ", spp_template_file, " not found!")
+    }
+  }
+  
+  # Create to output folder
+  output_dir <- file.path(variant_dir, paste0(variant, "_out"))
+  if (debug) message("Creating an output directory ", output_dir)
+  dir.create(output_dir, recursive = TRUE)
+  # Create a bat file, first read the template content
+  bat_from <- system.file("extdata", "template.bat", package = "zonator")
+  cmd_sequence <- scan(file = bat_from, "character", sep = " ", 
+                       quiet = TRUE)
+  # Replace tokens with actual (relative) paths
+  dat_relative <- gsub(paste0(project_dir, .Platform$file.sep), "", dat_to)
+  spp_relative <- gsub(paste0(project_dir, .Platform$file.sep), "", spp_to)
+  output_dir_relative <- gsub(paste0(project_dir, .Platform$file.sep), "", 
+                              output_dir)
+  cmd_sequence <- gsub("INPUT_DAT", dat_relative, cmd_sequence)
+  cmd_sequence <- gsub("INPUT_SPP", spp_relative, cmd_sequence)
+  cmd_sequence <- gsub("OUTPUT", file.path(output_dir_relative, 
+                                           paste0(variant, ".txt")),
+                       cmd_sequence)
+  # Write bat-file
+  bat_to <- file.path(project_dir, paste0(variant, ".bat"))
+  if (debug) message("Writing bat file ", bat_to)
+  cat(paste0(paste(cmd_sequence, collapse = " "), "\n"), file = bat_to)
+  
+  message("Wrote variant '", variant_name, "' into ", variant_dir)
+})
+
 # set_dat_param -----------------------------------------------------------
 
 #' @rdname set_dat_param-methods

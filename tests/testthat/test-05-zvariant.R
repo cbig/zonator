@@ -391,6 +391,29 @@ test_that("Saving Zvariant works", {
   # SECOND: change the content of the spp file
   spp_data <- sppdata(test_variant)
   spp_data <- rbind(spp_data, spp_data)
+  # Drop group column
+  spp_data <- spp_data[,-ncol(spp_data)]
   sppdata(test_variant) <- spp_data
-})
   
+  # Try saving in a temporary location
+  temp_variant_dir <- tempdir()
+  temp_bat_file <- file.path(temp_variant_dir, basename(test_variant@bat.file))
+  
+  # Overwrite off should fail
+  expect_error(save_zvariant(test_variant),
+               "Cannot save: at least some of the variant files exist and overwrite is off.",
+               info = "Overwriting should fail if not specified.")
+  # Dir doesn't exist
+  expect_error(save_zvariant(test_variant, dir = "dahjdkjsh/sajdhalsd", 
+                             overwrite = TRUE),
+               "dir doesn't exist.",
+               info = "Overwriting generate message.")
+  # Successful write
+  expect_message(save_zvariant(test_variant, dir = tempdir(), overwrite = TRUE),
+                 info = "Overwriting generate message.")
+  # Read the variant back in
+  new_variant <- new("Zvariant", bat.file = temp_bat_file)
+  expect_identical(test_variant, new_variant,
+                   info = "New and old variant objects should be identical.")
+})
+  save_zvariant
