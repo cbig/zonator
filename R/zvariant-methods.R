@@ -60,7 +60,8 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
 
 #' @rdname get_dat_param-methods
 #' 
-setMethod("get_dat_param", signature("Zvariant"), function(x, parameter) {
+setMethod("get_dat_param", signature("Zvariant"), 
+          function(x, parameter, warn_missing=TRUE) {
   # Only canocical parameters are accepted
   if (!parameter %in% zparameters(just_names = TRUE)) {
     stop("Requested parameter not valid Zonation parameter.")
@@ -71,7 +72,9 @@ setMethod("get_dat_param", signature("Zvariant"), function(x, parameter) {
   current_params <- leaf_tags(x@dat.data, omit_sections = TRUE)
   
   if (!parameter %in% names(current_params)) {
-    warning("Requested parameter valid Zonation parameter, but not set.")
+    if (warn_missing) {
+      warning("Requested parameter valid Zonation parameter, but not set.")
+    }
     return(NA)
   }
   
