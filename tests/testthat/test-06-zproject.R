@@ -35,7 +35,7 @@ test_that("Retrieving variants works", {
   test.variant <- new("Zvariant", bat.file = bat.file)
   
   # Number of variants
-  expect_equivalent(nvariants(test.project), 5,
+  expect_equivalent(nvariants(test.project), 6,
                     paste("Number of variants reported incorrectly"))
   
   # Single variant retrieval based on index
