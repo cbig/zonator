@@ -11,6 +11,8 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of 
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# Zproject ----------------------------------------------------------------
+
 #' Create an instance of the Zproject class using new/initialize.
 #'
 #' @param root Character string path to the root of the project (must exist).
@@ -32,22 +34,24 @@ setMethod("initialize", "Zproject", function(.Object, root, debug=FALSE) {
     .Object@root <- root
   }
   
-  assign("debug", debug, envir=.options)
+  assign("debug", debug, envir = .options)
   
   variants <- list()
 
   # List all the bat-files
-  bat.files <- list.files(root, ".bat$", full.names=TRUE, recursive=TRUE)
+  bat.files <- list.files(root, ".bat$", full.names = TRUE, recursive = TRUE)
   
   for (bat.file in bat.files) {
-    variant <- new("Zvariant", bat.file=bat.file)
+    variant <- new("Zvariant", bat.file = bat.file)
     variants[variant@name] <- variant
   }
   
   .Object@variants <- variants 
   
-  .Object
+  return(.Object)
 })
+
+# Zresults ----------------------------------------------------------------
 
 #' Create an instance of the Zresults class using new/initialize.
 #'
@@ -67,8 +71,6 @@ setMethod("initialize", "Zproject", function(.Object, root, debug=FALSE) {
 #' 
 setMethod("initialize", "Zresults", function(.Object, root) {
   
-  result.list <- list()
-  
   # Find various result files from the root path which must exist
   if (!file.exists(root)) {
     warning("Results root path ", root, " does not exist")
@@ -80,7 +82,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
   # Helper function
   get_file <- function(output.folder, x) {
     
-    target <- list.files(output.folder, pattern=x, full.names=TRUE)
+    target <- list.files(output.folder, pattern = x, full.names = TRUE)
     if (length(target) == 0) {
       return(NA)
     } else if (length(target) == 1) {
@@ -176,16 +178,18 @@ setMethod("initialize", "Zresults", function(.Object, root) {
     }
     # read_ppa_lsm return a list. Merge data items 1 and 3, don't use 2
     ppa.lsm.data <- read_ppa_lsm(ppa.lsm.file)
-    ppa.lsm.data <- merge(ppa.lsm.data[[1]], ppa.lsm.data[[3]], by.x="Unit", 
-                      by.y="Unit_number")
+    ppa.lsm.data <- merge(ppa.lsm.data[[1]], ppa.lsm.data[[3]], by.x = "Unit", 
+                      by.y = "Unit_number")
     # Remove Area_cells column as it's redundant
     .Object@ppa.lsm <- ppa.lsm.data[, !(names(ppa.lsm.data) %in% c("Area_cells"))]
   }
   
-  f <- validObject(.Object)
+  invisible(validObject(.Object))
   
-  .Object
+  return(.Object)
 })
+
+# Zvariant ----------------------------------------------------------------
 
 #' Create an instance of the Zvariant class using new/initialize.
 #'
@@ -206,7 +210,7 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
     stop(paste0("Variant .bat-file does not exist: ", bat.file))
   }
   
-  # Set the name ###############################################################
+  # Set the name
   
   if (is.null(name)) {
     # If no name is provided, use the name of the bat-file (without the 
@@ -224,18 +228,18 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   call.params <- read_bat(bat.file)
   .Object@call.params <- call.params
   
-  f <- validObject(.Object)
+  invisible(validObject(.Object))
   
   # NOTE: dat-file and spp-file existence has already been checked by zvariant
   # initializer checker function
   
-  # dat-file content ###########################################################
+  # dat-file content
   if (.options$debug) {
     message("Reading in dat file ", call.params$dat.file)
   }
   .Object@dat.data <- read_dat(call.params$dat.file)
   
-  # spp-file content ###########################################################
+  # spp-file content
   if (.options$debug) {
     message("Reading in spp file ", call.params$spp.file)
   }
@@ -246,11 +250,11 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
   
   .Object@spp.data <- spp.data
   
-  # output dir #################################################################
+  # output dir
   
   .Object@output.dir <- call.params$output.folder
   
-  # groups content #############################################################
+  # groups content
   
   # First we need to define whether groups are 1) used, and 2) available. 
   settings <- .Object@dat.data$Settings
@@ -272,8 +276,7 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
     }
   }
   
-  # results ####################################################################
-  
+  # results
   .Object@results <- new("Zresults", root = .Object@call.params$output.folder)
   
   featurenames(.Object) <- spp.data$name
