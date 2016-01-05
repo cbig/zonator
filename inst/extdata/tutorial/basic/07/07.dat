@@ -1,0 +1,10 @@
+[Settings]
+removal rule = 1
+warp factor = 100
+edge removal = 1
+annotate name = 0
+use groups = 1
+groups file = 07/07_groups.txt
+
+use condition layer = 1
+condition file = cond_list.txt

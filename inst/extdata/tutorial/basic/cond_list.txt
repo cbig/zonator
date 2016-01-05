@@ -1,0 +1,2 @@
+1 ../data/condition1.tif
+2 ../data/condition2.tif
