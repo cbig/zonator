@@ -64,6 +64,5 @@ write_dat <- function(x, filename, overwrite = FALSE) {
       write("", file = filename, append = TRUE)
     }
   }
-  message(paste("Wrote dat-file", filename))
   return(invisible(NULL))  
 }
