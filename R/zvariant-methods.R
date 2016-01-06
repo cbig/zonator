@@ -340,6 +340,7 @@ setMethod("save_zvariant", signature("Zvariant", "ANY", "ANY", "ANY"),
       groups_data <- groups_data[,!(names(groups_data) %in% c("name"))]
       write.table(groups_data, file = groups_to, row.names = FALSE, sep = "\t",
                   col.names = FALSE, quote = FALSE)
+      if (debug_msg) message("Wrote groups file ", groups_to)
     }
   }
 
