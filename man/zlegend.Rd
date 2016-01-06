@@ -23,7 +23,7 @@ Each color scheme is a list with following item:
    \item{\code{labels}:}{Labels to be used in the map legend}
    \item{\code{colors}:}{Colors used for the value classes}
  }
- 
+
 Following color schemes are available:
 
 \enumerate{

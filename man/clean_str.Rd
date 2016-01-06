@@ -3,7 +3,7 @@
 \name{clean_str}
 \alias{clean_str}
 \title{Clean leading and trailing whitespaces from a given string. Additionally,
-all occurrences of multiple whitespaces are replaced with a single 
+all occurrences of multiple whitespaces are replaced with a single
 whitespace.}
 \usage{
 clean_str(x)
@@ -16,7 +16,7 @@ An absolute path to a file of NULL if the path does not exist.
 }
 \description{
 Clean leading and trailing whitespaces from a given string. Additionally,
-all occurrences of multiple whitespaces are replaced with a single 
+all occurrences of multiple whitespaces are replaced with a single
 whitespace.
 }
 \author{

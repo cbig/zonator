@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{leaf_tags}
 \alias{leaf_tags}
-\title{Find all the leaf tags in a potentially nested list. The generic form of a 
+\title{Find all the leaf tags in a potentially nested list. The generic form of a
 list is tag = value; find all the tags in a list.}
 \usage{
 leaf_tags(x, omit_sections = FALSE)
@@ -17,7 +17,7 @@ vector names.}
 Characted vector of tags.
 }
 \description{
-Find all the leaf tags in a potentially nested list. The generic form of a 
+Find all the leaf tags in a potentially nested list. The generic form of a
 list is tag = value; find all the tags in a list.
 }
 \examples{

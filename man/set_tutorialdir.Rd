@@ -2,7 +2,7 @@
 % Please edit documentation in R/utilities.R
 \name{set_tutorialdir}
 \alias{set_tutorialdir}
-\title{Set the package options to point to a correct location of the Zonation 
+\title{Set the package options to point to a correct location of the Zonation
 tutorial}
 \usage{
 set_tutorialdir(x)
@@ -11,7 +11,7 @@ set_tutorialdir(x)
 \item{x}{Character string directory path.}
 }
 \description{
-Set the package options to point to a correct location of the Zonation 
+Set the package options to point to a correct location of the Zonation
 tutorial
 }
 \author{

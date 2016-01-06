@@ -394,10 +394,6 @@ test_that("Saving Zvariant works", {
   spp_data <- spp_data[,-ncol(spp_data)]
   sppdata(test_variant) <- spp_data
 
-  # Try saving in a temporary location
-  temp_variant_dir <- tempdir()
-  temp_bat_file <- file.path(temp_variant_dir, basename(test_variant@bat.file))
-
   # Overwrite off should fail
   expect_error(save_zvariant(test_variant),
                "Cannot save: at least some of the variant files exist and overwrite is off.",
@@ -408,13 +404,12 @@ test_that("Saving Zvariant works", {
                "dir doesn't exist.",
                info = "Overwriting generate message.")
   # Successful write
+  temp_variant_dir <- tempdir()
+  temp_bat_file <- file.path(temp_variant_dir, basename(test_variant@bat.file))
   expect_message(save_zvariant(test_variant, dir = temp_variant_dir,
                  overwrite = TRUE),
                  info = "Overwriting generate message.")
-  # Read the variant back in
-  #new_variant <- new("Zvariant", bat.file = temp_bat_file)
-  #expect_identical(test_variant, new_variant,
-  #                 info = "New and old variant objects should be identical.")
+
 })
 
 context("Zvariant special cases")

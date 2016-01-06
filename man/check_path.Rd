@@ -19,8 +19,8 @@ A cleaned character string
 }
 \description{
 Checks if a path can be resolved (i.e. whether it exists). An additional
-parameter \code{parent.path} can be provided, in which case \code{x} is 
-appended to it and the concatenated path is checked for existence. If the 
+parameter \code{parent.path} can be provided, in which case \code{x} is
+appended to it and the concatenated path is checked for existence. If the
 path cannot be resolved, raise an error.
 }
 \author{

@@ -22,7 +22,7 @@ sub_curves(x, stat, name, size = 0.6, lty = 1)
 data frame for a single column in curves / group curves data.
 }
 \description{
-Function gets a single column (feature/group/stat) from curves or group 
+Function gets a single column (feature/group/stat) from curves or group
 curves. Useful for construction melt-type data frames for plotting.
 }
 \author{
