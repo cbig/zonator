@@ -19,7 +19,7 @@ A list with 2 items:
 \item{total}{Overall correlation between the 2 matrices.}
 }
 \description{
-Calculate how much two coverages (as defined by values greater than a given 
+Calculate how much two coverages (as defined by values greater than a given
 threshold in two numeric matrices) overlap.
 }
 \author{

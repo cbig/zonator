@@ -19,7 +19,7 @@ Dataframe with Jaccard coefficients between all the RasterLayers.
 }
 \description{
 This method is a utility method that is intented to be used to compare
-top-fractions of the landscape. Thus, x.max and y.max for 
+top-fractions of the landscape. Thus, x.max and y.max for
 \code{\link{jaccard}} are fixed to 1.0.
 }
 \author{

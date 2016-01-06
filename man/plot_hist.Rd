@@ -19,7 +19,7 @@ plot indicating the mean value of \code{x}.}
 \item{add.median}{Boolean whether a vertical red line is added to the
 plot indicating the median value of \code{x}.}
 
-\item{save.dir}{Character path (folder) for saving the plot as an 
+\item{save.dir}{Character path (folder) for saving the plot as an
 image.}
 
 \item{binwidth}{Double value of bindwidth for \code{\link{geom_bar}}.}

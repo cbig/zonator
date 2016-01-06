@@ -12,7 +12,7 @@ jaccard(x, y, x.min = 0, x.max = 1, y.min = 0, y.max = 1,
 
 \item{y}{raster object.}
 
-\item{x.min}{Numeric minimum threshold value for \code{x} to be used 
+\item{x.min}{Numeric minimum threshold value for \code{x} to be used
 (default 0.0).}
 
 \item{x.max}{Numeric maximum threshold value for \code{x} to be used
@@ -38,15 +38,15 @@ checked against the actual raster values in \code{x} and \code{y}.}
 A numeric value [0, 1]
 }
 \description{
-The Jaccard coefficient measures similarity between sample sets, and is 
-defined as the size of the intersection divided by the size of the union of 
+The Jaccard coefficient measures similarity between sample sets, and is
+defined as the size of the intersection divided by the size of the union of
 the sample sets. The Jaccard coefficient can be calculated for a subset of
 rasters provided by using the threshold argument.
 }
 \details{
 Min and max values must be provided for both RasterLayer objects \code{x}
-and \code{y}. Method can be used with RasterLayers of any value range, but 
-the defaults [0.0, 1.0] are geared towards comparing Zonation rank priority 
+and \code{y}. Method can be used with RasterLayers of any value range, but
+the defaults [0.0, 1.0] are geared towards comparing Zonation rank priority
 rasters. Limits provided are inclusive.
 }
 \author{

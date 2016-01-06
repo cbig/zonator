@@ -14,7 +14,7 @@ Description: zonator is a utility R package for dealing with various tasks
     runs and managing Zonation results.
 Depends:
     R (>= 2.15.2),
-    ggplot2,
+    ggplot2 (>= 2.0.0),
     methods
 Suggests:
     knitr,

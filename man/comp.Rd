@@ -4,14 +4,14 @@
 \alias{comp}
 \title{Compare matrices in various ways.}
 \usage{
-comp(x, y, FUN = "correlation", ...)
+comp(x, y, fun = "correlation", ...)
 }
 \arguments{
 \item{x}{Numeric matrix.}
 
 \item{y}{Numeric matrix.}
 
-\item{FUN}{Function used for the numeric comparison.}
+\item{fun}{Function used for the numeric comparison.}
 
 \item{...}{Further arguments passed on to selected comparison function.}
 }

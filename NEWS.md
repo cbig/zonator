@@ -41,6 +41,8 @@ files with correct parameter names really hard.
 At some point, the whole tutorial data set will be moved to a package of its
 own.
 + Removed `plyr` from the dependencies.
++ Make depdendcy to `ggplot2` >= 2.0.0. This way `aes_()` can be used and CHECK
+doesn't complain about "undefined global variables" anymore.
 
 ## CHANGES IN VERSION 0.4.1 (2015-12-15)
 
