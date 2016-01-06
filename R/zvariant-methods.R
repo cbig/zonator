@@ -173,6 +173,11 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   if (nrow(x@groups) == 0) {
     stop("Variant has no groups to name")
   }
+  # NAs are not allowed as group names
+  if (any(is.na(names(value)))) {
+    stop("Group names cannot include NAs")
+  }
+
   # Actual coded values are vector names. Assume numeric and try to coerce.
   keys <- as.numeric(names(value))
   group.codes <- groups(x)

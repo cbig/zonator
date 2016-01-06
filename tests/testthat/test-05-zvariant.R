@@ -165,6 +165,10 @@ test_that("Assigning and fetching group names and identities works", {
                info = "Trying to assign too few group IDs did not generate an error")
   expect_error((groups(results.variant) <- rep(c(1, 2), 10)),
                info = "Trying to assign too many group IDs did not generate an error")
+  # Expect error if any of the groups is NA
+  new.grp.codes[3] <- NA
+  expect_error((groups(results.variant) <- new.grp.codes),
+               info = "Trying to assign NA as a group ID did not generate an error")
   # Set the correct codes back
   groups(results.variant) <- correct.grp.codes
 
