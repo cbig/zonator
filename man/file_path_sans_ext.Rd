@@ -11,8 +11,8 @@ file_path_sans_ext(x, compression = FALSE)
 \arguments{
 \item{x}{Character vector giving file paths.}
 
-\item{compression}{Logical: should compression extension ‘.gz’, ‘.bz2’ or
-‘.xz’ be removed first?}
+\item{compression}{Logical: should compression extension '.gz', '.bz2' or
+'.xz' be removed first?}
 }
 \value{
 File path without the file extension.

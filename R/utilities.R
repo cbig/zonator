@@ -130,8 +130,8 @@ clean_str <- function(x) {
 #' implementation.
 #'
 #' @param x Character vector giving file paths.
-#' @param compression	Logical: should compression extension ‘.gz’, ‘.bz2’ or
-#'   ‘.xz’ be removed first?
+#' @param compression	Logical: should compression extension '.gz', '.bz2' or
+#'   '.xz' be removed first?
 #'
 #' @return File path without the file extension.
 #'
