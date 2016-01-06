@@ -23,6 +23,9 @@ creating/cpoying variants as editing spp data in place is not probably a good
 idea.
 + `save_zvarint()` saves the current state of a `Zvariant` object on the file
 system. Saving can overwrite exisiting configuration files or create new.
++ `create_zproject()` now stops if `spp_template_dir` doesn't exist. 
++ Re-implementation of `tools::file_path_sans_ext()` that can handle periods
+(".") just before file extension.
 
 ### BUG FIXES
 

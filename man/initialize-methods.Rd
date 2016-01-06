@@ -20,12 +20,12 @@
 
 \item{name}{Character string naming the variant.}
 
-\item{bat.file}{Zonation specific batch (.bat) file to read the 
+\item{bat.file}{Zonation specific batch (.bat) file to read the
 variant specifics from (must exist).}
 
 \item{name}{Character string naming the variant.}
 
-\item{bat.file}{Zonation specific batch (.bat) file to read the 
+\item{bat.file}{Zonation specific batch (.bat) file to read the
 variant specifics from (must exist).}
 }
 \description{

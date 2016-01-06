@@ -16,18 +16,18 @@ load_zproject(root, debug = FALSE)
 A \code{Zproject} object.
 }
 \description{
-Loads an existing Zonation project as an object of 
-\code{\link[zonator:Zproject-class]{Zproject-class}}. Individual variants 
+Loads an existing Zonation project as an object of
+\code{\link[zonator:Zproject-class]{Zproject-class}}. Individual variants
 within the Zonation project are parsed into
-\code{\link[zonator:Zvariant-class]{Zvariant-class}} objects and potential 
+\code{\link[zonator:Zvariant-class]{Zvariant-class}} objects and potential
 results into \code{\link[zonator:Zresults-class]{Zresults-class}} objects.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link[zonator:Zproject-class]{Zproject-class}}, 
-  \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
+\code{\link[zonator:Zproject-class]{Zproject-class}},
+  \code{\link[zonator:Zvariant-class]{Zvariant-class}} and
   \code{\link[zonator:create_zproject]{create_zproject}}
 }
 
