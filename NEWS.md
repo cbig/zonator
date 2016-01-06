@@ -1,4 +1,4 @@
-## CHANGES IN VERSION 0.4.2 (2015-XX-XX)
+## CHANGES IN VERSION 0.5.0 (2016-XX-XX)
 
 ### NEW FEATURES
 
@@ -14,6 +14,15 @@ object.
 parameters (i.e. parameters in the dat file). Can return just the parameter 
 names or a list of `[[parameter_name]][[section]]`".
 + `show()` for `Zvariant` now prints run configuration parameters as well.
++ `set_dat_param()` can be used to set run configuration parameters (i.e. dat
+file parameters). Only valid parameters are accepted.
++ `get_dat_param()` can be used to get run configuration parameters (i.e. dat
+file parameters).
++ `sppdata()<-` allows spp data to be modified. This is mostly needed in 
+creating/cpoying variants as editing spp data in place is not probably a good
+idea.
++ `save_zvarint()` saves the current state of a `Zvariant` object on the file
+system. Saving can overwrite exisiting configuration files or create new.
 
 ### BUG FIXES
 
@@ -28,6 +37,9 @@ fixed now.
 + Run parameters from dat-files are now parsed as-is. Previously parameter
 names were cleaned up (e.g. " " and "-" removed), but this made writing dat
 files with correct parameter names really hard. 
++ Much has been changed in the way tutorial data paths are handled internally.
+At some point, the whole tutorial data set will be moved to a package of its
+own.
 
 ## CHANGES IN VERSION 0.4.1 (2015-12-15)
 
