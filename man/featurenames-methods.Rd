@@ -28,14 +28,14 @@ featurenames(x) <- value
 \arguments{
 \item{x}{Z* object.}
 
-\item{value}{character vector of feature names to be assigned. Can be named 
+\item{value}{character vector of feature names to be assigned. Can be named
 or not.}
 }
 \value{
 Character vector of spp feature names.
 }
 \description{
-Get and set names for analysis features used a given 
+Get and set names for analysis features used a given
 Zonation variant.
 
 Assign feature names for a Zonation variant.
@@ -70,7 +70,7 @@ raster file path.
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link{Zvariant-class}} \code{\link{Zresults-class}} 
+\code{\link{Zvariant-class}} \code{\link{Zresults-class}}
          \code{\link{groupnames}} \code{\link{groups}}
 }
 

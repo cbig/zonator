@@ -11,23 +11,23 @@
 \arguments{
 \item{x}{\code{\link{ZGroupCurvesDataFrame}} object.}
 
-\item{min}{logical plot the minimum feature performance of a group 
+\item{min}{logical plot the minimum feature performance of a group
 (default: FALSE).}
 
-\item{mean}{logical plot the minimum feature performance of a group 
+\item{mean}{logical plot the minimum feature performance of a group
 (default: FALSE). If no other statistic is used, mean will always be plotted.
-If other satistic(s) are plotted and mean is to be disabled, this will have 
+If other satistic(s) are plotted and mean is to be disabled, this will have
 to be done by setting \code{mean} explicitly to FALSE.}
 
-\item{w.mean}{logical plot the weighted mean feature performance of a group 
+\item{w.mean}{logical plot the weighted mean feature performance of a group
 (default: FALSE).}
 
-\item{max}{logical plot the maxmimun feature performance of a group 
+\item{max}{logical plot the maxmimun feature performance of a group
 (default: FALSE).}
 
 \item{ext}{logical plot extinction risk of a group (default: FALSE).}
 
-\item{subs}{character vector defining the names of groups (subset of all 
+\item{subs}{character vector defining the names of groups (subset of all
 groups) to be plotted.}
 
 \item{...}{Additional arguments passed on to \code{\link{plot_curves}}.}

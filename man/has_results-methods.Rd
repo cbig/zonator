@@ -14,7 +14,7 @@ has_results(x)
 \S4method{has_results}{Zvariant}(x)
 }
 \arguments{
-\item{x}{\code{\link[zonator]{Zvariant-class}} or 
+\item{x}{\code{\link[zonator]{Zvariant-class}} or
 \code{\link[zonator:Zresults-class]{Zresults}} object.}
 }
 \value{

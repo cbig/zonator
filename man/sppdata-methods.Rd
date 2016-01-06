@@ -22,7 +22,7 @@ sppdata(x) <- value
 \item{group.names}{boolean indicating whether group codes (FALSE) or names
 (TRUE) are used to indicate group. (default: FALSE)}
 
-\item{value}{data frame that must match the number and names of columns in 
+\item{value}{data frame that must match the number and names of columns in
 sppdata (see \code{\link{sppdata}} .}
 }
 \value{
@@ -31,8 +31,8 @@ Data frame (object's spp.data)
 \description{
 Method will also return group column with spp data if it exists.
 
-Data can be assigned independent of whether groups are used or not. Since 
-groups information is stored separately in \code{groups} slot, groups 
+Data can be assigned independent of whether groups are used or not. Since
+groups information is stored separately in \code{groups} slot, groups
 information must also be updated independently.
 }
 \note{

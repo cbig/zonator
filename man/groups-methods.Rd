@@ -23,11 +23,11 @@ groups(x) <- value
 number of features, no recycling is done.}
 }
 \value{
-A numeric vector containing the group ids. If there are no groups, 
+A numeric vector containing the group ids. If there are no groups,
         return NA.
 }
 \description{
-If the particular variant doesn't use groups or doesn't have them assigned, 
+If the particular variant doesn't use groups or doesn't have them assigned,
 return NA. Note that here 'groups' means the first column in Zonation groups
 file ('output group').
 

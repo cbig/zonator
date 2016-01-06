@@ -17,7 +17,7 @@ write_dat(x, filename, overwrite = FALSE)
 Invisible null.
 }
 \description{
-The function takes a nested list of values and writes it to a dat file (a 
+The function takes a nested list of values and writes it to a dat file (a
 Windows style .ini-file).
 }
 \note{
@@ -26,7 +26,7 @@ Only 1 level of nestedness is accepted.
 \examples{
 dat <- list("Settings" = list("removal_rule" = 1, use_groups = 1))
 write_dat(dat, "settings.dat")
- 
+
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}

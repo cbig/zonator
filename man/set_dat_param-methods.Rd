@@ -22,7 +22,7 @@ x Zvariant object.
 }
 \description{
 Essentially these are parameter values corresponding to Zonation dat-files.
-This function is used to set values of given parameter. In the current 
+This function is used to set values of given parameter. In the current
 implementation, sections have no meaning.
 }
 \note{
@@ -32,7 +32,7 @@ Method does not check for the sanity of the values provided.
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
+\code{\link[zonator:Zvariant-class]{Zvariant-class}} and
 \code{\link{get_dat_param}}.
 }
 

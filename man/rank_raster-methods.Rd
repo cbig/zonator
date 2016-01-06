@@ -17,13 +17,14 @@ rank_raster(x)
 \item{x}{\code{\link{Zresults}} or \code{\link{Zvariant}} object.}
 }
 \value{
-\code{\link[raster:RasterLayer-class]{RasterLayer}} object. If no 
+\code{\link[raster:RasterLayer-class]{RasterLayer}} object. If no
   results are available, give a warning.
 }
 \description{
 Getter method for rank priority raster included in Zonation results. Rank
 raster is one of the main outputs of Zonation.
- 
+}
+\details{
 Since a given \code{Zvariant} object can only have 1 rank priority raster,
 this method only calls the \code{rank_raster} method of a \code{Zresults}
 object associated with the \code{Zvariant} object.

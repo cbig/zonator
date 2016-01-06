@@ -14,7 +14,7 @@ outdir(x)
 \S4method{outdir}{Zvariant}(x)
 }
 \arguments{
-\item{x}{\code{\link[zonator]{Zvariant-class}} or 
+\item{x}{\code{\link[zonator]{Zvariant-class}} or
 \code{\link[zonator:Zresults-class]{Zresults}} object.}
 }
 \value{

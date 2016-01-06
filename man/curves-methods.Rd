@@ -26,7 +26,7 @@ curves(x, cols = NULL, groups = FALSE, lost.lower = 0, lost.upper = 1)
 
 \item{cols}{numeric or character vector of columns to be returned}
 
-\item{groups}{logical indicating whether group curves data should be 
+\item{groups}{logical indicating whether group curves data should be
 returned.}
 
 \item{lost.lower}{numeric defining the lower limit of pr_lost to be included
@@ -36,16 +36,16 @@ returned.}
 [0.01, 1.0] (default: 1.0)}
 }
 \value{
-\code{\link{ZCurvesDataFrame}} or \code{\link{ZGroupCurvesDataFrame}} 
-  containing the (selected) curves file data. If column names are provided, 
+\code{\link{ZCurvesDataFrame}} or \code{\link{ZGroupCurvesDataFrame}}
+  containing the (selected) curves file data. If column names are provided,
   but none are found, return NA.
 }
 \description{
-pr_lost is always included in the returned data, but other columns can be 
+pr_lost is always included in the returned data, but other columns can be
 specified using \code{cols} argument.
 }
 \details{
-Arguments \code{upper} and \code{lower} can be used to define a specific 
+Arguments \code{upper} and \code{lower} can be used to define a specific
 range of pr_lost to be returned.
 
 Method implementation in class \code{\link{Zvariant}} is just a thin

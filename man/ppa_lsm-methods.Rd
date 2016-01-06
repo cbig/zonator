@@ -15,18 +15,18 @@ ppa_lsm(x)
 }
 \value{
 Data frame containing PPA LSM data items 1 and 3 combined (See
-\code{\link{Zresults-class}} for more details). If no results are available, 
+\code{\link{Zresults-class}} for more details). If no results are available,
   give a warning.
 }
 \description{
-Simple getter-method for ppa.lsm information (if used) contained in Zonation 
+Simple getter-method for ppa.lsm information (if used) contained in Zonation
 results
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link{Zresults-class}} \code{\link{read_curves}} 
+\code{\link{Zresults-class}} \code{\link{read_curves}}
 \code{\link{read_grp_curves}}
 }
 \keyword{results}

@@ -13,23 +13,23 @@ rank_rasters(x, variants = NULL)
 \arguments{
 \item{x}{\code{\link{Zproject}} object.}
 
-\item{variants}{a numeric (IDs) or character (name) vector defining which 
+\item{variants}{a numeric (IDs) or character (name) vector defining which
 variants are included in the returned stack (default: NULL means all).}
 }
 \value{
-\code{\link[raster:RasterStack-class]{RasterStack}} object. If no 
+\code{\link[raster:RasterStack-class]{RasterStack}} object. If no
   rank rasters are available at all, return NA.
 }
 \description{
 Each \code{\link{Zproject}} object has a set of variants and their results
 associated with it. This method will get the selected available rank rasters
-(1 per variant) and create a \code{\link[raster:RasterStack-class]{RasterStack}} 
+(1 per variant) and create a \code{\link[raster:RasterStack-class]{RasterStack}}
 object.
 }
 \details{
 Argument \code{variants} can be used to the define which variants are
-included, the default is to return all. Method will give a warning if a 
-variant doesn't have a rank raster associated with it. If none of the 
+included, the default is to return all. Method will give a warning if a
+variant doesn't have a rank raster associated with it. If none of the
 variants have a rank raster, then a NA is returned.
 }
 \author{

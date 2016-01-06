@@ -23,7 +23,7 @@ Get all variants in a Zonation project
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link[zonator:Zproject-class]{Zproject-class}} 
+\code{\link[zonator:Zproject-class]{Zproject-class}}
   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
 }
 

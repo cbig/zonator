@@ -19,19 +19,19 @@ get_dat_param(x, parameter, warn_missing = TRUE)
 parameter is not used.}
 }
 \value{
-Character string value of the parameter. If requested parameter is 
+Character string value of the parameter. If requested parameter is
   a valid Zonation parameter but not used currently, returns NA.
 }
 \description{
 Essentially these are parameter values corresponding to Zonation dat-files.
-This function is used to get values of given parameter. In the current 
+This function is used to get values of given parameter. In the current
 implementation, sections have no meaning.
 }
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
-\code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
+\code{\link[zonator:Zvariant-class]{Zvariant-class}} and
 \code{\link{set_dat_param}}.
 }
 

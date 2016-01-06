@@ -2,7 +2,7 @@
 % Please edit documentation in R/zonation.R
 \name{parse_bat}
 \alias{parse_bat}
-\title{Parse the content of a Zonation batch (bat) file and make OS specific 
+\title{Parse the content of a Zonation batch (bat) file and make OS specific
 adjustments if needed.}
 \usage{
 parse_bat(bat.file, exe = NULL)
@@ -17,7 +17,7 @@ specified in the bat-file.}
 A character string command sequence suitable for execution.
 }
 \description{
-The main issues faced between differerent platforms are the name of the 
+The main issues faced between differerent platforms are the name of the
 executable, ways of calling it, and path separators. Relative file paths
 need to be expanded into full absolute paths.
 }

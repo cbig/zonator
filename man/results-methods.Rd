@@ -4,7 +4,7 @@
 \name{results}
 \alias{results}
 \alias{results,Zvariant-method}
-\title{Getter method for results (\code{Zresults}) in a class 
+\title{Getter method for results (\code{Zresults}) in a class
 \code{Zvariant} object.}
 \usage{
 results(x)

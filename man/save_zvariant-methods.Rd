@@ -6,7 +6,7 @@
 \alias{save_zvariant,Zvariant-method}
 \title{Saves the current state of an instance of \code{\link{Zvariant-class}} on
 the file system. \code{Zvariant} object tracks the location of relevant
-files, but the root path can be changed. If it is not changed, then the 
+files, but the root path can be changed. If it is not changed, then the
 current files can be overwritten.}
 \usage{
 save_zvariant(x, dir = "", overwrite = FALSE, debug_msg = FALSE)
@@ -20,7 +20,7 @@ save_zvariant(x, dir = "", overwrite = FALSE, debug_msg = FALSE)
 \item{dir}{Character string path to the root directory where the variant
 is created.}
 
-\item{overwrite}{Logical indicating whether files should overwritten if 
+\item{overwrite}{Logical indicating whether files should overwritten if
 they exist.}
 
 \item{debug_msg}{Logical setting whether extra debugging information should be
@@ -32,7 +32,7 @@ Invisible NULL. This method is used only for it's side effects.
 \description{
 Saves the current state of an instance of \code{\link{Zvariant-class}} on
 the file system. \code{Zvariant} object tracks the location of relevant
-files, but the root path can be changed. If it is not changed, then the 
+files, but the root path can be changed. If it is not changed, then the
 current files can be overwritten.
 }
 \author{
