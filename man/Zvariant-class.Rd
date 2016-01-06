@@ -29,6 +29,8 @@ associated with the instance of \code{Zvariant-class}.
      groups-file}
    \item{\code{call.params}:}{List of parsed call parameters from the 
      batch file.}
+   \item{\code{condition.layers}:}{Data frame holding the parsed data from
+     condition file.}
    \item{\code{results}:}{List holding the results (data frames).}
    \item{\code{results_dirty}:}{Logical indicating if the current object
      data (dat.data and spp.data) has been changed when results are present.

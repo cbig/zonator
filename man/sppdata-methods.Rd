@@ -23,7 +23,7 @@ sppdata(x) <- value
 (TRUE) are used to indicate group. (default: FALSE)}
 
 \item{value}{data frame that must match the number and names of columns in 
-sppdata (see \link{\code{sppdata}}).}
+sppdata (see \code{\link{sppdata}} .}
 }
 \value{
 Data frame (object's spp.data)

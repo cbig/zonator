@@ -33,6 +33,6 @@ Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
 \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
-\code{\link{get_dat_parameter}}.
+\code{\link{get_dat_param}}.
 }
 

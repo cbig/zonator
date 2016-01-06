@@ -129,7 +129,7 @@ setGeneric("featurenames<-", function(x, value) {
 #'   a valid Zonation parameter but not used currently, returns NA.
 #' 
 #' @seealso \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
-#' \code{\link{set_dat_parameter}}. 
+#' \code{\link{set_dat_param}}. 
 #' 
 #' @export
 #' @rdname get_dat_param-methods
@@ -520,7 +520,7 @@ setGeneric("results", function(x) {
 #' @seealso \code{\link{Zvariant-class}}
 #' 
 #' @export
-#' @rdname save_variant-methods
+#' @rdname save_zvariant-methods
 #' 
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' 
@@ -546,7 +546,7 @@ setGeneric("save_zvariant", function(x, dir="", overwrite=FALSE,
 #' @return x Zvariant object.
 #' 
 #' @seealso \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
-#' \code{\link{get_dat_parameter}}. 
+#' \code{\link{get_dat_param}}. 
 #' 
 #' @export
 #' @rdname set_dat_param-methods
@@ -592,7 +592,7 @@ setGeneric("sppdata", function(x, group.names=FALSE) {
 #' is now straightforward way of preserving and/or imputing group information.
 #'
 #' @param value data frame that must match the number and names of columns in 
-#' sppdata (see \link{\code{sppdata}}). 
+#' sppdata (see \code{\link{sppdata}} . 
 #'
 #' @export
 #' @rdname sppdata-methods

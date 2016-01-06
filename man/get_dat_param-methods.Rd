@@ -6,14 +6,17 @@
 \alias{get_dat_param,Zvariant-method}
 \title{Get a specified run setting parameter value}
 \usage{
-get_dat_param(x, parameter)
+get_dat_param(x, parameter, warn_missing = TRUE)
 
-\S4method{get_dat_param}{Zvariant}(x, parameter)
+\S4method{get_dat_param}{Zvariant}(x, parameter, warn_missing = TRUE)
 }
 \arguments{
 \item{x}{Zvariant object.}
 
 \item{parameter}{Character string name of the parameter.}
+
+\item{warn_missing}{Logical indicating a warning should be raised of the
+parameter is not used.}
 }
 \value{
 Character string value of the parameter. If requested parameter is 
@@ -29,6 +32,6 @@ Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \seealso{
 \code{\link[zonator:Zvariant-class]{Zvariant-class}} and 
-\code{\link{set_dat_parameter}}.
+\code{\link{set_dat_param}}.
 }
 
