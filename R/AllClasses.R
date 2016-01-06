@@ -1,6 +1,6 @@
 # This file is a part of zonator package
 
-# Copyright (C) 2012-2014 Joona Lehtomäki <joona.lehtomaki@gmai.com>. All rights
+# Copyright (C) 2012-2014 Joona Lehtomaki <joona.lehtomaki@gmai.com>. All rights
 # reserved.
 
 # This program is open source software; you can redistribute it and/or modify

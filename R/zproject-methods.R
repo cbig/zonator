@@ -1,19 +1,19 @@
 # This file is a part of zonator package
 
-# Copyright (C) 2012-2014 Joona Lehtomäki <joona.lehtomaki@gmai.com>. All rights 
+# Copyright (C) 2012-2014 Joona Lehtomaki <joona.lehtomaki@gmai.com>. All rights
 # reserved.
 
-# This program is open source software; you can redistribute it and/or modify 
-# it under the terms of the FreeBSD License (keep this notice): 
+# This program is open source software; you can redistribute it and/or modify
+# it under the terms of the FreeBSD License (keep this notice):
 # http://en.wikipedia.org/wiki/BSD_licenses
 
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 #' @rdname get_variant-methods
 #' @aliases get_variant,Zproject-method
-#' 
+#'
 setMethod("get_variant", c("Zproject", "ANY"), function(x, index) {
   # Check the index
   if (is.numeric(index)) {
@@ -30,20 +30,20 @@ setMethod("get_variant", c("Zproject", "ANY"), function(x, index) {
 
 #' @rdname nvariants-methods
 #' @aliases nvariants,Zproject-method
-#' 
+#'
 setMethod("nvariants", "Zproject", function(x) {
   return(length(x@variants))
 })
 
 #' Names of variants in Zproject
-#' 
+#'
 #' Get the names of all the variants within a given \code{\link{Zproject}}.
-#' 
+#'
 #' @param x \code{Zproject} object.
-#' 
+#'
 #' @rdname names-methods
 #' @aliases names,Zproject-method
-#' 
+#'
 setMethod("names", "Zproject", function(x) {
   return(names(x@variants))
 })
@@ -61,11 +61,11 @@ setMethod("opendir", "Zproject", function(x) {
 
 #' @rdname rank_rasters-methods
 #' @aliases rank_rasters,Zproject-method
-#' 
+#'
 setMethod("rank_rasters", c("Zproject"), function(x, variants=NULL) {
   # Place the rank rasters into a list
   rank_rasters_list <- list()
-  
+
   # Check if only a subset of variants is needed. If not, get all the variants
   # based on their ID.
   if (is.null(variants)) {
@@ -73,7 +73,7 @@ setMethod("rank_rasters", c("Zproject"), function(x, variants=NULL) {
   }
   # Loop over the variant IDs
   for (variant.id in variants) {
-    
+
     variant <- get_variant(x, variant.id)
     if(has_results(variant)$rank) {
       rank_rasters_list[variant@name] <- rank_raster(variant)
@@ -91,7 +91,7 @@ setMethod("rank_rasters", c("Zproject"), function(x, variants=NULL) {
 
 #' @rdname variants-methods
 #' @aliases variants,Zproject-method
-#' 
+#'
 setMethod("variants", "Zproject", function(x) {
   return(x@variants)
 })
