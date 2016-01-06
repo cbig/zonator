@@ -9,16 +9,16 @@
 \code{ZGroupCurvesDataFrame} class inherits class data.frame.
 }
 \details{
-Class does no implement new methods, but it is used to override some 
-behaviour such as plot. Usually \code{ZGroupCurvesDataFrame} object belongs 
+Class does no implement new methods, but it is used to override some
+behaviour such as plot. Usually \code{ZGroupCurvesDataFrame} object belongs
 to a \code{\link[zonator:Zresults-class]{Zresults}} object.
 }
 \note{
-If user modifies or subsets ZGroupCurvesDataFrame in a funtion it is up 
+If user modifies or subsets ZGroupCurvesDataFrame in a funtion it is up
 to the user to update the indexes in slot \code{is.group}
 }
 \section{Slots}{
- 
+
  \describe{
    \item{\code{is.group}:}{Logical indicating whether column is actually
    a group.}

@@ -6,19 +6,19 @@
 \alias{Zresults-class}
 \title{The Zresults class}
 \description{
-\code{Zresults} class represents a full set of Zonation results associated 
-with a single variant (instance of class 
+\code{Zresults} class represents a full set of Zonation results associated
+with a single variant (instance of class
 \code{\link[zonator:Zvariant-class]{Zvariant-class}}).
 }
 \details{
 Slots of class \code{Zresults} can be queried using the \code{$}-operator.
 }
 \note{
-More information on PPA LSM data items can be found in 
+More information on PPA LSM data items can be found in
 \url{http://cbig.it.helsinki.fi/development/projects/zonation/wiki/LSM_with_pre-defined_units}
 }
 \section{Slots}{
- 
+
  \describe{
    \item{\code{root}:}{Character string path pointing to the root (dir) of
      the results.}

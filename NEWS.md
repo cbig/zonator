@@ -40,6 +40,7 @@ files with correct parameter names really hard.
 + Much has been changed in the way tutorial data paths are handled internally.
 At some point, the whole tutorial data set will be moved to a package of its
 own.
++ Removed `plyr` from the dependencies.
 
 ## CHANGES IN VERSION 0.4.1 (2015-12-15)
 

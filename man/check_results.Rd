@@ -10,8 +10,8 @@ check_results(object)
 \item{object}{of class zvariant}
 }
 \value{
-A boolean value TRUE if everything is ok, otherwise a character 
-  vector of encounterd errors. All encountered warnings are printed 
+A boolean value TRUE if everything is ok, otherwise a character
+  vector of encounterd errors. All encountered warnings are printed
   on-the-fly.
 }
 \description{

@@ -21,9 +21,7 @@ Suggests:
     rasterVis,
     testthat
 Imports:
-    plyr,
     RColorBrewer,
-    RCurl,
     raster,
     reshape2,
     rgdal

@@ -170,7 +170,7 @@ setMethod("groupnames", "Zvariant", function(x) {
 #' @aliases groupnames<-,Zvariant,character-method
 #'
 setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
-  if (plyr::empty(x@groups)) {
+  if (nrow(x@groups) == 0) {
     stop("Variant has no groups to name")
   }
   # Actual coded values are vector names. Assume numeric and try to coerce.
@@ -434,7 +434,7 @@ setMethod('show' , c("Zvariant"), function(object) {
 #'
 setMethod("sppdata", c("Zvariant"), function(x, group.names=FALSE) {
   spp.data <- x@spp.data
-  if (!plyr::empty(x@groups)) {
+  if (nrow(x@groups) > 0) {
     spp.names <- names(spp.data)
     if (group.names == TRUE && "name" %in% names(x@groups)) {
       spp.data <- cbind(spp.data, x@groups$name)

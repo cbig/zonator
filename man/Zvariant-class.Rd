@@ -6,7 +6,7 @@
 \alias{Zvariant-class}
 \title{The Zvariant class}
 \description{
-\code{Zvariant} class represents a Zonation analysis variant with the 
+\code{Zvariant} class represents a Zonation analysis variant with the
 associated parameters.
 }
 \details{
@@ -15,26 +15,26 @@ batch file. If the variant has been run, then the results are also
 associated with the instance of \code{Zvariant-class}.
 }
 \section{Slots}{
- 
+
  \describe{
    \item{\code{name}:}{Character string name of the variant.}
-   \item{\code{bat.file}:}{Character string path to a Zonation-style batch 
+   \item{\code{bat.file}:}{Character string path to a Zonation-style batch
      file.}
-   \item{\code{dat.data}:}{List holding the parsed data from Zonation 
+   \item{\code{dat.data}:}{List holding the parsed data from Zonation
      dat-file}
-   \item{\code{spp.data}:}{Data frame holding the parsed data from Zonation 
+   \item{\code{spp.data}:}{Data frame holding the parsed data from Zonation
      spp-file}
    \item{\code{output.dir}:}{Character string path to the output directory.}
-   \item{\code{groups}:}{Data frame holding the parsed data from Zonation 
+   \item{\code{groups}:}{Data frame holding the parsed data from Zonation
      groups-file}
-   \item{\code{call.params}:}{List of parsed call parameters from the 
+   \item{\code{call.params}:}{List of parsed call parameters from the
      batch file.}
    \item{\code{condition.layers}:}{Data frame holding the parsed data from
      condition file.}
    \item{\code{results}:}{List holding the results (data frames).}
    \item{\code{results_dirty}:}{Logical indicating if the current object
      data (dat.data and spp.data) has been changed when results are present.
-     If \code{TRUE}, data has changed and results may have been produced 
+     If \code{TRUE}, data has changed and results may have been produced
      using different data.}
  }
 }
