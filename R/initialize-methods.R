@@ -140,6 +140,7 @@ setMethod("initialize", "Zresults", function(.Object, root) {
     if (.options$debug) {
       message("Reading in groups curve file ", grp.curve.file)
     }
+    #
     .Object@grp.curves <- read_grp_curves(grp.curve.file)
   }
 
@@ -292,6 +293,14 @@ setMethod("initialize", "Zvariant", function(.Object, name=NULL, bat.file) {
 
   # results
   .Object@results <- new("Zresults", root = .Object@call.params$output.folder)
+
+  # Make sure that correct groupIDs are used also to name group curves in
+  # results
+  if (use_groups == "1" & has_results(.Object)$grp.curves) {
+    .Object@results@grp.curves <- regroup_curves(curves(.Object),
+                                                 sppweights(.Object),
+                                                 groups(.Object))
+  }
 
   featurenames(.Object) <- spp.data$name
 

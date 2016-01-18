@@ -1,3 +1,10 @@
+## CHANGES IN VERSION 0.5.1 (2016-XX-XX)
+
+### BUG FIXES
+
++ Always update groupnames in zvariant@results@grp.curves. Fixe 
+[issue #54](https://github.com/cbig/zonator/issues/54).
+
 ## CHANGES IN VERSION 0.5.0 (2016-01-06)
 
 ### NEW FEATURES
