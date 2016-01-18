@@ -15,7 +15,7 @@ regroup_curves(x, weights, group.ids)
 match with columns in \code{x}.}
 }
 \value{
-Data frame with new group statistics.
+\code{ZGroupCurvesDataFrame} with new group statistics.
 }
 \description{
 When results grouping is changed group-specific curves data has to be

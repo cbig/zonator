@@ -300,7 +300,7 @@ map_indexes <- function(x, y) {
 #' @param group.ids numeric vector of new group codes. Number of groups must
 #'   match with columns in \code{x}.
 #'
-#' @return Data frame with new group statistics.
+#' @return \code{ZGroupCurvesDataFrame} with new group statistics.
 #'
 #' @keywords zonation, results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
@@ -354,6 +354,8 @@ regroup_curves  <- function(x, weights, group.ids) {
   regrouped.x <- cbind(x[, c(1, 2)], do.call("cbind", groups.list))
   # Previous will prefix column names with "id." prefix, get rid of it
   colnames(regrouped.x) <- gsub("^[0-9]+\\.", "", colnames(regrouped.x))
+  regrouped.x <- new("ZGroupCurvesDataFrame", regrouped.x,
+                    is.group = c(rep(FALSE, 2), rep(TRUE, ncol(regrouped.x) - 2)))
   return(regrouped.x)
 }
 

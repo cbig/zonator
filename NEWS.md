@@ -4,6 +4,8 @@
 
 + Always update groupnames in zvariant@results@grp.curves. Fixes 
 [issue #54](https://github.com/cbig/zonator/issues/54).
++ Beacause of the precvious, make `regroup_curves()` always return a 
+`ZGroupCurvesDataFrame` object.
 
 ## CHANGES IN VERSION 0.5.0 (2016-01-06)
 
