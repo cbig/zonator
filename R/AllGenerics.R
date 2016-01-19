@@ -231,6 +231,10 @@ setGeneric("groupnames", function(x) {
 #' group names. If the particular variant doesn't use groups the gives a
 #' warning.
 #'
+#' All current group codes must be found in the keys, i.e. there can't be
+#' missing values. Argument \code{value} can, however, contain keys that are
+#' not in the current group codes.
+#'
 #' @param value named character vector.
 #'
 #' @seealso \code{\link{Zvariant-class}} \code{\link{groupnames}}

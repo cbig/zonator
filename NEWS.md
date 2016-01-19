@@ -1,4 +1,12 @@
-## CHANGES IN VERSION 0.5.1 (2016-XX-XX)
+## CHANGES IN VERSION 0.5.2 (2016-01-19)
+
+### BUG FIXES
+
++ Previously all keys had to be present in current group codes when using
+`groupnames()<-`. This doesn't make much sense, so now there can be extra groups 
+in the value being assigned as long as as all group codes are found in the keys.
+
+## CHANGES IN VERSION 0.5.1 (2016-01-18)
 
 ### BUG FIXES
 

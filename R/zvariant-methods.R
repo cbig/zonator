@@ -181,12 +181,17 @@ setReplaceMethod("groupnames", c("Zvariant", "character"), function(x, value) {
   # Actual coded values are vector names. Assume numeric and try to coerce.
   keys <- as.numeric(names(value))
   group.codes <- groups(x)
-  # Check that the keys actually are found in codes
-  if (!all(keys %in% unique(group.codes))) {
-    stop(paste("Key(s)", paste(keys[!keys %in% unique(group.codes)], collapse=", "),
-                               "not found in group codes:",
-               paste(group.codes, collapse=", ")))
+  unique.group.codes <- unique(group.codes)
+  # Check that all group codes are actually found in the keys
+  if (!all(unique.group.codes %in% keys)) {
+    stop(paste("Group code(s)", paste(unique.group.codes[!unique.group.codes %in% keys],
+                                      collapse = ", "),
+                               "not found in keys:",
+               paste(keys, collapse = ", ")))
   }
+  # Subset only values that are used (there can be more)
+  value <- value[which(names(value) %in% unique.group.codes)]
+
   # Get the actual character vector indexes based on the names
   inds <- sapply(group.codes, function(y) {which(keys == y)})
   # Index the value vector

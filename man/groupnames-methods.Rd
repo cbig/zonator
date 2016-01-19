@@ -39,6 +39,11 @@ Group names can be assigned to a \code{\link{Zvariant}} or
 group names. If the particular variant doesn't use groups the gives a
 warning.
 }
+\details{
+All current group codes must be found in the keys, i.e. there can't be
+missing values. Argument \code{value} can, however, contain keys that are
+not in the current group codes.
+}
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
