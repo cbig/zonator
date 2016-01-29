@@ -20,6 +20,8 @@
 #' @param bqp_p numeric template value for bqp_p values.
 #' @param cellrem numeric template value for cellrem values.
 #' @param spp_file_dir character path to target dir.
+#' @param recursive Logical defining whether files in \code{spp_file_dir} should
+#'   be listed recursively.
 #' @param spp_file_pattern pattern used to match raster files.
 #' @param override_path character path used to override the dirpath in input
 #'   raster file paths.
@@ -33,14 +35,17 @@
 #'
 create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
                        bqp=1, bqp_p=1, cellrem=0.25, spp_file_dir,
-                       spp_file_pattern = "[.+\\.[(tif)|(img)]",
+                       recursive = FALSE,
+                       spp_file_pattern = ".+\\.(tif|img)$",
                        override_path = NULL) {
-
-
 
   # List rasters in the target directory
   target_rasters <- list.files(path = spp_file_dir, pattern = spp_file_pattern,
-                               full.names = TRUE)
+                               full.names = TRUE, recursive = recursive)
+
+  if (length(target_rasters) == 0) {
+    stop("No raster matching the spp_file_pattern ", spp_file_pattern, "found")
+  }
 
   # Construct the spp file content
   spp_content <- data.frame(weight = weight, alpha = alpha, bqp = bqp,

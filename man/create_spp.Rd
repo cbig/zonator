@@ -5,7 +5,7 @@
 \title{Generate spp_file based on a directory of input rasters.}
 \usage{
 create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
-  bqp_p = 1, cellrem = 0.25, spp_file_dir,
+  bqp_p = 1, cellrem = 0.25, spp_file_dir, recursive = FALSE,
   spp_file_pattern = "[.+\\\\.[(tif)|(img)]", override_path = NULL)
 }
 \arguments{
@@ -22,6 +22,9 @@ create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
 \item{cellrem}{numeric template value for cellrem values.}
 
 \item{spp_file_dir}{character path to target dir.}
+
+\item{recursive}{Logical defining whether files in \code{spp_file_dir} should
+be listed recursively.}
 
 \item{spp_file_pattern}{pattern used to match raster files.}
 
