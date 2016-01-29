@@ -44,7 +44,7 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
                                full.names = TRUE, recursive = recursive)
 
   if (length(target_rasters) == 0) {
-    stop("No raster matching the spp_file_pattern ", spp_file_pattern, "found")
+    stop("No raster(s) matching the spp_file_pattern ", spp_file_pattern, " found")
   }
 
   # Construct the spp file content
