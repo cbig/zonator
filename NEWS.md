@@ -1,3 +1,15 @@
+## CHANGES IN VERSION 0.5.3 (2016-XX-XX)
+
+### NEW FEATURES
+
++ `create_spp()` accepts new argument `recursive = TRUE` which will look for
+rasters in target directory recursively.
+
+### BUG FIXES
+
++ Fix default regex pattern for `spp_file_pattern` in `create_spp()`. Previous
+version did find .tif and .img file, but also some directories.
+
 ## CHANGES IN VERSION 0.5.2 (2016-01-19)
 
 ### BUG FIXES
