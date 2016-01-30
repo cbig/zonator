@@ -24,7 +24,10 @@
 #'   be listed recursively.
 #' @param spp_file_pattern pattern used to match raster files.
 #' @param override_path character path used to override the dirpath in input
-#'   raster file paths.
+#'   raster file paths. In case \code{recursive = TRUE}, then there can be
+#'   an arbitrary number of subdirectories and override path is used only up
+#'   until the \code{spp_file_dir}. This way the correct subdirectory structure
+#'   is retained.
 #'
 #' @return invisible(TRUE), functrion is used for side effects.
 #'
@@ -44,7 +47,8 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
                                full.names = TRUE, recursive = recursive)
 
   if (length(target_rasters) == 0) {
-    stop("No raster(s) matching the spp_file_pattern ", spp_file_pattern, " found")
+    stop("No raster(s) matching the spp_file_pattern ", spp_file_pattern,
+         " found in ", spp_file_dir)
   }
 
   # Construct the spp file content
@@ -54,7 +58,20 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
 
   # Override the target raster paths if needed
   if (!is.null(override_path)) {
-    spp_content$sppfiles <- file.path(override_path, basename(target_rasters))
+    # If recursive TRUE, the override path needs to be modified as the only use
+    # case for the override is to act as a prefix for the filename. Using
+    # recursive = TRUE can introduce additional levels of nestedness.
+    if (recursive) {
+      # Split each path with spp_file_dir. Everything after this will be the
+      # subdir path.
+      path_components <- strsplit(target_rasters, paste0(spp_file_dir,
+                                                         .Platform$file.sep))
+      # Get the last item (subdir path) from each split.
+      target_rasters <- sapply(path_components, function(x) x[length(x)])
+    } else {
+      target_rasters <- basename(target_rasters)
+    }
+    spp_content$sppfiles <- file.path(override_path, target_rasters)
   }
 
   write.table(spp_content, file = filename, row.names = FALSE, quote = FALSE,
