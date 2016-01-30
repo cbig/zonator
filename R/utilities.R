@@ -125,6 +125,38 @@ clean_str <- function(x) {
   return(x)
 }
 
+#' Find out the number of decimal places in a number.
+#'
+#' Original implementation from https://stackoverflow.com/questions/5173692/how-to-return-number-of-decimal-places-in-r
+#'
+#' @note R usually restricts the number of decimal to 9 in printing etc. Unless
+#' \code{true_number = TRUE}, return 9 and give a warning.
+#'
+#' @param x Float or double numeric number.
+#' @param true_number Logical setting whether the true number (see notes) of
+#'   decimal places.
+#'
+#' @return Integer number of decimal places. Maximum
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#'
+decimalplaces <-
+  Vectorize(function(x, true_number = FALSE) {
+    if ((x %% 1) != 0) {
+      decimals <- nchar(strsplit(sub('0+$', '', as.character(x)), ".",
+                                 fixed = TRUE)[[1]][[2]])
+    } else {
+      return(0)
+    }
+    if (decimals > 9 & true_number == FALSE)  {
+      decimals <- 9
+      warning("Number of decimal places more than 9 but true_number set to FALSE")
+    }
+    return(decimals)
+  },
+  c("x"), USE.NAMES = TRUE)
+
 #' Re-implementation of \code{\link{file_path_sans_ext}} in \code{tools}. This
 #' version can handle "." just before the file extenstion, unlike the original
 #' implementation.

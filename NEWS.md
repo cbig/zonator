@@ -4,6 +4,10 @@
 
 + `create_spp()` accepts new argument `recursive = TRUE` which will look for
 rasters in target directory recursively.
++ New utility `decimalplaces()` can figure out how many decimal places a number
+has.
++ `save_zvariant()` now dynamically decides how to format `weight` and `alpha`
+column values based on `max(decimalplaces(x))` in the vector.
 
 ### BUG FIXES
 

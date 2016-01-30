@@ -359,9 +359,13 @@ setMethod("save_zvariant", signature("Zvariant", "ANY", "ANY", "ANY"),
   spp_data <- sppdata(x)
   spp_data <- spp_data[,!(names(spp_data) %in% c("name", "group"))]
   spp_to <- file.path(variant_dir, paste0(variant_name, ".spp"))
-  # Format weights and alpha to get a better layout
-  spp_data$weight <- sprintf("%.2f", spp_data$weight)
-  spp_data$alpha <- sprintf("%.2f", spp_data$alpha)
+  # Format weights and alpha to get a better layout. First, find out how many
+  # decimal places are needed.
+  weight_formatter <- paste0("%.", max(decimalplaces(spp_data$weight)), "f")
+  alpha_formatter <- paste0("%.", max(decimalplaces(spp_data$alpha)), "f")
+
+  spp_data$weight <- sprintf(weight_formatter, spp_data$weight)
+  spp_data$alpha <- sprintf(alpha_formatter, spp_data$alpha)
   write.table(spp_data, file = spp_to, row.names = FALSE, col.names = FALSE,
               quote = FALSE)
   if (debug_msg) message("Wrote spp file ", spp_to)
