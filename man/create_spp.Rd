@@ -6,7 +6,7 @@
 \usage{
 create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
   bqp_p = 1, cellrem = 0.25, spp_file_dir, recursive = FALSE,
-  spp_file_pattern = "[.+\\\\.[(tif)|(img)]", override_path = NULL)
+  spp_file_pattern = ".+\\\\.(tif|img)$", override_path = NULL)
 }
 \arguments{
 \item{filename}{character string defining the name of the spp file created.}
@@ -29,7 +29,10 @@ be listed recursively.}
 \item{spp_file_pattern}{pattern used to match raster files.}
 
 \item{override_path}{character path used to override the dirpath in input
-raster file paths.}
+raster file paths. In case \code{recursive = TRUE}, then there can be
+an arbitrary number of subdirectories and override path is used only up
+until the \code{spp_file_dir}. This way the correct subdirectory structure
+is retained.}
 }
 \value{
 invisible(TRUE), functrion is used for side effects.
