@@ -148,7 +148,7 @@ plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE, fix.y=FALSE,
     cols <- grey.colors(n=length(unique(iact.names)))
   } else {
     cols <- suppressWarnings(RColorBrewer::brewer.pal(length(unique(iact.names)),
-                                                      "Set1"))
+                                                      "Set3"))
   }
 
   colour.values <- sapply(iact.names, function(x) {
