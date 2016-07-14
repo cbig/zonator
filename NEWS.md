@@ -2,12 +2,17 @@
 
 ### NEW FEATURES
 
++ Change the color scheme for `plot_curves()` to ColorBrewer `Set3` from `Set1`.
+This way, the maximum number of features increases from 9 to 12.
 + `create_spp()` accepts new argument `recursive = TRUE` which will look for
 rasters in target directory recursively.
++ The `spp_file_dir` for `create_spp()` accepsts multiple directories (in 
+vector) instead of just one.
 + New utility `decimalplaces()` can figure out how many decimal places a number
 has.
 + `save_zvariant()` now dynamically decides how to format `weight` and `alpha`
 column values based on `max(decimalplaces(x))` in the vector.
++ `create_zproject()` now actually checkst if template dat-file exists.
 
 ### BUG FIXES
 
