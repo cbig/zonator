@@ -103,15 +103,25 @@ create_zproject <- function(name, dir, variants, dat_template_file = NULL,
     # Copy the templates to the new variant folder
     if (debug) message("Copying template dat-file ", dat_template_file,
                        " to variant directory ", variant_dir)
-    file.copy(from = dat_template_file, to = dat_to, overwrite = TRUE)
-
+    if (file.exists(dat_template_file)) {
+      file.copy(from = dat_template_file, to = dat_to, overwrite = TRUE)
+    } else {
+      stop("dat-file template ", dat_template_file, " not found")
+    }
     # Work out the details depending if using a template file or a
     # directory of input rasters.
     if (!is.null(spp_template_dir)) {
-      if (file.exists(spp_template_dir)) {
+      # We may have multiple directories
+      if (all(sapply(spp_template_dir, function(x) file.exists(x)))) {
         if (debug) {
-          message("Creating a spp file from rasters in directory ",
-                  spp_template_dir)
+          if (length(spp_template_dir) > 1) {
+            dir_msg <- paste("Creating a spp file from rasters in directories ",
+                             paste(spp_template_dir, collapse = ", "))
+          } else{
+            dir_msg <- paste("Creating a spp file from rasters in directory ",
+                             spp_template_dir)
+          }
+          message(dir_msg)
         }
         create_spp(filename = spp_to, spp_file_dir = spp_template_dir, ...)
       } else {
