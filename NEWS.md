@@ -2,8 +2,8 @@
 
 ### NEW FEATURES
 
-+ Change the color scheme for `plot_curves()` to ColorBrewer `Set3` from `Set1`.
-This way, the maximum number of features increases from 9 to 12.
++ Define the color scheme for `plot_curves()` dynamically between ColorBrewer's 
+`Set1` and `Set2`. Where the former has better colors, the latter has more.
 + `create_spp()` accepts new argument `recursive = TRUE` which will look for
 rasters in target directory recursively.
 + The `spp_file_dir` for `create_spp()` accepsts multiple directories (in 
