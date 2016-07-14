@@ -21,7 +21,7 @@ create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
 
 \item{cellrem}{numeric template value for cellrem values.}
 
-\item{spp_file_dir}{character path to target dir.}
+\item{spp_file_dir}{character path or a vector of paths to target dir.}
 
 \item{recursive}{Logical defining whether files in \code{spp_file_dir} should
 be listed recursively.}
