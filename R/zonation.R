@@ -44,18 +44,19 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
 
   # List rasters in the target directory. spp_file_dir can be a vector as well,
   # so check for that
+  target_rasters <- list()
   if (length(spp_file_dir) > 1) {
-    target_rasters <- c()
     for (item in spp_file_dir) {
-      temp_target_rasters <- list.files(path = spp_file_dir,
-                                        pattern = spp_file_pattern,
-                                        full.names = TRUE,
-                                        recursive = recursive)
-      target_rasters <- c(target_rasters, temp_target_rasters)
+      target_rasters[[item]]  <- list.files(path = item,
+                                          pattern = spp_file_pattern,
+                                          full.names = TRUE,
+                                          recursive = recursive)
     }
   } else {
-    target_rasters <- list.files(path = spp_file_dir, pattern = spp_file_pattern,
-                               full.names = TRUE, recursive = recursive)
+    target_rasters[[spp_file_dir]] <- list.files(path = spp_file_dir,
+                                               pattern = spp_file_pattern,
+                                               full.names = TRUE,
+                                               recursive = recursive)
   }
   if (length(target_rasters) == 0) {
     stop("No raster(s) matching the spp_file_pattern ", spp_file_pattern,
@@ -65,7 +66,7 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
   # Construct the spp file content
   spp_content <- data.frame(weight = weight, alpha = alpha, bqp = bqp,
                             bqp_p = bqp_p, cellrem = cellrem,
-                            sppfiles = target_rasters)
+                            sppfiles = as.vector(unlist(target_rasters)))
 
   # Override the target raster paths if needed
   if (!is.null(override_path)) {
@@ -73,14 +74,28 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
     # case for the override is to act as a prefix for the filename. Using
     # recursive = TRUE can introduce additional levels of nestedness.
     if (recursive) {
-      # Split each path with spp_file_dir. Everything after this will be the
-      # subdir path.
-      path_components <- strsplit(target_rasters, paste0(spp_file_dir,
-                                                         .Platform$file.sep))
-      # Get the last item (subdir path) from each split.
-      target_rasters <- sapply(path_components, function(x) x[length(x)])
+      # Again, we may have several spp_file_dirs
+      if (length(spp_file_dir) == 1) {
+        # Split each path with spp_file_dir. Everything after this will be the
+        # subdir path.
+        path_components <- strsplit(target_rasters[[1]], paste0(spp_file_dir,
+                                                           .Platform$file.sep))
+        # Get the last item (subdir path) from each split.
+        target_rasters <- sapply(path_components, function(x) x[length(x)])
+      } else {
+        temp_target_rasters <- c()
+        for (target_dir in names(target_rasters)) {
+          browser()
+          path_components <- strsplit(target_rasters[[target_dir]],
+                                      paste0(target_dir, .Platform$file.sep))
+          # Get the last item (subdir path) from each split.
+          temp_target_rasters <- c(temp_target_rasters,
+                                   sapply(path_components, function(x) x[length(x)]))
+        }
+        target_rasters <- temp_target_rasters
+      }
     } else {
-      target_rasters <- basename(target_rasters)
+      target_rasters <- sapply(target_rasters, function(x) basename(x))
     }
     spp_content$sppfiles <- file.path(override_path, target_rasters)
   }
