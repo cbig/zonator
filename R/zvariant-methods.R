@@ -506,6 +506,26 @@ setMethod("sppweights", c("Zvariant"), function(x) {
   return(x@spp.data$weight)
 })
 
+# sppweights<- ------------------------------------------------------------
+
+#' @rdname sppweights-methods
+#'
+setMethod("sppweights<-", c("Zvariant"), function(x, value) {
+  # Check that the number of weight items is correct
+  if (length(value) != nfeatures(x)) {
+    stop("The number of weights (", length(value),
+         ") and the number of features (", nfeatures(x), ") is different.")
+  }
+  # Check that the type of weight items is correct
+  value <- suppressWarnings(as.numeric(value))
+  if (any(is.na(value))) {
+    stop("Weight vector elements must be coercible to numeric.")
+  }
+  x@spp.data$weight <- value
+  return(x)
+})
+
+
 # .printZvariant ----------------------------------------------------------
 
 .printZvariant <- function(x, ...) {
