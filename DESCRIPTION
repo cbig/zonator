@@ -1,8 +1,8 @@
 Package: zonator
 Type: Package
 Title: Utilities for Zonation Spatial Conservation Prioritization Software
-Version: 0.5.3
-Date: 2016-07-14
+Version: 0.5.4
+Date: 2016-07-21
 Author: Joona Lehtomaki
 License: FreeBSD
 Encoding: UTF-8
