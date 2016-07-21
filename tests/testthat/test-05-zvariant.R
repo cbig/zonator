@@ -101,6 +101,30 @@ test_that("Getting weights works", {
 
 })
 
+test_that("Setting weights works", {
+  # Use variant 4 (distribution smoothing) because it has weights
+  bat.file <- .options$bat.file.ds
+  results.variant <- new("Zvariant", bat.file = bat.file)
+
+  # Generate correct and incorrect number of weights
+  correct.weights <- rep(1, 7)
+  incorrect.weights <- rep("n", 7)
+  incorrect.n.weights <- rep(1, 5)
+
+  sppweights(results.variant) <- correct.weights
+  expect_identical(correct.weights, sppweights(results.variant),
+                   "Test variant weights not what they're supposed to")
+
+  # This should error: wrong number of weights
+  expect_error(sppweights(results.variant) <- incorrect.n.weights,
+               info = "Setting wrong number of weights should error")
+
+  # This should error: wrong type of weights
+  expect_error(sppweights(results.variant) <- incorrect.weights,
+               info = "Setting wrong type of weights should error")
+
+})
+
 test_that("Assigning and fetching feature names works", {
   bat.file <- .options$bat.file
   spp.file <- .options$spp.file

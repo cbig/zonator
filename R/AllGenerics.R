@@ -624,6 +624,27 @@ setGeneric("sppweights", function(x) {
   standardGeneric("sppweights")
 })
 
+# sppweights<- ------------------------------------------------------------
+
+#' Set biodiversity feature weights of a Zonation variant
+#'
+#' @note The weight vector must be exactly the correct length, no recycling is
+#' done. Vector elements must be coercible to numeric.
+#'
+#' @param value numeric vector with the length equal to the number of features
+#' in the variant
+#'
+#'
+#' @export
+#' @rdname sppweights-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("sppweights<-", function(x, value) {
+  standardGeneric("sppweights<-")
+})
+
+
 # variants ----------------------------------------------------------------
 
 #' Get all variants in a Zonation project
