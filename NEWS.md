@@ -1,3 +1,9 @@
+## CHANGES IN VERSION 0.5.4 (2016-07-21)
+
+### NEW FEATURES
+
++ Variant weights can now be easily set using `sppweights()<-`.
+
 ## CHANGES IN VERSION 0.5.3 (2016-07-14)
 
 ### NEW FEATURES
