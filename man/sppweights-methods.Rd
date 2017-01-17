@@ -5,6 +5,7 @@
 \alias{sppweights}
 \alias{sppweights,Zvariant-method}
 \alias{sppweights<-}
+\alias{sppweights<-,Zvariant,numeric-method}
 \title{Get biodiversity feature weights of a Zonation variant}
 \usage{
 sppweights(x)
@@ -13,7 +14,7 @@ sppweights(x) <- value
 
 \S4method{sppweights}{Zvariant}(x)
 
-\S4method{sppweights}{Zvariant}(x) <- value
+\S4method{sppweights}{Zvariant,numeric}(x) <- value
 }
 \arguments{
 \item{x}{Zvariatn object.}

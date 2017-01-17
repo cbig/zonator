@@ -506,9 +506,9 @@ setMethod("sppweights", c("Zvariant"), function(x) {
 
 #' @name sppweights<-
 #' @rdname sppweights-methods
-#' @rdname sppweights-methods
+#' @aliases sppweights<-,Zvariant,numeric-method
 #'
-setReplaceMethod("sppweights", c("Zvariant", "ANY"), function(x, value) {
+setReplaceMethod("sppweights", c("Zvariant", "numeric"), function(x, value) {
   # Check that the number of weight items is correct
   if (length(value) != nfeatures(x)) {
     stop("The number of weights (", length(value),
