@@ -108,6 +108,9 @@ read_groups <- function(infile) {
 #' @return List of parsed ini-parameters.
 #'
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @importFrom utils read.table
+#'
 #' @export
 #' @note Adapted from http://bit.ly/11e4Jh0
 #'

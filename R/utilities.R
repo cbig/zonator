@@ -397,6 +397,9 @@ regroup_curves  <- function(x, weights, group.ids) {
 #' @param ... Additional arguments passed on to \code{\link{install.packages}}.
 #'
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @importFrom utils install.packages
+#'
 #' @export
 #'
 require_package <- function(package, ...) {

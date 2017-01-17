@@ -184,6 +184,8 @@ create_zproject <- function(name, dir, variants, dat_template_file = NULL,
 #'   \code{\link[zonator:Zvariant-class]{Zvariant-class}} and
 #'   \code{\link[zonator:create_zproject]{create_zproject}}
 #'
+#' @importFrom methods new
+#'
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #'

@@ -68,6 +68,7 @@ setMethod("initialize", "Zproject", function(.Object, root, debug=FALSE) {
 #'
 #' @import raster
 #' @import rgdal
+#' @importFrom methods validObject
 #'
 #' @rdname initialize-methods
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
@@ -204,6 +205,8 @@ setMethod("initialize", "Zresults", function(.Object, root) {
 #' @seealso \code{\link{initialize}}
 #'
 #' @keywords internal
+#'
+#' @importFrom methods validObject
 #'
 #' @rdname initialize-methods
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>

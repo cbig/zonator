@@ -31,6 +31,7 @@
 #'
 #' @return invisible(TRUE), functrion is used for side effects.
 #'
+#' @importFrom utils write.table
 #'
 #' @export
 #'

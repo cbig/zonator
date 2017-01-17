@@ -30,6 +30,8 @@
 #' @seealso \code{\link{geom_bar}}.
 #'
 #' @import ggplot2
+#' @importFrom stats median
+#' @importFrom utils data
 #' @export
 #'
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
@@ -105,6 +107,7 @@ plot_hist <- function(x, mask.obj=NULL, add.mean=FALSE, add.median=FALSE,
 #' @return ggplot2 object
 #'
 #' @import ggplot2
+#' @importFrom grDevices grey.colors
 #'
 #' @keywords internal
 #'

@@ -28,6 +28,9 @@
 #' @return Curves object with all the information in the curves file. If the
 #'   requested file does not exist, return NA.
 #'
+#' @importFrom utils read.table
+#' @importFrom methods new
+#'
 #' @export
 #' @seealso \code{\link{read_grp_curves}}
 #'
