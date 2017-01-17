@@ -1,4 +1,5 @@
 language: r
+dist: trusty
 sudo: required
 r_binary_packages:
   - rasterVis
