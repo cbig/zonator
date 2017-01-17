@@ -1,5 +1,6 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/cbig/zonator.png)](https://travis-ci.org/cbig/zonator)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/cbig/zonator?branch=master&svg=true)](https://ci.appveyor.com/project/cbig/zonator)
 [![codecov](https://codecov.io/gh/cbig/zonator/branch/master/graph/badge.svg)](https://codecov.io/gh/cbig/zonator)
 [![](http://www.r-pkg.org/badges/version/rwfs)](http://www.r-pkg.org/pkg/zonator)
 
