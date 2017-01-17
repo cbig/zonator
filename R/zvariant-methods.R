@@ -433,13 +433,9 @@ setMethod("set_dat_param", signature("Zvariant"), function(x, parameter, value) 
 #'
 #' @param object \code{ZVariant} object.
 #'
-#' @rdname show-methods
-#'
-#' @export
-#'
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #'
-setMethod('show' , c("Zvariant"), function(object) {
+setMethod("show" , c("Zvariant"), function(object) {
   .printZvariant(object)
 })
 
