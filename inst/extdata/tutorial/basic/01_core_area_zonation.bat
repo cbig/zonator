@@ -1,1 +1,0 @@
-call zig4.exe -r 01_core_area_zonation/01_core_area_zonation.dat 01_core_area_zonation/01_core_area_zonation.spp 01_core_area_zonation/01_core_area_zonation_out/01_core_area_zonation.txt 0.0 0 1.0 0 --grid-output-formats=compressed-tif --image-output-formats=png
