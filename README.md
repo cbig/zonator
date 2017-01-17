@@ -1,13 +1,11 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/cbig/zonator.png)](https://travis-ci.org/cbig/zonator)
 [![codecov](https://codecov.io/gh/cbig/zonator/branch/master/graph/badge.svg)](https://codecov.io/gh/cbig/zonator)
-[![](http://www.r-pkg.org/badges/version/rwfs)](http://www.r-pkg.org/pkg/zonator)
 
 # zonator
 
 `zonator` is a utility R package for dealing with various tasks related to
-[Zonation](http://www.helsinki.fi/bioscience/consplan/software/Zonation/index.html) 
-conservation prioritization software. The package started out as a collection
+Zonation conservation prioritization software. The package started out as a collection
 of helper scripts which have now been packages for anybody interested in using
 a familiar tool (R) in setting up Zonation runs and managing Zonation results.
 

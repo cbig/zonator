@@ -280,7 +280,7 @@ all.ranks <- rank_rasters(tutorial.project)
 plot(all.ranks, breaks=leg$values, col=leg$colors, nc=1)
 ```
 
-Naturally, all methods defined for a [RasterStack](http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/raster/html/stack.html) object are available. For example, checking 
+Naturally, all methods defined for a `RasterStack` object are available. For example, checking 
 the distributions of individual stack layers (i.e. rank rasters) and the 
 correlation between the values of layers can be done using `pairs()`. Following
 example examines correlation between variants 1-3.
