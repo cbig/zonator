@@ -177,7 +177,8 @@ the names of all the variants. Name can also be used to extract a variant.
 
 ```{r variants-by-name}
 names(tutorial.project)
-variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+# Get first variant, 01_core_area_zonation
+variant.caz <- get_variant(tutorial.project, "01")
 ```
 
 Each variant object is an instance of class `Zvariant` and have a suite of 

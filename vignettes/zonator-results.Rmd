@@ -18,8 +18,8 @@ library(zonator)
 setup.dir <- system.file("extdata/tutorial/basic", package="zonator") 
 tutorial.project <- load_zproject(setup.dir)
 
-# Get a specific variant
-variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+# Get a specific variant, 01_core_area_zonation
+variant.caz <- get_variant(tutorial.project, "01")
 
 # Let's also rename the features and groups while we're at it
 featurenames(variant.caz) <- c("Koala", "Masked.owl", "Powerful.owl", 
@@ -145,7 +145,8 @@ To make plotting examples more interesting, let's use also another variant that
 uses Zonation's masking capability.
 
 ```{r mask-variant}
-variant.mask <- get_variant(tutorial.project, "05_hierarchical_removal_mask")
+# Variant: 05_hierarchical_removal_mask
+variant.mask <- get_variant(tutorial.project, "05")
 
 featurenames(variant.mask) <- c("Koala", "Masked.owl", "Powerful.owl", 
                              "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
