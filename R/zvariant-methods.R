@@ -508,9 +508,11 @@ setMethod("sppweights", c("Zvariant"), function(x) {
 
 # sppweights<- ------------------------------------------------------------
 
+#' @name sppweights<-
+#' @rdname sppweights-methods
 #' @rdname sppweights-methods
 #'
-setMethod("sppweights<-", c("Zvariant"), function(x, value) {
+setReplaceMethod("sppweights", c("Zvariant", "ANY"), function(x, value) {
   # Check that the number of weight items is correct
   if (length(value) != nfeatures(x)) {
     stop("The number of weights (", length(value),
@@ -519,7 +521,7 @@ setMethod("sppweights<-", c("Zvariant"), function(x, value) {
   # Check that the type of weight items is correct
   value <- suppressWarnings(as.numeric(value))
   if (any(is.na(value))) {
-    stop("Weight vector elements must be coercible to numeric.")
+    stop("Weight vector elements must be coercible to unmeric.")
   }
   x@spp.data$weight <- value
   return(x)

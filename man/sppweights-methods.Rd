@@ -5,7 +5,6 @@
 \alias{sppweights}
 \alias{sppweights,Zvariant-method}
 \alias{sppweights<-}
-\alias{sppweights<-,Zvariant-method}
 \title{Get biodiversity feature weights of a Zonation variant}
 \usage{
 sppweights(x)
