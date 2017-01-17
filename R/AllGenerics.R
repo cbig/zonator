@@ -112,6 +112,44 @@ setGeneric("featurenames<-", function(x, value) {
 })
 
 
+# features_info -----------------------------------------------------------
+
+#' Get the features info component of Zresults.
+#'
+#' Returns the data in *.features_info.txt results standard output of
+#' Zonation if present.
+#'
+#' Argument \code{x} can be an instance of one the following Z* classes:
+#' \itemize{
+#'   \item{\code{Zvariant}}
+#'   \item{\code{Zresults}}
+#' }
+#'
+#' @param x Z* object.
+#'
+#' @return data.frame containing the features info data.
+#'
+#' @seealso \code{\link{Zvariant-class}} \code{\link{Zresults-class}}
+#'          \code{\link{groupnames}} \code{\link{groups}}
+#'
+#' @export
+#' @rdname features_info-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @examples \dontrun{
+#'  setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
+#'  tutorial.project <- create_zproject(setup.dir)
+#'  variant.caz <- get_variant(tutorial.project, "01")
+#'
+#'  # Feature names for a Zvariant object
+#'  features_info(variant_caz)
+#' }
+#'
+setGeneric("features_info", function(x) {
+  standardGeneric("features_info")
+})
+
 # get_dat_param -----------------------------------------------------------
 
 #' Get a specified run setting parameter value

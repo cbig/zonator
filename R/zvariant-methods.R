@@ -56,6 +56,19 @@ setReplaceMethod("featurenames", c("Zvariant", "character"), function(x, value) 
   return(x)
 })
 
+# features_info -----------------------------------------------------------
+
+#' @rdname features_info-methods
+#' @aliases features_info,Zresults-method
+#'
+setMethod("features_info", c("Zvariant"), function(x) {
+  if (has_results(x)$features.info) {
+    return(results(x)@features.info)
+  } else {
+    warning("Features info data requested but not present in ", outdir(x))
+  }
+})
+
 # get_dat_param -----------------------------------------------------------
 
 #' @rdname get_dat_param-methods

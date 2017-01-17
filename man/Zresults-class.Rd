@@ -30,6 +30,7 @@ More information on PPA LSM data items can be found in
    \item{\code{wrscr}:}{RasterLayer object of weighted range-size corrected richness.}
    \item{\code{prop}:}{RasterLayer object of the proportional loss of distribution.}
    \item{\code{ppa.lsm}:}{Data frame containg PPA LSM data items 1 and 3.}
+   \item{\code{features.info}:}{Data frame containg features info data.}
  }
 }
 \author{

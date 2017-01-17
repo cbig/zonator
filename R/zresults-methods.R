@@ -89,6 +89,17 @@ setMethod("featurenames", signature("Zresults"), function(x) {
   return(names(x@curves)[x@curves@is.feature])
 })
 
+#' @rdname features_info-methods
+#' @aliases features_info,Zresults-method
+#'
+setMethod("features_info", c("Zresults"), function(x) {
+  if (has_results(x)$features.info) {
+    return(x@features.info)
+  } else {
+    warning("Features info data requested but not present in ", outdir(x))
+  }
+})
+
 #' @rdname groupnames-methods
 #' @aliases groupnames,Zresults-method
 #'
@@ -117,6 +128,7 @@ setMethod("has_results", "Zresults", function(x) {
   res$wrscr <- hasValues(x@wrscr)
   res$prop <- hasValues(x@prop)
   res$ppa.lsm <- (!length(x@ppa.lsm) == 0)
+  res$features.info <- (!length(x@features.info) == 0)
 
   return(res)
 })

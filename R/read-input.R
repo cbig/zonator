@@ -66,6 +66,27 @@ read_bat <- function(infile) {
   return(bat.list)
 }
 
+#' Read a features info file.
+#'
+#' @param infile Character string input file path.
+#'
+#' @return Data frame of parsed features info data.
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @importFrom utils read.table
+#'
+#' @export
+#'
+read_features_info <- function(infile) {
+  col.names <- c("Weight", "DistSum", "IGRetained",
+                 "TviolationFractRem", "DistrMeanX", "DistMeanY",
+                 "MapFileName")
+  feat.info.dat <- read.table(infile, sep = "\t", skip = 2, as.is = TRUE,
+                              col.names = col.names)
+  return(feat.info.dat)
+}
+
 #' Read a groups file.
 #'
 #' @param infile Character string input file path.

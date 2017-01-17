@@ -283,3 +283,26 @@ test_that("Retrieving results rank raster works", {
   expect_warning(rank_raster(test.no.results))
 
 })
+
+test_that("Reading feature info works", {
+  results.path <- .options$results.dir
+
+  correct.col.names <- c("Weight", "DistSum", "IGRetained",
+                         "TviolationFractRem", "DistrMeanX", "DistMeanY",
+                         "MapFileName")
+  correct.features.info <- read.table(file.path(results.path,
+                                                "01.features_info.txt"),
+                                      sep = "\t", skip = 2, as.is = TRUE,
+                                      col.names = correct.col.names)
+
+  test.results <- new("Zresults", root = results.path)
+
+  expect_identical(features_info(test.results), correct.features.info,
+                   "Correct features info is not returned for Zresults")
+
+  no.results.path <- file.path(.options$setup.dir, "06/06_out")
+  suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
+
+  expect_warning(features_info(test.no.results))
+
+})

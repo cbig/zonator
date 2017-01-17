@@ -360,6 +360,31 @@ test_that("Retrieving variant rank raster works", {
 
 })
 
+test_that("Retrieving feature info works", {
+  results.path <- .options$results.dir
+
+  correct.col.names <- c("Weight", "DistSum", "IGRetained",
+                         "TviolationFractRem", "DistrMeanX", "DistMeanY",
+                         "MapFileName")
+  correct.features.info <- read.table(file.path(results.path,
+                                                "01.features_info.txt"),
+                                      sep = "\t", skip = 2, as.is = TRUE,
+                                      col.names = correct.col.names)
+
+  bat.file <- .options$bat.file
+  test.variant <- new("Zvariant", bat.file = bat.file)
+
+  expect_identical(features_info(test.variant), correct.features.info,
+                   "Correct features info is not returned for Zvariant")
+
+  no.results.bat.file <- file.path(.options$setup.dir,
+                                   "06.batx")
+  suppressWarnings(test.no.results <- new("Zvariant", bat.file = no.results.bat.file))
+
+  expect_warning(features_info(test.no.results))
+
+})
+
 test_that("Getting and setting dat data works", {
   bat_file <- .options$bat.file
   spp_file <- .options$spp.file

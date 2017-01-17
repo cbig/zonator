@@ -127,6 +127,15 @@ setMethod("initialize", "Zresults", function(.Object, root) {
     }
   }
 
+  # Features info file is named *.features_info.txt
+  features.info.file <- get_file(root, "\\.features_info\\.txt$")
+  if (!is.na(features.info.file)) {
+    if (.options$debug) {
+      message("Reading in features info file ", features.info.file)
+    }
+    .Object@features.info <- read_features_info(features.info.file)
+  }
+
   # Curves file is named *.curves.txt. NOTE: if the file does not exist,
   # returns NA.
   curve.file <- get_file(root, "\\.curves\\.txt")

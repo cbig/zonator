@@ -160,6 +160,7 @@ check_results <- function(object) {
 #'    \item{\code{wrscr}:}{RasterLayer object of weighted range-size corrected richness.}
 #'    \item{\code{prop}:}{RasterLayer object of the proportional loss of distribution.}
 #'    \item{\code{ppa.lsm}:}{Data frame containg PPA LSM data items 1 and 3.}
+#'    \item{\code{features.info}:}{Data frame containg features info data.}
 #'  }
 #'
 #' @name Zresults
@@ -176,7 +177,8 @@ setClass("Zresults", representation(root = "character",
                                     rank = "RasterLayer",
                                     wrscr = "RasterLayer",
                                     prop = "RasterLayer",
-                                    ppa.lsm = "data.frame"),
+                                    ppa.lsm = "data.frame",
+                                    features.info = "data.frame"),
          validity = check_results)
 
 # Zonation variant ------------------------------------------------------------
