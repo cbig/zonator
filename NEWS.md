@@ -1,8 +1,9 @@
-## CHANGES IN VERSION 0.5.5.9000 (2017-01-16)
+## CHANGES IN VERSION 0.5.5 (2017-01-16)
 
 ### NEW FEATURES
 
-### BUG FIXES
++ `XXX.features_info.txt` is now parsed into `Zresults` objects. This way, 
+e.g. species distribution sum information becomes readilly available.
 
 ### OTHER
 
