@@ -176,13 +176,13 @@ read_spp <- function(infile) {
   if (!file.exists(infile)) {
     stop(paste("Input spp file does not exist:", infile))
   }
-
   spp.data <- tryCatch({
-      dat <- read.table(infile, as.is=TRUE,
-                        colClasses=c(rep("numeric", 5), "character"))
+      dat <- read.table(infile, as.is = TRUE,
+                        colClasses = c(rep("numeric", 5), "character"))
     },
-    error=function(cond) {
-      message(paste("spp file doesn't seem to contain anything:", infile))
+    error = function(cond) {
+      warning(paste("spp file ", infile, " doesn't seem to contain anything ",
+                    "or is malformatted. Error message: ", cond))
       return(data.frame())
     }
   )
