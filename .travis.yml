@@ -5,3 +5,5 @@ r_binary_packages:
   - rgdal
   - testthat
   - rmarkdown
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

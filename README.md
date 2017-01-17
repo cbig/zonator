@@ -1,6 +1,7 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/cbig/zonator.png)](https://travis-ci.org/cbig/zonator)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/zonator)](http://www.r-pkg.org/pkg/zonator)
+[![codecov](https://codecov.io/gh/cbig/zonator/branch/master/graph/badge.svg)](https://codecov.io/gh/cbig/zonator)
+[![](http://www.r-pkg.org/badges/version/rwfs)](http://www.r-pkg.org/pkg/zonator)
 
 # zonator
 
