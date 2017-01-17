@@ -42,7 +42,7 @@ test_that("Zvariant without results is created correctly", {
 
   # Variant with no groups, no results
   no.results.bat.file <- file.path(.options$setup.dir,
-                                   "06_dummy_for_testing.batx")
+                                   "06.batx")
   suppressWarnings(no.results.variant <- new("Zvariant",
                                              bat.file = no.results.bat.file))
 
@@ -198,7 +198,7 @@ test_that("Assigning and fetching group names and identities works", {
 
   # Variant with no groups
   no.grps.bat.file <- file.path(.options$setup.dir,
-                                "03_boundary_length_penalty.bat")
+                                "03.bat")
   no.grps.results.variant <- new("Zvariant", bat.file = no.grps.bat.file)
 
   # Variant doesn't have groups, so there should be no group names either
@@ -343,7 +343,7 @@ test_that("Retrieving variant output directory works", {
 test_that("Retrieving variant rank raster works", {
   results.path <- .options$results.dir
   correct.rank.raster <- raster(file.path(results.path,
-                                          "01_core_area_zonation.rank.compressed.tif"))
+                                          "01.rank.compressed.tif"))
 
   bat.file <- .options$bat.file
   test.variant <- new("Zvariant", bat.file = bat.file)
@@ -353,7 +353,7 @@ test_that("Retrieving variant rank raster works", {
 
   # Test with a variant with no results
   no.results.bat.file <- file.path(.options$setup.dir,
-                                   "06_dummy_for_testing.batx")
+                                   "06.batx")
   suppressWarnings(no.results.variant <- new("Zvariant",
                                            bat.file = no.results.bat.file))
   expect_warning(rank_raster(no.results.variant))
