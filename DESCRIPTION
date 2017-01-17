@@ -7,11 +7,8 @@ Author: Joona Lehtomaki
 License: FreeBSD
 Encoding: UTF-8
 Maintainer: Joona Lehtomaki <joona.lehtomaki@gmail.com>
-Description: zonator helps dealing with various tasks
-    related to Zonation conservation prioritization software. The package
-    started out as a collection of helper scripts which have now been packages
-    for anybody interested in using a familiar tool (R) in setting up Zonation
-    runs and managing Zonation results.
+Description: Create new analysis setups and deal with results of 
+    Zonation conservation prioritization software.
 Depends:
     R (>= 2.15.2),
     ggplot2 (>= 2.0.0),
