@@ -309,7 +309,7 @@ test_that("Getting and setting spp data works", {
   # Duplicate the spp data stack, including groups
   spp_data <- rbind(spp_data, spp_data)
   # Assign the new spp data (this should work)
-  sppdata(results_variant) <- spp_data
+  suppressWarnings(sppdata(results_variant) <- spp_data)
   # However, the group information should have been defaulted
   nrows <- nrow(spp_data)
   default_group_data <-  data.frame(output.group = rep(1, nrows),
@@ -420,7 +420,7 @@ test_that("Saving Zvariant works", {
   spp_data <- rbind(spp_data, spp_data)
   # Drop group column
   spp_data <- spp_data[,-ncol(spp_data)]
-  sppdata(test_variant) <- spp_data
+  suppressWarnings(sppdata(test_variant) <- spp_data)
 
   # Overwrite off should fail
   expect_error(save_zvariant(test_variant),

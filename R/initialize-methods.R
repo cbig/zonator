@@ -43,7 +43,10 @@ setMethod("initialize", "Zproject", function(.Object, root, debug=FALSE) {
 
   for (bat.file in bat.files) {
     variant <- new("Zvariant", bat.file = bat.file)
-    variants[variant@name] <- variant
+    # FIXME: Suppress warning from implicit list embeddinf of S4 objects,
+    # which was deprecated in R 3.3.0.
+    # https://stat.ethz.ch/pipermail/r-devel/2016-May/072730.html
+    suppressWarnings(variants[variant@name] <- variant)
   }
 
   .Object@variants <- variants

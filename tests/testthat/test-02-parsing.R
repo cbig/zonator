@@ -113,7 +113,7 @@ test_that("Parsing an unpopulated spp file works", {
                           "template.spp",
                           package = "zonator")
 
-  spp.data <- read_spp(spp.file)
+  suppressWarnings(spp.data <- read_spp(spp.file))
   expect_true(is.data.frame(spp.data),
               "Spp data read in not a data frame")
   # Should return an empty data.frame
