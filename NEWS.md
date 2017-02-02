@@ -1,3 +1,14 @@
+## CHANGES IN VERSION 0.5.6 (2017-XX-XX)
+
+### NEW FEATURES
+
++ New method `cost()` can be used to extract cost data from results. 
+Implemented for `Zresults` and `Zvariant`.
+
+### OTHER
+
+
+
 ## CHANGES IN VERSION 0.5.5 (2017-01-16)
 
 ### NEW FEATURES
