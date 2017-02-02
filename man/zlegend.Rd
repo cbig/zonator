@@ -40,4 +40,3 @@ zlegend("spectral")
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

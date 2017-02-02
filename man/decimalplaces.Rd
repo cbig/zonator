@@ -25,4 +25,3 @@ R usually restricts the number of decimal to 9 in printing etc. Unless
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

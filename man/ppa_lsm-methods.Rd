@@ -22,12 +22,11 @@ Data frame containing PPA LSM data items 1 and 3 combined (See
 Simple getter-method for ppa.lsm information (if used) contained in Zonation
 results
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zresults-class}} \code{\link{read_curves}}
 \code{\link{read_grp_curves}}
 }
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}
 \keyword{results}
-

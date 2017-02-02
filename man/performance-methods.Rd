@@ -40,11 +40,10 @@ particular features (either for individual features or groups from a
 In the current implementation, only average performance levels for
 groups are returned.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zresults-class}} \code{\link{read_curves}}
 \code{\link{read_grp_curves}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

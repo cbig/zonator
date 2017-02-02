@@ -19,10 +19,9 @@ invisible
 \description{
 Currently support Windows Explorer (Windows) amd Dolphin (Linux/KDE).
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

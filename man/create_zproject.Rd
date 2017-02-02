@@ -52,11 +52,10 @@ This function is used only for the intended side-effect of creating a
   \code{\link[zonator:Zproject-class]{Zproject-class}}, see
   \code{\link[zonator:load_zproject]{load_zproject}}.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link[zonator:load_zproject]{load_zproject}} and
   \code{\link[zonator:create_spp]{create_spp}}.
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

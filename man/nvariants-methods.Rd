@@ -19,10 +19,9 @@ int number of variants
 \description{
 Get the number of variants included in a Zonation project
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zproject-class}} and \code{\link{Zvariant-class}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

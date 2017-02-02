@@ -17,4 +17,3 @@ Requires a given package and if not present installs and loads it.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

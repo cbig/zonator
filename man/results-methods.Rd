@@ -24,10 +24,9 @@ and group names) there may quite a lot runtime patching going on.
 \details{
 Results are returned even if only part of them are available.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zresults-class}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

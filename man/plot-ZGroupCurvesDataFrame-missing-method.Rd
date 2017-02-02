@@ -41,10 +41,9 @@ object before passing the data and arguments for \code{\link{plot_curves}}.
 If no other statistic is selected, \code{mean} will be set to TRUE and
 plotted.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{read_curves}} and \code{\link{plot_curves}}.
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

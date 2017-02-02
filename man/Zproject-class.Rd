@@ -23,7 +23,7 @@ setup. A single variant is represented as an instance of
      \code{\link[zonator:Zvariant-class]{Zvariant-class}}.}
  }
 }
+
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-

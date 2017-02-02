@@ -27,4 +27,3 @@ Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 \keyword{post-processnig,}
 \keyword{ppa}
-

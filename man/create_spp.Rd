@@ -43,4 +43,3 @@ Generate spp_file based on a directory of input rasters.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

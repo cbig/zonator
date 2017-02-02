@@ -16,4 +16,3 @@ Generic printing function
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

@@ -18,4 +18,3 @@ Read a features info file.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

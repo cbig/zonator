@@ -33,7 +33,7 @@ More information on PPA LSM data items can be found in
    \item{\code{features.info}:}{Data frame containg features info data.}
  }
 }
+
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-

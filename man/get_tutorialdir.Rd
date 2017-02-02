@@ -15,4 +15,3 @@ Get the directory of Zonation tutorial.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

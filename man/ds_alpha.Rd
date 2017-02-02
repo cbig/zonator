@@ -31,10 +31,9 @@ the home range sizes of the species.
   ds_alpha(1.5, 1000)
 
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 Zonation manual.
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

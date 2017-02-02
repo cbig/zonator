@@ -24,7 +24,7 @@ the user to update the indexes in slot \code{is.feature}
    a feature.}
  }
 }
+
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-

@@ -32,10 +32,9 @@ included, the default is to return all. Method will give a warning if a
 variant doesn't have a rank raster associated with it. If none of the
 variants have a rank raster, then a NA is returned.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{rank_raster}} \code{\link{get_variant}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

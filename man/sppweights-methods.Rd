@@ -3,6 +3,7 @@
 \docType{methods}
 \name{sppweights}
 \alias{sppweights}
+\alias{sppweights<-}
 \alias{sppweights,Zvariant-method}
 \alias{sppweights<-}
 \alias{sppweights<-,Zvariant,numeric-method}
@@ -34,12 +35,11 @@ Set biodiversity feature weights of a Zonation variant
 The weight vector must be exactly the correct length, no recycling is
 done. Vector elements must be coercible to numeric.
 }
+\seealso{
+\code{\link[zonator:Zvariant-class]{Zvariant-class}}
+}
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-\seealso{
-\code{\link[zonator:Zvariant-class]{Zvariant-class}}
-}
-

@@ -29,4 +29,3 @@ curves. Useful for construction melt-type data frames for plotting.
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \keyword{internal}
-

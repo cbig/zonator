@@ -21,4 +21,3 @@ valid or it cannot be coerced to be one an error is induced.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

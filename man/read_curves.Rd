@@ -18,12 +18,11 @@ Header is automatically generated based on the number of features in the
 file. If you need to read in grouped curves files, use
 \code{\link{read_grp_curves}} instead.
 }
-\author{
-Joona Lehtomaki <joona.lehtomaki@gmail.com>
-}
 \seealso{
 \code{\link{read_grp_curves}}
 }
+\author{
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
 \keyword{results}
 \keyword{zonation,}
-

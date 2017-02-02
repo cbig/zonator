@@ -18,4 +18,3 @@ Read Zonation variant specific spp-file.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

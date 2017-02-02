@@ -26,4 +26,3 @@ path cannot be resolved, raise an error.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

@@ -25,4 +25,3 @@ Check if Zonation is installed.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

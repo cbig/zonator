@@ -38,7 +38,7 @@ associated with the instance of \code{Zvariant-class}.
      using different data.}
  }
 }
+
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-

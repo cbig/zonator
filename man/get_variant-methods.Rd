@@ -21,11 +21,10 @@ Zvariant object
 \description{
 Get a specified variant in a Zonation project
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link[zonator:Zproject-class]{Zproject-class}}
   and \code{\link[zonator:Zvariant-class]{Zvariant-class}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

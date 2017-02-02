@@ -13,4 +13,3 @@
 \description{
 Get the names of all the variants within a given \code{\link{Zproject}}.
 }
-

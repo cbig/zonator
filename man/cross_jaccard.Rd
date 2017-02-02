@@ -22,12 +22,11 @@ This method is a utility method that is intented to be used to compare
 top-fractions of the landscape. Thus, x.max and y.max for
 \code{\link{jaccard}} are fixed to 1.0.
 }
-\author{
-Joona Lehtomaki <joona.lehtomaki@gmail.com>
-}
 \seealso{
 \code{\link{jaccard}}
 }
+\author{
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
 \keyword{post-processnig,}
 \keyword{ppa}
-
