@@ -1,0 +1,19 @@
+citHeader("Kindly cite the zonator R package as follows:")
+
+note <- sprintf("R package version %s", meta$Version)
+
+citEntry(entry="misc",
+         title = "zonator R package",
+         author = personList(
+	   person(given = "Joona", family="Lehtomaki", email = "joona.lehtomaki@gmail.com")),
+	 journal = "",
+	 year = "2016-2018",
+	 url = "https://github.com/cbig/zonator",
+	 note = note,
+         textVersion =
+         paste("(C) Joona Lehtomaki, 2016-2018.",
+               "zonator R package.",
+	       note,
+	       "URL: https://github.com/cbig/zonator",
+               sep=" ")
+         )
