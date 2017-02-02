@@ -1,3 +1,8 @@
+if (!requireNamespace("zdat", quietly = TRUE)) {
+  stop("zdat is needed for running tests. Please install it.",
+       call. = FALSE)
+}
+
 context("Zvariant creation")
 
 test_that("Zvariant with results is created correctly", {
