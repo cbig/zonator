@@ -1,3 +1,10 @@
+---
+title: "Working with Zonation results"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Working with Zonator results: curves}
@@ -274,13 +281,13 @@ in a `RasterStack` object containing all the rank rasters as respective layers.
 If you want to plot all rank rasters in your project for comparison, you could 
 do the following:
 
-```{r rank-raster-2, fig.height=20}
+```{r rank-raster-2, warning=FALSE, fig.height=20}
 # RasterStack is returned
 all.ranks <- rank_rasters(tutorial.project)
 plot(all.ranks, breaks=leg$values, col=leg$colors, nc=1)
 ```
 
-Naturally, all methods defined for a [RasterStack](http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/raster/html/stack.html) object are available. For example, checking 
+Naturally, all methods defined for a `RasterStack` object are available. For example, checking 
 the distributions of individual stack layers (i.e. rank rasters) and the 
 correlation between the values of layers can be done using `pairs()`. Following
 example examines correlation between variants 1-3.
