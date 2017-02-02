@@ -272,7 +272,7 @@ test_that("Retrieving results rank raster works", {
   results.path <- .options$results.dir
   correct.rank.raster <- raster(file.path(results.path,
                                           "01.rank.compressed.tif"))
-  test.results <- new("Zresults", root=results.path)
+  test.results <- new("Zresults", root = results.path)
 
   expect_identical(rank_raster(test.results), correct.rank.raster,
                    "Correct rank raster is not returned for Zresults")
@@ -304,5 +304,24 @@ test_that("Reading feature info works", {
   suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
 
   expect_warning(features_info(test.no.results))
+
+})
+
+test_that("Reading cost data works", {
+  results.path <- .options$results.dir
+  curves.file <- file.path(results.path, "01.curves.txt")
+
+  correct.cost_data <- read.table(curves.file, skip = 1, as.is = TRUE)[,1:2]
+  names(correct.cost_data) <- c("pr_lost", "cost")
+
+  test.results <- new("Zresults", root = results.path)
+
+  expect_identical(cost(test.results), correct.cost_data,
+                   "Correct cost data is not returned for Zresults")
+
+  no.results.path <- file.path(.options$setup.dir, "06/06_out")
+  suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
+
+  expect_warning(cost(test.no.results))
 
 })

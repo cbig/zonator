@@ -11,6 +11,40 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# cost ---------------------------------------------------------------------
+
+#' Get cost data of a Z* object.
+#'
+#' Returns the "cost_needed_for_top_fraction" column from Zonation curves
+#' file. Note that the cost is the same in curves and grp_curves files.
+#' pr_lost is always included in the returned data, but no other columns are
+#' included.
+#'
+#' Method implementation in class \code{\link{Zvariant}} is just a thin
+#' wrapper for passing the argumets to variant's code{\link{Zresults}} object.
+#'
+#' @param x Z* object.
+#'
+#' @return data.frame object with two columns:
+#' \itemize{
+#'   \item{\code{pr_lost}}{Proportion of landscape lost.}
+#'   \item{\code{cost}}{Cost of a given fraction of the solution.}
+#' }
+#' If no results are available, return NA.
+#'
+#' @keywords results
+#'
+#' @seealso \code{\link{Zresults-class}} \code{\link{Zvariant-class}}
+#'
+#' @export
+#' @rdname cost-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("cost", function(x) {
+  standardGeneric("cost")
+})
+
 # curves ------------------------------------------------------------------
 
 #' Get curves results data of a Z* object.

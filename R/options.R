@@ -137,6 +137,8 @@ assign("spp.file.no.results", file.path(.options$setup.dir, "06/06.spp"),
 
 # Tutorial results files, use 02_additive_benefit_function variant so that
 # weights are used
+assign("results.bat.file", file.path(.options$setup.dir, "02.bat"),
+       envir = .options)
 assign("results.spp.file", file.path(.options$setup.dir, "02/02.spp"),
        envir = .options)
 assign("results.curves", file.path(.options$setup.dir,

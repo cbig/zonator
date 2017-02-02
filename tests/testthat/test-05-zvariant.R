@@ -385,6 +385,27 @@ test_that("Retrieving feature info works", {
 
 })
 
+test_that("Reading cost data works", {
+  results.path <- .options$results.dir
+  curves.file <- file.path(results.path, "01.curves.txt")
+
+  correct.cost_data <- read.table(curves.file, skip = 1, as.is = TRUE)[,1:2]
+  names(correct.cost_data) <- c("pr_lost", "cost")
+
+  bat.file <- .options$results.bat.file
+  test.variant <- new("Zvariant", bat.file = bat.file)
+
+  expect_identical(cost(test.variant), correct.cost_data,
+                   "Correct cost data is not returned for Zresults")
+
+  no.results.bat.file <- file.path(.options$setup.dir,
+                                   "06.batx")
+  suppressWarnings(test.no.results <- new("Zvariant", bat.file = no.results.bat.file))
+
+  expect_warning(cost(test.no.results))
+
+})
+
 test_that("Getting and setting dat data works", {
   bat_file <- .options$bat.file
   spp_file <- .options$spp.file

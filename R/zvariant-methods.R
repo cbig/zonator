@@ -11,6 +11,21 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# cost --------------------------------------------------------------------
+
+#' @rdname cost-methods
+#' @aliases cost,Zresults-method
+#'
+setMethod("cost", signature("Zvariant"), function(x) {
+  if (has_results(x)$curves) {
+    cost.data <- cost(results(x))
+  } else {
+    cost.data <- NA
+    warning("No results (curves) data available")
+  }
+  return(cost.data)
+})
+
 # curves ------------------------------------------------------------------
 
 #' @rdname curves-methods
