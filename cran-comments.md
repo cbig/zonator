@@ -1,4 +1,5 @@
 ## Test environments
+
 * local openSUSE Linux x64 install, R 3.3.2
 * ubuntu 14.04 (on travis-ci), R 3.3.2
 * Windows Server 2012 R2 x64 (on AppVeyor), R 3.3.2
@@ -13,15 +14,16 @@ Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
 
 New submission
 
-This is my first submission to CRAN after assuming the maintainer role of the package.
+This is my first submission to CRAN .
 
-* checking installed package size ... NOTE
-  installed size is 14.3Mb
-  sub-directories of 1Mb or more:
-    doc       1.9Mb
-    extdata  11.6Mb
+Suggests or Enhances not in mainstream repositories:
+  zdat
 
-Subdirectory extdata includes data relevant for testing and demonstration, but which are not required by the package. These will be moved into a separate data package. 
+zdat is a large data package (> 10 Mb) that is needed
+to demonstrate full functionality of zonator. Package
+can be installed from GitHub:
+
+https://github.com/cbig/zdat
 
 ## Downstream dependencies
 
