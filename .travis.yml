@@ -6,7 +6,8 @@ r_binary_packages:
   - rgdal
   - testthat
   - rmarkdown
-r_github_packages: 
+r_github_packages:
+  - cbig/zdat
   - jimhester/covr
 after_success:
   - Rscript -e 'covr::codecov()'
