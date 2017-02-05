@@ -1,0 +1,196 @@
+Zonation 4.0.0b31_compact, build: Aug  7 2014 14:15:04
+==========================================================================
+The Zonation software is distributed in the  hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+==========================================================================
+ For more information and conditions of use of this software, see the
+ disclaimer in Help->About Zonation, in the graphical user interface
+
+Starting Zonation run on 'CBIG-arnold' at 1:57:56 PM (2015/8/11) 
+Locale is: en_US.UTF-8
+Zonation core process parameters: 
+   run mode: normal run (-r)
+   settings file: 03/03.dat
+   biodiversity features list file: 03/03.spp
+   output file(s): 03/03_out/03
+   info-gap alpha: 0
+   use_smoothing: 0
+   smoothing_alpha_multiplier: 1
+   autoclose (deprecated): 0
+
+Reading settings file: 03/03.dat
+   Option not overriden in command line, removal rule: 1
+   Option not overriden in command line, warp factor: 100
+
+Output settings:
+   Output weighted range size corrected richness map: yes
+   Output proportional loss rank map: no
+
+********** Arbitrary kernels not enabled ********
+
+*************** NOT USING ANALYSIS AREA MASK **************
+
+********* USING the Boundary Length Penalty; BLP=0.05
+
+Loading list of biodiversity features from file: 03/03.spp
+Row count in the features/species list file: 7
+../data/species1.tif: 555 rows, 649 columns read. Nodata cells =  249913, sum of elements = 35280.8
+
+Matrix columns/x dimension: 649, rows/y dimension: 555
+
+****** REMOVAL RULE: core-area Zonation (CAZ) *******
+
+****** NOT using Info-gap distribution discounting uncertainty analysis ****************
+
+
+*** Not using "drop 0 occurrence features", all features will be processed even if they do not occur anywhere in the analysis area.
+
+****** NOT using distribution smoothing, interactions or matrix connectivity *******
+
+======------ Allocating memory for input layers... ------======
+Using compact structure (lookup version),  sizeof(Occur_Container): 18, sizeof(allocated occurrence): 6
+Counting effective occurrencies
+Time: 1439290676 = 1:57:56 PM (2015/8/11) 
+Feature file #1: ../data/species1.tif; non-missing cells: 110282
+Feature file #2: ../data/species2.tif; non-missing cells: 110282
+Feature file #3: ../data/species3.tif; non-missing cells: 110282
+Feature file #4: ../data/species4.tif; non-missing cells: 110282
+Feature file #5: ../data/species5.tif; non-missing cells: 110282
+Feature file #6: ../data/species6.tif; non-missing cells: 110282
+Feature file #7: ../data/species7.tif; non-missing cells: 110282
+Total # of feature layers: 7
+Total # of cells in every layer: 360195
+Effective # of cells (cells with any occurrence, globally): 110282
+Total # of occurrencies: 771974, counted across 7 layers; average across layers: 110282
+Percentage of globally effective occurrencies = 100 % (relative to total effective cells) = 30.6173 % (relative to total cells)
+Memory required for biodiversity features: 9.058 MB, of which base memory: 4.641 MB, and occurrencies require: 4.417 MB
+Time now: 1439290676 = 1:57:56 PM (2015/8/11) 
+Finished preload/counting effective occurrencies. Elapsed: 0 seconds.
+======------ Allocating memory for input layers: finished successfully ------======
+
+******=====----- Loading feature (e.g., species) data layers -----=====**********
+* Loaded biodiversity feature file #1, ../data/species1.tif, non-missing cells:110282, their sum: 35280.8
+* Loaded biodiversity feature file #2, ../data/species2.tif, non-missing cells:110282, their sum: 29142.7
+* Loaded biodiversity feature file #3, ../data/species3.tif, non-missing cells:110282, their sum: 35307.7
+* Loaded biodiversity feature file #4, ../data/species4.tif, non-missing cells:110282, their sum: 35116.9
+* Loaded biodiversity feature file #5, ../data/species5.tif, non-missing cells:110282, their sum: 22852.8
+* Loaded biodiversity feature file #6, ../data/species6.tif, non-missing cells:110282, their sum: 36691.1
+* Loaded biodiversity feature file #7, ../data/species7.tif, non-missing cells:110282, their sum: 34740.3
+Calculating centers of the distributions of 7 features...
+
+******=====----- Finished loading and transformation of feature data layers -----=====*********
+
+Calculating richness across biodiversity features...
+Done in 0 seconds. Time now: 1:57:56 PM (2015/8/11) 
+Saving raster map of weighted range size corrected richness
+Saving raster: 03/03_out/03.wrscr.compressed.tif (GTiff format)
+
+******=====----- Preparing to start the ranking process... -----=====**********
+Note: using edge removal.
+  BL=37204  Area=110282 BL/A=0.337
+
+Loaded data and initialized in 0 seconds. Current time: 1:57:56 PM (2015/8/11) 
+Cells with data = 110282; locations with missing values = 249913
+
+---------------------======********** RANKING STARTS HERE ***********======-----------------------
+Initially removed cells count = 0
+Note: No initial removal was used.
+
+Biodiversity features performance levels check. Proportions remaining:
+---------
+Feature 1:    1
+Feature 2:    1
+Feature 3:    1
+Feature 4:    1
+Feature 5:    1
+Feature 6:    1
+Feature 7:    1
+---------
+Minimum proportion remaining:    1, average:    1, weighted average:    1, maximum:    1
+
+
+The following lines provide information on how the ranking is done by iterative removal of cells, with 6 columns per line:
+Cells removed, proportion of landscape remaining, cost of remaining landscape, edge list length, smallest remaining proportion in all biodiversity features (e.g. species), time elapsed (s)
+----------------------------------------------------------------------------------------------------------------------------
+             0            100%%              0          32738              1            0
+          4411        96.0003%%         105872          32116       0.976506            0
+  BL=37406  Area=105872 BL/A=0.353
+          8822        92.0006%%         101461          31292       0.950216            0
+  BL=36958  Area=101461 BL/A=0.364
+         13233        88.0009%%          97050          30781       0.921405            0
+  BL=36716  Area=97050 BL/A=0.378
+         17644        84.0012%%          92639          30295       0.888447            0
+  BL=36618  Area=92639 BL/A=0.395
+         22055        80.0014%%          88228          29309       0.853995            1
+  BL=35740  Area=88228 BL/A=0.405
+         26466        76.0017%%          83817          28130       0.816364            1
+  BL=34534  Area=83817 BL/A=0.412
+         30877         72.002%%          79406          27307       0.781267            1
+  BL=33862  Area=79406 BL/A=0.426
+         35288        68.0023%%          74995          26720       0.745915            1
+  BL=33328  Area=74995 BL/A=0.444
+         39699        64.0026%%          70584          25949       0.710296            1
+  BL=32616  Area=70584 BL/A=0.462
+         44110        60.0029%%          66173          25039       0.672376            1
+  BL=31560  Area=66173 BL/A=0.477
+         48521        56.0032%%          61762          23518       0.633737            2
+  BL=29802  Area=61762 BL/A=0.483
+         52932        52.0035%%          57351          22522       0.596435            2
+  BL=28564  Area=57351 BL/A=0.498
+         57343        48.0038%%          52940          20909       0.556414            2
+  BL=26568  Area=52940 BL/A=0.502
+         61754        44.0041%%          48529          19281       0.513903            2
+  BL=24512  Area=48529 BL/A=0.505
+         66165        40.0044%%          44118          17301       0.468566            3
+  BL=22100  Area=44118 BL/A=0.501
+         70576        36.0046%%          39707          15506       0.422563            3
+  BL=19844  Area=39707 BL/A=0.500
+         74987        32.0049%%          35296          13892       0.375882            3
+  BL=17776  Area=35296 BL/A=0.504
+         79398        28.0052%%          30885          12333       0.329318            3
+  BL=15694  Area=30885 BL/A=0.508
+         83809        24.0055%%          26474          10689       0.283443            4
+  BL=13576  Area=26474 BL/A=0.513
+         88220        20.0058%%          22063           9381       0.240005            4
+  BL=11906  Area=22063 BL/A=0.540
+         92631        16.0061%%          17652           7785       0.192844            4
+  BL=10082  Area=17652 BL/A=0.571
+         97042        12.0064%%          13241           5943       0.145694            4
+  BL=7790  Area=13241 BL/A=0.588
+        101453        8.00667%%           8830           4145      0.0997782            5
+  BL=5426  Area=8830 BL/A=0.614
+        105864        4.00696%%           4419           2174      0.0513237            5
+  BL=2698  Area=4419 BL/A=0.611
+        110275     0.00725389%%              8              8     0.00011581            5
+  BL=24  Area=8 BL/A=3.000
+        110282              0%%              0              0              0            5
+----------------------------------------------------------------------------------------------------------------------------
+Total count of cells removed = 110282
+
+Done in 5 seconds.
+Found 0 ties.
+
+Biodiversity features performance levels check. Proportions remaining:
+---------
+Feature 1:    0
+Feature 2:    0
+Feature 3:    0
+Feature 4:    0
+Feature 5:    0
+Feature 6:    0
+Feature 7:    0
+---------
+Minimum proportion remaining:    0, average:    0, weighted average:    0, maximum:    0
+
+============================================================
+* Writing final output files...
+Writing file of feature information: 03/03_out/03.features_info.txt
+Writing file of performance (representation, coverage, etc.) curves: 03/03_out/03.curves.txt
+Saving rank image: 03/03_out/03.png (PNG format)
+Saving raster: 03/03_out/03.rank.compressed.tif (GTiff format)
+No automated post-processing file specified
+============================================================
+Finished spatial prioritization process. Freeing data structures in memory...
+Finished at 1:58:01 PM (2015/8/11) 
+Elapsed time: 5624 ms == 0.00156 hours == 6.51e-05 days

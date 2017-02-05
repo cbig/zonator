@@ -1,0 +1,9 @@
+List of biodiversity features (e.g. species) and weights used in analysis in order of columns:
+Weight  distribution-sum  IGRetained TviolationFractRem  Distr-mean-X   Distr-mean-Y  MapFileName
+0.500 	35280.762	35280.76	0.00000	119.70	129.04	../data/species1.tif
+1.000 	29142.688	29142.69	0.00000	142.62	140.49	../data/species2.tif
+1.000 	35307.711	35307.71	0.00000	152.26	133.36	../data/species3.tif
+0.500 	35116.938	35116.94	0.00000	99.58	164.36	../data/species4.tif
+0.500 	22852.801	22852.80	0.00000	117.39	159.05	../data/species5.tif
+0.500 	36691.102	36691.10	0.00000	168.74	110.80	../data/species6.tif
+0.500 	34740.270	34740.27	0.00000	109.51	154.52	../data/species7.tif

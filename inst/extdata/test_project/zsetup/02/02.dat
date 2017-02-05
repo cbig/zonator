@@ -1,0 +1,7 @@
+[Settings]
+removal rule = 2
+warp factor = 100
+edge removal = 1
+annotate name = 0
+use groups = 1
+groups file = 02/02_groups.txt

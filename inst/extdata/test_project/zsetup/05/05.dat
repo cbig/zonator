@@ -1,0 +1,10 @@
+[Settings]
+removal rule = 1
+warp factor = 100
+edge removal = 1
+annotate name = 0
+use groups = 1
+groups file = 05/05_groups.txt
+
+use mask = 1
+mask file = ../data/mask_rs.tif
