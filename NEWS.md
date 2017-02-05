@@ -7,7 +7,8 @@ Implemented for `Zresults` and `Zvariant`.
 
 ### OTHER
 
-
++ Tutorial data removed from `zonator` and placed to a separate data
+package `zdat`. This package is required for developing `zonator`.
 
 ## CHANGES IN VERSION 0.5.5 (2017-01-16)
 
