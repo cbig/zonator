@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CURRENT_TAR=zonator_0.5.6.tar.gz
+CURRENT_TAR=zonator_0.5.5.9001.tar.gz
 
 #/usr/bin/R CMD BATCH document.R
 #/usr/bin/R CMD build ../../ --no-build-vignettes
