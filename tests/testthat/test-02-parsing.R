@@ -116,7 +116,7 @@ test_that("Parsing an unpopulated spp file works", {
   # Test with an unpopulated spp file (i.e. no rows)
   spp.file <- system.file("extdata",
                           "template.spp",
-                          package = "zonator")
+                          package = "zdat")
 
   suppressWarnings(spp.data <- read_spp(spp.file))
   expect_true(is.data.frame(spp.data),

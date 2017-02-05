@@ -7,7 +7,7 @@ context("Writing Zonation input files")
 
 test_that("Writing a dat file works", {
 
-  dat_file <- system.file("extdata", "template.dat", package = "zonator")
+  dat_file <- system.file("extdata", "template.dat", package = "zdat")
 
   org_dat_data <- read_dat(dat_file)
 
