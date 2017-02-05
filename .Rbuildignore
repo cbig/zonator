@@ -1,7 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 inst/extras/.RData
-
 .gitignore
 .git
 ^appveyor\.yml$
