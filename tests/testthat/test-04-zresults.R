@@ -1,8 +1,3 @@
-if (!requireNamespace("zdat", quietly = TRUE)) {
-  stop("zdat is needed for running tests. Please install it.",
-       call. = FALSE)
-}
-
 context("Zresults creation")
 
 test_that("Zresults is created correctly", {
@@ -270,22 +265,6 @@ test_that("Retrieving results output directory works", {
 
   expect_identical(outdir(test.results), results.path,
                    "outdir() does not return the correct path for Zresults")
-
-})
-
-test_that("Retrieving results rank raster works", {
-  results.path <- .options$results.dir
-  correct.rank.raster <- raster(file.path(results.path,
-                                          "01.rank.compressed.tif"))
-  test.results <- new("Zresults", root = results.path)
-
-  expect_identical(rank_raster(test.results), correct.rank.raster,
-                   "Correct rank raster is not returned for Zresults")
-
-  no.results.path <- file.path(.options$setup.dir, "06/06_out")
-  suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
-
-  expect_warning(rank_raster(test.no.results))
 
 })
 

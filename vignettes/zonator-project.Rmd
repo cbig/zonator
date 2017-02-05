@@ -93,7 +93,7 @@ template .dat-file.
 
 ```{r create-new-02, message=FALSE,warning=FALSE,eval=FALSE}
 # Directory containing the input raster files
-input_raster_dir <- system.file("extdata/tutorial/data", package="zonator")
+input_raster_dir <- system.file("extdata/test_project/data", package="zonator")
 new_project <- create_zproject(name = "test_project", dir = project_path, 
                                variants = variant_names,
                                spp_template_dir = input_raster_dir,

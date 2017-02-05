@@ -1,8 +1,3 @@
-if (!requireNamespace("zdat", quietly = TRUE)) {
-  stop("zdat is needed for running tests. Please install it.",
-       call. = FALSE)
-}
-
 context("Parsing Zonation input files")
 
 test_that("Parsing a bat file works", {
@@ -114,9 +109,8 @@ test_that("Parsing an invalid groups file works", {
 test_that("Parsing an unpopulated spp file works", {
 
   # Test with an unpopulated spp file (i.e. no rows)
-  spp.file <- system.file("extdata",
-                          "template.spp",
-                          package = "zdat")
+  spp.file <- system.file("extdata", "template.spp",
+                          package = "zonator")
 
   suppressWarnings(spp.data <- read_spp(spp.file))
   expect_true(is.data.frame(spp.data),

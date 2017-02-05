@@ -1,13 +1,8 @@
-if (!requireNamespace("zdat", quietly = TRUE)) {
-  stop("zdat is needed for running tests. Please install it.",
-       call. = FALSE)
-}
-
 context("Writing Zonation input files")
 
 test_that("Writing a dat file works", {
 
-  dat_file <- system.file("extdata", "template.dat", package = "zdat")
+  dat_file <- system.file("extdata", "template.dat", package = "zonator")
 
   org_dat_data <- read_dat(dat_file)
 

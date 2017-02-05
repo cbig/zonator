@@ -1,8 +1,3 @@
-if (!requireNamespace("zdat", quietly = TRUE)) {
-  stop("zdat is needed for running tests. Please install it.",
-       call. = FALSE)
-}
-
 context("Zvariant creation")
 
 test_that("Zvariant with results is created correctly", {
@@ -342,26 +337,6 @@ test_that("Retrieving variant output directory works", {
 
   expect_identical(outdir(test.variant), correct.output.dir,
                    "outdir() does not return the correct path for Zvariant")
-
-})
-
-test_that("Retrieving variant rank raster works", {
-  results.path <- .options$results.dir
-  correct.rank.raster <- raster(file.path(results.path,
-                                          "01.rank.compressed.tif"))
-
-  bat.file <- .options$bat.file
-  test.variant <- new("Zvariant", bat.file = bat.file)
-
-  expect_identical(rank_raster(test.variant), correct.rank.raster,
-                   "Correct rank raster is not returned for Zvariant")
-
-  # Test with a variant with no results
-  no.results.bat.file <- file.path(.options$setup.dir,
-                                   "06.batx")
-  suppressWarnings(no.results.variant <- new("Zvariant",
-                                           bat.file = no.results.bat.file))
-  expect_warning(rank_raster(no.results.variant))
 
 })
 

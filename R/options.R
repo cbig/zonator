@@ -78,20 +78,16 @@ assign("z_colors_RdYlBu", z_colors_RdYlBu, env=.options)
 # Zonation tutorial data paths ----------------------------------------------
 
 # Tutorial directories
-assign("tutorial.dir", system.file("extdata", package="zdat"),
+assign("tutorial.dir", system.file("extdata", "test_project", package="zonator"),
        envir=.options)
-assign("setup.dir", file.path(.options$tutorial.dir, "basic"), envir=.options)
+assign("setup.dir", file.path(.options$tutorial.dir, "zsetup"), envir=.options)
 assign("data.dir", file.path(.options$tutorial.dir, "data"), envir=.options)
 assign("output.dir", file.path(.options$setup.dir, "output"),
        envir=.options)
 
-assign("species.rasters", paste0(.options$data.dir, "/species", 1:7, ".tif"),
-       envir = .options)
 assign("groups.file", file.path(.options$setup.dir, "groups.txt"),
        envir = .options)
 assign("condition.file", file.path(.options$setup.dir, "cond_list.txt"),
-       envir = .options)
-assign("condition.rasters", paste0(.options$data.dir, "/condition", 1:2, ".tif"),
        envir = .options)
 
 # Tutorial run and configuration files
@@ -106,7 +102,6 @@ assign("spp.file", file.path(.options$setup.dir,
 assign("results.dir", file.path(.options$setup.dir,
                              "01/01_out"),
        envir = .options)
-
 
 # Another file for variant without groups
 assign("bat.file.no.grps",

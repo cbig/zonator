@@ -1,8 +1,3 @@
-if (!requireNamespace("zdat", quietly = TRUE)) {
-  stop("zdat is needed for running tests. Please install it.",
-       call. = FALSE)
-}
-
 context("Zproject creation")
 
 test_that("Zproject is created correctly based on existing project", {
