@@ -16,6 +16,7 @@ Depends:
 Suggests:
     knitr,
     rasterVis,
+    rmarkdown,
     testthat,
     zdat
 Imports:
