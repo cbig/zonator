@@ -78,7 +78,7 @@ assign("z_colors_RdYlBu", z_colors_RdYlBu, env=.options)
 # Zonation tutorial data paths ----------------------------------------------
 
 # Tutorial directories
-assign("tutorial.dir", system.file("extdata", "tutorial", package="zonator"),
+assign("tutorial.dir", system.file("extdata", package="zdat"),
        envir=.options)
 assign("setup.dir", file.path(.options$tutorial.dir, "basic"), envir=.options)
 assign("data.dir", file.path(.options$tutorial.dir, "data"), envir=.options)
