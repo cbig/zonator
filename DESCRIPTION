@@ -16,7 +16,8 @@ Depends:
 Suggests:
     knitr,
     rasterVis,
-    testthat
+    testthat,
+    zdat
 Imports:
     RColorBrewer,
     raster,
