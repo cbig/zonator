@@ -25,4 +25,4 @@ Imports:
     rgdal
 BugReports: https://github.com/jlehtoma/zonator/issues
 VignetteBuilder: knitr
-RoxygenNote: 6.0.0
+RoxygenNote: 6.0.0.9000
