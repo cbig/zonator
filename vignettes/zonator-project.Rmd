@@ -118,16 +118,24 @@ alpha value), because no checking is being done!
 ## 3. Create zonator project based on existing data
 
 Alternatively, all the information contained within an existing Zonation project 
-can be parsed into R data structures. The tutorial data include results of the 
-tutorial runs so there is no need  to run the variants in order to inspect the 
-results. In case you *do* want to rerun the variants and you have Zonation 
-installed in your system do so by running the following code. Otherwise just 
-skip this code section.
+can be parsed into R data structures. The tutorial data is not distributed with 
+`zonator`, but in a separate package [`zdat`](https://github.com/cbig/zdat). You can - and 
+must if you want to run the examples below - install the package by:
+
+```{r install-zdat, eval=FALSE}
+library(devtools)
+devtools::install_github("cbig/zdat")
+```
+
+The tutorial data include results of the tutorial runs so there is no need  to run the 
+variants in order to inspect the results. In case you *do* want to rerun the variants 
+and you have Zonation installed in your system do so by running the following code. 
+Otherwise just skip this code section.
 
 ```{r run-variant-1, eval=(1:6), message=FALSE}
 library(zonator)
 
-setup.dir <- system.file("extdata/tutorial/basic", package = "zonator")
+setup.dir <- system.file("extdata/basic", package = "zdat")
 
 # Get all the bat-files
 bat.files <- list.files(setup.dir, "\\.bat$", full.names = TRUE)

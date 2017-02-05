@@ -16,13 +16,20 @@ options(width=160)
 
 ## 1. Introduction to working with Zonation results
 
-First, let's set up the scene.
+First, let's set up the scene. For the examples below to work, make sure you have installed [`zdat`](https://github.com/cbig/zdat) package. If not, do the following:
+
+```{r install-zdat, eval=FALSE}
+library(devtools)
+devtools::install_github("cbig/zdat")
+```
+
+Now we start working with `zonator`.
 
 ```{r setup-objects, message=FALSE}
 library(zonator)
 
 # Start by creating a project using the tutorial data
-setup.dir <- system.file("extdata/tutorial/basic", package="zonator") 
+setup.dir <- system.file("extdata/basic", package="zdat") 
 tutorial.project <- load_zproject(setup.dir)
 
 # Get a specific variant, 01_core_area_zonation
@@ -311,8 +318,8 @@ raster. Histogram is then plotted based on the values of the rank raster within
 the mask raster.
 
 ```{r rank-raster-4, fig.width=10}
-pas.file <- system.file("extdata/tutorial/data", "mask_rs.tif", 
-                        package="zonator")
+pas.file <- system.file("extdata/data", "mask_rs.tif", 
+                        package="zdat")
 pas <- raster(pas.file)
 # Re-class zeros as NA
 pas[pas == 0] <- NA
