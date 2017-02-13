@@ -3,7 +3,8 @@ Type: Package
 Title: Utilities for Zonation Spatial Conservation Prioritization Software
 Version: 0.5.5.9001
 Date: 2017-01-13
-Author: Joona Lehtomaki
+Authors@R: c(
+	person("Joona" , "Lehtomaki", role = c("aut", "cre"), email = "joona.lehtomaki@gmail.com"))
 License: FreeBSD
 Encoding: UTF-8
 Maintainer: Joona Lehtomaki <joona.lehtomaki@gmail.com>
