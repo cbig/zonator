@@ -1,14 +1,13 @@
 ---
 title: "Working with Zonation projects"
-output:
-  html_document:
-    toc: true
-    theme: flatly
+author: "Joona Lehtomäki"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with Zonation projects}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{UTF-8}
 ---
-<!--
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Working with Zonation projects}
--->
 
 ```{r setup, echo=FALSE}
 options(width = 120)

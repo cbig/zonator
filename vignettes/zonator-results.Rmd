@@ -1,18 +1,13 @@
 ---
 title: "Working with Zonation results"
-output:
-  html_document:
-    toc: true
-    theme: flatly
+author: "Joona Lehtomäki"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with Zonation results}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{UTF-8}
 ---
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Working with Zonator results: curves}
--->
-
-```{r setup, echo=FALSE}
-options(width=160)
-```
 
 ## 1. Introduction to working with Zonation results
 
