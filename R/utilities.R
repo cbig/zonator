@@ -162,8 +162,10 @@ decimalplaces <-
 #' @note Both \code{path} and \code{relative_to} must be in absolute form.
 #'
 #' @param path Character string path.
-#' @param relative_to Character string path to which \code{path} is relative
-#'                    to.
+#' @param org_relative_to Character string path to which \code{path} is originally
+#'                        relative to.
+#' @param new_relative_to Character string path to which \code{path} is supposed to
+#'                        be relative to.
 #'
 #' @return Character string relative file path.
 #'

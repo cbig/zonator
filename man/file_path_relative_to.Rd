@@ -9,8 +9,11 @@ file_path_relative_to(path, org_relative_to, new_relative_to)
 \arguments{
 \item{path}{Character string path.}
 
-\item{relative_to}{Character string path to which \code{path} is relative
-to.}
+\item{org_relative_to}{Character string path to which \code{path} is originally
+relative to.}
+
+\item{new_relative_to}{Character string path to which \code{path} is supposed to
+be relative to.}
 }
 \value{
 Character string relative file path.
