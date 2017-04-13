@@ -1,9 +1,14 @@
-## CHANGES IN VERSION 0.5.6 (2017-XX-XX)
+## CHANGES IN VERSION 0.5.6 (2017-04-13)
 
 ### NEW FEATURES
 
 + New method `cost()` can be used to extract cost data from results. 
 Implemented for `Zresults` and `Zvariant`.
++ New utility function `file_path_relative_to()` can be used to
+dynamically construct relative paths for spp data.
++ New method `copy_zvariant()` can be used to create a copy of an
+existing variant with a new name.
+
 
 ### OTHER
 
