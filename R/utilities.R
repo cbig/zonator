@@ -157,6 +157,46 @@ decimalplaces <-
   },
   c("x"), USE.NAMES = TRUE)
 
+#' Transform an absolute path to relative path in relation to given location
+#'
+#' @note Both \code{path} and \code{relative_to} must be in absolute form.
+#'
+#' @param path Character string path.
+#' @param relative_to Character string path to which \code{path} is relative
+#'                    to.
+#'
+#' @return Character string relative file path.
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#'
+file_path_relative_to <- function(path, org_relative_to, new_relative_to) {
+
+  # Check if the path provided is relative. If it is, make it absolute
+  if (startsWith(path, "..")) {
+    path <- normalizePath(file.path(dirname(org_relative_to), path), mustWork = FALSE)
+  }
+
+  # Get path components split by path separators
+  path_comps <- unlist(strsplit(dirname(path), split = .Platform$file.sep))
+  relative_to_comps <- unlist(strsplit(dirname(new_relative_to), split = .Platform$file.sep))
+
+  # Compare path components
+  suppressWarnings(diff <- path_comps == relative_to_comps)
+  # Get the file name
+  file_path_base <- basename(path)
+  # Get path elements equal to the lenght of relative_to_comps: this number is used
+  # to generate the correct amount ".." in the path
+  rel_path <- paste0(rep("..", sum(!diff[1:length(relative_to_comps)])),
+                     collapse = .Platform$file.sep)
+  # Construct the actual directory part
+  dir_path <- paste0(path_comps[!diff[1:length(path_comps)]],
+                     collapse = .Platform$file.sep)
+  # Put everything together
+  rel_file_path <- file.path(rel_path, dir_path, file_path_base)
+  return(rel_file_path)
+}
+
 #' Re-implementation of \code{\link{file_path_sans_ext}} in \code{tools}. This
 #' version can handle "." just before the file extenstion, unlike the original
 #' implementation.
