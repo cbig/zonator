@@ -466,6 +466,23 @@ test_that("Saving Zvariant works", {
 
 })
 
+context("Zvariant copying")
+
+test_that("Zvariant with new name is copied correctly", {
+  bat_file <- .options$bat.file.cond
+  spp_file <- .options$spp.file.cond
+  test_variant <- new("Zvariant", bat.file = bat_file)
+
+  tmp_variant_dir <- tempdir()
+  new_variant_name <- "08"
+
+  expect_message(copied_variant <- copy_zvariant(test_variant,
+                                                 name = new_variant_name,
+                                                 dir = tmp_variant_dir),
+                 info = "Success message not generated correctly")
+})
+
+
 context("Zvariant special cases")
 
 test_that("Zvariant with condition layers is created correctly", {

@@ -11,6 +11,39 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# copy_zvariant ---------------------------------------------------------------
+
+#' Copy existing variant as a new \code{Zvariant} object.
+#'
+#' Corresponding files on the file system are immediately created. In orderd
+#' to modify the variant, manipulate the returned \code{Zvariant} object and
+#' use \code{\link{save_zvariant}} method.
+#'
+#' If the variant being copied has results, they are not copied to the new
+#' variant.
+#'
+#' @note Relative paths in spp-file are translated into absolute paths as
+#' otherwise dealing with them might be tricky.
+#'
+#' @param x Zvariant object.
+#' @param name Characted string naming the copied variant.
+#' @param dir Characted string directory where the new variant is created on
+#'            file system.
+#'
+#' @return \code{Zvariant} object
+#'
+#' @seealso \code{\link{Zvariant-class}} \code{\link{save_zvariant}}
+#'
+#' @export
+#' @rdname copy_zvariant-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("copy_zvariant", function(x, name, dir) {
+  standardGeneric("copy_zvariant")
+})
+
+
 # cost ---------------------------------------------------------------------
 
 #' Get cost data of a Z* object.

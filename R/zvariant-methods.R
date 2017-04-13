@@ -11,6 +11,96 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# copy_zvariant -----------------------------------------------------------
+
+#' @rdname copy_zvariant-methods
+#' @aliases copy_zvariant
+#'
+setMethod("copy_zvariant", signature("Zvariant", "character", "character"),
+          function(x, name, dir) {
+  # Copying is effectively replacing the old variant name and path with the
+  # new ones in ALL locations affected (also within the actual configuration
+  # files). Get all the components that need replacing.
+  old_name <- x@name
+  old_bat_file <- x@bat.file
+  old_root <- dirname(old_bat_file)
+  old_spp_file <- x@call.params$spp.file
+  old_dat_file <- x@call.params$dat.file
+  old_spp_data <- x@spp.data
+  old_dat_data <- x@dat.data
+  old_call_params <- x@call.params
+  old_output_dir <- x@output.dir
+
+  new_name <- name
+  new_root <- dir
+
+  if (!dir.exists(new_root)) {
+    message("Creating new root directory at ", new_root)
+    dir.create(new_root, recursive = TRUE)
+  }
+
+  # Full path includes also dir
+  new_full_path <- file.path(new_root, new_name)
+
+  # Saving a Zvariant does create the necessary directories. Do this manually
+  dir.create(new_full_path, recursive = TRUE)
+
+  # Make a copy of the Zvariant object
+  new_x <- x
+
+  # Make all replacements
+  # Name
+  new_x@name <- new_name
+  # bat-file
+  new_bat_file <- paste0(new_full_path, ".bat")
+  new_x@bat.file <- new_bat_file
+  # spp-file
+  new_spp_file <- gsub(old_name, name, old_spp_file)
+  new_spp_file <- gsub(old_root, dir, old_spp_file)
+  new_x@call.params$spp.file <- new_spp_file
+  # dat-file
+  new_dat_file <- gsub(old_name, name, old_dat_file)
+  new_dat_file <- gsub(old_root, dir, old_dat_file)
+  new_x@call.params$dat.file <- new_dat_file
+  # spp data
+  new_spp_data <- old_spp_data
+  new_spp_data$filepath <- sapply(new_spp_data$filepath, file_path_relative_to,
+                                  old_bat_file, new_bat_file, USE.NAMES = FALSE)
+  new_x@spp.data <- new_spp_data
+  # dat data
+  # FIXME: Current implementation does not account for all the possible
+  # parameters that might need replacing in the dat file. Needs to be
+  # expanded.
+  new_dat_data <- old_dat_data
+  new_x@dat.data[['Settings']] <- lapply(new_dat_data[['Settings']],
+                                         function(x) gsub(old_name, new_name, x))
+
+  # call parameters
+  new_call_params <- old_call_params
+  new_call_params <- lapply(new_call_params,
+                            function(x) {
+                              x <- gsub(old_root, new_root, x)
+                              x <- gsub(old_name, new_name, x)
+                              return(x)
+                            })
+  new_x@call.params <- new_call_params
+
+  # Output.dir
+  new_output_dir <- gsub(old_root, new_root, old_output_dir)
+  new_output_dir <- gsub(old_name, new_name, new_output_dir)
+  new_x@output.dir <- new_output_dir
+  dir.create(new_output_dir, recursive = TRUE)
+
+  # Reset results as these are not copied anyways
+  new_x@results <- new("Zresults", root = new_x@call.params$output.folder)
+
+  # Save everything
+  save_zvariant(new_x, overwrite = TRUE)
+
+  return(new_x)
+
+})
+
 # cost --------------------------------------------------------------------
 
 #' @rdname cost-methods
