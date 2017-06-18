@@ -86,7 +86,6 @@ create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
       } else {
         temp_target_rasters <- c()
         for (target_dir in names(target_rasters)) {
-          browser()
           path_components <- strsplit(target_rasters[[target_dir]],
                                       paste0(target_dir, .Platform$file.sep))
           # Get the last item (subdir path) from each split.
