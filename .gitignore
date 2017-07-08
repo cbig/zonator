@@ -12,3 +12,4 @@ zonator_pres*
 _site/
 dist/
 *.Rcheck
+inst/doc
