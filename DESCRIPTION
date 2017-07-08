@@ -20,7 +20,7 @@ Suggests:
     rasterVis,
     rmarkdown,
     testthat,
-    zdat (>= 0.1.0) 
+    zdat (>= 0.1.0)
 Imports:
     RColorBrewer,
     raster,
