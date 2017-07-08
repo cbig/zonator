@@ -6,6 +6,7 @@
 installed from Github using `drat`. Accordingly, various checks are done to 
 condition some code to run only if `zdat` is installed.
 + Vignette image dimensions updated.
++ Submitted to CRAN
 
 ## CHANGES IN VERSION 0.5.6 (2017-04-13)
 
