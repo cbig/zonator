@@ -27,6 +27,6 @@ Suggests:
     testthat,
     zdat (>= 0.1.0)
 Additional_repositories: https://jlehtoma.github.io/drat
-BugReports: https://github.com/jlehtoma/zonator/issues
+BugReports: https://github.com/cbig/zonator/issues
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
