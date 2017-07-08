@@ -1,9 +1,10 @@
 ## Test environments
 
-* local openSUSE Linux x64 install, R 3.3.2
-* ubuntu 14.04 (on travis-ci), R 3.3.2
-* Windows Server 2012 R2 x64 (on AppVeyor), R 3.3.2
+* local openSUSE Linux x64 install, R 3.4.0
+* Ubuntu 14.04 (on travis-ci), R 3.4.0
+* Windows Server 2012 R2 32-bit (on AppVeyor), R 3.4.0
 * win-builder (devel and release)
+* Debian Linux, R-devel, GCC ASAN/UBSAN (on R-hub builder), R-devel
 
 ## R CMD check results
 
