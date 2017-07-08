@@ -11,21 +11,21 @@ Maintainer: Joona Lehtomaki <joona.lehtomaki@gmail.com>
 Description: Create new analysis setups and deal with results of 
     Zonation conservation prioritization software. This package uses data 
     available in the 'zdat' (7.7 MB) package for building the vignettes.
-Depends:
-    R (>= 2.15.2),
+Imports:
     ggplot2 (>= 2.0.0),
-    methods
+    methods,
+    RColorBrewer,
+    raster,
+    reshape2,
+    rgdal
+Depends:
+    R (>= 2.15.2)
 Suggests:
     knitr,
     rasterVis,
     rmarkdown,
     testthat,
     zdat (>= 0.1.0)
-Imports:
-    RColorBrewer,
-    raster,
-    reshape2,
-    rgdal
 Additional_repositories: https://jlehtoma.github.io/drat
 BugReports: https://github.com/jlehtoma/zonator/issues
 VignetteBuilder: knitr
