@@ -1,6 +1,7 @@
 context("Utilities")
 
 test_that("name checking works", {
+
   valid.names <- c("foo", "bar", "spam", "eggs")
   # Pass
   expect_identical(valid.names, check_names(valid.names),
@@ -45,7 +46,7 @@ test_that("name checking works", {
 })
 
 test_that("index mapping works", {
-
+  library(ggplot2)
   data(diamonds)
 
   correct.inds <- c(1, 3, 4, 6)
