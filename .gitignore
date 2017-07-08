@@ -10,3 +10,5 @@ vignettes/figure
 zonator_pres*
 *.sublime*
 _site/
+dist/
+*.Rcheck
