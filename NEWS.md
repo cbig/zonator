@@ -5,6 +5,7 @@
 + `zdat` package needed for development and building the vignettes is now
 installed from Github using `drat`. Accordingly, various checks are done to 
 condition some code to run only if `zdat` is installed.
++ Vignette image dimensions updated.
 
 ## CHANGES IN VERSION 0.5.6 (2017-04-13)
 
