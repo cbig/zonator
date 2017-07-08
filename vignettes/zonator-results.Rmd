@@ -6,7 +6,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Working with Zonation results}
   %\VignetteEngine{knitr::rmarkdown}
-  %\usepackage[utf8]{UTF-8}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r echo = FALSE, message = FALSE} 
