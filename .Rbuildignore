@@ -8,3 +8,4 @@ inst/extras/\.tar\.gz$
 ^codecov\.yml$
 ^\.travis\.yml$
 ^cran-comments.md$
+dist/
