@@ -9,6 +9,19 @@ vignette: >
   %\usepackage[utf8]{UTF-8}
 ---
 
+```{r echo = FALSE, message = FALSE} 
+hasData <- requireNamespace("zdat", quietly = TRUE) 
+if (!hasData) {
+  knitr::opts_chunk$set(eval = FALSE)
+  msg <- paste("Note: Examples in this vignette require that the", 
+               "`zdat` package be installed. The system", 
+               "currently running this vignette does not have that package", 
+               "installed, so code examples will not be evaluated.")
+  msg <- paste(strwrap(msg), collapse = "\n") 
+  message(msg)
+} 
+```
+
 ```{r setup, echo=FALSE}
 options(width = 120)
 ```
@@ -267,7 +280,7 @@ character elements the group names to be assigned:
 
 ```{r group-names-2}
 # Construct a group name mapping using a named character vector
-groupnames(variant.caz) <- c("1"="mammals", "2"="owls")
+groupnames(variant.caz) <- c("1" = "mammals", "2" = "owls")
 groupnames(variant.caz)
 ```
 
@@ -276,15 +289,18 @@ Now group 1 is labeled "mammals" and group 2 is labeled "owls". Note that
 if group names are preferable to group codes.
 
 ```{r sppdata-group-names}
-sppdata(variant.caz, group.names=TRUE)
+sppdata(variant.caz, group.names = TRUE)
 ```
 
 In addition to changing the group names, you can change the groups themselves 
 as well. In the previous examples we had two groups named "mammals" (group code
- = 1) and "owls" (group code = 2). Belonging to either one of these groups is 
- controlled by the group ID code (an integer number) that can be accessed by
- `groups()`. As was shown above, doing `groups(variant.caz)` will yield a result
- of ``r groups(variant.caz)``.
+= 1) and "owls" (group code = 2). Belonging to either one of these groups is 
+controlled by the group ID code (an integer number) that can be accessed by
+`groups()`:
+ 
+ ```{r print-groups}
+groups(variant.caz)
+```
  
 Method `groups()` can be used to set the group ID codes and thus the grouping. 
 Let's say you want to split owls into two sub-groups called "big.owls" (group
@@ -296,8 +312,7 @@ sppdata(variant.caz)
 ```
 
 What needs to be done is to change the group ID for the Powerful owl so that 
-the group ID vector changes from ``r groups(variant.caz)`` to 
-`1, 2, 3, 1, 2, 1, 1`. So do the following:
+the group ID vector is changed into `1, 2, 3, 1, 2, 1, 1`. So do the following:
 
 ```{r changing-groups-2}
 groups(variant.caz) <- c(1, 2, 3, 1, 2, 1, 1)
@@ -313,12 +328,13 @@ will have to manually set the group names again:
 # Using generic group names after the group IDs have been changed
 groupnames(variant.caz)
 # Construct a new group names mapping
-groupnames(variant.caz) <- c("1"="mammals", "2"="big.owls", "3"="small.owls")
+groupnames(variant.caz) <- c("1" = "mammals", "2" = "big.owls", 
+                             "3" = "small.owls")
 groupnames(variant.caz)
 ```
 
 or check the whole spp data with group names:
 
 ```{r changing-groups-4}
-sppdata(variant.caz, group.names=TRUE)
+sppdata(variant.caz, group.names = TRUE)
 ```

@@ -1,3 +1,11 @@
+## CHANGES IN VERSION 0.5.7 (2017-XX-XX)
+
+### OTHER
+
++ `zdat` package needed for development and building the vignettes is now
+installed from Github using `drat`. Accordingly, various checks are done to 
+condition some code to run only if `zdat` is installed.
+
 ## CHANGES IN VERSION 0.5.6 (2017-04-13)
 
 ### NEW FEATURES
@@ -8,7 +16,6 @@ Implemented for `Zresults` and `Zvariant`.
 dynamically construct relative paths for spp data.
 + New method `copy_zvariant()` can be used to create a copy of an
 existing variant with a new name.
-
 
 ### OTHER
 
