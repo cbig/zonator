@@ -7,7 +7,7 @@
 
 ## R CMD check results
 
-0 ERRORs | 0 WARNINGs | 2 NOTES.
+0 ERRORs | 0 WARNINGs | 1 NOTES.
 
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
@@ -19,11 +19,11 @@ This is my first submission to CRAN .
 Suggests or Enhances not in mainstream repositories:
   zdat
 
-zdat is a large data package (> 10 Mb) that is needed
+zdat is a large data package (7.7 Mb) that is needed
 to demonstrate full functionality of zonator. Package
-can be installed from GitHub:
+can be installed from GitHub using drat:
 
-https://github.com/cbig/zdat
+install.packages('zdat', repos='https://jlehtoma.github.io/drat/', type='source')
 
 ## Downstream dependencies
 
