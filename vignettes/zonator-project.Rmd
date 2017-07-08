@@ -28,10 +28,10 @@ options(width = 120)
 
 ## 1. Zonation projects and zonator classes
 
-The following examples will use 
-[the basic Zonation tutorial data](https://github.com/cbig/zonator/tree/master/inst/extdata/tutorial/basic)
-that is distributed with `zonator` package. The input and output files in the 
-tutorial package are arranged in a layout that has a specific logic behind it.
+The following examples will use the basic Zonation tutorial data as shipped with 
+the [`zdat`](https://github.com/cbig/zdat) package. 
+[The input and output files](https://github.com/cbig/zdat/tree/master/inst/extdata) 
+in the tutorial package are arranged in a layout that has a specific logic behind it.
 In Zonation jargon, everything within the root folder `basic` is consider to 
 belong to the same **project** (see figure below). A project constitutes of one
 or several **variants**. Each variant is an individual Zonation run with 
