@@ -188,7 +188,7 @@ feature.grp.curves.mask <- curves(results.mask, groups = TRUE)
 
 Performance data (curves) can also be easily plotted, feature- or group-wise:
 
-```{r curves-plotting-1, fig.width=8}
+```{r curves-plotting-1, fig.width=7, fig.height=5}
 plot(feature.curves.caz)
 ```
 
@@ -200,7 +200,7 @@ of landscape under conservation". This behavior can be controlled by using the
 argument `invert.x` for `plot-method`. The title of the plot can be set using
 `main`-argument.
 
-```{r curves-plotting-2, fig.width=10}
+```{r curves-plotting-2, fig.width=7, fig.height=5}
 plot(feature.curves.caz, invert.x = TRUE, main = "All features")
 ```
 
@@ -212,7 +212,7 @@ They correspond to "Average proportion remaining over all features",
 "Minimum proportion remaining over all features", and
 "Weighted average proportion remaining over all features" respectively. 
 
-```{r curves-plotting-3, fig.width=10}
+```{r curves-plotting-3, fig.width=7, fig.height=5}
 plot(feature.curves.caz, invert.x = TRUE, main = "Just few features", 
      subs = c('Yellow-bellied.glider', 'Sooty.owl'), mean = TRUE)
 ```
@@ -220,13 +220,13 @@ plot(feature.curves.caz, invert.x = TRUE, main = "Just few features",
 Group-specific curves can be plotted in similar fashion. Note that plotting 
 group curves also respect the group names you may have set.
 
-```{r curves-plotting-4, fig.width=10}
+```{r curves-plotting-4, fig.width=7, fig.height=5}
 plot(feature.grp.curves.caz, invert.x = TRUE, main = "All groups")
 ```
 
 Subsetting works the same as with individual features.
 
-```{r curves-plotting-5, fig.width=10}
+```{r curves-plotting-5, fig.width=7, fig.height=5}
 plot(feature.grp.curves.caz, invert.x = TRUE, main = "All groups", 
      subs = c('owls'))
 ```
@@ -235,7 +235,7 @@ Both feature- and group-specific curve plotting methods also have an argument
 called `monochrome`. Setting this argument to `TRUE` will use only monochrome
 colours which may be useful e.g. for publication figures.
 
-```{r curves-plotting-6, fig.width=10}
+```{r curves-plotting-6, fig.width=7, fig.height=5}
 plot(feature.grp.curves.caz, invert.x = TRUE, main = "All groups", 
      monochrome = TRUE)
 ```
@@ -248,7 +248,7 @@ which correspond to "Minimum proportion remaining for a feature within group",
 "Weighted average proportion remaining for group". Note that `mean` will always
 be `TRUE` unless it's explicitly set to `FALSE`.
 
-```{r curves-plotting-7, fig.width=10}
+```{r curves-plotting-7, fig.width=7, fig.height=5}
 plot(feature.grp.curves.mask, invert.x = TRUE, main = "All groups", 
      mean = TRUE, min = TRUE, max = TRUE)
 ```
@@ -262,7 +262,7 @@ know how much of the original occurrence level each of species in our tutorial
 data has left when 10% percent of the landscape is under conservation, you 
 could do the following:
 
-```{r perfomance-hist, fig.width=10}
+```{r perfomance-hist, fig.width=7, fig.height=5}
 library(ggplot2)
 # NOTE: we're using melted=TRUE here
 occr.remaining <- performance(results.caz, c(0.9, 0.95, 0.98), melted = TRUE)
@@ -287,7 +287,7 @@ to the user, but having a consistent and expressive color scheme for all the
 results helps. `zlegends()` can be used for ready-to-go color schemes that can 
 used when plotting the raster objects.
 
-```{r rank-raster-1, fig.width=10}
+```{r rank-raster-1, fig.width=7, fig.height=5}
 library(raster)
 rank.caz <- rank_raster(results.caz)
 # Let's use a spectral color scheme designed for Zonation rank maps
@@ -302,7 +302,7 @@ in a `RasterStack` object containing all the rank rasters as respective layers.
 If you want to plot all rank rasters in your project for comparison, you could 
 do the following:
 
-```{r rank-raster-2, warning=FALSE, fig.height=20}
+```{r rank-raster-2, warning=FALSE, fig.width=7, fig.height=20}
 # RasterStack is returned
 all.ranks <- rank_rasters(tutorial.project)
 plot(all.ranks, breaks = leg$values, col = leg$colors, nc = 1)
@@ -313,7 +313,7 @@ the distributions of individual stack layers (i.e. rank rasters) and the
 correlation between the values of layers can be done using `pairs()`. Following
 example examines correlation between variants 1-3.
 
-```{r rank-raster-3, fig.width=10}
+```{r rank-raster-3, fig.width=7, fig.height=5}
 pairs(stack(all.ranks[[1:3]]), method = "kendall")
 ```
 
@@ -331,7 +331,7 @@ two rasters as arguments: first is the rank raster and the second one is a mask
 raster. Histogram is then plotted based on the values of the rank raster within
 the mask raster.
 
-```{r rank-raster-4, fig.width=10}
+```{r rank-raster-4, fig.width=7, fig.height=5}
 pas.file <- system.file("extdata/data", "mask_rs.tif", 
                         package = "zdat")
 pas <- raster(pas.file)
@@ -346,7 +346,7 @@ package for plotting raster data. For example, `levelplot()` can be used to
 plot data and show a marginal plot of of a function across each coordinate
 (here using mean): 
 
-```{r rank-rasterVis-1, fig.width=10, message=FALSE}
+```{r rank-rasterVis-1, fig.width=7, fig.height=5, message=FALSE}
 library(rasterVis)
 # Note that breaks in the following are different from the previous maps
 levelplot(rank.caz, FUN.margin = mean, 
