@@ -8,19 +8,24 @@
 
 ## R CMD check results
 
-0 ERRORs | 0 WARNINGs | 1 NOTES.
+0 ERRORs | 0 WARNINGs | 2 NOTES.
 
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
 
 New submission
 
-This is my first submission to CRAN .
+-> This is my first submission to CRAN .
+
+Possibly mis-spelled words in DESCRIPTION:
+  Zonation (3:22, 13:5)
+
+-> Not a mis-spelled word, but actual name of software.
 
 Suggests or Enhances not in mainstream repositories:
   zdat
 
-zdat is a large data package (7.7 Mb) that is needed
+-> zdat is a large data package (7.7 Mb) that is needed
 to demonstrate full functionality of zonator. Package
 can be installed from GitHub using drat:
 
