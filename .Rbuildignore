@@ -1,7 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-inst/extras/.RData
-inst/extras/\.tar\.gz$
+inst/extras/build_and_check.R
 .gitignore
 .git
 ^appveyor\.yml$
