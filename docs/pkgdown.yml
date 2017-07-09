@@ -1,0 +1,7 @@
+urls:
+  reference: http://cbig.github.io/zonator/reference
+  article: http://cbig.github.io/zonator/articles
+articles:
+  zonator-project: zonator-project.html
+  zonator-results: zonator-results.html
+

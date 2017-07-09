@@ -1,0 +1,5 @@
+url: http://cbig.github.io/zonator
+
+template:
+  params:
+  bootswatch: flatly

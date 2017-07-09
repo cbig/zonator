@@ -9,3 +9,4 @@ inst/extras/build_and_check.R
 ^cran-comments.md$
 dist/
 ^docs$
+^_pkgdown\.yml$
