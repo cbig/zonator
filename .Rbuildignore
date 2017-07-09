@@ -8,3 +8,4 @@ inst/extras/build_and_check.R
 ^\.travis\.yml$
 ^cran-comments.md$
 dist/
+^docs$
