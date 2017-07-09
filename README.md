@@ -1,8 +1,12 @@
+[![](https://www.r-pkg.org/badges/version/zonator)](https://CRAN.R-project.org/package=zonator)
+[![](http://cranlogs.r-pkg.org/badges/zonator)](http://cran.rstudio.com/web/packages/zonator/index.html)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![GitHub version](https://badge.fury.io/gh/cbig%2Fzonator.svg)](https://badge.fury.io/gh/cbig%2Fzonator)
 [![Build Status](https://travis-ci.org/cbig/zonator.png)](https://travis-ci.org/cbig/zonator)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/cbig/zonator?branch=master&svg=true)](https://ci.appveyor.com/project/cbig/zonator)
 [![codecov](https://codecov.io/gh/cbig/zonator/branch/master/graph/badge.svg)](https://codecov.io/gh/cbig/zonator)
+
+
 
 # zonator
 
@@ -20,15 +24,29 @@ of running a Zonation analysis.
 
 ## Installation
 
+### Release version
+
+You can install the latest release version from CRAN:
+
+```
+install.packages("zonator")
+```
+
+### Development version
+
+Alternatively, you can install the latest (potentially unstable) development version from Github.
+
 1. Make sure you have package `devtools` installed and loaded in R:  
+
 ```
 # Open R prompt or RStudio and type the following on the command line
 install.packages("devtools")
 ```  
 
 2. Then install `zonator` directly from GitHub by running the following line in R:  
+
 ```
-devtools::install_github("cbig/zonator", build_vignettes = TRUE)
+devtools::install_github("cbig/zonator", ref = "develop", build_vignettes = TRUE)
 ```  
 
 ## Examples
