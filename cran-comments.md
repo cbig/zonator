@@ -1,29 +1,39 @@
-## Resubmission
-This is a resubmission. In this version I have:
+## Submission
 
-* Added an URL for the Zonation software in DESCRIPTION 
-Description field.
+This is a bugfix following 0.5.7 realesed on
+CRAN earlier today and addressing two issues 
+reported by Prof Brian Ripley.
 
-* Added a prebuilt vignette index at zonator/build/index.rds.
+* The startup message in 0.5.7 version was
+plain wrong: zonator does not require zdat data 
+package to operate, only to build the vignettes. The
+startup message has now been removed.
+
+* Code (and tests) were failing on Solaris as I have
+no access to this platform. I've tried to address the
+issue as suggested by Prof Ripley, but still cannot 
+test the package on Solaris.
 
 ## Test environments
 
-* local openSUSE Linux x64 install, R 3.4.0
+* local openSUSE Linux x64 install, R 3.4.1
 * Ubuntu 14.04 (on travis-ci), R 3.4.0
 * Windows Server 2012 R2 32-bit (on AppVeyor), R 3.4.0
 * win-builder (devel and release)
-* Debian Linux, R-devel, GCC ASAN/UBSAN (on R-hub builder), R-devel
 
 ## R CMD check results
 
 0 ERRORs | 0 WARNINGs | 2 NOTES.
 
 * checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
 
-New submission
+Maintainer: 'Joona Lehtomaki <joona.lehtomaki@gmail.com>'
 
--> This is my first submission to CRAN .
+Days since last update: 0
+
+-> As explained above, this update addresses two issues reported
+by Prof Brian Ripley almost immediately after the previous 
+release.
 
 Possibly mis-spelled words in DESCRIPTION:
   Zonation (3:22, 13:5)
@@ -38,6 +48,11 @@ to demonstrate full functionality of zonator. Package
 can be installed from GitHub using drat:
 
 install.packages('zdat', repos='https://jlehtoma.github.io/drat/', type='source')
+
+* checking package dependencies ... NOTE
+Package suggested but not available for checking: 'zdat'
+
+-> See above.
 
 ## Downstream dependencies
 
