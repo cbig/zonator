@@ -55,6 +55,11 @@ Some examples are provided by the package vignettes. You can view these after in
 
 ```
 vignette("zonator-project")
+```
+
+and 
+
+```
 vignette("zonator-results")
 ```
 
