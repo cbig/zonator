@@ -1,3 +1,11 @@
+## CHANGES IN VERSION 0.5.8 (2017-07-09)
+
+### BUG FIXES
+
++ `check_zonation()` was failing on Solaris. This patch-release tries to 
+fix that issue by using `Sys.which()` as suggested by BDR, but it 
+cannot be tested before submitting to CRAN.
+
 ## CHANGES IN VERSION 0.5.7 (2017-07-09)
 
 ### OTHER
