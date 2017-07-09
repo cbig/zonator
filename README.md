@@ -1,5 +1,5 @@
 [![](https://www.r-pkg.org/badges/version/zonator)](https://CRAN.R-project.org/package=zonator)
-[![](http://cranlogs.r-pkg.org/badges/zonator)](http://cran.rstudio.com/web/packages/zonator/index.html)
+[![](http://cranlogs.r-pkg.org/badges/zonator)](https://CRAN.R-project.org/package=zonator)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![GitHub version](https://badge.fury.io/gh/cbig%2Fzonator.svg)](https://badge.fury.io/gh/cbig%2Fzonator)
 [![Build Status](https://travis-ci.org/cbig/zonator.png)](https://travis-ci.org/cbig/zonator)
@@ -18,9 +18,9 @@ a familiar tool (R) in setting up Zonation runs and managing Zonation results.
 Functions and classes found in `zonator` can be useful for following stages
 of running a Zonation analysis.
 
-1. Setting up a Zonation project and pre-processing files ([examples](http://cbig.github.io/zonator/vignettes/zonator-project.html)).
+1. Setting up a Zonation project and pre-processing files ([examples](https://cbig.github.io/zonator/articles/zonator-project.html)).
 1. Running Zonation.
-1. Post-processing, results analysis and comparison, and plotting ([examples](http://cbig.github.io/zonator/vignettes/zonator-results.html)).
+1. Post-processing, results analysis and comparison, and plotting ([examples](https://cbig.github.io/zonator/articles/zonator-results.html)).
 
 ## Installation
 
