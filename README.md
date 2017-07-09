@@ -20,15 +20,29 @@ of running a Zonation analysis.
 
 ## Installation
 
+### Release version
+
+You can install the latest release version from CRAN:
+
+```
+install.packages("zonator")
+```
+
+### Development version
+
+Alternatively, you can install the latest (potentially unstable) development version from Github.
+
 1. Make sure you have package `devtools` installed and loaded in R:  
+
 ```
 # Open R prompt or RStudio and type the following on the command line
 install.packages("devtools")
 ```  
 
 2. Then install `zonator` directly from GitHub by running the following line in R:  
+
 ```
-devtools::install_github("cbig/zonator", build_vignettes = TRUE)
+devtools::install_github("cbig/zonator", ref = "develop", build_vignettes = TRUE)
 ```  
 
 ## Examples
