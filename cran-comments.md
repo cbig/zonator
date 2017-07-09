@@ -1,3 +1,11 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Added an URL for the Zonation software in DESCRIPTION 
+Description field.
+
+* Added a prebuilt vignette index at zonator/build/index.rds.
+
 ## Test environments
 
 * local openSUSE Linux x64 install, R 3.4.0
