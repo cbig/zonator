@@ -16,7 +16,9 @@ if (!hasData) {
   msg <- paste("Note: Examples in this vignette require that the", 
                "`zdat` package be installed. The system", 
                "currently running this vignette does not have that package", 
-               "installed, so code examples will not be evaluated.")
+               "installed, so code examples will not be evaluated.",
+               "To install `zdat` package, run `install.packages('zdat',",
+               "repos='https://jlehtoma.github.io/drat/', type='source')`.")
   msg <- paste(strwrap(msg), collapse = "\n") 
   message(msg)
 } 
