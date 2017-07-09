@@ -1,4 +1,4 @@
-## CHANGES IN VERSION 0.5.7 (2017-XX-XX)
+## CHANGES IN VERSION 0.5.7 (2017-07-09)
 
 ### OTHER
 
@@ -7,6 +7,7 @@ installed from Github using `drat`. Accordingly, various checks are done to
 condition some code to run only if `zdat` is installed.
 + Vignette image dimensions updated.
 + Submitted to CRAN
++ `zonator` website now generated using `pkgdown`
 
 ## CHANGES IN VERSION 0.5.6 (2017-04-13)
 
