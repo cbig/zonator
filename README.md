@@ -1,4 +1,4 @@
-[![](https://www.r-pkg.org/badges/version/zonator)
+![](https://www.r-pkg.org/badges/version/zonator)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![GitHub version](https://badge.fury.io/gh/cbig%2Fzonator.svg)](https://badge.fury.io/gh/cbig%2Fzonator)
 [![Build Status](https://travis-ci.org/cbig/zonator.png)](https://travis-ci.org/cbig/zonator)
