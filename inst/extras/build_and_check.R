@@ -3,6 +3,7 @@ library(devtools)
 build_dir <- "dist"
 
 devtools::document()
+devtools::install()
 devtools::build_vignettes()
 
 if (!file.exists(build_dir)) {
