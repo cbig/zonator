@@ -154,22 +154,14 @@ ds_alpha <- function(landscape.use, ratio) {
 #'   check_zonation("zig4")
 #' }
 #'
-check_zonation <- function(exe="zig3") {
+check_zonation <- function(exe = "zig3") {
 
-  if (.Platform$OS.type == "unix") {
-    z.exe <- exe
-    check <- system(paste("which", z.exe), intern=FALSE, ignore.stdout=TRUE,
-                    ignore.stderr=TRUE)
-  } else  {
-    z.exe <- paste0(exe, ".exe")
-    suppressWarnings(check <- shell(z.exe, intern=FALSE, ignore.stdout=TRUE,
-                                    ignore.stderr=TRUE))
-  }
+  check <- Sys.which(exe)
 
-  if (check == 0) {
+  if (check != "") {
     return(TRUE)
   } else {
-    warning("Zonation executable ", z.exe, " not found in the system.")
+    warning("Zonation executable ", exe, " not found in the system.")
     return(FALSE)
   }
 }
