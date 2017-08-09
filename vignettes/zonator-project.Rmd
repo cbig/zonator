@@ -72,7 +72,7 @@ see documentation and the packages vignettes for more detailed description.
 
 ## 2. Create a new Zonation project
 
-As mentioned above, `zonator` packages provides function `load_zproject()` 
+As mentioned above, `zonator` packages provides function `create_zproject()` 
 that can be used to create all the necessary files and folders for a new 
 Zonation project. Let's take a closer look:
 
