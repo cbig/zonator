@@ -16,8 +16,8 @@ test the package on Solaris.
 ## Test environments
 
 * local openSUSE Linux x64 install, R 3.4.1
-* Ubuntu 14.04 (on travis-ci), R 3.4.0
-* Windows Server 2012 R2 32-bit (on AppVeyor), R 3.4.0
+* Ubuntu 14.04 (on travis-ci), R 3.4.1
+* Windows Server 2012 R2 32-bit (on AppVeyor), R 3.4.1
 * win-builder (devel and release)
 
 ## R CMD check results
