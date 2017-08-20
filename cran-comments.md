@@ -22,7 +22,7 @@ test the package on Solaris.
 
 ## R CMD check results
 
-0 ERRORs | 0 WARNINGs | 1 NOTE.
+0 ERRORs | 0 WARNINGs | 2 NOTES.
 
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
