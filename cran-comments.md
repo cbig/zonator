@@ -1,8 +1,7 @@
 ## Submission
 
 This is a bugfix following 0.5.7 realesed on
-CRAN earlier today and addressing two issues 
-reported by Prof Brian Ripley.
+CRAN addressing two issues reported by Prof Brian Ripley.
 
 * The startup message in 0.5.7 version was
 plain wrong: zonator does not require zdat data 
