@@ -22,36 +22,21 @@ test the package on Solaris.
 
 ## R CMD check results
 
-0 ERRORs | 0 WARNINGs | 2 NOTES.
+0 ERRORs | 0 WARNINGs | 1 NOTE.
 
 * checking CRAN incoming feasibility ... NOTE
-
-Maintainer: 'Joona Lehtomaki <joona.lehtomaki@gmail.com>'
-
-Days since last update: 0
-
--> As explained above, this update addresses two issues reported
-by Prof Brian Ripley almost immediately after the previous 
-release.
-
-Possibly mis-spelled words in DESCRIPTION:
-  Zonation (3:22, 13:5)
-
--> Not a mis-spelled word, but actual name of software.
+Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
 
 Suggests or Enhances not in mainstream repositories:
   zdat
+Availability using Additional_repositories specification:
+  zdat   yes   https://jlehtoma.github.io/drat
 
 -> zdat is a large data package (7.7 Mb) that is needed
-to demonstrate full functionality of zonator. Package
-can be installed from GitHub using drat:
+to demonstrate full functionality of zonator and building 
+the vignettes. Package can be installed from GitHub using drat:
 
 install.packages('zdat', repos='https://jlehtoma.github.io/drat/', type='source')
-
-* checking package dependencies ... NOTE
-Package suggested but not available for checking: 'zdat'
-
--> See above.
 
 ## Downstream dependencies
 
