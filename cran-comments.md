@@ -38,6 +38,11 @@ the vignettes. Package can be installed from GitHub using drat:
 
 install.packages('zdat', repos='https://jlehtoma.github.io/drat/', type='source')
 
+* checking package dependencies ... NOTE
+Package suggested but not available for checking: 'zdat'
+
+-> See above.
+
 ## Downstream dependencies
 
 There are currently no downstream dependencies for this package.
