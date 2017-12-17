@@ -36,7 +36,7 @@ test_that("Retrieving variants works", {
 
   # Number of variants
   expect_equivalent(nvariants(test.project), 6,
-                    paste("Number of variants reported incorrectly"))
+                    info = paste("Number of variants reported incorrectly"))
 
   # Single variant retrieval based on index
   expect_identical(get_variant(test.project, 1),

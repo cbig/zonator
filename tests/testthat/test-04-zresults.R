@@ -191,18 +191,18 @@ test_that("performance levels are reported right for individual features", {
 
   # Get all features
   expect_equivalent(levels.all, performance(test.results, pr.lost=breaks),
-                   "Method performance doesn't return levels right")
+                   info = "Method performance doesn't return levels right")
   # Get levels for a specific feature/features
   levels.feat1 <- data.frame(pr_lost=levels.all$pr_lost, f1=levels.all$f1)
   expect_equivalent(levels.feat1, performance(test.results, pr.lost=breaks,
                                              features="f1"),
-                   "Method performance doesn't return level for 1 feature right")
+                   info = "Method performance doesn't return level for 1 feature right")
 
   levels.feats1.5 <- data.frame(pr_lost=levels.all$pr_lost, f1=levels.all$f1,
                                 f5=levels.all$f5)
   expect_equivalent(levels.feats1.5, performance(test.results, pr.lost=breaks,
                                                 features=c("f1", "f5")),
-                   "Method performance doesn't return levels for several features right")
+                   info = "Method performance doesn't return levels for several features right")
 
   # Test for invalid feature name
   expect_warning(performance(test.results, pr.lost=breaks, features="fX1"))
@@ -230,21 +230,21 @@ test_that("performance levels are reported right for groups", {
   # Get all features
   expect_equivalent(levels.all, performance(test.results, pr.lost=breaks,
                                            groups=TRUE),
-                   "Method performance doesn't return group levels right")
+                   info = "Method performance doesn't return group levels right")
 
   # Get levels for a specific feature/features
   levels.grp1 <- data.frame(pr_lost=levels.all$pr_lost,
                             mean.g1=levels.all$mean.group1)
   expect_equivalent(levels.grp1, performance(test.results, pr.lost=breaks,
                                              features="group1", groups=TRUE),
-                   "Method performance doesn't return level for 1 group right")
+                   info = "Method performance doesn't return level for 1 group right")
   levels.grps1.2 <- data.frame(pr_lost=levels.all$pr_lost,
                                mean.g1=levels.all$mean.group1,
                                mean.g2=levels.all$mean.group2)
   expect_equivalent(levels.grps1.2, performance(test.results, pr.lost=breaks,
                                                features=c("group1", "group2"),
                                                groups=TRUE),
-                   "Method performance doesn't return levels for several groups right")
+                   info = "Method performance doesn't return levels for several groups right")
 })
 
 test_that("featurenanmes are reported right", {
