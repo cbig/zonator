@@ -25,7 +25,7 @@ Suggests:
     knitr,
     rasterVis,
     rmarkdown,
-    testthat,
+    testthat (>= 2.0.0),
     zdat (>= 0.1.0)
 Additional_repositories: https://jlehtoma.github.io/drat
 URL: https://cbig.github.io/zonator/
