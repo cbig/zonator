@@ -1,28 +1,18 @@
 ## Submission
 
-This is a bugfix following 0.5.7 realesed on
-CRAN addressing two issues reported by Prof Brian Ripley.
-
-* The startup message in 0.5.7 version was
-plain wrong: zonator does not require zdat data 
-package to operate, only to build the vignettes. The
-startup message has now been removed.
-
-* Code (and tests) were failing on Solaris as I have
-no access to this platform. I've tried to address the
-issue as suggested by Prof Ripley, but still cannot 
-test the package on Solaris.
+This release updates all tests to fix the breaking changes introduced in 
+testthat release 2.0.
 
 ## Test environments
 
-* local openSUSE Linux x64 install, R 3.4.1
-* Ubuntu 14.04 (on travis-ci), R 3.4.1
-* Windows Server 2012 R2 32-bit (on AppVeyor), R 3.4.1
+* local openSUSE Linux x64 install, R 3.4.3
+* Ubuntu 14.04 x64 (on travis-ci), R 3.4.2
+* Windows Server 2012 R2 32-bit (on AppVeyor), R 3.4.3
 * win-builder (devel and release)
 
 ## R CMD check results
 
-0 ERRORs | 0 WARNINGs | 2 NOTES.
+Status: 2 NOTES
 
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
