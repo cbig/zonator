@@ -8,17 +8,17 @@ test_that("Parsing a bat file works", {
 
   if (.Platform$OS.type == "unix") {
     correct.sequence <- c("zig4", "-r",
-                          "01_core_area_zonation/01_core_area_zonation.dat",
-                          "01_core_area_zonation/01_core_area_zonation.spp",
-                          "01_core_area_zonation/01_core_area_zonation_out/01_core_area_zonation.txt",
+                          "01/01.dat",
+                          "01/01.spp",
+                          "01/01_out/01.txt",
                           "0.0", "0", "1.0", "0",
                           "--grid-output-formats=compressed-tif",
                           "--image-output-formats=png")
   } else {
     correct.sequence <- c("call", "zig4.exe", "-r",
-                          "01_core_area_zonation/01_core_area_zonation.dat",
-                          "01_core_area_zonation/01_core_area_zonation.spp",
-                          "01_core_area_zonation/01_core_area_zonation_out/01_core_area_zonation.txt",
+                          "01/01.dat",
+                          "01/01.spp",
+                          "01/01_out/01.txt",
                           "0.0", "0", "1.0", "0",
                           "--grid-output-formats=compressed-tif",
                           "--image-output-formats=png")
@@ -63,7 +63,7 @@ test_that("Parsing an ini file (dat) works", {
   correct.data[["Settings"]][["edge removal"]] <- "1"
   correct.data[["Settings"]][["annotate name"]] <- "0"
   correct.data[["Settings"]][["use groups"]] <- "1"
-  correct.data[["Settings"]][["groups file"]] <- "01_core_area_zonation/01_core_area_zonation_groups.txt"
+  correct.data[["Settings"]][["groups file"]] <- "01/01_groups.txt"
 
   expect_equal(read_dat(dat.file), correct.data,
                info = "Data parsed from dat file is not correct")
@@ -109,11 +109,10 @@ test_that("Parsing an invalid groups file works", {
 test_that("Parsing an unpopulated spp file works", {
 
   # Test with an unpopulated spp file (i.e. no rows)
-  spp.file <- system.file("extdata",
-                          "template.spp",
+  spp.file <- system.file("extdata", "template.spp",
                           package = "zonator")
 
-  spp.data <- read_spp(spp.file)
+  suppressWarnings(spp.data <- read_spp(spp.file))
   expect_true(is.data.frame(spp.data),
               "Spp data read in not a data frame")
   # Should return an empty data.frame

@@ -35,13 +35,6 @@ Create an instance of the Zresults class using new/initialize.
 
 Create an instance of the Zvariant class using new/initialize.
 }
-\author{
-Joona Lehtomaki <joona.lehtomaki@gmail.com>
-
-Joona Lehtomaki <joona.lehtomaki@gmail.com>
-
-Joona Lehtomaki <joona.lehtomaki@gmail.com>
-}
 \seealso{
 \code{\link{initialize}}
 
@@ -49,5 +42,11 @@ Joona Lehtomaki <joona.lehtomaki@gmail.com>
 
 \code{\link{initialize}}
 }
-\keyword{internal}
+\author{
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
 
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
+\keyword{internal}

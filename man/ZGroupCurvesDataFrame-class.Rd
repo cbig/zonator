@@ -24,7 +24,7 @@ to the user to update the indexes in slot \code{is.group}
    a group.}
  }
 }
+
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-

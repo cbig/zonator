@@ -40,4 +40,3 @@ Method ...
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \keyword{internal}
-

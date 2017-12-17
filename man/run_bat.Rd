@@ -21,4 +21,3 @@ Try to run a given batch (bat) files.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

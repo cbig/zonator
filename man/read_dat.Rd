@@ -21,4 +21,3 @@ Adapted from http://bit.ly/11e4Jh0
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

@@ -22,12 +22,11 @@ within the Zonation project are parsed into
 \code{\link[zonator:Zvariant-class]{Zvariant-class}} objects and potential
 results into \code{\link[zonator:Zresults-class]{Zresults-class}} objects.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link[zonator:Zproject-class]{Zproject-class}},
   \code{\link[zonator:Zvariant-class]{Zvariant-class}} and
   \code{\link[zonator:create_zproject]{create_zproject}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

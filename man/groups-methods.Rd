@@ -3,6 +3,7 @@
 \docType{methods}
 \name{groups}
 \alias{groups}
+\alias{groups<-}
 \alias{groups,Zvariant-method}
 \alias{groups<-}
 \alias{groups<-,Zvariant,numeric-method}
@@ -33,10 +34,9 @@ file ('output group').
 
 Assign group codes for a class \code{Zvariant} instance.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zvariant-class}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

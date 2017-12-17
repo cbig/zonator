@@ -43,7 +43,10 @@ setMethod("initialize", "Zproject", function(.Object, root, debug=FALSE) {
 
   for (bat.file in bat.files) {
     variant <- new("Zvariant", bat.file = bat.file)
-    variants[variant@name] <- variant
+    # FIXME: Suppress warning from implicit list embeddinf of S4 objects,
+    # which was deprecated in R 3.3.0.
+    # https://stat.ethz.ch/pipermail/r-devel/2016-May/072730.html
+    suppressWarnings(variants[variant@name] <- variant)
   }
 
   .Object@variants <- variants
@@ -65,6 +68,7 @@ setMethod("initialize", "Zproject", function(.Object, root, debug=FALSE) {
 #'
 #' @import raster
 #' @import rgdal
+#' @importFrom methods validObject
 #'
 #' @rdname initialize-methods
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
@@ -121,6 +125,15 @@ setMethod("initialize", "Zresults", function(.Object, root) {
     if (.options$debug) {
       message("Did not find run info file")
     }
+  }
+
+  # Features info file is named *.features_info.txt
+  features.info.file <- get_file(root, "\\.features_info\\.txt$")
+  if (!is.na(features.info.file)) {
+    if (.options$debug) {
+      message("Reading in features info file ", features.info.file)
+    }
+    .Object@features.info <- read_features_info(features.info.file)
   }
 
   # Curves file is named *.curves.txt. NOTE: if the file does not exist,
@@ -201,6 +214,8 @@ setMethod("initialize", "Zresults", function(.Object, root) {
 #' @seealso \code{\link{initialize}}
 #'
 #' @keywords internal
+#'
+#' @importFrom methods validObject
 #'
 #' @rdname initialize-methods
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>

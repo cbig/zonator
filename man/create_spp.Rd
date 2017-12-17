@@ -5,8 +5,8 @@
 \title{Generate spp_file based on a directory of input rasters.}
 \usage{
 create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
-  bqp_p = 1, cellrem = 0.25, spp_file_dir,
-  spp_file_pattern = "[.+\\\\.[(tif)|(img)]", override_path = NULL)
+  bqp_p = 1, cellrem = 0.25, spp_file_dir, recursive = FALSE,
+  spp_file_pattern = ".+\\\\.(tif|img)$", override_path = NULL)
 }
 \arguments{
 \item{filename}{character string defining the name of the spp file created.}
@@ -21,12 +21,18 @@ create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
 
 \item{cellrem}{numeric template value for cellrem values.}
 
-\item{spp_file_dir}{character path to target dir.}
+\item{spp_file_dir}{character path or a vector of paths to target dir.}
+
+\item{recursive}{Logical defining whether files in \code{spp_file_dir} should
+be listed recursively.}
 
 \item{spp_file_pattern}{pattern used to match raster files.}
 
 \item{override_path}{character path used to override the dirpath in input
-raster file paths.}
+raster file paths. In case \code{recursive = TRUE}, then there can be
+an arbitrary number of subdirectories and override path is used only up
+until the \code{spp_file_dir}. This way the correct subdirectory structure
+is retained.}
 }
 \value{
 invisible(TRUE), functrion is used for side effects.
@@ -37,4 +43,3 @@ Generate spp_file based on a directory of input rasters.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

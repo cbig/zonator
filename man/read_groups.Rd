@@ -18,4 +18,3 @@ Read a groups file.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

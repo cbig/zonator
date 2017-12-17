@@ -24,4 +24,3 @@ For package internal use only
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
 \keyword{internal}
-

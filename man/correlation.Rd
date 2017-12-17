@@ -25,12 +25,11 @@ Calculate correlation between two matrices using \code{\link{cor}}. A
 group of specific threshold can be set, in which case the correlations are
 calculated incrementally for values above the thresholds.
 }
-\author{
-Joona Lehtomaki <joona.lehtomaki@gmail.com>
-}
 \seealso{
 \code{\link{cor}}
 }
+\author{
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
 \keyword{post-processnig,}
 \keyword{ppa}
-

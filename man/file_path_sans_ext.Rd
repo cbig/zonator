@@ -25,4 +25,3 @@ implementation.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

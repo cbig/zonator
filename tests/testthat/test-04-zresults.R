@@ -15,19 +15,19 @@ test_that("Zresults is created correctly", {
               "Test results object's slot 'modified' is not POSIXct")
 
   # Run info
-  run.info.file <- file.path(results.path, "01_core_area_zonation.run_info.txt")
+  run.info.file <- file.path(results.path, "01.run_info.txt")
   expect_identical(run.info.file, test.results@run.info,
                    "Test results object's run info file path incorrect")
 
   # Curves
-  curves.file <- file.path(results.path, "01_core_area_zonation.curves.txt")
+  curves.file <- file.path(results.path, "01.curves.txt")
   correct.curves <- read_curves(curves.file)
   expect_identical(correct.curves, test.results@curves,
                    "Test results object's curves data incorrect")
 
   # Group curves
   grp.curves.file <- file.path(results.path,
-                               "01_core_area_zonation.grp_curves.txt")
+                               "01.grp_curves.txt")
   correct.grp.curves <- read_grp_curves(grp.curves.file)
   expect_identical(correct.grp.curves, test.results@grp.curves,
                    "Test results object's group curves data incorrect")
@@ -47,7 +47,7 @@ test_that("getting curves for individual features works", {
   results.path <- .options$results.dir
   test.results <- new("Zresults", root=results.path)
 
-  curves.file <- file.path(results.path, "01_core_area_zonation.curves.txt")
+  curves.file <- file.path(results.path, "01.curves.txt")
 
   correct.curves <- read_curves(curves.file)
   expect_identical(correct.curves, curves(test.results),
@@ -125,7 +125,7 @@ test_that("getting curves for groups works", {
   results.path <- .options$results.dir
   test.results <- new("Zresults", root=results.path)
 
-  grp.curves.file <- file.path(results.path, "01_core_area_zonation.grp_curves.txt")
+  grp.curves.file <- file.path(results.path, "01.grp_curves.txt")
 
   correct.grp.curves <- read_grp_curves(grp.curves.file)
   expect_identical(correct.grp.curves, curves(test.results, groups=TRUE),
@@ -173,7 +173,7 @@ test_that("performance levels are reported right for individual features", {
   results.path <- .options$results.dir
   test.results <- new("Zresults", root=results.path)
 
-  curves.file <- file.path(results.path, "01_core_area_zonation.curves.txt")
+  curves.file <- file.path(results.path, "01.curves.txt")
 
   correct.curves <- read_curves(curves.file)
 
@@ -215,7 +215,7 @@ test_that("performance levels are reported right for groups", {
   results.path <- .options$results.dir
   test.results <- new("Zresults", root=results.path)
 
-  curves.file <- file.path(results.path, "01_core_area_zonation.grp_curves.txt")
+  curves.file <- file.path(results.path, "01.grp_curves.txt")
 
   correct.curves <- read_grp_curves(curves.file)
 
@@ -268,18 +268,44 @@ test_that("Retrieving results output directory works", {
 
 })
 
-test_that("Retrieving results rank raster works", {
+test_that("Reading feature info works", {
   results.path <- .options$results.dir
-  correct.rank.raster <- raster(file.path(results.path,
-                                          "01_core_area_zonation.rank.compressed.tif"))
-  test.results <- new("Zresults", root=results.path)
 
-  expect_identical(rank_raster(test.results), correct.rank.raster,
-                   "Correct rank raster is not returned for Zresults")
+  correct.col.names <- c("Weight", "DistSum", "IGRetained",
+                         "TviolationFractRem", "DistrMeanX", "DistMeanY",
+                         "MapFileName")
+  correct.features.info <- read.table(file.path(results.path,
+                                                "01.features_info.txt"),
+                                      sep = "\t", skip = 2, as.is = TRUE,
+                                      col.names = correct.col.names)
+
+  test.results <- new("Zresults", root = results.path)
+
+  expect_identical(features_info(test.results), correct.features.info,
+                   "Correct features info is not returned for Zresults")
 
   no.results.path <- file.path(.options$setup.dir, "06/06_out")
   suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
 
-  expect_warning(rank_raster(test.no.results))
+  expect_warning(features_info(test.no.results))
+
+})
+
+test_that("Reading cost data works", {
+  results.path <- .options$results.dir
+  curves.file <- file.path(results.path, "01.curves.txt")
+
+  correct.cost_data <- read.table(curves.file, skip = 1, as.is = TRUE)[,1:2]
+  names(correct.cost_data) <- c("pr_lost", "cost")
+
+  test.results <- new("Zresults", root = results.path)
+
+  expect_identical(cost(test.results), correct.cost_data,
+                   "Correct cost data is not returned for Zresults")
+
+  no.results.path <- file.path(.options$setup.dir, "06/06_out")
+  suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
+
+  expect_warning(cost(test.no.results))
 
 })

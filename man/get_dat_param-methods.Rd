@@ -27,11 +27,10 @@ Essentially these are parameter values corresponding to Zonation dat-files.
 This function is used to get values of given parameter. In the current
 implementation, sections have no meaning.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link[zonator:Zvariant-class]{Zvariant-class}} and
 \code{\link{set_dat_param}}.
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

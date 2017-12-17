@@ -24,4 +24,3 @@ need to be expanded into full absolute paths.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

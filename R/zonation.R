@@ -19,13 +19,19 @@
 #' @param bqp numeric template value for bqp values.
 #' @param bqp_p numeric template value for bqp_p values.
 #' @param cellrem numeric template value for cellrem values.
-#' @param spp_file_dir character path to target dir.
+#' @param spp_file_dir character path or a vector of paths to target dir.
+#' @param recursive Logical defining whether files in \code{spp_file_dir} should
+#'   be listed recursively.
 #' @param spp_file_pattern pattern used to match raster files.
 #' @param override_path character path used to override the dirpath in input
-#'   raster file paths.
+#'   raster file paths. In case \code{recursive = TRUE}, then there can be
+#'   an arbitrary number of subdirectories and override path is used only up
+#'   until the \code{spp_file_dir}. This way the correct subdirectory structure
+#'   is retained.
 #'
 #' @return invisible(TRUE), functrion is used for side effects.
 #'
+#' @importFrom utils write.table
 #'
 #' @export
 #'
@@ -33,23 +39,65 @@
 #'
 create_spp <- function(filename="filelist.spp", weight=1.0, alpha=1.0,
                        bqp=1, bqp_p=1, cellrem=0.25, spp_file_dir,
-                       spp_file_pattern = "[.+\\.[(tif)|(img)]",
+                       recursive = FALSE,
+                       spp_file_pattern = ".+\\.(tif|img)$",
                        override_path = NULL) {
 
-
-
-  # List rasters in the target directory
-  target_rasters <- list.files(path = spp_file_dir, pattern = spp_file_pattern,
-                               full.names = TRUE)
+  # List rasters in the target directory. spp_file_dir can be a vector as well,
+  # so check for that
+  target_rasters <- list()
+  if (length(spp_file_dir) > 1) {
+    for (item in spp_file_dir) {
+      target_rasters[[item]]  <- list.files(path = item,
+                                          pattern = spp_file_pattern,
+                                          full.names = TRUE,
+                                          recursive = recursive)
+    }
+  } else {
+    target_rasters[[spp_file_dir]] <- list.files(path = spp_file_dir,
+                                               pattern = spp_file_pattern,
+                                               full.names = TRUE,
+                                               recursive = recursive)
+  }
+  if (length(target_rasters) == 0) {
+    stop("No raster(s) matching the spp_file_pattern ", spp_file_pattern,
+         " found in ", spp_file_dir)
+  }
 
   # Construct the spp file content
   spp_content <- data.frame(weight = weight, alpha = alpha, bqp = bqp,
                             bqp_p = bqp_p, cellrem = cellrem,
-                            sppfiles = target_rasters)
+                            sppfiles = as.vector(unlist(target_rasters)))
 
   # Override the target raster paths if needed
   if (!is.null(override_path)) {
-    spp_content$sppfiles <- file.path(override_path, basename(target_rasters))
+    # If recursive TRUE, the override path needs to be modified as the only use
+    # case for the override is to act as a prefix for the filename. Using
+    # recursive = TRUE can introduce additional levels of nestedness.
+    if (recursive) {
+      # Again, we may have several spp_file_dirs
+      if (length(spp_file_dir) == 1) {
+        # Split each path with spp_file_dir. Everything after this will be the
+        # subdir path.
+        path_components <- strsplit(target_rasters[[1]], paste0(spp_file_dir,
+                                                           .Platform$file.sep))
+        # Get the last item (subdir path) from each split.
+        target_rasters <- sapply(path_components, function(x) x[length(x)])
+      } else {
+        temp_target_rasters <- c()
+        for (target_dir in names(target_rasters)) {
+          path_components <- strsplit(target_rasters[[target_dir]],
+                                      paste0(target_dir, .Platform$file.sep))
+          # Get the last item (subdir path) from each split.
+          temp_target_rasters <- c(temp_target_rasters,
+                                   sapply(path_components, function(x) x[length(x)]))
+        }
+        target_rasters <- temp_target_rasters
+      }
+    } else {
+      target_rasters <- sapply(target_rasters, function(x) basename(x))
+    }
+    spp_content$sppfiles <- file.path(override_path, target_rasters)
   }
 
   write.table(spp_content, file = filename, row.names = FALSE, quote = FALSE,
@@ -106,22 +154,14 @@ ds_alpha <- function(landscape.use, ratio) {
 #'   check_zonation("zig4")
 #' }
 #'
-check_zonation <- function(exe="zig3") {
+check_zonation <- function(exe = "zig3") {
 
-  if (.Platform$OS.type == "unix") {
-    z.exe <- exe
-    check <- system(paste("which", z.exe), intern=FALSE, ignore.stdout=TRUE,
-                    ignore.stderr=TRUE)
-  } else  {
-    z.exe <- paste0(exe, ".exe")
-    suppressWarnings(check <- shell(z.exe, intern=FALSE, ignore.stdout=TRUE,
-                                    ignore.stderr=TRUE))
-  }
+  check <- Sys.which(exe)
 
-  if (check == 0) {
+  if (check != "") {
     return(TRUE)
   } else {
-    warning("Zonation executable ", z.exe, " not found in the system.")
+    warning("Zonation executable ", exe, " not found in the system.")
     return(FALSE)
   }
 }

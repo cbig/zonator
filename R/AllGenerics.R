@@ -11,6 +11,73 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+# copy_zvariant ---------------------------------------------------------------
+
+#' Copy existing variant as a new \code{Zvariant} object.
+#'
+#' Corresponding files on the file system are immediately created. In orderd
+#' to modify the variant, manipulate the returned \code{Zvariant} object and
+#' use \code{\link{save_zvariant}} method.
+#'
+#' If the variant being copied has results, they are not copied to the new
+#' variant.
+#'
+#' @note Relative paths in spp-file are translated into absolute paths as
+#' otherwise dealing with them might be tricky.
+#'
+#' @param x Zvariant object.
+#' @param name Characted string naming the copied variant.
+#' @param dir Characted string directory where the new variant is created on
+#'            file system.
+#'
+#' @return \code{Zvariant} object
+#'
+#' @seealso \code{\link{Zvariant-class}} \code{\link{save_zvariant}}
+#'
+#' @export
+#' @rdname copy_zvariant-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("copy_zvariant", function(x, name, dir) {
+  standardGeneric("copy_zvariant")
+})
+
+
+# cost ---------------------------------------------------------------------
+
+#' Get cost data of a Z* object.
+#'
+#' Returns the "cost_needed_for_top_fraction" column from Zonation curves
+#' file. Note that the cost is the same in curves and grp_curves files.
+#' pr_lost is always included in the returned data, but no other columns are
+#' included.
+#'
+#' Method implementation in class \code{\link{Zvariant}} is just a thin
+#' wrapper for passing the argumets to variant's code{\link{Zresults}} object.
+#'
+#' @param x Z* object.
+#'
+#' @return data.frame object with two columns:
+#' \itemize{
+#'   \item{\code{pr_lost}}{Proportion of landscape lost.}
+#'   \item{\code{cost}}{Cost of a given fraction of the solution.}
+#' }
+#' If no results are available, return NA.
+#'
+#' @keywords results
+#'
+#' @seealso \code{\link{Zresults-class}} \code{\link{Zvariant-class}}
+#'
+#' @export
+#' @rdname cost-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("cost", function(x) {
+  standardGeneric("cost")
+})
+
 # curves ------------------------------------------------------------------
 
 #' Get curves results data of a Z* object.
@@ -111,6 +178,44 @@ setGeneric("featurenames<-", function(x, value) {
   standardGeneric("featurenames<-")
 })
 
+
+# features_info -----------------------------------------------------------
+
+#' Get the features info component of Zresults.
+#'
+#' Returns the data in *.features_info.txt results standard output of
+#' Zonation if present.
+#'
+#' Argument \code{x} can be an instance of one the following Z* classes:
+#' \itemize{
+#'   \item{\code{Zvariant}}
+#'   \item{\code{Zresults}}
+#' }
+#'
+#' @param x Z* object.
+#'
+#' @return data.frame containing the features info data.
+#'
+#' @seealso \code{\link{Zvariant-class}} \code{\link{Zresults-class}}
+#'          \code{\link{groupnames}} \code{\link{groups}}
+#'
+#' @export
+#' @rdname features_info-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @examples \dontrun{
+#'  setup.dir <- system.file("extdata/tutorial/basic", package="zonator")
+#'  tutorial.project <- create_zproject(setup.dir)
+#'  variant.caz <- get_variant(tutorial.project, "01")
+#'
+#'  # Feature names for a Zvariant object
+#'  features_info(variant_caz)
+#' }
+#'
+setGeneric("features_info", function(x) {
+  standardGeneric("features_info")
+})
 
 # get_dat_param -----------------------------------------------------------
 
@@ -623,6 +728,27 @@ setGeneric("sppdata<-", function(x, value) {
 setGeneric("sppweights", function(x) {
   standardGeneric("sppweights")
 })
+
+# sppweights<- ------------------------------------------------------------
+
+#' Set biodiversity feature weights of a Zonation variant
+#'
+#' @note The weight vector must be exactly the correct length, no recycling is
+#' done. Vector elements must be coercible to numeric.
+#'
+#' @param value numeric vector with the length equal to the number of features
+#' in the variant
+#'
+#'
+#' @export
+#' @rdname sppweights-methods
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+setGeneric("sppweights<-", function(x, value) {
+  standardGeneric("sppweights<-")
+})
+
 
 # variants ----------------------------------------------------------------
 

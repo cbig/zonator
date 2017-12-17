@@ -17,4 +17,3 @@ tutorial
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

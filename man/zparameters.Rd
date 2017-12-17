@@ -24,4 +24,3 @@ Parameters are hard-coded to this package and know nothing
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

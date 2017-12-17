@@ -31,4 +31,3 @@ write_dat(dat, "settings.dat")
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

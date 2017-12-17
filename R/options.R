@@ -78,39 +78,34 @@ assign("z_colors_RdYlBu", z_colors_RdYlBu, env=.options)
 # Zonation tutorial data paths ----------------------------------------------
 
 # Tutorial directories
-assign("tutorial.dir", system.file("extdata", "tutorial", package="zonator"),
+assign("tutorial.dir", system.file("extdata", "test_project", package="zonator"),
        envir=.options)
-assign("setup.dir", file.path(.options$tutorial.dir, "basic"), envir=.options)
+assign("setup.dir", file.path(.options$tutorial.dir, "zsetup"), envir=.options)
 assign("data.dir", file.path(.options$tutorial.dir, "data"), envir=.options)
 assign("output.dir", file.path(.options$setup.dir, "output"),
        envir=.options)
 
-assign("species.rasters", paste0(.options$data.dir, "/species", 1:7, ".tif"),
-       envir = .options)
 assign("groups.file", file.path(.options$setup.dir, "groups.txt"),
        envir = .options)
 assign("condition.file", file.path(.options$setup.dir, "cond_list.txt"),
        envir = .options)
-assign("condition.rasters", paste0(.options$data.dir, "/condition", 1:2, ".tif"),
-       envir = .options)
 
 # Tutorial run and configuration files
-assign("bat.file", file.path(.options$setup.dir, "01_core_area_zonation.bat"),
+assign("bat.file", file.path(.options$setup.dir, "01.bat"),
        envir = .options)
 assign("dat.file", file.path(.options$setup.dir,
-                             "01_core_area_zonation/01_core_area_zonation.dat"),
+                             "01/01.dat"),
        envir = .options)
 assign("spp.file", file.path(.options$setup.dir,
-                             "01_core_area_zonation/01_core_area_zonation.spp"),
+                             "01/01.spp"),
        envir = .options)
 assign("results.dir", file.path(.options$setup.dir,
-                             "01_core_area_zonation/01_core_area_zonation_out"),
+                             "01/01_out"),
        envir = .options)
-
 
 # Another file for variant without groups
 assign("bat.file.no.grps",
-       file.path(.options$setup.dir, "03_boundary_length_penalty.bat"),
+       file.path(.options$setup.dir, "03.bat"),
        envir = .options)
 assign("dat.file.no.grps", file.path(.options$setup.dir, "03/03.dat"),
        envir = .options)
@@ -119,7 +114,7 @@ assign("spp.file.no.grps", file.path(.options$setup.dir, "03/03.spp"),
 
 # Another file for a connectivity variant
 assign("bat.file.ds", file.path(.options$setup.dir,
-                                "04_distribution_smoothing.bat"),
+                                "04.bat"),
        envir=.options)
 assign("dat.file.ds", file.path(.options$setup.dir, "04/04.dat"),
        envir=.options)
@@ -128,7 +123,7 @@ assign("spp.file.ds", file.path(.options$setup.dir, "04/04.spp"),
 
 # Another file for variant without results
 assign("bat.file.no.results",
-       file.path(.options$setup.dir, "06_dummy_for_testing.batx"),
+       file.path(.options$setup.dir, "06.batx"),
        envir = .options)
 assign("dat.file.no.results", file.path(.options$setup.dir, "06/06.dat"),
        envir = .options)
@@ -137,6 +132,8 @@ assign("spp.file.no.results", file.path(.options$setup.dir, "06/06.spp"),
 
 # Tutorial results files, use 02_additive_benefit_function variant so that
 # weights are used
+assign("results.bat.file", file.path(.options$setup.dir, "02.bat"),
+       envir = .options)
 assign("results.spp.file", file.path(.options$setup.dir, "02/02.spp"),
        envir = .options)
 assign("results.curves", file.path(.options$setup.dir,
@@ -147,7 +144,7 @@ assign("results.grp.curves", file.path(.options$setup.dir,
 
 # Variant with condition layers
 assign("bat.file.cond",
-       file.path(.options$setup.dir, "07_condition_layer.bat"),
+       file.path(.options$setup.dir, "07.bat"),
        envir = .options)
 assign("dat.file.cond", file.path(.options$setup.dir, "07/07.dat"),
        envir = .options)

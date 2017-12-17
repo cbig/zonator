@@ -145,9 +145,6 @@ check_results <- function(object) {
 #'
 #' Slots of class \code{Zresults} can be queried using the \code{$}-operator.
 #'
-#' @note More information on PPA LSM data items can be found in
-#' \url{http://cbig.it.helsinki.fi/development/projects/zonation/wiki/LSM_with_pre-defined_units}
-#'
 #'@section Slots:
 #'  \describe{
 #'    \item{\code{root}:}{Character string path pointing to the root (dir) of
@@ -160,6 +157,7 @@ check_results <- function(object) {
 #'    \item{\code{wrscr}:}{RasterLayer object of weighted range-size corrected richness.}
 #'    \item{\code{prop}:}{RasterLayer object of the proportional loss of distribution.}
 #'    \item{\code{ppa.lsm}:}{Data frame containg PPA LSM data items 1 and 3.}
+#'    \item{\code{features.info}:}{Data frame containg features info data.}
 #'  }
 #'
 #' @name Zresults
@@ -176,7 +174,8 @@ setClass("Zresults", representation(root = "character",
                                     rank = "RasterLayer",
                                     wrscr = "RasterLayer",
                                     prop = "RasterLayer",
-                                    ppa.lsm = "data.frame"),
+                                    ppa.lsm = "data.frame",
+                                    features.info = "data.frame"),
          validity = check_results)
 
 # Zonation variant ------------------------------------------------------------

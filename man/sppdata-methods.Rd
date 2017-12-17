@@ -3,6 +3,7 @@
 \docType{methods}
 \name{sppdata}
 \alias{sppdata}
+\alias{sppdata<-}
 \alias{sppdata,Zvariant-method}
 \alias{sppdata<-}
 \alias{sppdata<-,Zvariant,data.frame-method}
@@ -39,10 +40,9 @@ information must also be updated independently.
 Everytime spp data is set, groups information is deleted as there
 is now straightforward way of preserving and/or imputing group information.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zvariant-class}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

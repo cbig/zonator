@@ -1,14 +1,28 @@
 ---
 title: "Working with Zonation projects"
-output:
-  html_document:
-    toc: true
-    theme: flatly
+author: "Joona Lehtomäki"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with Zonation projects}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-<!--
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Working with Zonation projects}
--->
+
+```{r echo = FALSE, message = FALSE} 
+hasData <- requireNamespace("zdat", quietly = TRUE) 
+if (!hasData) {
+  knitr::opts_chunk$set(eval = FALSE)
+  msg <- paste("Note: Examples in this vignette require that the", 
+               "`zdat` package be installed. The system", 
+               "currently running this vignette does not have that package", 
+               "installed, so code examples will not be evaluated.",
+               "To install `zdat` package, run `install.packages('zdat',",
+               "repos='https://jlehtoma.github.io/drat/', type='source')`.")
+  msg <- paste(strwrap(msg), collapse = "\n") 
+  message(msg)
+} 
+```
 
 ```{r setup, echo=FALSE}
 options(width = 120)
@@ -16,10 +30,10 @@ options(width = 120)
 
 ## 1. Zonation projects and zonator classes
 
-The following examples will use 
-[the basic Zonation tutorial data](https://github.com/cbig/zonator/tree/master/inst/extdata/tutorial/basic)
-that is distributed with `zonator` package. The input and output files in the 
-tutorial package are arranged in a layout that has a specific logic behind it.
+The following examples will use the basic Zonation tutorial data as shipped with 
+the [`zdat`](https://github.com/cbig/zdat) package. 
+[The input and output files](https://github.com/cbig/zdat/tree/master/inst/extdata) 
+in the tutorial package are arranged in a layout that has a specific logic behind it.
 In Zonation jargon, everything within the root folder `basic` is consider to 
 belong to the same **project** (see figure below). A project constitutes of one
 or several **variants**. Each variant is an individual Zonation run with 
@@ -58,7 +72,7 @@ see documentation and the packages vignettes for more detailed description.
 
 ## 2. Create a new Zonation project
 
-As mentioned above, `zonator` packages provides function `load_zproject()` 
+As mentioned above, `zonator` packages provides function `create_zproject()` 
 that can be used to create all the necessary files and folders for a new 
 Zonation project. Let's take a closer look:
 
@@ -93,7 +107,7 @@ template .dat-file.
 
 ```{r create-new-02, message=FALSE,warning=FALSE,eval=FALSE}
 # Directory containing the input raster files
-input_raster_dir <- system.file("extdata/tutorial/data", package="zonator")
+input_raster_dir <- system.file("extdata/test_project/data", package="zonator")
 new_project <- create_zproject(name = "test_project", dir = project_path, 
                                variants = variant_names,
                                spp_template_dir = input_raster_dir,
@@ -118,16 +132,24 @@ alpha value), because no checking is being done!
 ## 3. Create zonator project based on existing data
 
 Alternatively, all the information contained within an existing Zonation project 
-can be parsed into R data structures. The tutorial data include results of the 
-tutorial runs so there is no need  to run the variants in order to inspect the 
-results. In case you *do* want to rerun the variants and you have Zonation 
-installed in your system do so by running the following code. Otherwise just 
-skip this code section.
+can be parsed into R data structures. The tutorial data is not distributed with 
+`zonator`, but in a separate package [`zdat`](https://github.com/cbig/zdat). You can - and 
+must if you want to run the examples below - install the package by:
+
+```{r install-zdat, eval=FALSE}
+library(devtools)
+devtools::install_github("cbig/zdat")
+```
+
+The tutorial data include results of the tutorial runs so there is no need  to run the 
+variants in order to inspect the results. In case you *do* want to rerun the variants 
+and you have Zonation installed in your system do so by running the following code. 
+Otherwise just skip this code section.
 
 ```{r run-variant-1, eval=(1:6), message=FALSE}
 library(zonator)
 
-setup.dir <- system.file("extdata/tutorial/basic", package = "zonator")
+setup.dir <- system.file("extdata/basic", package = "zdat")
 
 # Get all the bat-files
 bat.files <- list.files(setup.dir, "\\.bat$", full.names = TRUE)
@@ -177,7 +199,8 @@ the names of all the variants. Name can also be used to extract a variant.
 
 ```{r variants-by-name}
 names(tutorial.project)
-variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+# Get first variant, 01_core_area_zonation
+variant.caz <- get_variant(tutorial.project, "01")
 ```
 
 Each variant object is an instance of class `Zvariant` and have a suite of 
@@ -259,7 +282,7 @@ character elements the group names to be assigned:
 
 ```{r group-names-2}
 # Construct a group name mapping using a named character vector
-groupnames(variant.caz) <- c("1"="mammals", "2"="owls")
+groupnames(variant.caz) <- c("1" = "mammals", "2" = "owls")
 groupnames(variant.caz)
 ```
 
@@ -268,15 +291,18 @@ Now group 1 is labeled "mammals" and group 2 is labeled "owls". Note that
 if group names are preferable to group codes.
 
 ```{r sppdata-group-names}
-sppdata(variant.caz, group.names=TRUE)
+sppdata(variant.caz, group.names = TRUE)
 ```
 
 In addition to changing the group names, you can change the groups themselves 
 as well. In the previous examples we had two groups named "mammals" (group code
- = 1) and "owls" (group code = 2). Belonging to either one of these groups is 
- controlled by the group ID code (an integer number) that can be accessed by
- `groups()`. As was shown above, doing `groups(variant.caz)` will yield a result
- of ``r groups(variant.caz)``.
+= 1) and "owls" (group code = 2). Belonging to either one of these groups is 
+controlled by the group ID code (an integer number) that can be accessed by
+`groups()`:
+ 
+ ```{r print-groups}
+groups(variant.caz)
+```
  
 Method `groups()` can be used to set the group ID codes and thus the grouping. 
 Let's say you want to split owls into two sub-groups called "big.owls" (group
@@ -288,8 +314,7 @@ sppdata(variant.caz)
 ```
 
 What needs to be done is to change the group ID for the Powerful owl so that 
-the group ID vector changes from ``r groups(variant.caz)`` to 
-`1, 2, 3, 1, 2, 1, 1`. So do the following:
+the group ID vector is changed into `1, 2, 3, 1, 2, 1, 1`. So do the following:
 
 ```{r changing-groups-2}
 groups(variant.caz) <- c(1, 2, 3, 1, 2, 1, 1)
@@ -305,12 +330,13 @@ will have to manually set the group names again:
 # Using generic group names after the group IDs have been changed
 groupnames(variant.caz)
 # Construct a new group names mapping
-groupnames(variant.caz) <- c("1"="mammals", "2"="big.owls", "3"="small.owls")
+groupnames(variant.caz) <- c("1" = "mammals", "2" = "big.owls", 
+                             "3" = "small.owls")
 groupnames(variant.caz)
 ```
 
 or check the whole spp data with group names:
 
 ```{r changing-groups-4}
-sppdata(variant.caz, group.names=TRUE)
+sppdata(variant.caz, group.names = TRUE)
 ```

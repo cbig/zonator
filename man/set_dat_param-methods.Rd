@@ -28,11 +28,10 @@ implementation, sections have no meaning.
 \note{
 Method does not check for the sanity of the values provided.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link[zonator:Zvariant-class]{Zvariant-class}} and
 \code{\link{get_dat_param}}.
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

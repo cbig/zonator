@@ -1,4 +1,4 @@
-# This file is a part of zonator package
+ # This file is a part of zonator package
 
 # Copyright (C) 2012-2014 Joona Lehtomaki <joona.lehtomaki@gmai.com>. All rights
 # reserved.

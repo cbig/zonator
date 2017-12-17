@@ -22,4 +22,3 @@ whitespace.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

@@ -66,6 +66,27 @@ read_bat <- function(infile) {
   return(bat.list)
 }
 
+#' Read a features info file.
+#'
+#' @param infile Character string input file path.
+#'
+#' @return Data frame of parsed features info data.
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @importFrom utils read.table
+#'
+#' @export
+#'
+read_features_info <- function(infile) {
+  col.names <- c("Weight", "DistSum", "IGRetained",
+                 "TviolationFractRem", "DistrMeanX", "DistMeanY",
+                 "MapFileName")
+  feat.info.dat <- read.table(infile, sep = "\t", skip = 2, as.is = TRUE,
+                              col.names = col.names)
+  return(feat.info.dat)
+}
+
 #' Read a groups file.
 #'
 #' @param infile Character string input file path.
@@ -108,6 +129,9 @@ read_groups <- function(infile) {
 #' @return List of parsed ini-parameters.
 #'
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @importFrom utils read.table
+#'
 #' @export
 #' @note Adapted from http://bit.ly/11e4Jh0
 #'
@@ -176,13 +200,13 @@ read_spp <- function(infile) {
   if (!file.exists(infile)) {
     stop(paste("Input spp file does not exist:", infile))
   }
-
   spp.data <- tryCatch({
-      dat <- read.table(infile, as.is=TRUE,
-                        colClasses=c(rep("numeric", 5), "character"))
+      dat <- read.table(infile, as.is = TRUE,
+                        colClasses = c(rep("numeric", 5), "character"))
     },
-    error=function(cond) {
-      message(paste("spp file doesn't seem to contain anything:", infile))
+    error = function(cond) {
+      warning(paste("spp file ", infile, " doesn't seem to contain anything ",
+                    "or is malformatted. Error message: ", cond))
       return(data.frame())
     }
   )

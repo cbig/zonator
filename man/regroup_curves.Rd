@@ -49,4 +49,3 @@ Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 \keyword{results}
 \keyword{zonation,}
-

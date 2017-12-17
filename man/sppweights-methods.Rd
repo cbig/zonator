@@ -3,26 +3,43 @@
 \docType{methods}
 \name{sppweights}
 \alias{sppweights}
+\alias{sppweights<-}
 \alias{sppweights,Zvariant-method}
+\alias{sppweights<-}
+\alias{sppweights<-,Zvariant,numeric-method}
 \title{Get biodiversity feature weights of a Zonation variant}
 \usage{
 sppweights(x)
 
+sppweights(x) <- value
+
 \S4method{sppweights}{Zvariant}(x)
+
+\S4method{sppweights}{Zvariant,numeric}(x) <- value
 }
 \arguments{
 \item{x}{Zvariatn object.}
+
+\item{value}{numeric vector with the length equal to the number of features
+in the variant}
 }
 \value{
 A numeric vector of weights
 }
 \description{
 Get biodiversity feature weights of a Zonation variant
+
+Set biodiversity feature weights of a Zonation variant
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+\note{
+The weight vector must be exactly the correct length, no recycling is
+done. Vector elements must be coercible to numeric.
 }
 \seealso{
 \code{\link[zonator:Zvariant-class]{Zvariant-class}}
 }
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

@@ -71,6 +71,8 @@ comp <- function(x, y, fun="correlation", ...) {
 #' \item{thresholds}{Correlations between 2 matrices with values above a given threshold.}
 #' \item{total}{Overall correlation between the 2 matrices.}
 #'
+#' @importFrom stats cor
+#'
 #' @export
 #' @seealso \code{\link{cor}}
 

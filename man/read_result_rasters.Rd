@@ -26,4 +26,3 @@ to construct the full paths.
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

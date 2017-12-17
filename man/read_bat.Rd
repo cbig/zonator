@@ -19,4 +19,3 @@ call zig3.exe -r [INPUT_PATH].dat [INPUT_PATH].spp [OUTPUT_PATH].txt 0.0 0 1.0 0
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

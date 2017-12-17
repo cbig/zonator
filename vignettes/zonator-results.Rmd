@@ -1,32 +1,60 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Working with Zonator results: curves}
--->
+---
+title: "Working with Zonation results"
+author: "Joona Lehtomäki"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with Zonation results}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo = FALSE, message = FALSE} 
+hasData <- requireNamespace("zdat", quietly = TRUE) 
+if (!hasData) {
+  knitr::opts_chunk$set(eval = FALSE)
+  msg <- paste("Note: Examples in this vignette require that the", 
+               "`zdat` package be installed. The system", 
+               "currently running this vignette does not have that package", 
+               "installed, so code examples will not be evaluated.",
+               "To install `zdat` package, run `install.packages('zdat',",
+               "repos='https://jlehtoma.github.io/drat/', type='source')`.")
+  msg <- paste(strwrap(msg), collapse = "\n") 
+  message(msg)
+} 
+```
 
 ```{r setup, echo=FALSE}
-options(width=160)
+options(width = 120)
 ```
 
 ## 1. Introduction to working with Zonation results
 
-First, let's set up the scene.
+First, let's set up the scene. For the examples below to work, make sure you have installed [`zdat`](https://github.com/cbig/zdat) package. If not, do the following:
+
+```{r install-zdat, eval=FALSE}
+install.packages('zdat', repos='https://jlehtoma.github.io/drat/', 
+                 type='source')
+```
+
+Now we start working with `zonator`.
 
 ```{r setup-objects, message=FALSE}
 library(zonator)
 
 # Start by creating a project using the tutorial data
-setup.dir <- system.file("extdata/tutorial/basic", package="zonator") 
+setup.dir <- system.file("extdata/basic", package = "zdat") 
 tutorial.project <- load_zproject(setup.dir)
 
-# Get a specific variant
-variant.caz <- get_variant(tutorial.project, "01_core_area_zonation")
+# Get a specific variant, 01_core_area_zonation
+variant.caz <- get_variant(tutorial.project, "01")
 
 # Let's also rename the features and groups while we're at it
 featurenames(variant.caz) <- c("Koala", "Masked.owl", "Powerful.owl", 
                              "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
                              "Yellow-bellied.glider")
 
-groupnames(variant.caz) <- c("1"="mammals", "2"="owls")
+groupnames(variant.caz) <- c("1" = "mammals", "2" = "owls")
 ```
 
 Each variant can either already have results (i.e. Zonation run has completed) 
@@ -72,7 +100,7 @@ feature.curves.caz <- curves(variant.caz)
 head(feature.curves.caz)
 
 # Get just 2 species
-duo.curves.caz <- curves(results.caz, cols=c("Koala", "Tiger.quoll"))
+duo.curves.caz <- curves(results.caz, cols = c("Koala", "Tiger.quoll"))
 head(duo.curves.caz)
 ```
 
@@ -86,12 +114,12 @@ groups:
 
 ```{r grp-curves}
 # Get group-specific curves
-feature.grp.curves.caz <- curves(results.caz, groups=TRUE)
+feature.grp.curves.caz <- curves(results.caz, groups = TRUE)
 head(feature.grp.curves.caz)
 
 # Get all the aggregate stats for owls
-owls.grp.curves.caz <- curves(results.caz, groups=TRUE, 
-                              cols=c("min.owls", "mean.owls", "max.owls",
+owls.grp.curves.caz <- curves(results.caz, groups = TRUE, 
+                              cols = c("min.owls", "mean.owls", "max.owls",
                                      "w.mean.owls", "ext2.owls"))
 head(owls.grp.curves.caz)
 ```
@@ -104,8 +132,8 @@ a specific range:
 
 # Get performance values for 2 species for a range between 60% and 75% of 
 # landscape lost 
-duo.curves.caz.range <- curves(results.caz, cols=c("Koala", "Tiger.quoll"),
-                               lost.lower=0.6, lost.upper=0.75)
+duo.curves.caz.range <- curves(results.caz, cols = c("Koala", "Tiger.quoll"),
+                               lost.lower = 0.6, lost.upper = 0.75)
 head(duo.curves.caz.range)
 tail(duo.curves.caz.range)
 ```
@@ -122,7 +150,7 @@ lost.levels <- c(0.25, 0.50, 0.75)
 performance(results.caz, lost.levels)
 
 # Same can be done for groups
-performance(results.caz, lost.levels, groups=TRUE)
+performance(results.caz, lost.levels, groups = TRUE)
 ```
 
 **Pro tip!** If you're a heavy user of Hadley Wickham's excellent 
@@ -136,7 +164,7 @@ suitable for ggplot2-plotting (see below for a plotting example).
 # Define the levels of landscape lost
 lost.levels <- c(0.25, 0.50, 0.75)
 # Notice that performance operates with Zresults-object
-performance(results.caz, lost.levels, melted=TRUE)
+performance(results.caz, lost.levels, melted = TRUE)
 ```
 
 ### 2.2 Plotting performance curves
@@ -145,7 +173,8 @@ To make plotting examples more interesting, let's use also another variant that
 uses Zonation's masking capability.
 
 ```{r mask-variant}
-variant.mask <- get_variant(tutorial.project, "05_hierarchical_removal_mask")
+# Variant: 05_hierarchical_removal_mask
+variant.mask <- get_variant(tutorial.project, "05")
 
 featurenames(variant.mask) <- c("Koala", "Masked.owl", "Powerful.owl", 
                              "Tiger.quoll", "Sooty.owl", "Squirrel.glider",
@@ -156,12 +185,12 @@ groupnames(variant.mask) <- labels
 
 results.mask <- results(variant.mask)
 feature.curves.mask <- curves(results.mask)
-feature.grp.curves.mask <- curves(results.mask, groups=TRUE)
+feature.grp.curves.mask <- curves(results.mask, groups = TRUE)
 ```
 
 Performance data (curves) can also be easily plotted, feature- or group-wise:
 
-```{r curves-plotting-1, fig.width=10}
+```{r curves-plotting-1, fig.width=7, fig.height=5}
 plot(feature.curves.caz)
 ```
 
@@ -173,8 +202,8 @@ of landscape under conservation". This behavior can be controlled by using the
 argument `invert.x` for `plot-method`. The title of the plot can be set using
 `main`-argument.
 
-```{r curves-plotting-2, fig.width=10}
-plot(feature.curves.caz, invert.x=TRUE, main="All features")
+```{r curves-plotting-2, fig.width=7, fig.height=5}
+plot(feature.curves.caz, invert.x = TRUE, main = "All features")
 ```
 
 Argument `subs` can have a character vector of feature names to be plotted, i.e.
@@ -185,30 +214,32 @@ They correspond to "Average proportion remaining over all features",
 "Minimum proportion remaining over all features", and
 "Weighted average proportion remaining over all features" respectively. 
 
-```{r curves-plotting-3, fig.width=10}
-plot(feature.curves.caz, invert.x=TRUE, main="Just few features", 
-     subs=c('Yellow-bellied.glider', 'Sooty.owl'), mean=TRUE)
+```{r curves-plotting-3, fig.width=7, fig.height=5}
+plot(feature.curves.caz, invert.x = TRUE, main = "Just few features", 
+     subs = c('Yellow-bellied.glider', 'Sooty.owl'), mean = TRUE)
 ```
 
 Group-specific curves can be plotted in similar fashion. Note that plotting 
 group curves also respect the group names you may have set.
 
-```{r curves-plotting-4, fig.width=10}
-plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups")
+```{r curves-plotting-4, fig.width=7, fig.height=5}
+plot(feature.grp.curves.caz, invert.x = TRUE, main = "All groups")
 ```
 
 Subsetting works the same as with individual features.
 
-```{r curves-plotting-5, fig.width=10}
-plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups", subs=c('owls'))
+```{r curves-plotting-5, fig.width=7, fig.height=5}
+plot(feature.grp.curves.caz, invert.x = TRUE, main = "All groups", 
+     subs = c('owls'))
 ```
 
 Both feature- and group-specific curve plotting methods also have an argument
 called `monochrome`. Setting this argument to `TRUE` will use only monochrome
 colours which may be useful e.g. for publication figures.
 
-```{r curves-plotting-6, fig.width=10}
-plot(feature.grp.curves.caz, invert.x=TRUE, main="All groups", monochrome=TRUE)
+```{r curves-plotting-6, fig.width=7, fig.height=5}
+plot(feature.grp.curves.caz, invert.x = TRUE, main = "All groups", 
+     monochrome = TRUE)
 ```
 
 Group plotting also has a set of statistics which can be plotted, but the 
@@ -219,9 +250,9 @@ which correspond to "Minimum proportion remaining for a feature within group",
 "Weighted average proportion remaining for group". Note that `mean` will always
 be `TRUE` unless it's explicitly set to `FALSE`.
 
-```{r curves-plotting-7, fig.width=10}
-plot(feature.grp.curves.mask, invert.x=TRUE, main="All groups", mean=TRUE, 
-     min=TRUE, max=TRUE)
+```{r curves-plotting-7, fig.width=7, fig.height=5}
+plot(feature.grp.curves.mask, invert.x = TRUE, main = "All groups", 
+     mean = TRUE, min = TRUE, max = TRUE)
 ```
 
 ### 2.3 Plotting performance levels
@@ -233,13 +264,13 @@ know how much of the original occurrence level each of species in our tutorial
 data has left when 10% percent of the landscape is under conservation, you 
 could do the following:
 
-```{r perfomance-hist, fig.width=10}
+```{r perfomance-hist, fig.width=7, fig.height=5}
 library(ggplot2)
 # NOTE: we're using melted=TRUE here
-occr.remaining <- performance(results.caz, c(0.9, 0.95, 0.98), melted=TRUE)
+occr.remaining <- performance(results.caz, c(0.9, 0.95, 0.98), melted = TRUE)
 ggplot(occr.remaining, aes(x = factor(feature), y = perf.levels,
-                           fill=factor(pr.lost))) + 
-  geom_bar(position="dodge", stat = "identity")
+                           fill = factor(pr.lost))) + 
+  geom_bar(position = "dodge", stat = "identity")
 
 ```
 
@@ -258,12 +289,12 @@ to the user, but having a consistent and expressive color scheme for all the
 results helps. `zlegends()` can be used for ready-to-go color schemes that can 
 used when plotting the raster objects.
 
-```{r rank-raster-1, fig.width=10}
+```{r rank-raster-1, fig.width=7, fig.height=5}
 library(raster)
 rank.caz <- rank_raster(results.caz)
 # Let's use a spectral color scheme designed for Zonation rank maps
 leg <- zlegend("spectral")
-plot(rank.caz, breaks=leg$values, col=leg$colors)
+plot(rank.caz, breaks = leg$values, col = leg$colors)
 ```
 
 You can of course get all rank rasters individually from your project's 
@@ -273,19 +304,19 @@ in a `RasterStack` object containing all the rank rasters as respective layers.
 If you want to plot all rank rasters in your project for comparison, you could 
 do the following:
 
-```{r rank-raster-2, fig.height=20}
+```{r rank-raster-2, warning=FALSE, fig.width=7, fig.height=20}
 # RasterStack is returned
 all.ranks <- rank_rasters(tutorial.project)
-plot(all.ranks, breaks=leg$values, col=leg$colors, nc=1)
+plot(all.ranks, breaks = leg$values, col = leg$colors, nc = 1)
 ```
 
-Naturally, all methods defined for a [RasterStack](http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/raster/html/stack.html) object are available. For example, checking 
+Naturally, all methods defined for a `RasterStack` object are available. For example, checking 
 the distributions of individual stack layers (i.e. rank rasters) and the 
 correlation between the values of layers can be done using `pairs()`. Following
 example examines correlation between variants 1-3.
 
-```{r rank-raster-3, fig.width=10}
-pairs(stack(all.ranks[[1:3]]), method="kendall")
+```{r rank-raster-3, fig.width=7, fig.height=5}
+pairs(stack(all.ranks[[1:3]]), method = "kendall")
 ```
 
 Values are sampled from the whole distribution of values to increase
@@ -302,14 +333,14 @@ two rasters as arguments: first is the rank raster and the second one is a mask
 raster. Histogram is then plotted based on the values of the rank raster within
 the mask raster.
 
-```{r rank-raster-4, fig.width=10}
-pas.file <- system.file("extdata/tutorial/data", "mask_rs.tif", 
-                        package="zonator")
+```{r rank-raster-4, fig.width=7, fig.height=5}
+pas.file <- system.file("extdata/data", "mask_rs.tif", 
+                        package = "zdat")
 pas <- raster(pas.file)
 # Re-class zeros as NA
 pas[pas == 0] <- NA
 # Plot the histogram of rank.caz within mask raster
-plot_hist(x=rank.caz, pas, add.median=TRUE)
+plot_hist(x = rank.caz, pas, add.median = TRUE)
 ```
 
 [rasterVis](http://oscarperpinan.github.io/rastervis/) is another useful 
@@ -317,9 +348,9 @@ package for plotting raster data. For example, `levelplot()` can be used to
 plot data and show a marginal plot of of a function across each coordinate
 (here using mean): 
 
-```{r rank-rasterVis-1, fig.width=10, message=FALSE}
+```{r rank-rasterVis-1, fig.width=7, fig.height=5, message=FALSE}
 library(rasterVis)
 # Note that breaks in the following are different from the previous maps
-levelplot(rank.caz, FUN.margin=mean, 
-          par.settings=rasterTheme(region=leg$colors))
+levelplot(rank.caz, FUN.margin = mean, 
+          par.settings = rasterTheme(region = leg$colors))
 ```

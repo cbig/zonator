@@ -42,7 +42,7 @@ test_that("Zvariant without results is created correctly", {
 
   # Variant with no groups, no results
   no.results.bat.file <- file.path(.options$setup.dir,
-                                   "06_dummy_for_testing.batx")
+                                   "06.batx")
   suppressWarnings(no.results.variant <- new("Zvariant",
                                              bat.file = no.results.bat.file))
 
@@ -98,6 +98,30 @@ test_that("Getting weights works", {
   correct.weights <- correct.feature.data$weight
   expect_identical(correct.weights, sppweights(results.variant),
                    "Test variant weights not what they're supposed to")
+
+})
+
+test_that("Setting weights works", {
+  # Use variant 4 (distribution smoothing) because it has weights
+  bat.file <- .options$bat.file.ds
+  results.variant <- new("Zvariant", bat.file = bat.file)
+
+  # Generate correct and incorrect number of weights
+  correct.weights <- rep(1, 7)
+  incorrect.weights <- rep("n", 7)
+  incorrect.n.weights <- rep(1, 5)
+
+  sppweights(results.variant) <- correct.weights
+  expect_identical(correct.weights, sppweights(results.variant),
+                   "Test variant weights not what they're supposed to")
+
+  # This should error: wrong number of weights
+  expect_error(sppweights(results.variant) <- incorrect.n.weights,
+               info = "Setting wrong number of weights should error")
+
+  # This should error: wrong type of weights
+  expect_error(sppweights(results.variant) <- incorrect.weights,
+               info = "Setting wrong type of weights should error")
 
 })
 
@@ -174,7 +198,7 @@ test_that("Assigning and fetching group names and identities works", {
 
   # Variant with no groups
   no.grps.bat.file <- file.path(.options$setup.dir,
-                                "03_boundary_length_penalty.bat")
+                                "03.bat")
   no.grps.results.variant <- new("Zvariant", bat.file = no.grps.bat.file)
 
   # Variant doesn't have groups, so there should be no group names either
@@ -285,7 +309,7 @@ test_that("Getting and setting spp data works", {
   # Duplicate the spp data stack, including groups
   spp_data <- rbind(spp_data, spp_data)
   # Assign the new spp data (this should work)
-  sppdata(results_variant) <- spp_data
+  suppressWarnings(sppdata(results_variant) <- spp_data)
   # However, the group information should have been defaulted
   nrows <- nrow(spp_data)
   default_group_data <-  data.frame(output.group = rep(1, nrows),
@@ -316,23 +340,49 @@ test_that("Retrieving variant output directory works", {
 
 })
 
-test_that("Retrieving variant rank raster works", {
+test_that("Retrieving feature info works", {
   results.path <- .options$results.dir
-  correct.rank.raster <- raster(file.path(results.path,
-                                          "01_core_area_zonation.rank.compressed.tif"))
+
+  correct.col.names <- c("Weight", "DistSum", "IGRetained",
+                         "TviolationFractRem", "DistrMeanX", "DistMeanY",
+                         "MapFileName")
+  correct.features.info <- read.table(file.path(results.path,
+                                                "01.features_info.txt"),
+                                      sep = "\t", skip = 2, as.is = TRUE,
+                                      col.names = correct.col.names)
 
   bat.file <- .options$bat.file
   test.variant <- new("Zvariant", bat.file = bat.file)
 
-  expect_identical(rank_raster(test.variant), correct.rank.raster,
-                   "Correct rank raster is not returned for Zvariant")
+  expect_identical(features_info(test.variant), correct.features.info,
+                   "Correct features info is not returned for Zvariant")
 
-  # Test with a variant with no results
   no.results.bat.file <- file.path(.options$setup.dir,
-                                   "06_dummy_for_testing.batx")
-  suppressWarnings(no.results.variant <- new("Zvariant",
-                                           bat.file = no.results.bat.file))
-  expect_warning(rank_raster(no.results.variant))
+                                   "06.batx")
+  suppressWarnings(test.no.results <- new("Zvariant", bat.file = no.results.bat.file))
+
+  expect_warning(features_info(test.no.results))
+
+})
+
+test_that("Reading cost data works", {
+  results.path <- .options$results.dir
+  curves.file <- file.path(results.path, "01.curves.txt")
+
+  correct.cost_data <- read.table(curves.file, skip = 1, as.is = TRUE)[,1:2]
+  names(correct.cost_data) <- c("pr_lost", "cost")
+
+  bat.file <- .options$results.bat.file
+  test.variant <- new("Zvariant", bat.file = bat.file)
+
+  expect_identical(cost(test.variant), correct.cost_data,
+                   "Correct cost data is not returned for Zresults")
+
+  no.results.bat.file <- file.path(.options$setup.dir,
+                                   "06.batx")
+  suppressWarnings(test.no.results <- new("Zvariant", bat.file = no.results.bat.file))
+
+  expect_warning(cost(test.no.results))
 
 })
 
@@ -396,7 +446,7 @@ test_that("Saving Zvariant works", {
   spp_data <- rbind(spp_data, spp_data)
   # Drop group column
   spp_data <- spp_data[,-ncol(spp_data)]
-  sppdata(test_variant) <- spp_data
+  suppressWarnings(sppdata(test_variant) <- spp_data)
 
   # Overwrite off should fail
   expect_error(save_zvariant(test_variant),
@@ -415,6 +465,23 @@ test_that("Saving Zvariant works", {
                  info = "Overwriting generate message.")
 
 })
+
+context("Zvariant copying")
+
+test_that("Zvariant with new name is copied correctly", {
+  bat_file <- .options$bat.file.cond
+  spp_file <- .options$spp.file.cond
+  test_variant <- new("Zvariant", bat.file = bat_file)
+
+  tmp_variant_dir <- tempdir()
+  new_variant_name <- "08"
+
+  expect_message(copied_variant <- copy_zvariant(test_variant,
+                                                 name = new_variant_name,
+                                                 dir = tmp_variant_dir),
+                 info = "Success message not generated correctly")
+})
+
 
 context("Zvariant special cases")
 

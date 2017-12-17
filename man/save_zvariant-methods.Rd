@@ -35,10 +35,9 @@ the file system. \code{Zvariant} object tracks the location of relevant
 files, but the root path can be changed. If it is not changed, then the
 current files can be overwritten.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{Zvariant-class}}
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

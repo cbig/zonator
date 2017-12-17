@@ -125,6 +125,80 @@ clean_str <- function(x) {
   return(x)
 }
 
+#' Find out the number of decimal places in a number.
+#'
+#' Original implementation from https://stackoverflow.com/questions/5173692/how-to-return-number-of-decimal-places-in-r
+#'
+#' @note R usually restricts the number of decimal to 9 in printing etc. Unless
+#' \code{true_number = TRUE}, return 9 and give a warning.
+#'
+#' @param x Float or double numeric number.
+#' @param true_number Logical setting whether the true number (see notes) of
+#'   decimal places.
+#'
+#' @return Integer number of decimal places. Maximum
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#'
+decimalplaces <-
+  Vectorize(function(x, true_number = FALSE) {
+    if ((x %% 1) != 0) {
+      decimals <- nchar(strsplit(sub('0+$', '', as.character(x)), ".",
+                                 fixed = TRUE)[[1]][[2]])
+    } else {
+      return(0)
+    }
+    if (decimals > 9 & true_number == FALSE)  {
+      decimals <- 9
+      warning("Number of decimal places more than 9 but true_number set to FALSE")
+    }
+    return(decimals)
+  },
+  c("x"), USE.NAMES = TRUE)
+
+#' Transform an absolute path to relative path in relation to given location
+#'
+#' @note Both \code{path} and \code{relative_to} must be in absolute form.
+#'
+#' @param path Character string path.
+#' @param org_relative_to Character string path to which \code{path} is originally
+#'                        relative to.
+#' @param new_relative_to Character string path to which \code{path} is supposed to
+#'                        be relative to.
+#'
+#' @return Character string relative file path.
+#'
+#' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#' @export
+#'
+file_path_relative_to <- function(path, org_relative_to, new_relative_to) {
+
+  # Check if the path provided is relative. If it is, make it absolute
+  if (startsWith(path, "..")) {
+    path <- normalizePath(file.path(dirname(org_relative_to), path), mustWork = FALSE)
+  }
+
+  # Get path components split by path separators
+  path_comps <- unlist(strsplit(dirname(path), split = .Platform$file.sep))
+  relative_to_comps <- unlist(strsplit(dirname(new_relative_to), split = .Platform$file.sep))
+
+  # Compare path components
+  suppressWarnings(diff <- path_comps == relative_to_comps)
+  # Get the file name
+  file_path_base <- basename(path)
+  # Get path elements equal to the lenght of relative_to_comps: this number is used
+  # to generate the correct amount ".." in the path
+  rel_path <- paste0(rep("..", sum(!diff[1:length(relative_to_comps)])),
+                     collapse = .Platform$file.sep)
+  # Construct the actual directory part
+  dir_path <- paste0(path_comps[!diff[1:length(path_comps)]],
+                     collapse = .Platform$file.sep)
+  # Put everything together
+  rel_file_path <- file.path(rel_path, dir_path, file_path_base)
+  return(rel_file_path)
+}
+
 #' Re-implementation of \code{\link{file_path_sans_ext}} in \code{tools}. This
 #' version can handle "." just before the file extenstion, unlike the original
 #' implementation.
@@ -365,6 +439,9 @@ regroup_curves  <- function(x, weights, group.ids) {
 #' @param ... Additional arguments passed on to \code{\link{install.packages}}.
 #'
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
+#'
+#' @importFrom utils install.packages
+#'
 #' @export
 #'
 require_package <- function(package, ...) {

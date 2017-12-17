@@ -28,4 +28,3 @@ leaf_tags(l)
 \author{
 Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
 }
-

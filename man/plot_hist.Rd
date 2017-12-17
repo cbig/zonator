@@ -32,10 +32,9 @@ a \code{ggplot} object containing the plot.
 \description{
 Create a ggplot2 histogram of a \code{RasterLayer}.
 }
-\author{
-Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
-}
 \seealso{
 \code{\link{geom_bar}}.
 }
-
+\author{
+Joona Lehtomaki \email{joona.lehtomaki@gmail.com}
+}

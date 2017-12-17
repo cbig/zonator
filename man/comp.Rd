@@ -28,12 +28,11 @@ following functions (part of zonator package):
  \item{coverage}{}
  }
 }
-\author{
-Joona Lehtomaki <joona.lehtomaki@gmail.com>
-}
 \seealso{
 correlation substraction frequency coverage
 }
+\author{
+Joona Lehtomaki <joona.lehtomaki@gmail.com>
+}
 \keyword{post-processnig,}
 \keyword{ppa}
-
