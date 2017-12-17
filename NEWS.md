@@ -1,3 +1,9 @@
+## CHANGES IN VERSION 0.5.9 (2017-12-17)
+
+### OTHER
+
++ Update all tests to use `testthat` 2.0.
+
 ## CHANGES IN VERSION 0.5.8 (2017-08-20)
 
 ### BUG FIXES
