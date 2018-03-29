@@ -156,7 +156,7 @@ bat.files <- list.files(setup.dir, "\\.bat$", full.names = TRUE)
 
 # Run all the runs
 #for (bat.file in bat.files) {
-#  run_bat(bat.file)
+#  run_bat(bat.file, exe="zig4")
 #}
 
 ```
