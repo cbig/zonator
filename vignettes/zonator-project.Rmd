@@ -102,12 +102,12 @@ directory for raster (input biodiversity feature) files and construct a
 spp-file based on the file listing. Let's create a new project from scratch 
 using input raster files shipped with the Zonation tutorial as a basis for the 
 spp file. Since the input folder contains more rasters than just biodiversity 
-files, we'll be using a file name filter. Note that we are still usingthe 
+files, we'll be using a file name filter. Note that we are still using the 
 template .dat-file.
 
 ```{r create-new-02, message=FALSE,warning=FALSE,eval=FALSE}
 # Directory containing the input raster files
-input_raster_dir <- system.file("extdata/test_project/data", package="zonator")
+input_raster_dir <- system.file("extdata/data", package="zdat")
 new_project <- create_zproject(name = "test_project", dir = project_path, 
                                variants = variant_names,
                                spp_template_dir = input_raster_dir,
@@ -123,7 +123,7 @@ new_project <- create_zproject(name = "test_project", dir = project_path,
                                variants = variant_names,
                                spp_template_dir = input_raster_dir,
                                spp_file_pattern = "^species[0-9].tif$",
-                               weight = c(1, 1, 1, 2, 3, 2, 1)
+                               weight = c(1, 1, 1, 2, 3, 2, 1))
 ```
 
 Be careful with setting the weights (or other spp-file parameters such as the
