@@ -5,7 +5,6 @@
 \alias{sppdata}
 \alias{sppdata<-}
 \alias{sppdata,Zvariant-method}
-\alias{sppdata<-}
 \alias{sppdata<-,Zvariant,data.frame-method}
 \title{Simple getter mehtod for spp data in a class \code{Zvariant}object.}
 \usage{

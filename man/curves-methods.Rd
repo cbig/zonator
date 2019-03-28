@@ -9,10 +9,10 @@
 \alias{curves,ZGroupCurvesDataFrame-method}
 \alias{curves,Zresults-method}
 \alias{curves,Zvariant-method}
-\alias{curves,Zresults-method}
 \title{Get curves results data of a Z* object.}
 \usage{
-curves(x, cols = NULL, groups = FALSE, lost.lower = 0, lost.upper = 1)
+curves(x, cols = NULL, groups = FALSE, lost.lower = 0,
+  lost.upper = 1)
 
 \S4method{curves}{ZCurvesDataFrame}(x, cols = NULL)
 

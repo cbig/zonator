@@ -4,7 +4,6 @@
 \name{copy_zvariant}
 \alias{copy_zvariant}
 \alias{copy_zvariant,Zvariant,character,character-method}
-\alias{copy_zvariant}
 \title{Copy existing variant as a new \code{Zvariant} object.}
 \usage{
 copy_zvariant(x, name, dir)

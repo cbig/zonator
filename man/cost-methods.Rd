@@ -6,7 +6,6 @@
 \alias{cost}
 \alias{cost,Zresults-method}
 \alias{cost,Zvariant-method}
-\alias{cost,Zresults-method}
 \title{Get cost data of a Z* object.}
 \usage{
 cost(x)

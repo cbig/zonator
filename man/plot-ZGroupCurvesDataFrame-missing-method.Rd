@@ -5,8 +5,9 @@
 \alias{plot,ZGroupCurvesDataFrame,missing-method}
 \title{Plot Zonation performance curves for groups.}
 \usage{
-\S4method{plot}{ZGroupCurvesDataFrame,missing}(x, min = FALSE, mean = FALSE,
-  w.mean = FALSE, max = FALSE, ext = FALSE, subs = NULL, ...)
+\S4method{plot}{ZGroupCurvesDataFrame,missing}(x, min = FALSE,
+  mean = FALSE, w.mean = FALSE, max = FALSE, ext = FALSE,
+  subs = NULL, ...)
 }
 \arguments{
 \item{x}{\code{\link{ZGroupCurvesDataFrame}} object.}

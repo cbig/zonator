@@ -4,9 +4,10 @@
 \alias{create_spp}
 \title{Generate spp_file based on a directory of input rasters.}
 \usage{
-create_spp(filename = "filelist.spp", weight = 1, alpha = 1, bqp = 1,
-  bqp_p = 1, cellrem = 0.25, spp_file_dir, recursive = FALSE,
-  spp_file_pattern = ".+\\\\.(tif|img)$", override_path = NULL)
+create_spp(filename = "filelist.spp", weight = 1, alpha = 1,
+  bqp = 1, bqp_p = 1, cellrem = 0.25, spp_file_dir,
+  recursive = FALSE, spp_file_pattern = ".+\\\\.(tif|img)$",
+  override_path = NULL)
 }
 \arguments{
 \item{filename}{character string defining the name of the spp file created.}

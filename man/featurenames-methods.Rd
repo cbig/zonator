@@ -6,11 +6,9 @@
 \alias{featurenames}
 \alias{featurenames<-}
 \alias{featurenames,ZCurvesDataFrame-method}
-\alias{featurenames<-}
 \alias{featurenames<-,ZCurvesDataFrame,character-method}
 \alias{featurenames,Zresults-method}
 \alias{featurenames,Zvariant-method}
-\alias{featurenames<-}
 \alias{featurenames<-,Zvariant,character-method}
 \title{Feature names of Zonation variant.}
 \usage{
@@ -40,8 +38,6 @@ Character vector of spp feature names.
 \description{
 Get and set names for analysis features used a given
 Zonation variant.
-
-Assign feature names for a Zonation variant.
 }
 \details{
 Argument \code{x} can be an instance of one the following Z* classes:

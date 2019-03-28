@@ -5,7 +5,6 @@
 \alias{groups}
 \alias{groups<-}
 \alias{groups,Zvariant-method}
-\alias{groups<-}
 \alias{groups<-,Zvariant,numeric-method}
 \title{Get group codes of a class \code{Zvariant} instance.}
 \usage{
@@ -31,8 +30,6 @@ A numeric vector containing the group ids. If there are no groups,
 If the particular variant doesn't use groups or doesn't have them assigned,
 return NA. Note that here 'groups' means the first column in Zonation groups
 file ('output group').
-
-Assign group codes for a class \code{Zvariant} instance.
 }
 \seealso{
 \code{\link{Zvariant-class}}

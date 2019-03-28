@@ -9,7 +9,6 @@
 \alias{groupnames,ZGroupCurvesDataFrame-method}
 \alias{groupnames,Zresults-method}
 \alias{groupnames,Zvariant-method}
-\alias{groupnames<-}
 \alias{groupnames<-,Zvariant,character-method}
 \title{Get group names for a class \code{Zvariant} instance.}
 \usage{
@@ -35,8 +34,6 @@ A character vector containing the group names. If there are no
         groups, return NA.
 }
 \description{
-Get group names for a class \code{Zvariant} instance.
-
 Group names can be assigned to a \code{\link{Zvariant}} or
 \code{\link{Zresults}} object. This is a replacement function for variant
 group names. If the particular variant doesn't use groups the gives a

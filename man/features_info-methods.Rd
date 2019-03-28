@@ -6,7 +6,6 @@
 \alias{features_info}
 \alias{features_info,Zresults-method}
 \alias{features_info,Zvariant-method}
-\alias{features_info,Zresults-method}
 \title{Get the features info component of Zresults.}
 \usage{
 features_info(x)

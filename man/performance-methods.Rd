@@ -6,7 +6,8 @@
 \alias{performance,Zresults-method}
 \title{Get performance levels.}
 \usage{
-performance(x, pr.lost, features = "all", groups = FALSE, melted = FALSE)
+performance(x, pr.lost, features = "all", groups = FALSE,
+  melted = FALSE)
 
 \S4method{performance}{Zresults}(x, pr.lost, features = NULL,
   groups = FALSE, melted = FALSE)
