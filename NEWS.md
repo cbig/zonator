@@ -1,3 +1,12 @@
+## CHANGES IN VERSION 0.5.10 (2018-03-28)
+
+### OTHER
+
++ Opt-out from staged install which is going to be the default in R 3.6.0. 
+`zonator` does not behave well with staged install because of some of the
+hardcoded paths in the package. Disabling staged install is a stopgap measure
+and ideally the path definition should be handled more gracefully.
+
 ## CHANGES IN VERSION 0.5.9 (2017-12-17)
 
 ### OTHER
