@@ -70,7 +70,7 @@ create_zproject <- function(name, dir, variants, dat_template_file = NULL,
   }
 
   if (debug) message("Creating a project directory ", project_dir)
-  dir.create(project_dir)
+  dir.create(project_dir, recursive = TRUE)
 
   # Create an empty README file for the project
   if (debug) message("Creating an empty README file")
@@ -80,7 +80,7 @@ create_zproject <- function(name, dir, variants, dat_template_file = NULL,
   for (variant in variants) {
     variant_dir <- file.path(project_dir, variant)
     if (debug) message("Creating a variant directory ", variant_dir)
-    dir.create(variant_dir)
+    dir.create(variant_dir, recursive = TRUE)
 
     # If no templates are provided, use the ones shipped with zonator. Change
     # the filenames to match the variant.
