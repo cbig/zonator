@@ -26,7 +26,7 @@ of running a Zonation analysis.
 
 ### Release version
 
-**NOTE: As of 2019-03-15 `zonator` hasn't been on CRAN. Hopefully it will get back there soon, but in the meantime you can install it directly from Github:**
+**NOTE: As of 2019-03-15 `zonator` isn't on CRAN. Hopefully it will get back there soon, but in the meantime you can install it directly from Github:**
 
 You can install the latest release version from CRAN:
 
@@ -34,6 +34,8 @@ You can install the latest release version from CRAN:
 install.packages("remotes")
 remotes::install_github("cbig/zonator")
 ```
+
+
 
 ### Development version
 
