@@ -4,9 +4,15 @@
 \alias{plot_curves}
 \title{Create ggplot2 object for performance curves.}
 \usage{
-plot_curves(dat, monochrome = FALSE, invert.x = FALSE, fix.y = FALSE,
-  main = "Performance curves", legend.title = "Performance",
-  groups = FALSE)
+plot_curves(
+  dat,
+  monochrome = FALSE,
+  invert.x = FALSE,
+  fix.y = FALSE,
+  main = "Performance curves",
+  legend.title = "Performance",
+  groups = FALSE
+)
 }
 \arguments{
 \item{monochrome}{logical defining if a monochrome color scheme is used

@@ -4,8 +4,15 @@
 \alias{plot_hist}
 \title{Create a ggplot2 histogram of a \code{RasterLayer}.}
 \usage{
-plot_hist(x, mask.obj = NULL, add.mean = FALSE, add.median = FALSE,
-  save.dir = "", binwidth = 0.05, title = NULL)
+plot_hist(
+  x,
+  mask.obj = NULL,
+  add.mean = FALSE,
+  add.median = FALSE,
+  save.dir = "",
+  binwidth = 0.05,
+  title = NULL
+)
 }
 \arguments{
 \item{x}{\code{RasterLayer} object containing the spatial data.}

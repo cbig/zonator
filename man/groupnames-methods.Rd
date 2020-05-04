@@ -2,7 +2,6 @@
 % Please edit documentation in R/AllGenerics.R,
 %   R/ZGroupCurvesDataFrame-methods.R, R/zresults-methods.R,
 %   R/zvariant-methods.R
-\docType{methods}
 \name{groupnames}
 \alias{groupnames}
 \alias{groupnames<-}

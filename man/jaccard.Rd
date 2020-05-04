@@ -4,8 +4,17 @@
 \alias{jaccard}
 \title{Calculate the Jaccard coefficient.}
 \usage{
-jaccard(x, y, x.min = 0, x.max = 1, y.min = 0, y.max = 1,
-  warn.uneven = FALSE, limit.tolerance = 4, disable.checks = FALSE)
+jaccard(
+  x,
+  y,
+  x.min = 0,
+  x.max = 1,
+  y.min = 0,
+  y.max = 1,
+  warn.uneven = FALSE,
+  limit.tolerance = 4,
+  disable.checks = FALSE
+)
 }
 \arguments{
 \item{x}{raster object.}

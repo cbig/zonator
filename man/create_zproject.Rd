@@ -4,9 +4,17 @@
 \alias{create_zproject}
 \title{Create a new Zonation project on file system.}
 \usage{
-create_zproject(name, dir, variants, dat_template_file = NULL,
-  spp_template_file = NULL, spp_template_dir = NULL,
-  overwrite = FALSE, debug = FALSE, ...)
+create_zproject(
+  name,
+  dir,
+  variants,
+  dat_template_file = NULL,
+  spp_template_file = NULL,
+  spp_template_dir = NULL,
+  overwrite = FALSE,
+  debug = FALSE,
+  ...
+)
 }
 \arguments{
 \item{name}{Character string name for the project. A new directory named
