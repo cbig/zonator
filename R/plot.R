@@ -119,12 +119,14 @@ plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE, fix.y=FALSE,
                         groups=FALSE) {
 
   if (groups) {
-    iact.levels <- levels(interaction(dat$name, dat$stat))
+    level_names <- as.factor(interaction(dat$name, dat$stat))
+    iact.levels <- levels(level_names)
     iact.labels <- gsub('\\.', ', ', iact.levels)
     iact.names <- gsub('\\..*$', '', iact.levels)
     iact.stats <- gsub('^.*\\.', '', iact.levels)
   } else {
-    iact.levels <- levels(dat$name)
+    level_names <- as.factor(dat$name)
+    iact.levels <- levels(level_names)
     iact.labels <- gsub('\\.', ' ', iact.levels)
     iact.names <- iact.levels
     iact.stats <- unique(data.frame(name=dat$name, stat=dat$stat))$stat
@@ -160,7 +162,6 @@ plot_curves <- function(dat, monochrome=FALSE, invert.x=FALSE, fix.y=FALSE,
   colour.values <- sapply(iact.names, function(x) {
     cols[which(x == unique(iact.names))]
     }, USE.NAMES=FALSE)
-
 
   if (groups) {
     dat$name_x_stat <- interaction(dat$name, dat$stat)
