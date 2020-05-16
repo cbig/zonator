@@ -34,5 +34,5 @@ correlation substraction frequency coverage
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-\keyword{post-processnig,}
+\keyword{post-processing}
 \keyword{ppa}

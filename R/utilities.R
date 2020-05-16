@@ -309,7 +309,7 @@ line_as_string <- function(x) {
 #' @return A numeric vector of the same length of x and y containing matched
 #' column indexes.
 #'
-#' @keywords zonation, results
+#' @keywords zonation results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @export
@@ -376,7 +376,7 @@ map_indexes <- function(x, y) {
 #'
 #' @return \code{ZGroupCurvesDataFrame} with new group statistics.
 #'
-#' @keywords zonation, results
+#' @keywords zonation results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @export

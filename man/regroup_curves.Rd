@@ -48,4 +48,4 @@ Current implementation does not calculate values for \code{ext2}
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 \keyword{results}
-\keyword{zonation,}
+\keyword{zonation}

@@ -61,5 +61,5 @@ rasters. Limits provided are inclusive.
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-\keyword{post-processnig,}
+\keyword{post-processing}
 \keyword{ppa}

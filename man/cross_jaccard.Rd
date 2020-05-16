@@ -28,5 +28,5 @@ top-fractions of the landscape. Thus, x.max and y.max for
 \author{
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
-\keyword{post-processnig,}
+\keyword{post-processing}
 \keyword{ppa}
