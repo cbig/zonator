@@ -22,7 +22,7 @@
 #'  \item{coverage}{}
 #'  }
 #'
-#' @keywords post-processnig, ppa
+#' @keywords post-processing, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param x Numeric matrix.
@@ -59,7 +59,7 @@ comp <- function(x, y, fun="correlation", ...) {
 #' group of specific threshold can be set, in which case the correlations are
 #' calculated incrementally for values above the thresholds.
 #'
-#' @keywords post-processnig, ppa
+#' @keywords post-processing, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param x Numeric matrix.
@@ -96,7 +96,7 @@ correlation <- function(x, y, method='kendall', thresholds=c(0)) {
 #' Calculate how much two coverages (as defined by values greater than a given
 #' threshold in two numeric matrices) overlap.
 #'
-#' @keywords post-processnig, ppa
+#' @keywords post-processing, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param x Numeric matrix.
@@ -137,7 +137,7 @@ selection_coverage <- function(x, y, thresholds) {
 #' the defaults [0.0, 1.0] are geared towards comparing Zonation rank priority
 #' rasters. Limits provided are inclusive.
 #'
-#' @keywords post-processnig, ppa
+#' @keywords post-processing, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param x raster object.
@@ -243,7 +243,7 @@ jaccard <- function(x, y, x.min=0.0, x.max=1.0, y.min=0.0, y.max=1.0,
 #' top-fractions of the landscape. Thus, x.max and y.max for
 #' \code{\link{jaccard}} are fixed to 1.0.
 #'
-#' @keywords post-processnig, ppa
+#' @keywords post-processing, ppa
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param stack RasterStack-object.
