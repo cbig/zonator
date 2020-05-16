@@ -27,8 +27,10 @@
 #' @author Joona Lehtomaki \email{joona.lehtomaki@@gmail.com}
 #' @export
 #' @examples
-#' dat <- list("Settings" = list("removal_rule" = 1, use_groups = 1))
-#' write_dat(dat, "settings.dat")
+#'   \dontrun{
+#'       dat <- list("Settings" = list("removal_rule" = 1, use_groups = 1))
+#'       write_dat(dat, "settings.dat")
+#'   }
 #'
 write_dat <- function(x, filename, overwrite = FALSE) {
 

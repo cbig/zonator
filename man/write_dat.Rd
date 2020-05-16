@@ -24,8 +24,10 @@ Windows style .ini-file).
 Only 1 level of nestedness is accepted.
 }
 \examples{
-dat <- list("Settings" = list("removal_rule" = 1, use_groups = 1))
-write_dat(dat, "settings.dat")
+  \dontrun{
+      dat <- list("Settings" = list("removal_rule" = 1, use_groups = 1))
+      write_dat(dat, "settings.dat")
+  }
 
 }
 \author{
