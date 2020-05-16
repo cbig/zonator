@@ -20,7 +20,7 @@
 #' file. If you need to read in grouped curves files, use
 #' \code{\link{read_grp_curves}} instead.
 #'
-#' @keywords zonation, results
+#' @keywords zonation results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param infile Character file path to .curves.txt file.
@@ -74,7 +74,7 @@ read_curves <- function(infile) {
 #' file. If you need to read in individual curves files, use
 #' \code{\link{read_curves}} instead.
 #'
-#' @keywords zonation, results
+#' @keywords zonation results
 #' @author Joona Lehtomaki <joona.lehtomaki@@gmail.com>
 #'
 #' @param infile Character file path to .curves.txt file.
