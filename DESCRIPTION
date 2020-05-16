@@ -27,7 +27,7 @@ Suggests:
     rmarkdown,
     testthat,
     zdat (>= 0.1.0)
-StagedInstall: no 
+StagedInstall: yes
 Additional_repositories: https://jlehtoma.github.io/drat
 URL: https://cbig.github.io/zonator/
 BugReports: https://github.com/cbig/zonator/issues
