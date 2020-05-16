@@ -166,7 +166,7 @@ setMethod("ppa_lsm", signature("Zresults"), function(x) {
 #'
 setMethod("performance", c("Zresults"), function(x, pr.lost, features=NULL,
                                                  groups=FALSE, melted=FALSE) {
-  if (any(pr.lost < 0 || pr.lost > 1.0)) {
+  if (any(pr.lost < 0 | pr.lost > 1.0)) {
     stop("Proportion landscape lost (pr.lost) values must be 0 < pr.lost < 1")
   }
 

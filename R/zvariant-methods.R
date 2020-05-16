@@ -132,9 +132,13 @@ setMethod("curves", c("Zvariant"), function(x, cols=NULL, groups=FALSE,
 #'
 setMethod("featurenames", signature("Zvariant"), function(x) {
 
-  if (is.na(x@spp.data) || !"name" %in% names(x@spp.data)) {
-    stop("No spp data found or it doesn't have 'name' column defined")
+  if (all(is.na(x@spp.data))) {
+    stop("No spp data found")
   }
+  if (!"name" %in% names(x@spp.data)) {
+    stop("spp data doesn't have 'name' column defined")
+  }
+
   return(x@spp.data$name)
 })
 
