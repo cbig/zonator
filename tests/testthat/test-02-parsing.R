@@ -1,8 +1,10 @@
 context("Parsing Zonation input files")
 
+options <- get_options()
+
 test_that("Parsing a bat file works", {
 
-  bat.file <- .options$bat.file
+  bat.file <- options$bat.file
 
   faulty.bat.file <- file.path(dirname(bat.file), "wrong.bat")
 
@@ -41,7 +43,7 @@ test_that("Parsing a bat file works", {
 
 test_that("Parsing an ini file (dat) works", {
 
-  dat.file <- .options$dat.file
+  dat.file <- options$dat.file
 
   faulty.dat.file <- file.path(dirname(dat.file), "wrong.bat")
 
@@ -51,7 +53,7 @@ test_that("Parsing an ini file (dat) works", {
                                 info = "Error raised should name the dat file"))
 
   # Test that error is reported if the file doesn't seem to be a dat-file
-  bat.file <- .options$bat.file
+  bat.file <- options$bat.file
   suppressWarnings(expect_error(read_dat(bat.file),
                                 "(dat-file).+(doesn't seem to have any section headers.).+",
                                 info = "Error raised should name the dat file"))
@@ -72,7 +74,7 @@ test_that("Parsing an ini file (dat) works", {
 
 test_that("Parsing a valid groups file works", {
 
-  groups.file <- .options$groups.file
+  groups.file <- options$groups.file
 
   groups.data <- read_groups(groups.file)
 
@@ -125,7 +127,7 @@ test_that("Parsing a populated spp file works", {
 
   # Test with a populated spp file (i.e. has rows)
 
-  spp.file <- .options$spp.file
+  spp.file <- options$spp.file
 
   # Construct a spp data frame corresponding to 01_core_area_zonation.spp
   correct.data <- data.frame(weight = 1,

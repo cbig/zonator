@@ -1,5 +1,7 @@
 context("Utilities")
 
+options <- get_options()
+
 test_that("name checking works", {
 
   valid.names <- c("foo", "bar", "spam", "eggs")
@@ -127,10 +129,10 @@ test_that("getting color schemes works", {
 test_that("Calculating group curves stats works", {
 
   # Get test data from the tutorial
-  group.ids <- read_groups(.options$groups.file)[,1]
-  weights <- read_spp(.options$results.spp.file)[,1]
-  curves.data <- read_curves(.options$results.curves)
-  grp.curves.data <- read_grp_curves(.options$results.grp.curves)
+  group.ids <- read_groups(options$groups.file)[,1]
+  weights <- read_spp(options$results.spp.file)[,1]
+  curves.data <- read_curves(options$results.curves)
+  grp.curves.data <- read_grp_curves(options$results.grp.curves)
 
   # First test that regroup_curves() produces the same results as in the
   # original group curves file. ext2 must be removed as it can't be calculated

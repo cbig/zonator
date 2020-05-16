@@ -1,7 +1,9 @@
 context("Zproject creation")
 
+options <- get_options()
+
 test_that("Zproject is created correctly based on existing project", {
-  setup.dir <- .options$setup.dir
+  setup.dir <- options$setup.dir
 
   test.project <- load_zproject(setup.dir)
 
@@ -27,11 +29,11 @@ test_that("Zproject is created correctly based on existing project", {
 context("Zproject methods")
 
 test_that("Retrieving variants works", {
-  setup.dir <- .options$setup.dir
+  setup.dir <- options$setup.dir
   test.project <- load_zproject(setup.dir)
 
-  bat.file <- .options$bat.file
-  spp.file <- .options$spp.file
+  bat.file <- options$bat.file
+  spp.file <- options$spp.file
   test.variant <- new("Zvariant", bat.file = bat.file)
 
   # Number of variants

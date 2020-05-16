@@ -1,9 +1,11 @@
 context("Zresults creation")
 
+options <- get_options()
+
 test_that("Zresults is created correctly", {
   # We need a valid path to existing results
-  results.path <- .options$results.dir
-  invalid.results.path <- file.path(.options$setup.dir, "xxx")
+  results.path <- options$results.dir
+  invalid.results.path <- file.path(options$setup.dir, "xxx")
 
   # Create a new Zresults object
   test.results <- new("Zresults", root = results.path)
@@ -35,7 +37,7 @@ test_that("Zresults is created correctly", {
 
 test_that("Zresults is created correctly when there are no results", {
 
-  no.results.path <- file.path(.options$output.dir, "06")
+  no.results.path <- file.path(options$output.dir, "06")
   suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
 
 })
@@ -44,7 +46,7 @@ context("Zresults methods")
 
 test_that("getting curves for individual features works", {
 
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   test.results <- new("Zresults", root = results.path)
 
   curves.file <- file.path(results.path, "01.curves.txt")
@@ -122,7 +124,7 @@ test_that("getting curves for individual features works", {
 
 test_that("getting curves for groups works", {
 
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   test.results <- new("Zresults", root = results.path)
 
   grp.curves.file <- file.path(results.path, "01.grp_curves.txt")
@@ -170,7 +172,7 @@ test_that("getting curves for groups works", {
 
 test_that("performance levels are reported right for individual features", {
 
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   test.results <- new("Zresults", root = results.path)
 
   curves.file <- file.path(results.path, "01.curves.txt")
@@ -212,7 +214,7 @@ test_that("performance levels are reported right for individual features", {
 
 test_that("performance levels are reported right for groups", {
 
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   test.results <- new("Zresults", root = results.path)
 
   curves.file <- file.path(results.path, "01.grp_curves.txt")
@@ -249,7 +251,7 @@ test_that("performance levels are reported right for groups", {
 
 test_that("featurenanmes are reported right", {
 
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   test.results <- new("Zresults", root = results.path)
 
   correct.names <- c("f1", "f2", "f3", "f4", "f5", "f6", "f7")
@@ -260,7 +262,7 @@ test_that("featurenanmes are reported right", {
 })
 
 test_that("Retrieving results output directory works", {
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   test.results <- new("Zresults", root = results.path)
 
   expect_identical(outdir(test.results), results.path,
@@ -269,7 +271,7 @@ test_that("Retrieving results output directory works", {
 })
 
 test_that("Reading feature info works", {
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
 
   correct.col.names <- c("Weight", "DistSum", "IGRetained",
                          "TviolationFractRem", "DistrMeanX", "DistMeanY",
@@ -284,7 +286,7 @@ test_that("Reading feature info works", {
   expect_identical(features_info(test.results), correct.features.info,
                    "Correct features info is not returned for Zresults")
 
-  no.results.path <- file.path(.options$setup.dir, "06/06_out")
+  no.results.path <- file.path(options$setup.dir, "06/06_out")
   suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
 
   expect_warning(features_info(test.no.results))
@@ -292,7 +294,7 @@ test_that("Reading feature info works", {
 })
 
 test_that("Reading cost data works", {
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   curves.file <- file.path(results.path, "01.curves.txt")
 
   correct.cost_data <- read.table(curves.file, skip = 1, as.is = TRUE)[,1:2]
@@ -303,7 +305,7 @@ test_that("Reading cost data works", {
   expect_identical(cost(test.results), correct.cost_data,
                    "Correct cost data is not returned for Zresults")
 
-  no.results.path <- file.path(.options$setup.dir, "06/06_out")
+  no.results.path <- file.path(options$setup.dir, "06/06_out")
   suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
 
   expect_warning(cost(test.no.results))

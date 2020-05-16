@@ -1,8 +1,10 @@
 context("Zvariant creation")
 
+options <- get_options()
+
 test_that("Zvariant with results is created correctly", {
-  bat.file <- .options$bat.file
-  spp.file <- .options$spp.file
+  bat.file <- options$bat.file
+  spp.file <- options$spp.file
   results.variant <- new("Zvariant", bat.file = bat.file)
 
   # Name
@@ -41,7 +43,7 @@ test_that("Zvariant with results is created correctly", {
 test_that("Zvariant without results is created correctly", {
 
   # Variant with no groups, no results
-  no.results.bat.file <- file.path(.options$setup.dir,
+  no.results.bat.file <- file.path(options$setup.dir,
                                    "06.batx")
   suppressWarnings(no.results.variant <- new("Zvariant",
                                              bat.file = no.results.bat.file))
@@ -62,8 +64,8 @@ test_that("Zvariant without results is created correctly", {
 context("Zvariant methods")
 #
 # test_that("Print method works", {
-#   bat.file <- .options$bat.file
-#   spp.file <- .options$spp.file
+#   bat.file <- options$bat.file
+#   spp.file <- options$spp.file
 #   results.variant <- new("Zvariant", bat.file = bat.file)
 #
 #   text_output <- paste0(c("name       : ", "01_core_area_zonation", "\n",
@@ -80,8 +82,8 @@ context("Zvariant methods")
 # })
 
 test_that("Getting the number of features works", {
-  bat.file <- .options$bat.file
-  spp.file <- .options$spp.file
+  bat.file <- options$bat.file
+  spp.file <- options$spp.file
   results.variant <- new("Zvariant", bat.file = bat.file)
 
   expect_that(nfeatures(results.variant), equals(7),
@@ -90,8 +92,8 @@ test_that("Getting the number of features works", {
 
 test_that("Getting weights works", {
   # Use variant 4 (distribution smoothing) because it has weights
-  bat.file <- .options$bat.file.ds
-  spp.file <- .options$spp.file.ds
+  bat.file <- options$bat.file.ds
+  spp.file <- options$spp.file.ds
   results.variant <- new("Zvariant", bat.file = bat.file)
 
   correct.feature.data <- read_spp(spp.file)
@@ -103,7 +105,7 @@ test_that("Getting weights works", {
 
 test_that("Setting weights works", {
   # Use variant 4 (distribution smoothing) because it has weights
-  bat.file <- .options$bat.file.ds
+  bat.file <- options$bat.file.ds
   results.variant <- new("Zvariant", bat.file = bat.file)
 
   # Generate correct and incorrect number of weights
@@ -126,8 +128,8 @@ test_that("Setting weights works", {
 })
 
 test_that("Assigning and fetching feature names works", {
-  bat.file <- .options$bat.file
-  spp.file <- .options$spp.file
+  bat.file <- options$bat.file
+  spp.file <- options$spp.file
   results.variant <- new("Zvariant", bat.file = bat.file)
 
   correct.feature.data <- read_spp(spp.file)
@@ -163,8 +165,8 @@ test_that("Assigning and fetching feature names works", {
 })
 
 test_that("Assigning and fetching group names and identities works", {
-  bat.file <- .options$bat.file
-  spp.file <- .options$spp.file
+  bat.file <- options$bat.file
+  spp.file <- options$spp.file
   results.variant <- new("Zvariant", bat.file = bat.file)
 
   correct.feature.data <- read_spp(spp.file)
@@ -197,7 +199,7 @@ test_that("Assigning and fetching group names and identities works", {
   groups(results.variant) <- correct.grp.codes
 
   # Variant with no groups
-  no.grps.bat.file <- file.path(.options$setup.dir,
+  no.grps.bat.file <- file.path(options$setup.dir,
                                 "03.bat")
   no.grps.results.variant <- new("Zvariant", bat.file = no.grps.bat.file)
 
@@ -259,17 +261,17 @@ test_that("Assigning and fetching group names and identities works", {
 })
 
 test_that("Getting and setting spp data works", {
-  bat_file_nogrps <- .options$bat.file.no.grps
-  spp_file_nogrps <- .options$spp.file.no.grps
+  bat_file_nogrps <- options$bat.file.no.grps
+  spp_file_nogrps <- options$spp.file.no.grps
   results_variant_nogrps <- new("Zvariant", bat.file = bat_file_nogrps)
 
-  bat_file <- .options$bat.file
-  spp_file <- .options$spp.file
+  bat_file <- options$bat.file
+  spp_file <- options$spp.file
   results_variant <- new("Zvariant", bat.file = bat_file)
 
   # Test with a variant with no results
-  bat_file_noresults <- .options$bat.file.no.results
-  spp_file_noresults <- .options$spp.file.no.restults
+  bat_file_noresults <- options$bat.file.no.results
+  spp_file_noresults <- options$spp.file.no.restults
   suppressWarnings(results_variant_noresults <- new("Zvariant",
                                                     bat.file = bat_file_noresults))
 
@@ -329,11 +331,11 @@ test_that("Getting and setting spp data works", {
 })
 
 test_that("Retrieving variant output directory works", {
-  bat.file <- .options$bat.file
-  spp.file <- .options$spp.file
+  bat.file <- options$bat.file
+  spp.file <- options$spp.file
   test.variant <- new("Zvariant", bat.file = bat.file)
 
-  correct.output.dir <- .options$results.dir
+  correct.output.dir <- options$results.dir
 
   expect_identical(outdir(test.variant), correct.output.dir,
                    "outdir() does not return the correct path for Zvariant")
@@ -341,7 +343,7 @@ test_that("Retrieving variant output directory works", {
 })
 
 test_that("Retrieving feature info works", {
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
 
   correct.col.names <- c("Weight", "DistSum", "IGRetained",
                          "TviolationFractRem", "DistrMeanX", "DistMeanY",
@@ -351,13 +353,13 @@ test_that("Retrieving feature info works", {
                                       sep = "\t", skip = 2, as.is = TRUE,
                                       col.names = correct.col.names)
 
-  bat.file <- .options$bat.file
+  bat.file <- options$bat.file
   test.variant <- new("Zvariant", bat.file = bat.file)
 
   expect_identical(features_info(test.variant), correct.features.info,
                    "Correct features info is not returned for Zvariant")
 
-  no.results.bat.file <- file.path(.options$setup.dir,
+  no.results.bat.file <- file.path(options$setup.dir,
                                    "06.batx")
   suppressWarnings(test.no.results <- new("Zvariant", bat.file = no.results.bat.file))
 
@@ -366,19 +368,19 @@ test_that("Retrieving feature info works", {
 })
 
 test_that("Reading cost data works", {
-  results.path <- .options$results.dir
+  results.path <- options$results.dir
   curves.file <- file.path(results.path, "01.curves.txt")
 
   correct.cost_data <- read.table(curves.file, skip = 1, as.is = TRUE)[,1:2]
   names(correct.cost_data) <- c("pr_lost", "cost")
 
-  bat.file <- .options$results.bat.file
+  bat.file <- options$results.bat.file
   test.variant <- new("Zvariant", bat.file = bat.file)
 
   expect_identical(cost(test.variant), correct.cost_data,
                    "Correct cost data is not returned for Zresults")
 
-  no.results.bat.file <- file.path(.options$setup.dir,
+  no.results.bat.file <- file.path(options$setup.dir,
                                    "06.batx")
   suppressWarnings(test.no.results <- new("Zvariant", bat.file = no.results.bat.file))
 
@@ -387,8 +389,8 @@ test_that("Reading cost data works", {
 })
 
 test_that("Getting and setting dat data works", {
-  bat_file <- .options$bat.file
-  spp_file <- .options$spp.file
+  bat_file <- options$bat.file
+  spp_file <- options$spp.file
   test_variant <- new("Zvariant", bat.file = bat_file)
 
   # Get individual dat parameter values in different sections
@@ -431,8 +433,8 @@ test_that("Getting and setting dat data works", {
 })
 
 test_that("Saving Zvariant works", {
-  bat_file <- .options$bat.file
-  spp_file <- .options$spp.file
+  bat_file <- options$bat.file
+  spp_file <- options$spp.file
   test_variant <- new("Zvariant", bat.file = bat_file)
 
   # FIRST: change the run configuration parameter values
@@ -469,8 +471,8 @@ test_that("Saving Zvariant works", {
 context("Zvariant copying")
 
 test_that("Zvariant with new name is copied correctly", {
-  bat_file <- .options$bat.file.cond
-  spp_file <- .options$spp.file.cond
+  bat_file <- options$bat.file.cond
+  spp_file <- options$spp.file.cond
   test_variant <- new("Zvariant", bat.file = bat_file)
 
   tmp_variant_dir <- tempdir()
@@ -486,8 +488,8 @@ test_that("Zvariant with new name is copied correctly", {
 context("Zvariant special cases")
 
 test_that("Zvariant with condition layers is created correctly", {
-  bat_file <- .options$bat.file.cond
-  spp_file <- .options$spp.file.cond
+  bat_file <- options$bat.file.cond
+  spp_file <- options$spp.file.cond
   test_variant <- new("Zvariant", bat.file = bat_file)
 
   correct_condition_layers <- data.frame(group = c(1, 2),

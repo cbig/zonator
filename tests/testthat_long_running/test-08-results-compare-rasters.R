@@ -5,6 +5,8 @@ if (!requireNamespace("zdat", quietly = TRUE)) {
 
 context("Reading raster results for Zresults works")
 
+options <- get_options()
+
 test_that("Retrieving results rank raster works", {
   results.path <- system.file("extdata", "basic/01/01_out",
                               package = "zdat")
@@ -15,7 +17,7 @@ test_that("Retrieving results rank raster works", {
   expect_identical(rank_raster(test.results), correct.rank.raster,
                    "Correct rank raster is not returned for Zresults")
 
-  no.results.path <- file.path(.options$setup.dir, "06/06_out")
+  no.results.path <- file.path(options$setup.dir, "06/06_out")
   suppressWarnings(test.no.results <- new("Zresults", root = no.results.path))
 
   expect_warning(rank_raster(test.no.results))
@@ -38,7 +40,7 @@ test_that("Retrieving variant rank raster works", {
                    "Correct rank raster is not returned for Zvariant")
 
   # Test with a variant with no results
-  no.results.bat.file <- file.path(.options$setup.dir,
+  no.results.bat.file <- file.path(options$setup.dir,
                                    "06.batx")
   suppressWarnings(no.results.variant <- new("Zvariant",
                                              bat.file = no.results.bat.file))
