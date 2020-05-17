@@ -1,7 +1,11 @@
-urls:
-  reference: http://cbig.github.io/zonator/reference
-  article: http://cbig.github.io/zonator/articles
+pandoc: 2.9.2.1
+pkgdown: 1.5.1
+pkgdown_sha: ~
 articles:
   zonator-project: zonator-project.html
   zonator-results: zonator-results.html
+last_built: 2020-05-17T13:03Z
+urls:
+  reference: http://cbig.github.io/zonator/reference
+  article: http://cbig.github.io/zonator/articles
 
