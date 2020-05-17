@@ -3,8 +3,7 @@ r:
   - oldrel
   - release
   - devel
-dist: trusty
-sudo: false
+dist: xenial
 cache:
   packages: yes
 r_packages:
