@@ -25,4 +25,4 @@ file. If you need to read in individual curves files, use
 Joona Lehtomaki <joona.lehtomaki@gmail.com>
 }
 \keyword{results}
-\keyword{zonation,}
+\keyword{zonation}
