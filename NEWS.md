@@ -1,3 +1,27 @@
+## CHANGES IN VERSION 0.6.0 (2020-05-17)
+
+### OTHER
+
++ Since R verson 3.6.0, staged install is the default way. Using hard coded 
+paths outside local variables in functions will not work with staged install. 
+Previously, .options env was used to store tutorial data related file pahts. 
+In this release, an environmental variable (env) is not used anymore. Instead,
+a regular list is returned by a function. Hence, staged install is once again 
+possible.
++ Travis CI setup has been fixed and moved to a more recent Ubuntu version
+(xenial).
+
+### DEPRECATED
+
++ Function `set_tutorialdir()` has been removed as it is not used anywhere 
+within the package and the usefulness is limited.
+
+### BUG FIXES
+
++ R CMD check was failing because of more stringent test for multiple logical
+values in more recent versions of R. `testthat` was happily passing the tests,
+but checks failed. This has now been fixed.
+
 ## CHANGES IN VERSION 0.5.10 (2018-03-28)
 
 ### OTHER
