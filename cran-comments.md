@@ -22,6 +22,11 @@ Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
 
 Package was archived on CRAN
 
+Possibly mis-spelled words in DESCRIPTION:
+  Zonation (3:22, 13:5)
+
+-> not mis-spelled.
+
 Suggests or Enhances not in mainstream repositories:
   zdat
 Availability using Additional_repositories specification:
