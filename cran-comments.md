@@ -1,14 +1,17 @@
 ## Submission
 
-This release updates all tests to fix the breaking changes introduced in 
-testthat release 2.0.
+This release is a re-submission to CRAN after the package was archived on CRAN
+two years ago. The reason was that hard coded paths caused an error
+with the new staged install functionality introduced in R 3.6.0. Hard coded 
+paths are now properly managed (set within a function) and package passes
+staged install. 
 
 ## Test environments
 
-* local openSUSE Linux x64 install, R 3.4.3
-* Ubuntu 14.04 x64 (on travis-ci), R 3.4.2
-* Windows Server 2012 R2 32-bit (on AppVeyor), R 3.4.3
-* win-builder (devel and release)
+* local openSUSE Linux x64 install, R 4.0.0
+* Ubuntu 16.04.6 LTS x64 (on Travis CI), R 3.6.3, R 4.0.0, R devel
+* Windows Server 2012 R2 64-bit (on AppVeyor), R 4.0.0
+* win-builder (oldrelease, release and devel)
 
 ## R CMD check results
 
@@ -16,6 +19,8 @@ Status: 2 NOTES
 
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Joona Lehtomaki <joona.lehtomaki@gmail.com>’
+
+Package was archived on CRAN
 
 Suggests or Enhances not in mainstream repositories:
   zdat
@@ -31,7 +36,7 @@ install.packages('zdat', repos='https://jlehtoma.github.io/drat/', type='source'
 * checking package dependencies ... NOTE
 Package suggested but not available for checking: 'zdat'
 
--> See above.
+-> see above.
 
 ## Downstream dependencies
 
