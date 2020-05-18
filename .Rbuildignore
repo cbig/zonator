@@ -10,3 +10,4 @@ inst/extras/build_and_check.R
 dist/
 ^docs$
 ^_pkgdown\.yml$
+^CRAN-RELEASE$
